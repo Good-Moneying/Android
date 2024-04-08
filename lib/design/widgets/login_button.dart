@@ -24,14 +24,16 @@ class LoginButton extends StatelessWidget {
       onTap: () {
         onTap;
       },
-      child: Container(
-        margin: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-        decoration: BoxDecoration(
-          color: backgroundColor,
-          borderRadius: BorderRadius.circular(10),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(13),
+      child: Card(
+        margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        elevation: 2,
+        child : Container(
+          height: 50,
+          decoration: BoxDecoration(
+            color: backgroundColor,
+            borderRadius: BorderRadius.circular(7),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -44,12 +46,11 @@ class LoginButton extends StatelessWidget {
               Text(
                 label,
                 style: TextStyle(
-                    //디자인 확정나면 수정
+                  //디자인 확정나면 수정
                     fontSize: 16,
                     color: textColor),
               ),
               SizedBox(width: 75,),
-
             ],
           ),
         ),

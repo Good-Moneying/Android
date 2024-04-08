@@ -3,9 +3,11 @@ import 'package:meetup/design/widgets/login_button.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:meetup/service/auth_service.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-
-void main() {
+void main() async {
+  await dotenv.load(fileName: 'assets/config/.env');
+  KakaoSdk.init(nativeAppKey: "${dotenv.env['YOUR_NATIVE_APP_KEY']}");
   runApp(const MyApp());
 }
 
