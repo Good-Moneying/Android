@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meetup/design/widgets/login_button.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
+import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
+import 'package:meetup/service/auth_service.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -47,16 +50,16 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            //로그인 버튼 실험
             const LoginButton(
               backgroundColor: AppColors.auth,
               textColor: Colors.black87,
               icon: "assets/icons/kakao.svg",
               label: '카카오 로그인',
+              onTap: kakaoLogin,
             ),
           ],
         ),
