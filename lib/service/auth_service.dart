@@ -50,6 +50,7 @@ void getKakaoUserInfo() async {
 
 //로그인
 Future<void> kakaoLogin() async {
+
   if (await isKakaoTalkInstalled()) {
     try {
       await UserApi.instance.loginWithKakaoTalk();
@@ -97,6 +98,8 @@ Future<void> kakaoLogin() async {
     }
   }
 }
+
+
 
 //로그아웃
 Future<void> signOut(BuildContext context) async {

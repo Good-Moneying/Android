@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:meetup/service/auth_service.dart';
@@ -21,9 +22,7 @@ class LoginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        onTap;
-      },
+      onTap: onTap,
       child: Card(
         margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
