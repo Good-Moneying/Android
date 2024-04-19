@@ -19,7 +19,7 @@ class loginScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
              LoginButton(
-              backgroundColor: AppColors.auth,
+              backgroundColor: Color(0xFFFEE500),
               textColor: Colors.black87,
               icon: "assets/icons/kakao.svg",
               label: '카카오 로그인',
