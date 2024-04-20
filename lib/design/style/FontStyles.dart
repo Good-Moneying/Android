@@ -3,14 +3,91 @@ import 'package:flutter/material.dart';
 class FontStyles {
   static const Title1 = TextStyle(
       fontSize: 36,
-      fontWeight: FontWeight.w600,
-      wordSpacing: 48,
-      letterSpacing: -0.027,
-      fontFamily: 'Pretendard');
+      height: 48,
+      letterSpacing: -0.432,
+      fontFamily: 'PretendardBold');
   static const Title2 = TextStyle(
       fontSize: 28,
-      fontWeight: FontWeight.w600,
-      wordSpacing: 48,
-      letterSpacing: -0.432,
-      fontFamily: 'Pretendard');
+      height: 38,
+      letterSpacing: -0.3776,
+      fontFamily: 'PretendardBold');
+  static const Title3 = TextStyle(
+      fontSize: 24,
+      height: 32,
+      letterSpacing: -0.368,
+      fontFamily: 'PretendardBold');
+  static const Heading1 = TextStyle(
+      fontSize: 22,
+      height: 30,
+      letterSpacing: -0.3104,
+      fontFamily: 'PretendardSemi');
+  static const Heading2 = TextStyle(
+      fontSize: 20,
+      height: 28,
+      letterSpacing: -0.192,
+      fontFamily: 'PretendardSemi');
+  static const Headline1 = TextStyle(
+      fontSize: 18,
+      height: 26,
+      letterSpacing: -0.192,
+      fontFamily: 'PretendardSemi');
+  static const Headline2 = TextStyle(
+      fontSize: 17,
+      height: 24,
+      letterSpacing: 0,
+      fontFamily: 'PretendardBold');
+
+  //Bn -> Body/Normal
+  static const Bn1 = TextStyle(
+      fontSize: 16,
+      height: 24,
+      letterSpacing: 0.0912,
+      fontFamily: 'PretendardBold');
+  static const Bn2 = TextStyle(
+      fontSize: 15,
+      height: 22,
+      letterSpacing: 0.1536,
+      fontFamily: 'PretendardSemi');
+
+  //Br -> Body/Reading
+  static const Br1 = TextStyle(
+      fontSize: 16,
+      height: 26,
+      letterSpacing: 0.0912,
+      fontFamily: 'PretendardSemi');
+  static const Br2 = TextStyle(
+      fontSize: 15,
+      height: 24,
+      letterSpacing: 0.1536,
+      fontFamily: 'PretendardSemi');
+
+  //Ln -> Label/Normal
+  static const Ln1 = TextStyle(
+      fontSize: 14,
+      height: 20,
+      letterSpacing: 0.232,
+      fontFamily: 'PretendardSemi');
+
+  //Lr -> Label/Reading
+  static const Lr1 = TextStyle(
+      fontSize: 14,
+      height: 22,
+      letterSpacing: 0.232,
+      fontFamily: 'PretendardSemi');
+
+  static const Label2 = TextStyle(
+      fontSize: 13,
+      height: 18,
+      letterSpacing: 0.3104,
+      fontFamily: 'PretendardSemi');
+  static const Caption1 = TextStyle(
+      fontSize: 12,
+      height: 16,
+      letterSpacing: 0.4032,
+      fontFamily: 'PretendardSemi');
+  static const Caption2 = TextStyle(
+      fontSize: 11,
+      height: 14,
+      letterSpacing: 0.4976,
+      fontFamily: 'PretendardSemi');
 }
