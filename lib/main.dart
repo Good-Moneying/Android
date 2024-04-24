@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:meetup/view/login/login_screen.dart';
+import 'package:meetup/view/auth/frequency_screen.dart';
+import 'package:meetup/view/auth/info_screen.dart';
+import 'package:meetup/view/auth/login_screen.dart';
+import 'package:meetup/view/auth/nickname_screen.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
+import 'package:meetup/view/home/home_screen.dart';
+import 'routes/get_pages.dart';
 
 void main() async {
   await dotenv.load(fileName: 'assets/config/.env');
@@ -10,13 +17,11 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-
   KakaoSdk.init(nativeAppKey: "${dotenv.env['YOUR_NATIVE_APP_KEY']}");
 
   //로그인 여부 확인
   bool isLogin = false;
 
-  print('카카오 해시키 : ${await KakaoSdk.origin}');
   runApp(const MyApp());
 }
 
@@ -27,14 +32,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
 
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: loginScreen(),
+    return GetMaterialApp(
+      title: 'Good Moneying',
+      // theme: ThemeData(
+      //
+      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      //   useMaterial3: true,
+      // ),
+      home: NicknameScreen(),
+      getPages: Pages.pages,
     );
   }
 }

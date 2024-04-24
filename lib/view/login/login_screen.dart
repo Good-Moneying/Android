@@ -23,7 +23,7 @@ class loginScreen extends StatelessWidget {
               textColor: Colors.black87,
               icon: "assets/icons/kakao.svg",
               label: '카카오 로그인',
-              onTap: kakaoLogin,
+               // onTap: Get.offAll(), //webSignIn(),
             ),
           ],
         ),
