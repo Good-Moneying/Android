@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../routes/get_pages.dart';
 
@@ -23,6 +24,13 @@ class _InfoScreenState extends State<InfoScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              LinearPercentIndicator(
+                animation: true,
+                animationDuration: 1000,
+                percent: 0.5,
+                progressColor: Colors.purple,
+                barRadius: Radius.circular(10),
+              ),
               RichText(
                 text: TextSpan(
                   children: [TextSpan(text: '00',

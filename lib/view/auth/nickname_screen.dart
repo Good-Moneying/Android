@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meetup/routes/get_pages.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class NicknameScreen extends StatefulWidget {
   const NicknameScreen({super.key});
@@ -9,10 +10,11 @@ class NicknameScreen extends StatefulWidget {
   State<NicknameScreen> createState() => _NicknameScreenState();
 }
 
-class _NicknameScreenState extends State<NicknameScreen> {
+class _NicknameScreenState extends State<NicknameScreen> with TickerProviderStateMixin{
   GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   TextEditingController _nicknameController = TextEditingController();
   bool _isEnabled = true;
+
 
   @override
   void dispose() {
@@ -29,12 +31,23 @@ class _NicknameScreenState extends State<NicknameScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              //진행률 바
+              LinearPercentIndicator(
+                animation: true,
+                animationDuration: 1000,
+                percent: 0.25,
+                progressColor: Colors.purple,
+                barRadius: Radius.circular(10),
+              ),
+              //
+
               RichText(
                 text: TextSpan(
                   children: [TextSpan(text: '두둑',
                     style: TextStyle(color: Colors.purple),),
                     TextSpan(text: '에서 사용할',
-                      style: TextStyle(color: Colors.black),)],
+                      style: TextStyle(color: Colors.black),)
+                  ],
                 ),
               ),
               Text(
@@ -72,8 +85,8 @@ class _NicknameScreenState extends State<NicknameScreen> {
               ),
               ElevatedButton(
                 onPressed: () {
-                        Get.toNamed(Routes.INFO);
-                      },
+                  Get.toNamed(Routes.INFO);
+                },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
                 ),

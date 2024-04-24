@@ -29,7 +29,7 @@ class WelcomeScreen extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-                Get.toNamed(Routes.HOME);
+                Get.offAllNamed(Routes.HOME);
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),

@@ -47,6 +47,7 @@ dependencies:
   get: ^4.6.6
   flutter_web_auth: ^0.5.0
   webview_flutter: ^4.7.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
