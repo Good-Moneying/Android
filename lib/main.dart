@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:meetup/view/auth/frequency_screen.dart';
+import 'package:meetup/view/auth/info_screen.dart';
 import 'package:meetup/view/auth/login_screen.dart';
+import 'package:meetup/view/auth/nickname_screen.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'routes/get_pages.dart';
@@ -26,12 +29,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Good Moneying',
-      theme: ThemeData(
-
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: BottomNavigationView(),
+      // theme: ThemeData(
+      //
+      //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      //   useMaterial3: true,
+      // ),
+      home: NicknameScreen(),
       getPages: Pages.pages,
     );
   }

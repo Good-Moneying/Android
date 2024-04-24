@@ -29,7 +29,7 @@ class loginScreen extends StatelessWidget {
               textColor: Colors.black87,
               icon: "assets/icons/kakao.svg",
               label: '카카오 로그인',
-             // onTap: Get.offAll(), //webSignIn(),
+              // onTap: Get.offAll(), //webSignIn(),
             ),
           ],
         ),
@@ -38,7 +38,6 @@ class loginScreen extends StatelessWidget {
   }
 
   Future<void> webSignIn() async {
-
     // 고유한 redirect uri
     final redirect_uri = dotenv.get("BASE_URL");
 
@@ -62,7 +61,6 @@ class loginScreen extends StatelessWidget {
     // FlutterSecureStorage 또는 SharedPreferences 를 통한
     // Token 저장 및 관리
     await saveTokens(accessToken!, refreshToken!);
-
   }
 
   Future<void> saveTokens(String accessToken, String refreshToken) async {
