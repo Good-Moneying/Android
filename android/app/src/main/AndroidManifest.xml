@@ -2,7 +2,7 @@
     package="com.example.meetup">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:label="meetup"
+        android:label="굿머닝"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
