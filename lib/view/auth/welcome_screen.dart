@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
 
 import '../../routes/get_pages.dart';
 
@@ -29,7 +30,8 @@ class WelcomeScreen extends StatelessWidget {
 
             ElevatedButton(
               onPressed: () {
-                Get.offAllNamed(Routes.HOME);
+                //임시적
+                Get.offAll(BottomNavigationView());
               },
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
