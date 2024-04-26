@@ -47,10 +47,13 @@ class InterestScreen extends StatelessWidget {
             ),
             RichText(
               text: TextSpan(
-                children: [TextSpan(text: '00',
-                  style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
-                ),
-                  TextSpan(text: '님의',
+                children: [
+                  TextSpan(
+                    text: '00',
+                    style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                  ),
+                  TextSpan(
+                    text: '님의',
                     style: FontStyles.Title2_m.copyWith(color: AppColors.black),
                   ),
                 ],
@@ -65,15 +68,96 @@ class InterestScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: '를 알려주세요',
-                    style:
-                    FontStyles.Title2_m.copyWith(color: AppColors.black),
+                    style: FontStyles.Title2_m.copyWith(color: AppColors.black),
                   )
                 ],
               ),
             ),
-            Text('관심사와 관련된 뉴스레터를 받아보세요!',
-            style: FontStyles.Label2_sb.copyWith(color: AppColors.g4),
+            SizedBox(
+              height: Get.height * 0.02,
             ),
+            Text(
+              '관심사와 관련된 뉴스레터를 받아보세요!',
+              style: FontStyles.Label2_sb.copyWith(color: AppColors.g4),
+            ),
+            SizedBox(
+              height: Get.height * 0.1,
+            ),
+            //1열
+            Row(
+              children: [
+                SizedBox(
+                  width: Get.width * 0.03,
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('주식'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.white,
+                      disabledForegroundColor: AppColors.g4,
+                      foregroundColor: AppColors.v5,
+                      side: BorderSide(
+                        //삼항 연산자로 비활성&활성 나누기
+                        color: AppColors.v5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: Get.width * 0.03,
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('코인'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.white,
+                      disabledForegroundColor: AppColors.g4,
+                      foregroundColor: AppColors.v5,
+                      side: BorderSide(
+                        //삼항 연산자로 비활성&활성 나누기
+                        color: AppColors.v5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: Get.width * 0.03,
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text('부동산'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.white,
+                      disabledForegroundColor: AppColors.g4,
+                      foregroundColor: AppColors.v5,
+                      side: BorderSide(
+                        //삼항 연산자로 비활성&활성 나누기
+                        color: AppColors.v5,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: Get.width * 0.03,
+                ),
+              ],
+            ),
+
             Spacer(),
             SizedBox(
               child: ElevatedButton(

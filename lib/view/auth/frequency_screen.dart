@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
@@ -54,8 +55,7 @@ class FrequencyScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: '를',
-                    style:
-                    FontStyles.Title2_m.copyWith(color: AppColors.black),
+                    style: FontStyles.Title2_m.copyWith(color: AppColors.black),
                   )
                 ],
               ),
@@ -69,31 +69,55 @@ class FrequencyScreen extends StatelessWidget {
                   ),
                   TextSpan(
                     text: ' 읽고 싶으신가요',
-                    style:
-                    FontStyles.Title2_m.copyWith(color: AppColors.black),
+                    style: FontStyles.Title2_m.copyWith(color: AppColors.black),
                   ),
                 ],
               ),
             ),
-            Text('꾸준한 습관을 만들 수 있게 도와드릴게요!',
-            style: FontStyles.Label2_sb.copyWith(color: AppColors.g4),
+            SizedBox(
+              height: Get.height * 0.02,
             ),
-            SizedBox(height: Get.height * 0.35),
+            Text(
+              '꾸준한 습관을 만들 수 있게 도와드릴게요!',
+              style: FontStyles.Label2_sb.copyWith(color: AppColors.g4),
+            ),
+            SizedBox(height: Get.height * 0.1),
             ElevatedButton(
               onPressed: () {},
+              child: Text('매일'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
+                backgroundColor: AppColors.white,
+                disabledForegroundColor: AppColors.g4,
+                foregroundColor: AppColors.v5,
+                side: BorderSide(
+                  //삼항 연산자로 비활성&활성 나누기
+                  color: AppColors.v5,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
-              child: Text('매일'),
             ),
             SizedBox(height: Get.height * 0.03),
             ElevatedButton(
               onPressed: () {},
+              child: Text('일주일에 5~6번'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size.fromHeight(50),
+                backgroundColor: AppColors.white,
+                disabledForegroundColor: AppColors.g4,
+                foregroundColor: AppColors.v5,
+                side: BorderSide(
+                  //삼항 연산자로 비활성&활성 나누기
+                  color: AppColors.v5,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
-              child: Text('일주일에 5 ~ 6번'),
             ),
+
             Spacer(),
             SizedBox(
               child: ElevatedButton(

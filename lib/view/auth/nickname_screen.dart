@@ -17,13 +17,15 @@ class _NicknameScreenState extends State<NicknameScreen>
     with TickerProviderStateMixin {
   GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   TextEditingController _nicknameController = TextEditingController();
-  bool _isEnabled = true;
+  bool _isEnabled = false;
+
 
   @override
   void dispose() {
     _nicknameController.dispose();
     super.dispose();
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -120,13 +122,13 @@ class _NicknameScreenState extends State<NicknameScreen>
                     ElevatedButton(
                       onPressed: () {
                         //중복 검사에서 걸렸을 때
-                        setState(() {
-                          _isEnabled = false;
-                        });
+                        // setState(() {
+                        //   _isEnabled = false;
+                        // });
                         //중복 검사에서 걸리지 않았을 때
-                        setState(() {
-                          _isEnabled = true;
-                        });
+                        // setState(() {
+                        //   _isEnabled = true;
+                        // });
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.v6,
@@ -152,7 +154,7 @@ class _NicknameScreenState extends State<NicknameScreen>
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      backgroundColor: AppColors.v5,
+                      backgroundColor: _isEnabled ?  AppColors.v5 : AppColors.g2,
                     ),
                     child: Text(
                       '다음',

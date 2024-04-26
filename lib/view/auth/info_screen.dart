@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -72,47 +74,91 @@ class _InfoScreenState extends State<InfoScreen> {
                   children: [
                     TextSpan(
                       text: '기본 정보',
-                      style: FontStyles.Title2_b.copyWith(color: AppColors.black),
+                      style:
+                          FontStyles.Title2_b.copyWith(color: AppColors.black),
                     ),
                     TextSpan(
                       text: '를 알려주세요',
                       style:
-                      FontStyles.Title2_m.copyWith(color: AppColors.black),
+                          FontStyles.Title2_m.copyWith(color: AppColors.black),
                     )
                   ],
                 ),
               ),
-              Text('다양한 맞춤 정보를 추천해드릴게요!',
+              SizedBox(
+                height: Get.height * 0.02,
+              ),
+              Text(
+                '다양한 맞춤 정보를 추천해드릴게요!',
                 style: FontStyles.Label2_sb.copyWith(color: AppColors.g4),
               ),
-              Text('*기본 정보는 외부에 노출되지 않아요.',
+              Text(
+                '*기본 정보는 외부에 노출되지 않아요.',
                 style: FontStyles.Label2_r.copyWith(color: AppColors.g4),
               ),
-              Text('성별',
+              SizedBox(
+                height: Get.height * 0.07,
+              ),
+              Text(
+                '성별',
                 style: FontStyles.Headline2_m.copyWith(color: AppColors.black),
               ),
               Row(
                 children: [
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('남성'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                  SizedBox(
+                    width: Get.width*0.03,
+                  ),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text('남성'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.white,
+                        disabledForegroundColor: AppColors.g4,
+                        foregroundColor: AppColors.v5,
+                        side: BorderSide(
+                          //삼항 연산자로 비활성&활성 나누기
+                          color: AppColors.v5,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: Get.width * 0.01,
+                    width: Get.width*0.03,
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text('여성'),
+                  Flexible(
+                    fit: FlexFit.tight,
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: Text('여성'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: AppColors.white,
+                        disabledForegroundColor: AppColors.g4,
+                        foregroundColor: AppColors.v5,
+                        side: BorderSide(
+                          //삼항 연산자로 비활성&활성 나누기
+                          color: AppColors.v5,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: Get.width*0.03,
                   ),
                 ],
               ),
-              Text('생년월일',
+              SizedBox(
+                height: Get.height * 0.07,
+              ),
+              Text(
+                '생년월일',
                 style: FontStyles.Headline2_m.copyWith(color: AppColors.black),
               ),
               Row(
@@ -132,13 +178,28 @@ class _InfoScreenState extends State<InfoScreen> {
                         });
                       }
                     },
-                    child: Text(
-                        '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}'),
-                  )),
+                    child: Container(
+                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                      decoration: BoxDecoration(
+                        border: Border(
+                          bottom: BorderSide(color: AppColors.g3,),
+                        )
+                      ),
+                      child: Text(
+                        '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}',
+                      ),
+                    ),
+                  ),
+                  ),
+                  SizedBox(
+                    width: Get.width*0.03,
+                  ),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text('선택하기',
-                      style: FontStyles.Label2_sb.copyWith(color: AppColors.white),
+                    child: Text(
+                      '선택하기',
+                      style:
+                          FontStyles.Label2_sb.copyWith(color: AppColors.white),
                     ),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.v6,
