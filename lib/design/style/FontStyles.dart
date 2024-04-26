@@ -87,7 +87,7 @@ class FontStyles {
       fontFamily: 'PretendardSemi');
   static const Caption2 = TextStyle(
       fontSize: 11,
-      height: 14,
+      //height: 14,
       letterSpacing: 0.4976,
       fontFamily: 'PretendardSemi');
 }

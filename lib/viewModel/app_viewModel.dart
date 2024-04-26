@@ -15,5 +15,7 @@ class AppViewModel extends GetxService {
     //값을 대입할 때 변수에 직접 넣어줘야함
     currentIndex(index);
   }
+
+
 }
 

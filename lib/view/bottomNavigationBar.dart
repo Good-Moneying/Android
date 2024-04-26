@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/investment/investment_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
@@ -12,7 +13,6 @@ import '../design/style/ColorStyles.dart';
 
 //GetView<AppViewModel> 을 상속받아 좀 더 쓰기 쉽게 함
 class BottomNavigationView extends GetView<AppViewModel> {
-
   const BottomNavigationView({super.key});
 
   @override
@@ -56,16 +56,17 @@ class BottomNavigationView extends GetView<AppViewModel> {
         onTap: (int index) {
           print('selectedIdx : ' + index.toString());
           controller.changeCurrentIndex(index);
+          // controller.changeIsSelected();
         },
         currentIndex: controller.currentIndex.value,
-        //디자인 나오면 수정 필요
-        selectedItemColor: Colors.black,
-        selectedFontSize: 12,
+        //디자인 나오면 수정 필요 -> caption 2_m으로 바꿀 것
+        selectedLabelStyle: FontStyles.Caption2.copyWith(color: AppColors.g6),
+        unselectedLabelStyle: FontStyles.Caption2.copyWith(color: AppColors.g6),
         //
         items: [
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                  'assets/icons/home_unfill.svg',
+                'assets/icons/home_unfill.svg',
               ),
               activeIcon: SvgPicture.asset(
                 'assets/icons/home_fill.svg',
@@ -83,8 +84,9 @@ class BottomNavigationView extends GetView<AppViewModel> {
               icon: SvgPicture.asset(
                 'assets/icons/search_unfill.svg',
               ),
-              activeIcon: SvgPicture.asset(
-                'assets/icons/search_fill.svg',
+              activeIcon: Lottie.asset(
+                'assets/lottie/search.json',
+                repeat: false,
               ),
               label: '둘러보기'),
           BottomNavigationBarItem(

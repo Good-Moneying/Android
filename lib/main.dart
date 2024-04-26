@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: loginScreen(),
+      home: BottomNavigationView(),
       getPages: Pages.pages,
     );
   }
