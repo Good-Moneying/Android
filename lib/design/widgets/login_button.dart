@@ -8,7 +8,7 @@ class LoginButton extends StatelessWidget {
   final Color textColor;
   final String icon;
   final String label;
-  //final Function() onTap;
+  final Function() onTap;
 
   const LoginButton({
     super.key,
@@ -16,15 +16,13 @@ class LoginButton extends StatelessWidget {
     required this.textColor,
     required this.icon,
     required this.label,
-    //required this.onTap,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Get.offAll(const WebKakaoLogin());
-      },
+      onTap: onTap,
       child: Card(
         margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),

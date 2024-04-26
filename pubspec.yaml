@@ -82,17 +82,17 @@ flutter:
 
     - family: PretendardSemi
       fonts:
-        - asset: assets/fonts/Pretendard_SemiBold.otf
+        - asset: assets/fonts/Pretendard-SemiBold.otf
           weight: 600
 
     - family: PretendardMedium
       fonts:
-        - asset: assets/fonts/Pretendard_Medium.otf
+        - asset: assets/fonts/Pretendard-Medium.otf
           weight: 500
 
     - family: PretendardRegular
       fonts:
-        - asset: assets/fonts/Pretendard_Regular.otf
+        - asset: assets/fonts/Pretendard-Regular.otf
           weight: 400
 
 
