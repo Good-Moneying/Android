@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "954744076883",
+    "project_id": "good-moneying",
+    "storage_bucket": "good-moneying.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954744076883:android:a66c867d08a08e112a64a6",
+        "android_client_info": {
+          "package_name": "com.example.meetup"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCU8juIORdH_ojlAMBjNRqPFqTbKa0q9Nk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

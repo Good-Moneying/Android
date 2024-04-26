@@ -50,6 +50,7 @@ class _InfoScreenState extends State<InfoScreen> {
                     child: Text('남성'),
                   ),
                   SizedBox(
+
                     width: Get.width * 0.01,
                   ),
                   ElevatedButton(
