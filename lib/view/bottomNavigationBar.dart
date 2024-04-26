@@ -67,32 +67,32 @@ class BottomNavigationView extends GetView<AppViewModel> {
               icon: SvgPicture.asset(
                   'assets/icons/home_unfill.svg',
               ),
-              activeIcon: Lottie.asset(
-                'assets/lottie/home.json'
+              activeIcon: SvgPicture.asset(
+                'assets/icons/home_fill.svg',
               ),
               label: '홈'),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/icons/invest_unfill.svg',
               ),
-              activeIcon: Lottie.asset(
-                  'assets/lottie/invest.json'
+              activeIcon: SvgPicture.asset(
+                'assets/icons/invest_fill.svg',
               ),
               label: '모의투자'),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/icons/search_unfill.svg',
               ),
-              activeIcon: Lottie.asset(
-                  'assets/lottie/search.json'
+              activeIcon: SvgPicture.asset(
+                'assets/icons/search_fill.svg',
               ),
               label: '둘러보기'),
           BottomNavigationBarItem(
               icon: SvgPicture.asset(
                 'assets/icons/profile_unfill.svg',
               ),
-              activeIcon: Lottie.asset(
-                  'assets/lottie/profile.json'
+              activeIcon: SvgPicture.asset(
+                'assets/icons/profile_fill.svg',
               ),
               label: '마이페이지'),
         ],
