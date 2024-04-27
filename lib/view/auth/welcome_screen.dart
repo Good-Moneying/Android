@@ -59,7 +59,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                   child: Text(
                     '시작하기',
-                    style: FontStyles.Bn1.copyWith(color: AppColors.white),
+                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
                   ),
                 ),
               ),

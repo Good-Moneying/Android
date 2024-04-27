@@ -222,7 +222,7 @@ class _InfoScreenState extends State<InfoScreen> {
                   ),
                   child: Text(
                     '다음',
-                    style: FontStyles.Bn1.copyWith(color: AppColors.white),
+                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
                   ),
                 ),
               ),
