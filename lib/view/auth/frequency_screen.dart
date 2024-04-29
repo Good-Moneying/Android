@@ -2,17 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/progress_bar.dart';
 import '../../routes/get_pages.dart';
 
-class FrequencyScreen extends StatelessWidget {
+class FrequencyScreen extends GetView<UserViewModel> {
   const FrequencyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       backgroundColor: AppColors.white,
       body: SafeArea(
@@ -25,15 +28,8 @@ class FrequencyScreen extends StatelessWidget {
               height: Get.height * 0.05,
             ),
             //진행률 바
-            LinearPercentIndicator(
-              animation: true,
-              animationDuration: 1000,
-              percent: 1,
-              backgroundColor: AppColors.g1,
-              progressColor: AppColors.y3,
-              barRadius: Radius.circular(10),
-            ),
-            //
+            MyProgressBar(percent: controller.getPercentProgress.value),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -100,30 +96,28 @@ class FrequencyScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: Get.height * 0.03),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('일주일에 5~6번'),
-              style: ElevatedButton.styleFrom(
-                minimumSize: const Size.fromHeight(50),
-                backgroundColor: AppColors.white,
-                disabledForegroundColor: AppColors.g4,
-                foregroundColor: AppColors.v5,
-                side: BorderSide(
-                  //삼항 연산자로 비활성&활성 나누기
-                  color: AppColors.v5,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+            //건너뛰기 버튼
+            Container(
+              alignment: Alignment.center,
+              child: TextButton(
+                onPressed: () {
+                  Get.toNamed(Routes.WELCOME);
+                },
+                child: Text(
+                  '건너뛰기',
+                  style: FontStyles.Lr1.copyWith(
+                    color: AppColors.g3,
+                    //decoration: TextDecoration.underline,
+                  ),
                 ),
               ),
             ),
 
             Spacer(),
-            SizedBox(
-              child: ElevatedButton(
+          ElevatedButton(
                 onPressed: () {
-                  Get.toNamed(Routes.WELCOME);
-                },
+                        Get.toNamed(Routes.WELCOME);
+                      },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
                   backgroundColor: AppColors.v5,
@@ -133,7 +127,6 @@ class FrequencyScreen extends StatelessWidget {
                   style: FontStyles.Bn1.copyWith(color: AppColors.white),
                 ),
               ),
-            ),
           ],
         ),
       )),

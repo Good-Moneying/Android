@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/investment/investment_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/search/search_screen.dart';
 import 'package:meetup/viewModel/app_viewModel.dart';
+//import 'package:lottie/lottie.dart';
+import '../design/style/ColorStyles.dart';
 
 //GetView<AppViewModel> 을 상속받아 좀 더 쓰기 쉽게 함
 class BottomNavigationView extends GetView<AppViewModel> {
-
   const BottomNavigationView({super.key});
 
   @override
@@ -19,6 +22,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
     Get.lazyPut(() => AppViewModel());
 
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: null,
       body: _bodyWidget(),
       bottomNavigationBar: _bottomNavigationBarWidget(),
@@ -46,35 +50,66 @@ class BottomNavigationView extends GetView<AppViewModel> {
 
   Widget _bottomNavigationBarWidget() {
     return Obx(
-      () => BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        onTap: (int index) {
-          print('selectedIdx : ' + index.toString());
-          controller.changeCurrentIndex(index);
-        },
-        currentIndex: controller.currentIndex.value,
-        //디자인 나오면 수정 필요
-        selectedItemColor: Colors.black,
-        selectedFontSize: 12,
-        //
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.home_outlined),
-              activeIcon: Icon(Icons.home),
-              label: '홈'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.money_outlined),
-              activeIcon: Icon(Icons.money),
-              label: '모의투자'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.search_outlined),
-              activeIcon: Icon(Icons.search),
-              label: '둘러보기'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
-              activeIcon: Icon(Icons.person),
-              label: '마이페이지'),
-        ],
+      () => Theme(
+        data: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+        ),
+        child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
+          onTap: (int index) {
+            print('selectedIdx : ' + index.toString());
+            controller.changeCurrentIndex(index);
+          },
+          currentIndex: controller.currentIndex.value,
+          //selectedLabelStyle: FontStyles.Caption2_m.copyWith(color: AppColors.g6),
+          unselectedLabelStyle:
+              FontStyles.Caption2.copyWith(color: AppColors.g6),
+          items: [
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/home_unfill.svg',
+                ),
+                // activeIcon: Lottie.asset(
+                //   'assets/lottie/home.json',
+                //   width: 24,
+                //   height: 24,
+                //   repeat: false,
+                // ),
+                label: '홈'),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/invest_unfill.svg',
+                ),
+                // activeIcon: Lottie.asset(
+                //   width: 24,
+                //   height: 24,
+                //   'assets/lottie/invest.json',
+                //   repeat: false,
+                // ),
+                label: '모의투자'),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/search_unfill.svg',
+                ),
+                // activeIcon: Lottie.asset(
+                //   'assets/lottie/search.json',
+                //   repeat: false,
+                // ),
+                label: '둘러보기'),
+            BottomNavigationBarItem(
+                icon: SvgPicture.asset(
+                  'assets/icons/profile_unfill.svg',
+                ),
+                // activeIcon: Lottie.asset(
+                //   width: 24,
+                //   height: 24,
+                //   'assets/lottie/profile.json',
+                //   repeat: false,
+                // ),
+                label: '마이페이지'),
+          ],
+        ),
       ),
     );
   }

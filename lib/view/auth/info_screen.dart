@@ -3,19 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/progress_bar.dart';
 import '../../routes/get_pages.dart';
 
-class InfoScreen extends StatefulWidget {
-  const InfoScreen({super.key});
-
-  @override
-  State<InfoScreen> createState() => _InfoScreenState();
-}
-
-class _InfoScreenState extends State<InfoScreen> {
+class InfoScreen extends GetView<UserViewModel> {
   //생년월일
   DateTime date = DateTime.now();
 
@@ -33,14 +28,8 @@ class _InfoScreenState extends State<InfoScreen> {
                 height: Get.height * 0.05,
               ),
               //진행률 바
-              LinearPercentIndicator(
-                animation: true,
-                animationDuration: 1000,
-                percent: 0.54,
-                backgroundColor: AppColors.g1,
-                progressColor: AppColors.y3,
-                barRadius: Radius.circular(10),
-              ),
+              MyProgressBar(percent: controller.getPercentProgress.value),
+
               //
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
@@ -106,7 +95,7 @@ class _InfoScreenState extends State<InfoScreen> {
               Row(
                 children: [
                   SizedBox(
-                    width: Get.width*0.03,
+                    width: Get.width * 0.03,
                   ),
                   Flexible(
                     fit: FlexFit.tight,
@@ -128,7 +117,7 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                   ),
                   SizedBox(
-                    width: Get.width*0.03,
+                    width: Get.width * 0.03,
                   ),
                   Flexible(
                     fit: FlexFit.tight,
@@ -150,7 +139,7 @@ class _InfoScreenState extends State<InfoScreen> {
                     ),
                   ),
                   SizedBox(
-                    width: Get.width*0.03,
+                    width: Get.width * 0.03,
                   ),
                 ],
               ),
@@ -164,35 +153,36 @@ class _InfoScreenState extends State<InfoScreen> {
               Row(
                 children: [
                   Expanded(
-                      child: InkWell(
-                    onTap: () async {
-                      final selectedDate = await showDatePicker(
-                        context: context,
-                        initialDate: date,
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime.now(),
-                      );
-                      if (selectedDate != null) {
-                        setState(() {
-                          date = selectedDate;
-                        });
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: AppColors.g3,),
-                        )
-                      ),
-                      child: Text(
-                        '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}',
+                    child: InkWell(
+                      onTap: () async {
+                        final selectedDate = await showDatePicker(
+                          context: context,
+                          initialDate: date,
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime.now(),
+                        );
+                        // if (selectedDate != null) {
+                        //   setState(() {
+                        //     date = selectedDate;
+                        //   });
+                        // },
+                      },
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
+                        decoration: BoxDecoration(
+                            border: Border(
+                          bottom: BorderSide(
+                            color: AppColors.g3,
+                          ),
+                        )),
+                        child: Text(
+                          '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}',
+                        ),
                       ),
                     ),
                   ),
-                  ),
                   SizedBox(
-                    width: Get.width*0.03,
+                    width: Get.width * 0.03,
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -215,6 +205,7 @@ class _InfoScreenState extends State<InfoScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     Get.toNamed(Routes.INTEREST);
+                    controller.setEnabled(0.77);
                   },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),

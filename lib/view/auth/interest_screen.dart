@@ -1,13 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/progress_bar.dart';
 import '../../routes/get_pages.dart';
 
-class InterestScreen extends StatelessWidget {
+class InterestScreen extends GetView<UserViewModel> {
+
   const InterestScreen({super.key});
 
   @override
@@ -24,14 +27,7 @@ class InterestScreen extends StatelessWidget {
               height: Get.height * 0.05,
             ),
             //진행률 바
-            LinearPercentIndicator(
-              animation: true,
-              animationDuration: 1000,
-              percent: 0.77,
-              backgroundColor: AppColors.g1,
-              progressColor: AppColors.y3,
-              barRadius: Radius.circular(10),
-            ),
+            MyProgressBar(percent: controller.getPercentProgress.value),
             //
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -161,19 +157,20 @@ class InterestScreen extends StatelessWidget {
             Spacer(),
             SizedBox(
               child: ElevatedButton(
-                onPressed: () {
-                  Get.toNamed(Routes.FREQUENCY);
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  backgroundColor: AppColors.v5,
-                ),
-                child: Text(
-                  '다음',
-                  style: FontStyles.Bn1.copyWith(color: AppColors.white),
+                  onPressed: () {
+                    Get.toNamed(Routes.FREQUENCY);
+                    controller.setEnabled(1.0);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppColors.v5,
+                  ),
+                  child: Text(
+                    '다음',
+                    style: FontStyles.Bn1.copyWith(color: AppColors.white),
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       )),
