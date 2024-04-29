@@ -71,7 +71,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                   'assets/icons/home_unfill.svg',
                 ),
                 activeIcon: Lottie.asset(
-                  'assets/lottie/home.json',
+                  'assets/lottie/MAIN2.json',
                   width: 24,
                   height: 24,
                   repeat: false,
@@ -84,7 +84,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                 activeIcon: Lottie.asset(
                   width: 24,
                   height: 24,
-                  'assets/lottie/invest.json',
+                  'assets/lottie/moi2.json',
                   repeat: false,
                 ),
                 label: '모의투자'),
@@ -104,7 +104,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                 activeIcon: Lottie.asset(
                   width: 24,
                   height: 24,
-                  'assets/lottie/profile.json',
+                  'assets/lottie/MY2.json',
                   repeat: false,
                 ),
                 label: '마이페이지'),
