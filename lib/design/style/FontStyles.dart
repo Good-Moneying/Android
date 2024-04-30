@@ -21,6 +21,11 @@ class FontStyles {
       //height: 32,
       letterSpacing: -0.368,
       fontFamily: 'PretendardBold');
+  static const Heading1_b = TextStyle(
+      fontSize: 22,
+      //height: 30,
+      letterSpacing: -0.3104,
+      fontFamily: 'PretendardBold');
   static const Heading1_sb = TextStyle(
       fontSize: 22,
       //height: 30,
@@ -53,6 +58,11 @@ class FontStyles {
       //height: 24,
       letterSpacing: 0.0912,
       fontFamily: 'PretendardBold');
+  static const Bn2_m = TextStyle(
+      fontSize: 15,
+      //height: 22,
+      letterSpacing: 0.1536,
+      fontFamily: 'PretendardMedium');
   static const Bn2_sb = TextStyle(
       fontSize: 15,
       //height: 22,
@@ -105,6 +115,11 @@ class FontStyles {
       //height: 16,
       letterSpacing: 0.4032,
       fontFamily: 'PretendardRegular');
+  static const Caption1_m = TextStyle(
+      fontSize: 12,
+      //height: 16,
+      letterSpacing: 0.4032,
+      fontFamily: 'PretendardMedium');
   static const Caption2_r = TextStyle(
       fontSize: 11,
       //height: 14,
