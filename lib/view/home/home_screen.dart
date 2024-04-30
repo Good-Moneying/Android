@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/widgets/chip_editor.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -48,6 +48,74 @@ class HomeScreen extends StatelessWidget {
                 style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),
               ),
               //에디터 카드 위젯 만들기
+              Card(
+                color: AppColors.white,
+                surfaceTintColor: Colors.transparent,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(7)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(7),
+                        topRight: Radius.circular(7),
+                      ),
+                      //임시 사진
+                      child: Image.network(
+                        'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                        height: Get.height * 0.2,
+                        width: Get.width,
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomChip(label: '미국경제'),
+                          CustomChip(label: '금리'),
+                        ],
+                      ),
+                    ),
+                    ListTile(
+                      title: Text(
+                        '테슬라 주가 갑자기 오른 이유는?',
+                        style: FontStyles.Heading2_sb.copyWith(
+                            color: AppColors.black),
+                      ),
+                      subtitle: Text(
+                        '“코인 급등 랠리?” 도지코인 거래 급감',
+                        style:
+                            FontStyles.Caption1_m.copyWith(color: AppColors.g5),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(15, 0, 15, 15),
+                      child: OutlinedButton(
+                        onPressed: () {
+                          //에디터 화면 넘어가게하기
+                        },
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: AppColors.white,
+                          side: BorderSide(
+                            color: AppColors.v2,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                        ),
+                        child: Text(
+                          '금융 지식 자세히 보기',
+                          style:
+                              FontStyles.Ln1_sb.copyWith(color: AppColors.v4),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               SizedBox(
                 height: Get.height * 0.03,
               ),
@@ -108,7 +176,8 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   Text(
                     '실시간 트렌드 뉴스',
-                    style: FontStyles.Headline2_b.copyWith(color: AppColors.black),
+                    style:
+                        FontStyles.Headline2_b.copyWith(color: AppColors.black),
                   ),
                   SizedBox(
                     width: Get.width * 0.02,
@@ -117,7 +186,7 @@ class HomeScreen extends StatelessWidget {
                     message: '''실시간 뉴스를 빠르게
 핵심만 전달드릴게요!''',
                     textStyle:
-                    FontStyles.Caption2_r.copyWith(color: AppColors.white),
+                        FontStyles.Caption2_r.copyWith(color: AppColors.white),
                     decoration: ShapeDecoration(
                       // borderRadius: BorderRadius.circular(8.0),
                       color: AppColors.g4.withOpacity(0.95),
@@ -133,11 +202,12 @@ class HomeScreen extends StatelessWidget {
                   //Get.toNamed(Routes.INTEREST);
                 },
                 style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppColors.v5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    )),
+                  minimumSize: const Size.fromHeight(50),
+                  backgroundColor: AppColors.v5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 child: Row(
                   children: [
                     Text(
@@ -161,7 +231,7 @@ class HomeScreen extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       //단어
                       Text(
