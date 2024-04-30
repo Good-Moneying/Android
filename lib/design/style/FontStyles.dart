@@ -120,6 +120,21 @@ class FontStyles {
       //height: 14,
       letterSpacing: 0.4976,
       fontFamily: 'PretendardSemi');
+  static const Heading1_b = TextStyle(
+    fontSize: 22,
+    letterSpacing: 0.427,
+    fontFamily: 'PretendardBold');
+  static const Title_1_m = TextStyle(
+    fontSize: 36,
+    letterSpacing: 0.972,
+    fontFamily: 'PretendardMedium'
+  );
+  static const Title2_sb = TextStyle(
+      fontSize: 28,
+      letterSpacing: 0.661,
+      fontFamily: 'PretendardSemi'
+  );
+
 
 }
 
