@@ -50,6 +50,9 @@ class HomeScreen extends StatelessWidget {
                 '오늘의 경제 지식! 두둑하게 챙겨가세요',
                 style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),
               ),
+              SizedBox(
+                height: Get.height* 0.02,
+              ),
               //에디터 카드 위젯 만들기
               Card(
                 color: AppColors.white,
@@ -135,42 +138,44 @@ class HomeScreen extends StatelessWidget {
                   ),
                   Column(
                     children: [
-                      Row(
-                        children: [
-                          RichText(
-                            text: TextSpan(
-                              children: [
-                                //닉네임 들어갈 부분
-                                TextSpan(
-                                  text: '두식이',
-                                  style: FontStyles.Headline2_b.copyWith(
-                                      color: AppColors.v6),
-                                ),
-                                TextSpan(
-                                  text: '님에게 추천해요!',
-                                  style: FontStyles.Headline2_b.copyWith(
-                                      color: AppColors.black),
-                                )
-                              ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 20),
+                        child: Row(
+                          children: [
+                            RichText(
+                              text: TextSpan(
+                                children: [
+                                  //닉네임 들어갈 부분
+                                  TextSpan(
+                                    text: '두식이',
+                                    style: FontStyles.Headline2_b.copyWith(
+                                        color: AppColors.v6),
+                                  ),
+                                  TextSpan(
+                                    text: '님에게 추천해요!',
+                                    style: FontStyles.Headline2_b.copyWith(
+                                        color: AppColors.black),
+                                  )
+                                ],
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: Get.width * 0.02,
-                          ),
-                          Tooltip(
-                            message: '''관심있는 주제 및 나이, 성별에 따른
-                      뉴스레터를 추천해드려요!''',
-                            textStyle: FontStyles.Caption2_r.copyWith(
-                                color: AppColors.white),
-                            decoration: ShapeDecoration(
-                              // borderRadius: BorderRadius.circular(8.0),
-                              color: AppColors.g4.withOpacity(0.95),
-                              shape: ToolTipBalloon(),
+                            SizedBox(
+                              width: Get.width * 0.02,
                             ),
-                            triggerMode: TooltipTriggerMode.tap,
-                            child: SvgPicture.asset('assets/icons/info.svg'),
-                          ),
-                        ],
+                            Tooltip(
+                              message: '관심있는 주제 및 나이, 성별에 따른 \n뉴스레터를 추천해드려요!',
+                              textStyle: FontStyles.Caption2_r.copyWith(
+                                  color: AppColors.white),
+                              decoration: ShapeDecoration(
+                                // borderRadius: BorderRadius.circular(8.0),
+                                color: AppColors.g4.withOpacity(0.95),
+                                shape: ToolTipBalloon(),
+                              ),
+                              triggerMode: TooltipTriggerMode.tap,
+                              child: SvgPicture.asset('assets/icons/info.svg'),
+                            ),
+                          ],
+                        ),
                       ),
                       SizedBox(
                         height: Get.height * 0.03,
@@ -179,12 +184,11 @@ class HomeScreen extends StatelessWidget {
                       RecommendU(),
                     ],
                   ),
-                  SizedBox(
-                    height: Get.height * 0.02,
-                  ),
                 ],
               ),
-
+              SizedBox(
+                height: Get.height*0.02,
+              ),
               Row(
                 children: [
                   Text(
@@ -196,8 +200,7 @@ class HomeScreen extends StatelessWidget {
                     width: Get.width * 0.02,
                   ),
                   Tooltip(
-                    message: '''실시간 뉴스를 빠르게
-핵심만 전달드릴게요!''',
+                    message: '실시간 뉴스를 빠르게 \n핵심만 전달드릴게요!',
                     textStyle:
                         FontStyles.Caption2_r.copyWith(color: AppColors.white),
                     decoration: ShapeDecoration(

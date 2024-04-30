@@ -63,6 +63,9 @@ class RecommendU extends StatelessWidget {
                     Row(
                       children: [
                         SvgPicture.asset('assets/icons/history.svg'),
+                        SizedBox(
+                          width: Get.width*0.02,
+                        ),
                         Text(
                           '5분전',
                           style: FontStyles.Caption2_r.copyWith(
