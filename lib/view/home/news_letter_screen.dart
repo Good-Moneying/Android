@@ -57,40 +57,169 @@ class NewsLetterScreen extends StatelessWidget{
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 16, 0, 0), // 오른쪽에 여백 추가
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), // 오른쪽에 여백 추가
                       child: SvgPicture.asset('assets/images/newsletter_america.svg'),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(4, 16, 0, 0), // 오른쪽에 여백 추가
+                      padding: const EdgeInsets.fromLTRB(4, 0, 0, 0), // 오른쪽에 여백 추가
                       child: SvgPicture.asset('assets/images/newsletter_rate.svg'),
                     ),
                     Expanded(
                         child: Container()
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 16,16 , 0), // 오른쪽에 여백 추가
-                      child: SvgPicture.asset('assets/images/newsletter_wallet.svg'),
+                      padding: const EdgeInsets.fromLTRB(0, 0,0 , 0), // 오른쪽에 여백 추가
+                      child: IconButton(
+                        icon: SvgPicture.asset('assets/images/newsletter_wallet.svg'),
+                        onPressed: () {
+                          // 아이콘 버튼이 눌렸을 때 수행할 작업을 추가합니다.
+                        },
+                      ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 16, 16, 0), // 오른쪽에 여백 추가
-                      child: SvgPicture.asset('assets/images/newsletter_bookmark.svg'),
-                    ),
+                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0), // 오른쪽에 여백 추가
+                      child: IconButton(
+                        icon : SvgPicture.asset('assets/images/newsletter_bookmark.svg'),
+                        onPressed: () {
+                        },
+                      ),
+                      ),
                   ],
                 ),
                 Row(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 16,0 , 0),
+                      padding: const EdgeInsets.fromLTRB(0, 0,0 , 0),
                       child : Text("테슬라 주가 갑자기\n오른 이유는?", style: FontStyles.Title2_sb.copyWith(color: AppColors.black))
                     )
                   ],
-                )
+                ),
+                Row(
+                  children: [
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
+                    child: Text("2024.04.25", style: FontStyles.Label1_Normal_r.copyWith(color: Colors.grey))
+                    ),
+                    Expanded(child: Container()),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 1, 0), // 오른쪽에 여백 추가
+                      child: SvgPicture.asset('assets/images/newsletter_editor.svg'),
+                    ),
+                    RichText(
+                      text:TextSpan(
+                        text: 'Edit By. ',
+                        style: FontStyles.Label1_Normal_r.copyWith(color: AppColors.g3), //기본style을 지정해줘야함
+                        children: <TextSpan>[
+                          TextSpan(text: 'Amy',style: FontStyles.Label1_Normal_r.copyWith(color: AppColors.g4), //기본style을 지정해줘야함
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                Container(
+                  width: 380,height: 300,
+                  margin: EdgeInsets.only(top: 16),
+                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Colors.white),
+                child : Column(
+                  children: [
+                    Row(
+                    children: [
+                      Padding(
+                      padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                      child: Align(
+                        alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                        child: Text("3줄 요약", style: FontStyles.Heading1_b.copyWith(color: AppColors.v5),),
+                      ),
+                    ),
+                    ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                            alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                            child: SvgPicture.asset('assets/images/newsletter_dotori.svg')
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: Text("물가상승률이 예상보다 높아 불과 몇 주 만에\n전문가들의 미국 기준금리 인하 예상 시점이\n한참 미뤄졌음.",
+                              style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g6),)
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: SvgPicture.asset('assets/images/newsletter_dotori.svg')
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: Text("급격한 기준금리 인상에도 불구하고, 미국의\n경제는 상대적으로 호황을 누리고 있음.",
+                                  style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g6))
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: SvgPicture.asset('assets/images/newsletter_dotori.svg')
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(18.0,20.0,0.0,0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: Text("이민자 증가, 높은 고용 유연성, 인공지능(AI)\n발전 등에 따른 노동생산성 향상이 미국 경제\n호황의 대표적 요인으로 꼽히고 있음.",
+                                  style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g6))
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                ),
+          Container(
+            width: double.infinity,
+            margin: EdgeInsets.only(top: 16),
+          decoration: BoxDecoration( color: Colors.white),
+                child: Column(
+                  children: [
+                Padding(
+                padding: const EdgeInsets.fromLTRB(17.0,20.0,0.0,0.0),
+                    child : Text("불과 몇 주 사이에 미국 통화 정책을 바라보는 분위기가 완\n전히 바뀌었어요. 얼마 전까진 다들 ‘올해 6월에 금리 인하\n가 시작될 것’이라고 했는데, 이젠 ‘아직 멀었다’는 사람이 많아졌죠.")),
+                Text("\n")
+                    ,Text("지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.")
         ],
         ),
+
+        ),
+                
+
+        ],
+      ),
+      ),
     ),
 
 
-      ),
     );
   }
 }

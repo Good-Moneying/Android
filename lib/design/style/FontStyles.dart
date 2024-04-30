@@ -134,6 +134,16 @@ class FontStyles {
       letterSpacing: 0.661,
       fontFamily: 'PretendardSemi'
   );
+  static const Label1_Normal_r = TextStyle(
+      fontSize: 14,
+      letterSpacing: 0.203,
+      fontFamily: 'PretendardRegular'
+  );
+  static const Label1_Normal_m = TextStyle(
+      fontSize: 14,
+      letterSpacing: 0.203,
+      fontFamily: 'PretendardMedium'
+  );
 
 
 }
