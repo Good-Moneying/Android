@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/tooltip_balloon.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -46,7 +48,9 @@ class HomeScreen extends StatelessWidget {
                 style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),
               ),
               //에디터 카드 위젯 만들기
-
+              SizedBox(
+                height: Get.height * 0.03,
+              ),
               Row(
                 children: [
                   RichText(
@@ -69,10 +73,17 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     width: Get.width * 0.02,
                   ),
-                  GestureDetector(
-                    onTap: () {
-                      //SpeechBalloon(comment: '관심있는 주제 및 나이, 성별에 따른 뉴스레터를 추천해드려요!');
-                    },
+                  Tooltip(
+                    message: '''관심있는 주제 및 나이, 성별에 따른
+뉴스레터를 추천해드려요!''',
+                    textStyle:
+                        FontStyles.Caption2_r.copyWith(color: AppColors.white),
+                    decoration: ShapeDecoration(
+                      // borderRadius: BorderRadius.circular(8.0),
+                      color: AppColors.g4.withOpacity(0.95),
+                      shape: ToolTipBalloon(),
+                    ),
+                    triggerMode: TooltipTriggerMode.tap,
                     child: SvgPicture.asset('assets/icons/info.svg'),
                   ),
                 ],
@@ -93,9 +104,29 @@ class HomeScreen extends StatelessWidget {
               //     ),
               //   ],
               // ),
-              Text(
-                '실시간 트렌드 뉴스',
-                style: FontStyles.Headline2_b.copyWith(color: AppColors.black),
+              Row(
+                children: [
+                  Text(
+                    '실시간 트렌드 뉴스',
+                    style: FontStyles.Headline2_b.copyWith(color: AppColors.black),
+                  ),
+                  SizedBox(
+                    width: Get.width * 0.02,
+                  ),
+                  Tooltip(
+                    message: '''실시간 뉴스를 빠르게
+핵심만 전달드릴게요!''',
+                    textStyle:
+                    FontStyles.Caption2_r.copyWith(color: AppColors.white),
+                    decoration: ShapeDecoration(
+                      // borderRadius: BorderRadius.circular(8.0),
+                      color: AppColors.g4.withOpacity(0.95),
+                      shape: ToolTipBalloon(),
+                    ),
+                    triggerMode: TooltipTriggerMode.tap,
+                    child: SvgPicture.asset('assets/icons/info.svg'),
+                  ),
+                ],
               ),
               ElevatedButton(
                 onPressed: () {
@@ -138,16 +169,17 @@ class HomeScreen extends StatelessWidget {
                         style: FontStyles.Bn1_b.copyWith(color: AppColors.v7),
                       ),
                       SizedBox(
-                        height: Get.height*0.01,
+                        height: Get.height * 0.01,
                       ),
                       //뜻
                       RichText(
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
                         text: TextSpan(
-                          text: '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
-                          style:
-                              FontStyles.Caption1_m.copyWith(color: AppColors.g6),
+                          text:
+                              '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
+                          style: FontStyles.Caption1_m.copyWith(
+                              color: AppColors.g6),
                         ),
                       ),
                     ],
