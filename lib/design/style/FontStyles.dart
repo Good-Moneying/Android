@@ -82,6 +82,11 @@ class FontStyles {
       fontFamily: 'PretendardSemi');
 
   //Ln -> Label/Normal
+  static const Ln1_m = TextStyle(
+      fontSize: 14,
+      //height: 20,
+      letterSpacing: 0.232,
+      fontFamily: 'PretendardMedium');
   static const Ln1_sb = TextStyle(
       fontSize: 14,
       //height: 20,

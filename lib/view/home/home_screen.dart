@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
+import 'package:meetup/design/widgets/recommend_box.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -69,6 +72,9 @@ class HomeScreen extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                     ),
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
                       child: Row(
@@ -116,62 +122,69 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
               ),
+              //에디터 카드
               SizedBox(
                 height: Get.height * 0.03,
               ),
-              Row(
+              Stack(
                 children: [
-                  RichText(
-                    text: TextSpan(
-                      children: [
-                        //닉네임 들어갈 부분
-                        TextSpan(
-                          text: '두식이',
-                          style: FontStyles.Headline2_b.copyWith(
-                              color: AppColors.v6),
-                        ),
-                        TextSpan(
-                          text: '님에게 추천해요!',
-                          style: FontStyles.Headline2_b.copyWith(
-                              color: AppColors.black),
-                        )
-                      ],
+                  Positioned.fill(
+                    child: Container(
+                      color: AppColors.white,
                     ),
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          RichText(
+                            text: TextSpan(
+                              children: [
+                                //닉네임 들어갈 부분
+                                TextSpan(
+                                  text: '두식이',
+                                  style: FontStyles.Headline2_b.copyWith(
+                                      color: AppColors.v6),
+                                ),
+                                TextSpan(
+                                  text: '님에게 추천해요!',
+                                  style: FontStyles.Headline2_b.copyWith(
+                                      color: AppColors.black),
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.02,
+                          ),
+                          Tooltip(
+                            message: '''관심있는 주제 및 나이, 성별에 따른
+                      뉴스레터를 추천해드려요!''',
+                            textStyle: FontStyles.Caption2_r.copyWith(
+                                color: AppColors.white),
+                            decoration: ShapeDecoration(
+                              // borderRadius: BorderRadius.circular(8.0),
+                              color: AppColors.g4.withOpacity(0.95),
+                              shape: ToolTipBalloon(),
+                            ),
+                            triggerMode: TooltipTriggerMode.tap,
+                            child: SvgPicture.asset('assets/icons/info.svg'),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: Get.height * 0.03,
+                      ),
+                      RecommendU(),
+                      RecommendU(),
+                    ],
                   ),
                   SizedBox(
-                    width: Get.width * 0.02,
-                  ),
-                  Tooltip(
-                    message: '''관심있는 주제 및 나이, 성별에 따른
-뉴스레터를 추천해드려요!''',
-                    textStyle:
-                        FontStyles.Caption2_r.copyWith(color: AppColors.white),
-                    decoration: ShapeDecoration(
-                      // borderRadius: BorderRadius.circular(8.0),
-                      color: AppColors.g4.withOpacity(0.95),
-                      shape: ToolTipBalloon(),
-                    ),
-                    triggerMode: TooltipTriggerMode.tap,
-                    child: SvgPicture.asset('assets/icons/info.svg'),
+                    height: Get.height * 0.02,
                   ),
                 ],
               ),
-              SizedBox(
-                height: Get.height * 0.02,
-              ),
-              // Row(
-              //   children: [
-              //     SvgPicture.asset('assets/icons/arrow_right.svg'),
-              //     const Column(
-              //       children: [
-              //
-              //         Text('제목 들어가'),
-              //         Text('5분전'),
-              //
-              //       ],
-              //     ),
-              //   ],
-              // ),
+
               Row(
                 children: [
                   Text(
@@ -244,7 +257,7 @@ class HomeScreen extends StatelessWidget {
                       //뜻
                       RichText(
                         maxLines: 3,
-                        overflow: TextOverflow.ellipsis,
+                        softWrap: true,
                         text: TextSpan(
                           text:
                               '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
