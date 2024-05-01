@@ -360,8 +360,6 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
         ],
                 ),
         ),
-                
-
         ],
       ),
       ),
