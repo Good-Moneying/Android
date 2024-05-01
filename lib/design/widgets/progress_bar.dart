@@ -23,7 +23,7 @@ class MyProgressBar extends GetView<UserViewModel> {
       animateFromLastPercent: true,
       percent: percent,
       backgroundColor: AppColors.g1,
-      progressColor: AppColors.y3,
+      progressColor: AppColors.v2,
       barRadius: Radius.circular(10),
     );
   }

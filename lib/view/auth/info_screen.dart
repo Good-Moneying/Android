@@ -29,19 +29,13 @@ class InfoScreen extends GetView<UserViewModel> {
               ),
               //진행률 바
               MyProgressBar(percent: controller.getPercentProgress.value),
-
-              //
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    '2/4',
-                    style: FontStyles.Caption1_r.copyWith(color: AppColors.g4),
-                  ),
-                ],
-              ),
               SizedBox(
                 height: Get.height * 0.05,
+              ),
+              Text(
+                '2/4',
+                style:
+                FontStyles.Headline1_m.copyWith(color: AppColors.y6),
               ),
               RichText(
                 text: TextSpan(

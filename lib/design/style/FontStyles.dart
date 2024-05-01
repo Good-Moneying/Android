@@ -31,7 +31,12 @@ class FontStyles {
       //height: 28,
       letterSpacing: -0.192,
       fontFamily: 'PretendardSemi');
-  static const Headline1 = TextStyle(
+  static const Headline1_m = TextStyle(
+      fontSize: 18,
+      //height: 26,
+      letterSpacing: -0.192,
+      fontFamily: 'PretendardMedium');
+  static const Headline1_sb = TextStyle(
       fontSize: 18,
       //height: 26,
       letterSpacing: -0.192,
@@ -53,7 +58,7 @@ class FontStyles {
       //height: 24,
       letterSpacing: 0.0912,
       fontFamily: 'PretendardBold');
-  static const Bn2 = TextStyle(
+  static const Bn2_sb = TextStyle(
       fontSize: 15,
       //height: 22,
       letterSpacing: 0.1536,
@@ -72,14 +77,24 @@ class FontStyles {
       fontFamily: 'PretendardSemi');
 
   //Ln -> Label/Normal
-  static const Ln1 = TextStyle(
+  static const Ln1_m = TextStyle(
+      fontSize: 14,
+      //height: 20,
+      letterSpacing: 0.232,
+      fontFamily: 'PretendardSemi');
+  static const Ln1_sb = TextStyle(
       fontSize: 14,
       //height: 20,
       letterSpacing: 0.232,
       fontFamily: 'PretendardSemi');
 
   //Lr -> Label/Reading
-  static const Lr1 = TextStyle(
+  static const Lr1_m = TextStyle(
+      fontSize: 14,
+      //height: 22,
+      letterSpacing: 0.232,
+      fontFamily: 'PretendardRegular');
+  static const Lr1_sb = TextStyle(
       fontSize: 14,
       //height: 22,
       letterSpacing: 0.232,
