@@ -10,6 +10,7 @@ import 'package:meetup/design/widgets/recommend_box.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/tooltip_balloon.dart';
+import 'news_letter_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -105,6 +106,7 @@ class HomeScreen extends StatelessWidget {
                       child: OutlinedButton(
                         onPressed: () {
                           //에디터 화면 넘어가게하기
+                          Get.to(NewsLetterScreen);
                         },
                         style: OutlinedButton.styleFrom(
                           backgroundColor: AppColors.white,
