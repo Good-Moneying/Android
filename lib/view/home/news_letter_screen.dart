@@ -279,44 +279,49 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                         ),
                                         Row(
                                           children: [
-                                        OutlinedButton(
-                                          onPressed: (){
-                                            //버튼 눌렀을때
-                                          },
-                                      style: ButtonStyle(
-                                        side: MaterialStateProperty.resolveWith<BorderSide>(
-                                              (Set<MaterialState> states) {
-                                            // 테두리 색 변경
-                                            if (states.contains(MaterialState.pressed)) {
-                                              // 버튼이 눌렸을 때
-                                              return BorderSide(color: AppColors.v5); // 원하는 색상으로 변경
-                                            }
-                                            return BorderSide(color: AppColors.g3); // 원하는 색상으로 변경
-                                          },
+                                            OutlinedButton(
+                                              onPressed: () {
+                                                setState(() {
+                                                  _isPressed = !_isPressed; // 버튼이 눌릴 때마다 상태를 토글합니다.
+                                                });
+                                                // 버튼 눌렀을 때 수행할 작업 추가
+                                              },
+                                              style: ButtonStyle(
+                                                side: MaterialStateProperty.resolveWith<BorderSide>(
+                                                      (Set<MaterialState> states) {
+                                                    // 테두리 색 변경
+                                                    if (_isPressed) {
+                                                      // 버튼이 눌렸을 때
+                                                      return BorderSide(color: AppColors.v5); // 원하는 색상으로 변경
+                                                    }
+                                                    return BorderSide(color: AppColors.g3); // 원하는 색상으로 변경
+                                                  },
+                                                ),
+                                                foregroundColor: MaterialStateProperty.resolveWith<Color>(
+                                                      (Set<MaterialState> states) {
+                                                    // 글씨 색 변경
+                                                    if (_isPressed) {
+                                                      // 버튼이 눌렸을 때
+                                                      return AppColors.v5; // 원하는 색상으로 변경
+                                                    }
+                                                    return Color(0xFFAAAAB9); // 원하는 색상으로 변경
+                                                  },
+                                                ),
+                                                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                                      (Set<MaterialState> states) {
+                                                    // 버튼 색 변경
+                                                    if (_isPressed) {
+                                                      // 버튼이 눌렸을 때
+                                                      return AppColors.v1; // 원하는 색상으로 변경
+                                                    }
+                                                    return AppColors.white; // 원하는 색상으로 변경
+                                                  },
+                                                ),
+                                              ),
+                                              child: Text('긍정적인 전망'), // 버튼의 텍스트
+                                            )
+                                          ],
                                         ),
-                                        foregroundColor: MaterialStateProperty.resolveWith<Color>(
-                                              (Set<MaterialState> states) {
-                                            // 글씨 색 변경
-                                            if (states.contains(MaterialState.pressed)) {
-                                              // 버튼이 눌렸을 때
-                                              return AppColors.v5; // 원하는 색상으로 변경
-                                            }
-                                            return Color(0xFFAAAAB9);                                       },
-                                        ),
-                                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
-                                              (Set<MaterialState> states) {
-                                            // 버튼 색 변경
-                                            if (states.contains(MaterialState.pressed)) {
-                                              // 버튼이 눌렸을 때
-                                              return AppColors.v1; // 원하는 색상으로 변경
-                                            }
-                                            return AppColors.white; // 원하는 색상으로 변경
-                                          },
-                                        ),
-                                      ),
-                                      child: Text('긍정적인 전망'), // 버튼의 텍스트
-                                        )
-                                            ]),
                                       ],
                                     ),
                                   ));
