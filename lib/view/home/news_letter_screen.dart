@@ -598,15 +598,36 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     ),
                                                   ),
                                                 ),
-                                                Checkbox(
-                                                  activeColor: AppColors.v4,
-                                                  checkColor: Colors.white,
-                                                  value: _isPressedCheck,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _isPressedCheck = value!;
-                                                    });
-                                                  },
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: [
+                                                    Checkbox(
+                                                      activeColor: AppColors.v4,
+                                                      checkColor: Colors.white,
+                                                      value: _isPressedCheck,
+                                                      onChanged: (value) {
+                                                        setState(() {
+                                                          _isPressedCheck = value!;
+                                                        });
+                                                      },
+                                                    ),
+                                                    Text("나 혼자만 볼래요",style: FontStyles.Label2_r.copyWith(color: AppColors.g6),)
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: [
+                                                    Text("내 생각은 ‘둘러보기’에 공유될 수 있어요!", style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),),
+                                                  ],
+                                                )
+                                                ,Padding(
+                                                  padding: const EdgeInsets.only(top : 16.0),
+                                                  child: ElevatedButton(onPressed:(){
+
+                                                  } , child: Text("작성완료",style: FontStyles.Caption1_sb.copyWith(color: Colors.white),),
+                                                  style: ElevatedButton.styleFrom(backgroundColor: AppColors.v6, shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(0), // 네모난 모서리를 위한 값 설정
+                                                  ),  ),),
                                                 )
                                               ],
                                             ),
