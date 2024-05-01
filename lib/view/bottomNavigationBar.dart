@@ -34,7 +34,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
     return Obx(() {
       switch (controller.currentIndex.value) {
         case 0:
-          return NewsLetterScreen();
+          return HomeScreen();
           break;
         case 1:
           return InvestScreen();
