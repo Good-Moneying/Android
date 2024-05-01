@@ -176,6 +176,12 @@ class FontStyles {
       letterSpacing: 0.144,
       fontFamily: 'PretendardSemi'
   );
+  static const Br2_m = TextStyle(
+      fontSize: 15,
+      letterSpacing: 0.144,
+      fontFamily: 'PretendardMedium'
+  );
+
 
 }
 
