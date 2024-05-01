@@ -144,6 +144,21 @@ class FontStyles {
       letterSpacing: 0.203,
       fontFamily: 'PretendardMedium'
   );
+  static const Reading_m = TextStyle(
+      fontSize: 15,
+      letterSpacing: 0.144,
+      fontFamily: 'PretendardMedium'
+  );
+  static const B1_Nm = TextStyle(
+      fontSize: 16,
+      letterSpacing: 0.091,
+      fontFamily: 'PretendardMedium'
+  );
+  static const Reading_sb = TextStyle(
+      fontSize: 15,
+      letterSpacing: 0.144,
+      fontFamily: 'PretendardSemi'
+  );
 
 
 }

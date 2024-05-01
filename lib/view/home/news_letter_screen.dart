@@ -1,11 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 
-class NewsLetterScreen extends StatelessWidget{
+class NewsLetterScreen extends StatefulWidget {
   const NewsLetterScreen({Key? key}) : super(key: key);
+
+  @override
+  _NewsLetterScreenState createState() => _NewsLetterScreenState();
+}
+
+class _NewsLetterScreenState extends State<NewsLetterScreen> {
+  bool _isPressed = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -199,18 +209,147 @@ class NewsLetterScreen extends StatelessWidget{
                 ),
           Container(
             width: double.infinity,
+            alignment: Alignment.center,
             margin: EdgeInsets.only(top: 16),
           decoration: BoxDecoration( color: Colors.white),
                 child: Column(
                   children: [
                 Padding(
                 padding: const EdgeInsets.fromLTRB(17.0,20.0,0.0,0.0),
-                    child : Text("불과 몇 주 사이에 미국 통화 정책을 바라보는 분위기가 완\n전히 바뀌었어요. 얼마 전까진 다들 ‘올해 6월에 금리 인하\n가 시작될 것’이라고 했는데, 이젠 ‘아직 멀었다’는 사람이 많아졌죠.")),
-                Text("\n")
-                    ,Text("지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.")
-        ],
-        ),
+                    child : Text("불과 몇 주 사이에 미국 통화 정책을 바라보는 분위기가 완\n전히 바뀌었어요. 얼마 전까진 다들 ‘올해 6월에 금리 인하\n가 시작될 것’이라고 했는데, 이젠 ‘아직 멀었다’는 사람이 많\n아졌죠.\n",style: FontStyles.Label1_Normal_r,)),
+                    Text("지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.",style: FontStyles.Label1_Normal_r),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0,24.0,0.0,0.0),
+                      child : SvgPicture.asset('assets/images/newsletter_blur.svg')
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(17.0,20.0,0.0,0.0),
+                        child : Text("이제 미국의 기준금리 인하는 9월 이후에 가능하다는 전망\n이 우세하고, 인하 시점을 내년으로 보는 사람도 꽤 많아졌\n어요. 오히려 기준금리를 지금보다 조금 더 올릴 수 있다는\n전망까지 나오고 있어요.\n",style: FontStyles.Label1_Normal_r,)),
+                    Text("왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",style: FontStyles.Label1_Normal_r),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0,24.0,0.0,0.0),
+                        child : SvgPicture.asset('assets/images/newsletter_blur.svg')
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context){
+                                  return AlertDialog(
+                                    backgroundColor: AppColors.white,
+                                      contentPadding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                                    title: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            "내 생각 작성하기",
+                                            style: FontStyles.Reading_m.copyWith(color: AppColors.g6),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        IconButton(
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                          icon: SvgPicture.asset('assets/images/newsletter_close.svg'), // 닫기 아이콘
+                                        ),
+                                      ],
+                                    ),
+                                    content: Expanded(
+                                      child : Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Container( height:1.0,
+                                          width:500.0,
+                                          color:AppColors.g2,),
+                                      Text("뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",style: FontStyles.B1_Nm,),
+                                        SvgPicture.asset('assets/images/newsletter_line3.svg'),
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.start,
+                                          children: [
+                                          Padding(
+                                          padding: const EdgeInsets.fromLTRB(23.0, 16.0, 0.0, 0), // 오른쪽에 여백 추가
+                                          child: Text("앞으로 어떻게 될 것 같나요?",style: FontStyles.Reading_sb,textAlign: TextAlign.center),
+                                        ),
+                                            ],
+                                        ),
+                                        Row(
+                                          children: [
+                                        OutlinedButton(
+                                          onPressed: (){
+                                            //버튼 눌렀을때
+                                          },
+                                      style: ButtonStyle(
+                                        side: MaterialStateProperty.resolveWith<BorderSide>(
+                                              (Set<MaterialState> states) {
+                                            // 테두리 색 변경
+                                            if (states.contains(MaterialState.pressed)) {
+                                              // 버튼이 눌렸을 때
+                                              return BorderSide(color: AppColors.v5); // 원하는 색상으로 변경
+                                            }
+                                            return BorderSide(color: AppColors.g3); // 원하는 색상으로 변경
+                                          },
+                                        ),
+                                        foregroundColor: MaterialStateProperty.resolveWith<Color>(
+                                              (Set<MaterialState> states) {
+                                            // 글씨 색 변경
+                                            if (states.contains(MaterialState.pressed)) {
+                                              // 버튼이 눌렸을 때
+                                              return AppColors.v5; // 원하는 색상으로 변경
+                                            }
+                                            return Color(0xFFAAAAB9);                                       },
+                                        ),
+                                        backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                                              (Set<MaterialState> states) {
+                                            // 버튼 색 변경
+                                            if (states.contains(MaterialState.pressed)) {
+                                              // 버튼이 눌렸을 때
+                                              return AppColors.v1; // 원하는 색상으로 변경
+                                            }
+                                            return AppColors.white; // 원하는 색상으로 변경
+                                          },
+                                        ),
+                                      ),
+                                      child: Text('긍정적인 전망'), // 버튼의 텍스트
+                                        )
+                                            ]),
+                                      ],
+                                    ),
+                                  ));
 
+                            });
+                          },
+                          icon: Image.asset('assets/images/newsletter_think3.png',width: 143,height: 143,),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0), // 패딩 추가
+                        child: IconButton(
+                          onPressed: () {
+                            
+                          },
+                          icon: Image.asset('assets/images/newsletter_invest1.png',width: 143,height: 143,),
+                        ),
+                      ),
+
+                  ],
+                    ),
+                    SvgPicture.asset('assets/images/newsletter_line.svg'),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                    children :[
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(0.0,24.0,0.0,12.0), // 좌측으로부터 일정한 간격을 주기 위한 패딩
+                        child: Text("다른 사람들의 생각은?", style: FontStyles.Heading1_b.copyWith(color: AppColors.g6),),
+                      ),
+                        ],
+                    ),
+                    Image.asset('assets/images/newsletter_review.png')
+        ],
+                ),
         ),
                 
 
@@ -222,4 +361,5 @@ class NewsLetterScreen extends StatelessWidget{
 
     );
   }
+
 }
