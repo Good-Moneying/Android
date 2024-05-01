@@ -20,7 +20,9 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.g1,
       appBar: AppBar(
+        backgroundColor: AppColors.g2,
         title: Row(
           children: [
             Padding(
@@ -51,7 +53,8 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-            RichText(
+                Padding(padding: const EdgeInsets.only(top: 20),
+            child : RichText(
           text:TextSpan(
             text: '오늘의 ',
             style: FontStyles.Heading1_b.copyWith(color: AppColors.black), //기본style을 지정해줘야함
@@ -60,7 +63,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
               ),
             ],
           ),
-        ),Padding(
+        )),Padding(
                   padding: const EdgeInsets.fromLTRB(0, 4, 0, 0), // 오른쪽에 여백 추가
                   child: SvgPicture.asset('assets/images/newsletter_line.svg'),
                 ),
@@ -347,11 +350,12 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                     children :[
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(0.0,24.0,0.0,12.0), // 좌측으로부터 일정한 간격을 주기 위한 패딩
+                        padding: const EdgeInsets.fromLTRB(16.0,24.0,0.0,12.0), // 좌측으로부터 일정한 간격을 주기 위한 패딩
                         child: Text("다른 사람들의 생각은?", style: FontStyles.Heading1_b.copyWith(color: AppColors.g6),),
                       ),
                         ],
                     ),
+
                     Image.asset('assets/images/newsletter_review.png')
         ],
                 ),
