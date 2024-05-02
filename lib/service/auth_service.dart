@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart' hide Response;
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
+import '../routes/get_pages.dart';
 
 //로그인 플랫폼
 enum LoginPlatform {
@@ -11,10 +13,11 @@ enum LoginPlatform {
   none, // logout
 }
 
-// 로그인 시 받은 accessToken으로 ID 토큰을 얻어옴
+// 로그인 시 받은 accessToken 반환
 Future<OAuthToken?> getOAuthToken() async {
   try {
-    OAuthToken? token = await TokenManagerProvider.instance.manager.getToken();
+    // OAuthToken? token = await TokenManagerProvider.instance.manager.getToken();
+    OAuthToken token = await UserApi.instance.loginWithKakaoTalk();
     return token;
   } catch (e) {
     return null;
@@ -63,7 +66,7 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String code) async {
         response = await dio.post(
           "/oauth/kakao",
           data: {
-            "id_token": code,
+            "access_token": code,
           },
         );
         break;
@@ -74,13 +77,24 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String code) async {
         print('서버가 요청을 거부함');
 
     }
-    if (response.statusCode == 200) {
+     if (response.statusCode == 200) {
+    //   //백에서 넘겨주는 회원 가입 여부
+      var response = await dio.get(
+        "/oauth/kakao",
+      );
+      bool isFirst = response.data['isFirstUser'];
+
+
       switch (loginPlatform) {
         case LoginPlatform.kakao:
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString('access_token', response.data['access_token']);
-          prefs.setString('refresh_token', response.data['refresh_token']);
 
+           if(isFirst == true){
+            final prefs = await SharedPreferences.getInstance();
+            prefs.setString('access_token', response.data['access_token']);
+            prefs.setString('refresh_token', response.data['refresh_token']);
+
+          } else
+            return false;
           break;
         case LoginPlatform.none:
           break;
@@ -97,14 +111,15 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String code) async {
 Future<void> kakaoLogin() async {
   if (await isKakaoTalkInstalled()) {
     try {
-      await UserApi.instance.loginWithKakaoTalk();
+      OAuthToken Token = await UserApi.instance.loginWithKakaoTalk();
+      String myatoken = Token.accessToken;
       print('카카오톡으로 로그인 성공');
-      if (await isSignup(LoginPlatform.kakao,
-      await getOAuthToken().then((value) => value!.idToken!))) {
-       // 홈화면 이동
-      } else {
-       // 동의 화면 이동
-      }
+      print('accessToken : $myatoken');
+       if (await isSignup(LoginPlatform.kakao, Token.accessToken)) {
+        // 홈화면 이동
+       } else {
+        // 온보딩 화면 이동
+       }
     } catch (error) {
       print('카카오톡으로 로그인 실패 $error');
 
@@ -115,13 +130,16 @@ Future<void> kakaoLogin() async {
       }
       // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
       try {
-        await UserApi.instance.loginWithKakaoAccount();
-        print('카카오계정으로 로그인 성공');
-        if (await isSignup(LoginPlatform.kakao,
-            await getOAuthToken().then((value) => value!.idToken!))) {
-        //  홈화면 이동
+        OAuthToken Token = await UserApi.instance.loginWithKakaoTalk();
+        String myatoken = Token.accessToken;
+        print('카카오톡으로 로그인 성공');
+        print('accessToken : $myatoken');
+        if (await isSignup(LoginPlatform.kakao, Token.accessToken)) {
+          // 홈화면 이동
+          Get.toNamed(Routes.HOME);
         } else {
-        //  동의 화면 이동
+          // 온보딩 화면 이동
+          Get.toNamed(Routes.NICKNAME);
         }
       } catch (error) {
         print('카카오계정으로 로그인 실패 $error');
@@ -129,19 +147,21 @@ Future<void> kakaoLogin() async {
     }
   } else {
     try {
-      await UserApi.instance.loginWithKakaoAccount();
-      print('카카오계정으로 로그인 성공');
-      if (await isSignup(LoginPlatform.kakao,
-          await getOAuthToken().then((value) => value!.idToken!))) {
-      //  홈화면 이동
+      OAuthToken Token = await UserApi.instance.loginWithKakaoTalk();
+      String myatoken = Token.accessToken;
+      print('카카오톡으로 로그인 성공');
+      print('accessToken : $myatoken');
+      if (await isSignup(LoginPlatform.kakao, Token.accessToken)) {
+        // 홈화면 이동
       } else {
-      // 동의 화면 이동
+        // 온보딩 화면 이동
       }
     } catch (error) {
       print('카카오계정으로 로그인 실패 $error');
     }
   }
 }
+
 
 //로그아웃
 Future<void> signOut(BuildContext context) async {

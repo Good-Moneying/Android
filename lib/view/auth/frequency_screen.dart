@@ -45,7 +45,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                     TextSpan(
                       text: '를',
                       style:
-                          FontStyles.Title2_m.copyWith(color: AppColors.black),
+                      FontStyles.Title2_m.copyWith(color: AppColors.black),
                     )
                   ],
                 ),
@@ -66,7 +66,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
                 child: Obx(
-                  () => OutlinedButton(
+                      () => OutlinedButton(
                     onPressed: () {
                       Get.toNamed(Routes.WELCOME);
                       controller.selectFrequency(0);
@@ -97,7 +97,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
                 child: Obx(
-                  () => OutlinedButton(
+                      () => OutlinedButton(
                     onPressed: () {
                       Get.toNamed(Routes.WELCOME);
                       controller.selectFrequency(1);
@@ -128,7 +128,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
                 child: Obx(
-                  () => OutlinedButton(
+                      () => OutlinedButton(
                     onPressed: () {
                       Get.toNamed(Routes.WELCOME);
                       controller.selectFrequency(2);
@@ -159,7 +159,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
                 child: Obx(
-                  () => OutlinedButton(
+                      () => OutlinedButton(
                     onPressed: () {
                       Get.toNamed(Routes.WELCOME);
                       controller.selectFrequency(3);

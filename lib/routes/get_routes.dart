@@ -12,4 +12,5 @@ abstract class Routes {
   static const INVEST = '/invest';
   static const SEARCH = '/search';
   static const PROFILE = '/profile';
+  static const EDITORNEWS = '/home/editor';
 }

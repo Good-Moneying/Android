@@ -3,11 +3,12 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/view/home/home_screen.dart';
+import 'package:meetup/view/home/news_letter_screen.dart';
 import 'package:meetup/view/investment/investment_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/search/search_screen.dart';
 import 'package:meetup/viewModel/app_viewModel.dart';
-//import 'package:lottie/lottie.dart';
+import 'package:lottie/lottie.dart';
 import '../design/style/ColorStyles.dart';
 
 //GetView<AppViewModel> 을 상속받아 좀 더 쓰기 쉽게 함
@@ -50,7 +51,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
 
   Widget _bottomNavigationBarWidget() {
     return Obx(
-      () => Theme(
+          () => Theme(
         data: ThemeData(
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -62,51 +63,51 @@ class BottomNavigationView extends GetView<AppViewModel> {
             controller.changeCurrentIndex(index);
           },
           currentIndex: controller.currentIndex.value,
-          //selectedLabelStyle: FontStyles.Caption2_m.copyWith(color: AppColors.g6),
+          selectedLabelStyle: FontStyles.Caption2_m.copyWith(color: AppColors.g6),
           unselectedLabelStyle:
-              FontStyles.Caption2_sb.copyWith(color: AppColors.g6),
+          FontStyles.Caption2_m.copyWith(color: AppColors.g6),
           items: [
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/icons/home_unfill.svg',
                 ),
-                // activeIcon: Lottie.asset(
-                //   'assets/lottie/home.json',
-                //   width: 24,
-                //   height: 24,
-                //   repeat: false,
-                // ),
+                activeIcon: Lottie.asset(
+                  'assets/lottie/MAIN2.json',
+                  width: 24,
+                  height: 24,
+                  repeat: false,
+                ),
                 label: '홈'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/icons/invest_unfill.svg',
                 ),
-                // activeIcon: Lottie.asset(
-                //   width: 24,
-                //   height: 24,
-                //   'assets/lottie/invest.json',
-                //   repeat: false,
-                // ),
+                activeIcon: Lottie.asset(
+                  width: 24,
+                  height: 24,
+                  'assets/lottie/moi2.json',
+                  repeat: false,
+                ),
                 label: '모의투자'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/icons/search_unfill.svg',
                 ),
-                // activeIcon: Lottie.asset(
-                //   'assets/lottie/search.json',
-                //   repeat: false,
-                // ),
+                activeIcon: Lottie.asset(
+                  'assets/lottie/search.json',
+                  repeat: false,
+                ),
                 label: '둘러보기'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/icons/profile_unfill.svg',
                 ),
-                // activeIcon: Lottie.asset(
-                //   width: 24,
-                //   height: 24,
-                //   'assets/lottie/profile.json',
-                //   repeat: false,
-                // ),
+                activeIcon: Lottie.asset(
+                  width: 24,
+                  height: 24,
+                  'assets/lottie/MY2.json',
+                  repeat: false,
+                ),
                 label: '마이페이지'),
           ],
         ),

@@ -50,7 +50,7 @@ class NicknameScreen extends GetView<UserViewModel> {
                     TextSpan(
                       text: '에서 사용할',
                       style:
-                          FontStyles.Title2_m.copyWith(color: AppColors.black),
+                      FontStyles.Title2_m.copyWith(color: AppColors.black),
                     )
                   ],
                 ),
@@ -82,7 +82,7 @@ class NicknameScreen extends GetView<UserViewModel> {
                         }
                       },
                       child: Obx(
-                        () => Container(
+                            () => Container(
                           height: Get.height * 0.1,
                           child: TextFormField(
                             onTapOutside: (event) =>
@@ -92,18 +92,18 @@ class NicknameScreen extends GetView<UserViewModel> {
                             keyboardType: TextInputType.name,
                             decoration: InputDecoration(
                               suffixIcon: controller
-                                      .nicknameController.value.text.isEmpty
+                                  .nicknameController.value.text.isEmpty
                                   ? null
                                   : IconButton(
-                                      onPressed: () {
-                                        controller.nicknameController.clear();
-                                      },
-                                      icon: SvgPicture.asset(
-                                        width: 17,
-                                        height: 17,
-                                        'assets/icons/text_clear.svg',
-                                      ),
-                                    ),
+                                onPressed: () {
+                                  controller.nicknameController.clear();
+                                },
+                                icon: SvgPicture.asset(
+                                  width: 17,
+                                  height: 17,
+                                  'assets/icons/text_clear.svg',
+                                ),
+                              ),
                               hintText: '닉네임을 적어주세요',
                               hintStyle: FontStyles.Ln1_m.copyWith(
                                   color: AppColors.g3),
@@ -112,9 +112,9 @@ class NicknameScreen extends GetView<UserViewModel> {
                                   : "닉네임을 사용할 수 있습니다",
                               errorStyle: controller.isDisplayError.value
                                   ? FontStyles.Caption2_m.copyWith(
-                                      color: Colors.red)
+                                  color: Colors.red)
                                   : FontStyles.Caption2_m.copyWith(
-                                      color: Colors.blue),
+                                  color: Colors.blue),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                                 borderSide: BorderSide(
@@ -168,7 +168,7 @@ class NicknameScreen extends GetView<UserViewModel> {
                         child: Text(
                           '중복 검사',
                           style:
-                              FontStyles.Bn2_sb.copyWith(color: AppColors.g5),
+                          FontStyles.Bn2_sb.copyWith(color: AppColors.g5),
                         ),
                       ),
                     ),

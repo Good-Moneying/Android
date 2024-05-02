@@ -49,6 +49,7 @@ dependencies:
   webview_flutter: ^4.7.0
   percent_indicator: ^4.2.3
   firebase_core: ^2.30.1
+  lottie: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -70,6 +71,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/config/
+    - assets/lottie/
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

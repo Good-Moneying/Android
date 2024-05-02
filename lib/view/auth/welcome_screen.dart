@@ -39,7 +39,7 @@ class WelcomeScreen extends StatelessWidget {
                       TextSpan(
                         text: '두둑',
                         style:
-                            FontStyles.Title1_b.copyWith(color: AppColors.v5),
+                        FontStyles.Title1_b.copyWith(color: AppColors.v5),
                       ),
                       TextSpan(
                         text: '과 함께 시작하세요!',
