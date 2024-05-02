@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -78,17 +80,21 @@ class UserViewModel extends GetxController {
   var selectedDate = DateTime.now().obs;
   RxBool dateSelect = false.obs;
 
-
   //interest, 다중선택
   RxBool interestSelect = false.obs;
   RxList<bool> interestList = [false, false, false, false, false, false].obs;
 
   void selectInterest(int index) async {
-    interestSelect.value = true;
     for (int i = 0; i < interestList.length; i++) {
       if (i == index) {
         interestList[i] = !interestList[i];
       }
+    }
+
+    if (interestList.contains(true)) {
+      interestSelect.value = true;
+    } else {
+      interestSelect.value = false;
     }
   }
 

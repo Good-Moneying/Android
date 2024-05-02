@@ -161,6 +161,25 @@ class InfoScreen extends GetView<UserViewModel> {
                                 context: context,
                                 firstDate: DateTime(1900),
                                 lastDate: DateTime.now(),
+                                //initialEntryMode: DatePickerEntryMode.calendarOnly,
+                                //locale: Locale(Ko)
+                                // builder: (context, child) {
+                                //       return Theme(
+                                //           data: Theme.of(context).copyWith(
+                                //             colorScheme: ColorScheme.light(
+                                //               primary: Colors.yellow, // header background color
+                                //               onPrimary: Colors.black, // header text color
+                                //               onSurface: Colors.green, // body text color
+                                //             ),
+                                //             textButtonTheme: TextButtonThemeData(
+                                //               style: TextButton.styleFrom(
+                                //                 foregroundColor: Colors.red, // button text color
+                                //               ),
+                                //             ),
+                                //           ),
+                                //           child: child!,
+                                //       );
+                                // }
                               ) ??
                               controller.selectedDate.value;
                           controller.dateSelect.value = true;
