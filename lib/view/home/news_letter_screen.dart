@@ -111,7 +111,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                   children: [
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
-                    child: Text("2024.04.25", style: FontStyles.Label1_Normal_r.copyWith(color: Colors.grey))
+                    child: Text("2024.04.25", style: FontStyles.Ln1_r.copyWith(color: Colors.grey))
                     ),
                     Expanded(child: Container()),
                     Padding(
@@ -121,9 +121,9 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                     RichText(
                       text:TextSpan(
                         text: 'Edit By. ',
-                        style: FontStyles.Label1_Normal_r.copyWith(color: AppColors.g3), //기본style을 지정해줘야함
+                        style: FontStyles.Ln1_r.copyWith(color: AppColors.g3), //기본style을 지정해줘야함
                         children: <TextSpan>[
-                          TextSpan(text: 'Amy',style: FontStyles.Label1_Normal_r.copyWith(color: AppColors.g4), //기본style을 지정해줘야함
+                          TextSpan(text: 'Amy',style: FontStyles.Ln1_r.copyWith(color: AppColors.g4), //기본style을 지정해줘야함
                           ),
                         ],
                       ),
@@ -162,7 +162,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                           child: Align(
                               alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Text("물가상승률이 예상보다 높아 불과 몇 주 만에\n전문가들의 미국 기준금리 인하 예상 시점이\n한참 미뤄졌음.",
-                              style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g6),)
+                              style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),)
                           ),
                         ),
                       ],
@@ -182,7 +182,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                           child: Align(
                               alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Text("급격한 기준금리 인상에도 불구하고, 미국의\n경제는 상대적으로 호황을 누리고 있음.",
-                                  style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g6))
+                                  style: FontStyles.Ln1_m.copyWith(color: AppColors.g6))
                           ),
                         ),
                       ],
@@ -202,7 +202,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                           child: Align(
                               alignment: Alignment.topCenter, // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Text("이민자 증가, 높은 고용 유연성, 인공지능(AI)\n발전 등에 따른 노동생산성 향상이 미국 경제\n호황의 대표적 요인으로 꼽히고 있음.",
-                                  style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g6))
+                                  style: FontStyles.Ln1_m.copyWith(color: AppColors.g6))
                           ),
                         ),
                       ],
@@ -219,16 +219,16 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                   children: [
                 Padding(
                 padding: const EdgeInsets.fromLTRB(17.0,20.0,0.0,0.0),
-                    child : Text("불과 몇 주 사이에 미국 통화 정책을 바라보는 분위기가 완\n전히 바뀌었어요. 얼마 전까진 다들 ‘올해 6월에 금리 인하\n가 시작될 것’이라고 했는데, 이젠 ‘아직 멀었다’는 사람이 많\n아졌죠.\n",style: FontStyles.Label1_Normal_r,)),
-                    Text("지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.",style: FontStyles.Label1_Normal_r),
+                    child : Text("불과 몇 주 사이에 미국 통화 정책을 바라보는 분위기가 완\n전히 바뀌었어요. 얼마 전까진 다들 ‘올해 6월에 금리 인하\n가 시작될 것’이라고 했는데, 이젠 ‘아직 멀었다’는 사람이 많\n아졌죠.\n",style: FontStyles.Ln1_r,)),
+                    Text("지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.",style: FontStyles.Ln1_r),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0,24.0,0.0,0.0),
                       child : SvgPicture.asset('assets/images/newsletter_blur.svg')
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(17.0,20.0,0.0,0.0),
-                        child : Text("이제 미국의 기준금리 인하는 9월 이후에 가능하다는 전망\n이 우세하고, 인하 시점을 내년으로 보는 사람도 꽤 많아졌\n어요. 오히려 기준금리를 지금보다 조금 더 올릴 수 있다는\n전망까지 나오고 있어요.\n",style: FontStyles.Label1_Normal_r,)),
-                    Text("왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",style: FontStyles.Label1_Normal_r),
+                        child : Text("이제 미국의 기준금리 인하는 9월 이후에 가능하다는 전망\n이 우세하고, 인하 시점을 내년으로 보는 사람도 꽤 많아졌\n어요. 오히려 기준금리를 지금보다 조금 더 올릴 수 있다는\n전망까지 나오고 있어요.\n",style: FontStyles.Ln1_r,)),
+                    Text("왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",style: FontStyles.Ln1_r),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0,24.0,0.0,0.0),
                         child : SvgPicture.asset('assets/images/newsletter_blur.svg')
@@ -250,7 +250,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                         Expanded(
                                           child: Text(
                                             "내 생각 작성하기",
-                                            style: FontStyles.Reading_m.copyWith(color: AppColors.g6),
+                                            style: FontStyles.Br2_m.copyWith(color: AppColors.g6),
                                             textAlign: TextAlign.center,
                                           ),
                                         ),
@@ -269,14 +269,14 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                         Container( height:1.0,
                                           width:500.0,
                                           color:AppColors.g2,),
-                                      Text("뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",style: FontStyles.B1_Nm,),
+                                      Text("뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",style: FontStyles.Bn1_m,),
                                         SvgPicture.asset('assets/images/newsletter_line3.svg'),
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.start,
                                           children: [
                                           Padding(
                                           padding: const EdgeInsets.fromLTRB(23.0, 16.0, 0.0, 0), // 오른쪽에 여백 추가
-                                          child: Text("앞으로 어떻게 될 것 같나요?",style: FontStyles.Reading_sb,textAlign: TextAlign.center),
+                                          child: Text("앞으로 어떻게 될 것 같나요?",style: FontStyles.Br2_sb,textAlign: TextAlign.center),
                                         ),
                                             ],
                                         ),
