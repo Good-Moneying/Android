@@ -177,23 +177,23 @@ class NicknameScreen extends GetView<UserViewModel> {
               ),
               Spacer(),
               ElevatedButton(
-                // onPressed: !controller.isDisplayError.value &&
-                //                       controller.isNicknameValid.value, ? null : () {
-                //   Get.toNamed(Routes.INFO);
-                // },
-                onPressed: () {
-                  controller.setEnabled(0.54);
-                  Get.toNamed(Routes.INFO);
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  backgroundColor: AppColors.v5,
+                  // onPressed: !controller.isDisplayError.value &&
+                  //                       controller.isNicknameValid.value, ? null : () {
+                  //   Get.toNamed(Routes.INFO);
+                  // },
+                  onPressed: () {
+                    controller.setEnabled(0.54);
+                    Get.toNamed(Routes.INFO);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppColors.v5,
+                  ),
+                  child: Text(
+                    '다음',
+                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+                  ),
                 ),
-                child: Text(
-                  '다음',
-                  style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
-                ),
-              ),
             ],
           ),
         ),

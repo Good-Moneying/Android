@@ -39,7 +39,7 @@ class InterestScreen extends GetView<UserViewModel> {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: '김두둑',
+                        text: controller.nicknameController.value.text,
                         style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
                       ),
                       TextSpan(
@@ -239,18 +239,23 @@ class InterestScreen extends GetView<UserViewModel> {
                   ],
                 ),
                 Spacer(),
-                ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.FREQUENCY);
-                    controller.setEnabled(1.0);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppColors.v5,
-                  ),
-                  child: Text(
-                    '다음',
-                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+                Obx(
+                    () => ElevatedButton(
+                    onPressed: controller.interestSelect.value == false ? null : () {
+                      Get.toNamed(Routes.FREQUENCY);
+                      controller.setEnabled(1.0);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: AppColors.v5,
+                    ),
+                    child: Text(
+                      '다음',
+                      style: FontStyles.Bn1_b.copyWith(
+                          color: controller.interestSelect.value == false
+                              ? const Color(0xFFAAAAB9)
+                              : AppColors.white),
+                    ),
                   ),
                 ),
               ],

@@ -76,6 +76,8 @@ class UserViewModel extends GetxController {
 
   //생년월일
   var selectedDate = DateTime.now().obs;
+  RxBool dateSelect = false.obs;
+
 
   //interest, 다중선택
   RxBool interestSelect = false.obs;

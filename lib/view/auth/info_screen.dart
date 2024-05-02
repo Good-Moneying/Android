@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/progress_bar.dart';
@@ -37,7 +36,7 @@ class InfoScreen extends GetView<UserViewModel> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '00',
+                      text: controller.nicknameController.value.text,
                       style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
                     ),
                     TextSpan(
@@ -159,10 +158,12 @@ class InfoScreen extends GetView<UserViewModel> {
                       () => InkWell(
                         onTap: () async {
                           controller.selectedDate.value = await showDatePicker(
-                                  context: context,
-                                  firstDate: DateTime(1900),
-                                  lastDate: DateTime.now()) ??
+                                context: context,
+                                firstDate: DateTime(1900),
+                                lastDate: DateTime.now(),
+                              ) ??
                               controller.selectedDate.value;
+                          controller.dateSelect.value = true;
                         },
                         child: Container(
                           height: Get.height * 0.06,
@@ -175,11 +176,13 @@ class InfoScreen extends GetView<UserViewModel> {
                           child: Padding(
                             padding: const EdgeInsets.fromLTRB(10, 12, 0, 0),
                             child: Text(
-                              controller.selectedDate.value == null
+                              controller.dateSelect.value == false
                                   ? '생년월일을 선택해주세요'
                                   : '${controller.selectedDate.value?.year.toString()}/${controller.selectedDate.value?.month.toString().padLeft(2, '0')}/${controller.selectedDate.value?.day.toString().padLeft(2, '0')}',
                               style: FontStyles.Ln1_m.copyWith(
-                                  color: AppColors.black),
+                                  color: controller.dateSelect.value == false
+                                      ? AppColors.g3
+                                      : AppColors.black),
                             ),
                           ),
                         ),
@@ -213,19 +216,28 @@ class InfoScreen extends GetView<UserViewModel> {
                 ],
               ),
               Spacer(),
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.INTEREST);
-                    controller.setEnabled(0.77);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppColors.v5,
-                  ),
-                  child: Text(
-                    '다음',
-                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+              Obx(
+                () => SizedBox(
+                  child: ElevatedButton(
+                    onPressed: controller.genderSelect.value == false ||
+                            controller.dateSelect.value == false
+                        ? null
+                        : () {
+                            Get.toNamed(Routes.INTEREST);
+                            controller.setEnabled(0.77);
+                          },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: AppColors.v5,
+                    ),
+                    child: Text(
+                      '다음',
+                      style: FontStyles.Bn1_b.copyWith(
+                          color: controller.genderSelect.value == false ||
+                                  controller.dateSelect.value == false
+                              ? const Color(0xFFAAAAB9)
+                              : AppColors.white),
+                    ),
                   ),
                 ),
               ),
