@@ -577,24 +577,28 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     ],
                                                   ),
                                                 ),
-                                                Padding(
-                                                  padding: const EdgeInsets
-                                                      .only(top: 16.0),
-                                                  child: TextFormField(
-                                                    keyboardType: TextInputType
-                                                        .name,
-                                                    decoration: InputDecoration(
-                                                        border: OutlineInputBorder()
-                                                        ,
-                                                        hintText: '여러분의 생각을 남겨보세요. (최대 200자)',
-                                                        hintStyle: FontStyles
-                                                            .Caption2_r
-                                                            .copyWith(
-                                                            color: AppColors
-                                                                .g5),
-                                                        filled: true
-                                                        ,
-                                                        fillColor: AppColors.g1
+                                                SizedBox(
+                                                  height: 120
+                                                  ,child: Padding(
+                                                    padding: const EdgeInsets
+                                                        .only(top: 16.0),
+                                                    child: TextFormField(
+                                                        keyboardType: TextInputType.multiline,
+                                                        maxLines: null,
+                                                      maxLength: 200,
+                                                      expands: true,
+                                                      decoration: InputDecoration(
+                                                          border: OutlineInputBorder(),
+                                                          hintText: '여러분의 생각을 남겨보세요. (최대 200자)',
+                                                          hintStyle: FontStyles
+                                                              .Caption2_r
+                                                              .copyWith(
+                                                              color: AppColors
+                                                                  .g5),
+                                                          filled: true
+                                                          ,
+                                                          fillColor: AppColors.g1
+                                                      ),
                                                     ),
                                                   ),
                                                 ),
@@ -626,8 +630,10 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
 
                                                   } , child: Text("작성완료",style: FontStyles.Caption1_sb.copyWith(color: Colors.white),),
                                                   style: ElevatedButton.styleFrom(backgroundColor: AppColors.v6, shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(0), // 네모난 모서리를 위한 값 설정
-                                                  ),  ),),
+                                                    borderRadius: BorderRadius.circular(3), // 네모난 모서리를 위한 값 설정
+                                                     ),
+                                                  minimumSize: Size(286, 37)),
+                                                  ),
                                                 )
                                               ],
                                             ),
