@@ -24,6 +24,7 @@ class MyProgressBar extends GetView<UserViewModel> {
       percent: percent,
       backgroundColor: AppColors.g1,
       progressColor: AppColors.v2,
+      lineHeight: 10,
       barRadius: Radius.circular(10),
     );
   }

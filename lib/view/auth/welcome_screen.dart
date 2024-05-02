@@ -31,7 +31,7 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 Text(
                   '경제 금융 지식',
-                  style: FontStyles.Title2_m.copyWith(color: AppColors.black),
+                  style: FontStyles.Title2_sb.copyWith(color: AppColors.black),
                 ),
                 RichText(
                   text: TextSpan(
@@ -39,16 +39,11 @@ class WelcomeScreen extends StatelessWidget {
                       TextSpan(
                         text: '두둑',
                         style:
-                            FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                            FontStyles.Title1_b.copyWith(color: AppColors.v5),
                       ),
                       TextSpan(
-                        text: '과 함께 ',
-                        style: FontStyles.Title2_b.copyWith(
-                            color: AppColors.black),
-                      ),
-                      TextSpan(
-                        text: '시작하세요!',
-                        style: FontStyles.Title2_m.copyWith(
+                        text: '과 함께 시작하세요!',
+                        style: FontStyles.Title2_sb.copyWith(
                             color: AppColors.black),
                       ),
                     ],
@@ -67,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                     ),
                     child: Text(
                       '시작하기',
-                      style: FontStyles.Bn1.copyWith(color: AppColors.white),
+                      style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
                     ),
                   ),
                 ),

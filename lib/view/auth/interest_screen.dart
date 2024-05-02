@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
-
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/progress_bar.dart';
@@ -39,7 +39,7 @@ class InterestScreen extends GetView<UserViewModel> {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '00',
+                    text: '김두둑',
                     style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
                   ),
                   TextSpan(
@@ -49,19 +49,9 @@ class InterestScreen extends GetView<UserViewModel> {
                 ],
               ),
             ),
-            RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: '관심사',
-                    style: FontStyles.Title2_m.copyWith(color: AppColors.black),
-                  ),
-                  TextSpan(
-                    text: '를 알려주세요',
-                    style: FontStyles.Title2_m.copyWith(color: AppColors.black),
-                  )
-                ],
-              ),
+            Text(
+              '관심사를 알려주세요',
+              style: FontStyles.Title2_m.copyWith(color: AppColors.black),
             ),
             SizedBox(
               height: Get.height * 0.02,
@@ -76,30 +66,178 @@ class InterestScreen extends GetView<UserViewModel> {
             //1열
             Row(
               children: [
-                SizedBox(
-                  width: Get.width * 0.03,
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(0);
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(controller.interestList[0]
+                              ? 'assets/icons/interest_fill.svg'
+                              : 'assets/icons/interest_unfill.svg'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '주식',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: controller.interestList[0]
+                                    ? AppColors.black
+                                    : AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                //버튼 들어가기
-                InkWell(
-                  onTap: () {
-                    //
-                  },
-                  child: Column(
-                    children: [
-                      SvgPicture.asset('assets/icons/interest_unfill.svg'),
-                      SizedBox(
-                        height: Get.height*0.01,
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(1);
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(controller.interestList[1]
+                              ? 'assets/icons/interest_fill.svg'
+                              : 'assets/icons/interest_unfill.svg'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '주식',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: controller.interestList[1]
+                                    ? AppColors.black
+                                    : AppColors.g4),
+                          ),
+                        ],
                       ),
-                      Text(
-                        '주식',
-                        style: FontStyles.Bn2_sb.copyWith(color: AppColors.g4),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(2);
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(controller.interestList[2]
+                              ? 'assets/icons/interest_fill.svg'
+                              : 'assets/icons/interest_unfill.svg'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '주식',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: controller.interestList[2]
+                                    ? AppColors.black
+                                    : AppColors.g4),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ],
             ),
-
+            SizedBox(
+              height: Get.height * 0.05,
+            ),
+            //2열
+            Row(
+              children: [
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(3);
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(controller.interestList[3]
+                              ? 'assets/icons/interest_fill.svg'
+                              : 'assets/icons/interest_unfill.svg'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '주식',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: controller.interestList[3]
+                                    ? AppColors.black
+                                    : AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(4);
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(controller.interestList[4]
+                              ? 'assets/icons/interest_fill.svg'
+                              : 'assets/icons/interest_unfill.svg'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '주식',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: controller.interestList[4]
+                                    ? AppColors.black
+                                    : AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                    () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(5);
+                      },
+                      child: Column(
+                        children: [
+                          SvgPicture.asset(controller.interestList[5]
+                              ? 'assets/icons/interest_fill.svg'
+                              : 'assets/icons/interest_unfill.svg'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '주식',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: controller.interestList[5]
+                                    ? AppColors.black
+                                    : AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
             Spacer(),
             ElevatedButton(
               onPressed: () {
@@ -112,7 +250,7 @@ class InterestScreen extends GetView<UserViewModel> {
               ),
               child: Text(
                 '다음',
-                style: FontStyles.Bn1.copyWith(color: AppColors.white),
+                style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
               ),
             ),
           ],

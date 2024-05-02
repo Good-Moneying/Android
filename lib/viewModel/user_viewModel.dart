@@ -14,8 +14,6 @@ class UserViewModel extends GetxController {
 
   TextEditingController nicknameController = TextEditingController();
 
-
-
   //Rx+자료형, .obs를 붙여야 반응형 상태관리 사용 가능
   Rx<bool> isEnabled = false.obs;
   Rx<double> getPercentProgress = 0.3.obs;
@@ -59,9 +57,57 @@ class UserViewModel extends GetxController {
   void updateUserInfo(String nickname) async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('nickname', nickname);
-
   }
 
+  //gender, 이중일택
+  RxBool genderSelect = false.obs;
+  RxList<bool> genderList = [false, false].obs;
 
+  void selectGender(int index) {
+    genderSelect.value = true;
+    for (int i = 0; i < genderList.length; i++) {
+      if (i == index) {
+        genderList[i] = true;
+      } else {
+        genderList[i] = false;
+      }
+    }
+  }
+
+  //생년월일
+  var selectedDate = DateTime.now().obs;
+
+  //interest, 다중선택
+  RxBool interestSelect = false.obs;
+  RxList<bool> interestList = [false, false, false, false, false, false].obs;
+
+  void selectInterest(int index) async {
+    interestSelect.value = true;
+    for (int i = 0; i < interestList.length; i++) {
+      if (i == index) {
+        interestList[i] = !interestList[i];
+      }
+    }
+  }
+
+  //뉴스레터 frequency, 다중일택
+  RxBool frequencySelect = false.obs;
+  RxList<bool> frequencyList = [false, false, false, false].obs;
+
+  void selectFrequency(int index) {
+    frequencySelect.value = true;
+    for (int i = 0; i < frequencyList.length; i++) {
+      if (i == index) {
+        frequencyList[i] = true;
+      } else {
+        frequencyList[i] = false;
+      }
+    }
+  }
+
+  void resetFrequency() {
+    for (int i = 0; i < frequencyList.length; i++) {
+      frequencyList[i] = false;
+    }
+  }
 }
-

@@ -155,5 +155,3 @@ Future<void> signOut(BuildContext context) async {
     print('카카오계정으로 로그인 아웃 실패 $error');
   }
 }
-
-

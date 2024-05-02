@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class FontStyles {
-  static const Title1 = TextStyle(
+  static const Title1_b = TextStyle(
       fontSize: 36,
       //height: 48,
       letterSpacing: -0.432,
       fontFamily: 'PretendardBold');
+  static const Title2_sb = TextStyle(
+      fontSize: 28,
+      //height: 38,
+      letterSpacing: -0.3776,
+      fontFamily: 'PretendardSemi');
   static const Title2_b = TextStyle(
       fontSize: 28,
       //height: 38,
@@ -53,7 +58,7 @@ class FontStyles {
       fontFamily: 'PretendardRegular');
 
   //Bn -> Body/Normal
-  static const Bn1 = TextStyle(
+  static const Bn1_b = TextStyle(
       fontSize: 16,
       //height: 24,
       letterSpacing: 0.0912,
@@ -120,9 +125,14 @@ class FontStyles {
       //height: 16,
       letterSpacing: 0.4032,
       fontFamily: 'PretendardRegular');
-  static const Caption2 = TextStyle(
+  static const Caption2_sb = TextStyle(
       fontSize: 11,
       //height: 14,
       letterSpacing: 0.4976,
       fontFamily: 'PretendardSemi');
+  static const Caption2_m = TextStyle(
+      fontSize: 11,
+      //height: 14,
+      letterSpacing: 0.4976,
+      fontFamily: 'PretendardMedium');
 }
