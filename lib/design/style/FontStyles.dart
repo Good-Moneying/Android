@@ -336,4 +336,3 @@ class FontStyles {
       fontFamily: 'PretendardBold');
 
 }
-

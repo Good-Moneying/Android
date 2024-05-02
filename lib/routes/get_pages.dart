@@ -12,6 +12,7 @@ import 'package:meetup/view/home/news_letter_screen.dart';
 import 'package:meetup/view/investment/investment_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/search/search_screen.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 
 import '../view/auth/nickname_screen.dart';
 import '../view/bottomNavigationBar.dart';
@@ -21,28 +22,41 @@ part './get_routes.dart';
 class Pages {
   static final pages = [
     GetPage(
-        name: Routes.LOGIN,
-        page: () => loginScreen(),
+      name: Routes.LOGIN,
+      page: () => loginScreen(),
     ),
     GetPage(
-        name: Routes.KAKAOLOGIN,
-        page: () => WebKakaoLogin(),
+      name: Routes.KAKAOLOGIN,
+      page: () => WebKakaoLogin(),
     ),
     GetPage(
       name: Routes.NICKNAME,
       page: () => NicknameScreen(),
+      // binding: BindingsBuilder(() {
+      //   Get.put(UserViewModel());
+      // }
+      //),
     ),
     GetPage(
       name: Routes.INFO,
       page: () => InfoScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(UserViewModel());
+      }),
     ),
     GetPage(
       name: Routes.INTEREST,
       page: () => InterestScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(UserViewModel());
+      }),
     ),
     GetPage(
       name: Routes.FREQUENCY,
       page: () => FrequencyScreen(),
+      binding: BindingsBuilder(() {
+        Get.put(UserViewModel());
+      }),
     ),
     GetPage(
       name: Routes.WELCOME,
@@ -68,6 +82,5 @@ class Pages {
       name: Routes.EDITORNEWS,
       page: () => NewsLetterScreen(),
     ),
-
   ];
 }

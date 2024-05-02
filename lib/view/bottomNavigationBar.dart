@@ -51,7 +51,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
 
   Widget _bottomNavigationBarWidget() {
     return Obx(
-      () => Theme(
+          () => Theme(
         data: ThemeData(
           splashColor: Colors.transparent,
           highlightColor: Colors.transparent,
@@ -65,7 +65,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
           currentIndex: controller.currentIndex.value,
           selectedLabelStyle: FontStyles.Caption2_m.copyWith(color: AppColors.g6),
           unselectedLabelStyle:
-              FontStyles.Caption2_m.copyWith(color: AppColors.g6),
+          FontStyles.Caption2_m.copyWith(color: AppColors.g6),
           items: [
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
