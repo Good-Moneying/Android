@@ -36,6 +36,12 @@ class FontStyles {
       //height: 28,
       letterSpacing: -0.192,
       fontFamily: 'PretendardSemi');
+  static const Headline1_m = TextStyle(
+      fontSize: 18,
+      //height: 26,
+      letterSpacing: -0.192,
+      fontFamily: 'PretendardMedium');
+
   static const Headline1_sb = TextStyle(
       fontSize: 18,
       //height: 26,
@@ -94,6 +100,12 @@ class FontStyles {
       fontFamily: 'PretendardSemi');
 
   //Lr -> Label/Reading
+  static const Lr1_m = TextStyle(
+      fontSize: 14,
+      //height: 22,
+      letterSpacing: 0.232,
+      fontFamily: 'PretendardMedium');
+
   static const Lr1_sb = TextStyle(
       fontSize: 14,
       //height: 22,
@@ -142,9 +154,9 @@ class FontStyles {
       fontFamily: 'PretendardSemi');
 
   static const Title_1_m = TextStyle(
-    fontSize: 36,
-    letterSpacing: 0.972,
-    fontFamily: 'PretendardMedium'
+      fontSize: 36,
+      letterSpacing: 0.972,
+      fontFamily: 'PretendardMedium'
   );
   static const Title2_sb = TextStyle(
       fontSize: 28,
@@ -178,4 +190,3 @@ class FontStyles {
   );
 
 }
-
