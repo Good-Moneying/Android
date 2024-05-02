@@ -309,6 +309,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                       return AlertDialog(
                                           surfaceTintColor: Colors.transparent,
                                           backgroundColor: AppColors.white,
+                                          insetPadding: EdgeInsets.zero,
                                           contentPadding: const EdgeInsets.only(
                                               left: 16.0, right: 16.0),
                                           title: Row(
@@ -368,10 +369,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     ),
                                                   ],
                                                 ),
-                                                SingleChildScrollView(
-                                                  scrollDirection: Axis
-                                                      .horizontal,
-                                                  child: Row(
+                                                Row(
                                                     children: [
                                                       ButtonTheme(
                                                           minWidth: 90,
@@ -576,7 +574,6 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                       ))
                                                     ],
                                                   ),
-                                                ),
                                                 SizedBox(
                                                   height: 120
                                                   ,child: Padding(
