@@ -162,39 +162,11 @@ class InfoScreen extends GetView<UserViewModel> {
                   style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
                 ),
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Obx(
-                      () => InkWell(
-                        onTap: () async {
-                          controller.selectedDate.value = await showDatePicker(
-                                context: context,
-                                firstDate: DateTime(1900),
-                                lastDate: DateTime.now(),
-                            //initialEntryMode: DatePickerEntryMode.calendarOnly,
-                                // builder: (context, child) {
-                                //       return Theme(
-                                //           data: Theme.of(context).copyWith(
-                                //             colorScheme: ColorScheme.light(
-                                //               primary: Colors.yellow, // header background color
-                                //               onPrimary: Colors.black, // header text color
-                                //               onSurface: Colors.green, // body text color
-                                //             ),
-                                //             textButtonTheme: TextButtonThemeData(
-                                //               style: TextButton.styleFrom(
-                                //                 foregroundColor: Colors.red, // button text color
-                                //               ),
-                                //             ),
-                                //           ),
-                                //           child: child!,
-                                //       );
-                                // }
-                              ) ??
-                              controller.selectedDate.value;
-                          controller.dateSelect.value = true;
-                        },
-                        child: Container(
+              Obx(
+                () => Row(
+                  children: [
+                    Expanded(
+                      child: Container(
                           height: Get.height * 0.06,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
@@ -215,34 +187,57 @@ class InfoScreen extends GetView<UserViewModel> {
                             ),
                           ),
                         ),
-                      ),
                     ),
-                  ),
-                  SizedBox(
-                    width: Get.width * 0.03,
-                  ),
-                  SizedBox(
-                    height: Get.height * 0.06,
-                    width: Get.width * 0.25,
-                    child: ElevatedButton(
-                      onPressed: () {
-
-                      },
-                      style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.zero,
-                        backgroundColor: AppColors.g6,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    SizedBox(
+                      width: Get.width * 0.03,
+                    ),
+                    SizedBox(
+                      height: Get.height * 0.06,
+                      width: Get.width * 0.25,
+                      child: ElevatedButton(
+                          onPressed: () async {
+                            controller.selectedDate.value = await showDatePicker(
+                                  context: context,
+                                  firstDate: DateTime(1900),
+                                  lastDate: DateTime.now(),
+                                  initialEntryMode: DatePickerEntryMode.calendar,
+                                  // builder: (context, child) {
+                                  //       return Theme(
+                                  //           data: Theme.of(context).copyWith(
+                                  //             colorScheme: ColorScheme.light(
+                                  //               primary: Colors.yellow, // header background color
+                                  //               onPrimary: Colors.black, // header text color
+                                  //               onSurface: Colors.green, // body text color
+                                  //             ),
+                                  //             textButtonTheme: TextButtonThemeData(
+                                  //               style: TextButton.styleFrom(
+                                  //                 foregroundColor: Colors.red, // button text color
+                                  //               ),
+                                  //             ),
+                                  //           ),
+                                  //           child: child!,
+                                  //       );
+                                  // }
+                                ) ??
+                                controller.selectedDate.value;
+                            controller.dateSelect.value = true;
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            backgroundColor: AppColors.g6,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          child: Text(
+                            '선택하기',
+                            style: FontStyles.Bn2_sb.copyWith(
+                                color: AppColors.white),
+                          ),
                         ),
-                      ),
-                      child: Text(
-                        '선택하기',
-                        style:
-                            FontStyles.Bn2_sb.copyWith(color: AppColors.white),
-                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Spacer(),
               Obx(
