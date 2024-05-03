@@ -23,7 +23,7 @@ class Pages {
   static final pages = [
     GetPage(
       name: Routes.LOGIN,
-      page: () => loginScreen(),
+      page: () => LoginScreen(),
     ),
     GetPage(
       name: Routes.KAKAOLOGIN,
