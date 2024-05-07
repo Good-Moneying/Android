@@ -93,7 +93,7 @@ class UserViewModel extends GetxController {
 
   //interest, 다중선택
   RxBool interestSelect = false.obs;
-  RxList<bool> interestList = [false, false, false, false, false, false].obs;
+  RxList<bool> interestList = [false, false, false, false].obs;
   RxString userCategory = 'unknown'.obs;
 
   void selectInterest(int index) async {
@@ -114,11 +114,11 @@ class UserViewModel extends GetxController {
     if (selectCategory[0]) {
       userCategory('주식');
     } else if (selectCategory[1]) {
-      userCategory('주식');
+      userCategory('코인');
     } else if (selectCategory[2]) {
-      userCategory('주식');
+      userCategory('금리');
     } else if (selectCategory[3]) {
-      userCategory('주식');
+      userCategory('부동산');
     }
   }
 
