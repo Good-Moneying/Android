@@ -21,6 +21,7 @@ class UserViewModel extends GetxController {
   Rx<double> getPercentProgress = 0.3.obs;
   Rx<bool> isNicknameValid = false.obs;
   Rx<bool> isDisplayError = false.obs;
+  Rx<bool> isFirstTab = false.obs;
   Rx<bool> isFocused = false.obs;
 
   //닉네임 필터링

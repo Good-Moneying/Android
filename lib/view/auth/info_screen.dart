@@ -167,26 +167,26 @@ class InfoScreen extends GetView<UserViewModel> {
                   children: [
                     Expanded(
                       child: Container(
-                          height: Get.height * 0.06,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(
-                              color: AppColors.g2,
-                            ),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(10, 12, 0, 0),
-                            child: Text(
-                              controller.dateSelect.value == false
-                                  ? '생년월일을 선택해주세요'
-                                  : '${controller.selectedDate.value?.year.toString()}/${controller.selectedDate.value?.month.toString().padLeft(2, '0')}/${controller.selectedDate.value?.day.toString().padLeft(2, '0')}',
-                              style: FontStyles.Ln1_m.copyWith(
-                                  color: controller.dateSelect.value == false
-                                      ? AppColors.g3
-                                      : AppColors.black),
-                            ),
+                        height: Get.height * 0.06,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: AppColors.g2,
                           ),
                         ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(10, 12, 0, 0),
+                          child: Text(
+                            controller.dateSelect.value == false
+                                ? '생년월일을 선택해주세요'
+                                : '${controller.selectedDate.value?.year.toString()}/${controller.selectedDate.value?.month.toString().padLeft(2, '0')}/${controller.selectedDate.value?.day.toString().padLeft(2, '0')}',
+                            style: FontStyles.Ln1_m.copyWith(
+                                color: controller.dateSelect.value == false
+                                    ? AppColors.g3
+                                    : AppColors.black),
+                          ),
+                        ),
+                      ),
                     ),
                     SizedBox(
                       width: Get.width * 0.03,
@@ -195,46 +195,50 @@ class InfoScreen extends GetView<UserViewModel> {
                       height: Get.height * 0.06,
                       width: Get.width * 0.25,
                       child: ElevatedButton(
-                          onPressed: () async {
-                            controller.selectedDate.value = await showDatePicker(
+                        onPressed: () async {
+                          controller.selectedDate.value = await showDatePicker(
                                   context: context,
                                   firstDate: DateTime(1900),
                                   lastDate: DateTime.now(),
-                                  initialEntryMode: DatePickerEntryMode.calendar,
-                                  // builder: (context, child) {
-                                  //       return Theme(
-                                  //           data: Theme.of(context).copyWith(
-                                  //             colorScheme: ColorScheme.light(
-                                  //               primary: Colors.yellow, // header background color
-                                  //               onPrimary: Colors.black, // header text color
-                                  //               onSurface: Colors.green, // body text color
-                                  //             ),
-                                  //             textButtonTheme: TextButtonThemeData(
-                                  //               style: TextButton.styleFrom(
-                                  //                 foregroundColor: Colors.red, // button text color
-                                  //               ),
-                                  //             ),
-                                  //           ),
-                                  //           child: child!,
-                                  //       );
-                                  // }
-                                ) ??
-                                controller.selectedDate.value;
-                            controller.dateSelect.value = true;
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            backgroundColor: AppColors.g6,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                          ),
-                          child: Text(
-                            '선택하기',
-                            style: FontStyles.Bn2_sb.copyWith(
-                                color: AppColors.white),
+                                  initialEntryMode:
+                                      DatePickerEntryMode.calendar,
+                                  builder: (context, child) {
+                                    return Theme(
+                                      data: Theme.of(context).copyWith(
+                                        colorScheme: ColorScheme.light(
+                                          primary: Colors.yellow,
+                                          // header background color
+                                          onPrimary: Colors.black,
+                                          // header text color
+                                          onSurface:
+                                              Colors.green, // body text color
+                                        ),
+                                        textButtonTheme: TextButtonThemeData(
+                                          style: TextButton.styleFrom(
+                                            foregroundColor:
+                                                Colors.red, // button text color
+                                          ),
+                                        ),
+                                      ),
+                                      child: child!,
+                                    );
+                                  }) ??
+                              controller.selectedDate.value;
+                          controller.dateSelect.value = true;
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          backgroundColor: AppColors.g6,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
                           ),
                         ),
+                        child: Text(
+                          '선택하기',
+                          style: FontStyles.Bn2_sb.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
                     ),
                   ],
                 ),

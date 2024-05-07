@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 
 class LoginButton extends StatelessWidget {
@@ -44,7 +45,9 @@ class LoginButton extends StatelessWidget {
               ),
               Text(
                 label,
-                style: FontStyles.Label2_m,
+                style: FontStyles.Label2_m.copyWith(
+                  color: AppColors.black.withOpacity(0.85),
+                ),
               ),
               SizedBox(
                 width: 75,

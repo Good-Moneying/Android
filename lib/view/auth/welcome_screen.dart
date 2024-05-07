@@ -6,8 +6,9 @@ import 'package:meetup/view/bottomNavigationBar.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../routes/get_pages.dart';
+import '../../viewModel/user_viewModel.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends GetView<UserViewModel> {
   const WelcomeScreen({super.key});
 
   @override
@@ -54,7 +55,21 @@ class WelcomeScreen extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {
                       //임시적
+                      print(controller.nicknameController.value.text);
+                      print(controller.genderList.value);
+                      print(controller.selectedDate.value);
+                      print(controller.interestList.value);
+                      print(controller.frequencyList.value);
+
+                      //!! 출력결과 !!
+                      // 내사랑사 -> 닉네임
+                      // [false, true] -> 성별
+                      // 2024-05-01 00:00:00.000 -> 생년월일
+                      // [false, true, false, false, true, false] -> 관심사
+                      // [true, false, false, false] -> 빈도수
+
                       Get.offAll(BottomNavigationView());
+
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
