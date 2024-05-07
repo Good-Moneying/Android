@@ -86,17 +86,15 @@ class InterestScreen extends GetView<UserViewModel> {
                       child: Column(
                         children: [
                           SvgPicture.asset(controller.interestList[0]
-                              ? 'assets/icons/interest_fill.svg'
-                              : 'assets/icons/interest_unfill.svg'),
+                              ? 'assets/icons/stock_fill.svg'
+                              : 'assets/icons/stock_unfill.svg'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
                           Text(
                             '주식',
-                            style: FontStyles.Bn2_sb.copyWith(
-                                color: controller.interestList[0]
-                                    ? AppColors.black
-                                    : AppColors.g4),
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -113,17 +111,15 @@ class InterestScreen extends GetView<UserViewModel> {
                       child: Column(
                         children: [
                           SvgPicture.asset(controller.interestList[1]
-                              ? 'assets/icons/interest_fill.svg'
-                              : 'assets/icons/interest_unfill.svg'),
+                              ? 'assets/icons/coin_fill.svg'
+                              : 'assets/icons/coin_unfill.svg'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
                           Text(
                             '코인',
-                            style: FontStyles.Bn2_sb.copyWith(
-                                color: controller.interestList[1]
-                                    ? AppColors.black
-                                    : AppColors.g4),
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -148,17 +144,15 @@ class InterestScreen extends GetView<UserViewModel> {
                       child: Column(
                         children: [
                           SvgPicture.asset(controller.interestList[2]
-                              ? 'assets/icons/interest_fill.svg'
-                              : 'assets/icons/interest_unfill.svg'),
+                              ? 'assets/icons/interestrate_fill.svg'
+                              : 'assets/icons/interestrate_unfill.svg'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
                           Text(
                             '금리',
-                            style: FontStyles.Bn2_sb.copyWith(
-                                color: controller.interestList[2]
-                                    ? AppColors.black
-                                    : AppColors.g4),
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -175,17 +169,15 @@ class InterestScreen extends GetView<UserViewModel> {
                       child: Column(
                         children: [
                           SvgPicture.asset(controller.interestList[3]
-                              ? 'assets/icons/interest_fill.svg'
-                              : 'assets/icons/interest_unfill.svg'),
+                              ? 'assets/icons/realestate_fill.svg'
+                              : 'assets/icons/realestate_unfill.svg'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
                           Text(
                             '부동산',
-                            style: FontStyles.Bn2_sb.copyWith(
-                                color: controller.interestList[3]
-                                    ? AppColors.black
-                                    : AppColors.g4),
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
                           ),
                         ],
                       ),

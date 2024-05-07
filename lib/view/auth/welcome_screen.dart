@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import 'package:flutter/services.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../routes/get_pages.dart';
@@ -67,24 +67,26 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       controller.setGender(controller.genderList.value);
                       controller.setCategory(controller.interestList.value);
                       controller.setFrequency(controller.frequencyList.value);
+                      final formatBirth = DateFormat('yyyy-MM-dd').format(controller.selectedDate.value);
 
+                      print(formatBirth);
                       //넘겨줄 데이터 구성
-                      var formData = FormData({
+                      final formData = <String, dynamic> {
                         "email": email,
                         "nickname": controller.nicknameController.value.text,
                         "refreshToken": refreshToken,
                         "gender": controller.userGender.value,
-                        "birthDay": controller.selectedDate.value,
+                        "birthDay": formatBirth,
                         "provider": provider,
                         "category": controller.userCategory.value,
-                        "goal": controller.userGoal.value
-                      });
+                        "goal": controller.userGoal.value,
+                      };
 
-                      //서버에 데이터 전송
-                      await onboarding(formData);
 
                       //출력테스트
-                      print(formData.fields);
+                      //print(formData.fields);
+                      //서버에 데이터 전송
+                      await onboarding(formData);
 
                       Get.offAll(BottomNavigationView());
                     },

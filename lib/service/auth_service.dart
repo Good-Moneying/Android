@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart' hide Response;
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
@@ -177,8 +179,9 @@ Future<void> kakaoLogin() async {
   }
 }
 
-Future<void> onboarding(var formData) async {
+Future<void> onboarding(final formData) async {
   try {
+
     Dio dio = Dio();
     dio.options.baseUrl = dotenv.get("BASE_URL");
     dio.options.validateStatus = (status) {
@@ -191,6 +194,11 @@ Future<void> onboarding(var formData) async {
       data: {
         formData
       },
+      options: Options(
+        headers: {
+          HttpHeaders.contentTypeHeader: 'application/json',
+        }
+      )
     );
 
     if(response.statusCode == 400) {
