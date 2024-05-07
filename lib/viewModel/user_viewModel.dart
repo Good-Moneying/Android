@@ -65,6 +65,7 @@ class UserViewModel extends GetxController {
   //gender, 이중일택
   RxBool genderSelect = false.obs;
   RxList<bool> genderList = [false, false].obs;
+  RxString userGender = 'unknown'.obs;
 
   void selectGender(int index) {
     genderSelect.value = true;
@@ -77,6 +78,15 @@ class UserViewModel extends GetxController {
     }
   }
 
+  //List<bool> -> 최종 값으로 변환
+  void setGender(List<bool> selectGender) {
+    if (selectGender[0]) {
+      userGender('남자');
+    } else if (selectGender[1]) {
+      userGender('여자');
+    }
+  }
+
   //생년월일
   var selectedDate = DateTime.now().obs;
   RxBool dateSelect = false.obs;
@@ -84,6 +94,7 @@ class UserViewModel extends GetxController {
   //interest, 다중선택
   RxBool interestSelect = false.obs;
   RxList<bool> interestList = [false, false, false, false, false, false].obs;
+  RxString userCategory = 'unknown'.obs;
 
   void selectInterest(int index) async {
     for (int i = 0; i < interestList.length; i++) {
@@ -99,9 +110,22 @@ class UserViewModel extends GetxController {
     }
   }
 
+  void setCategory(List<bool> selectCategory) {
+    if (selectCategory[0]) {
+      userCategory('주식');
+    } else if (selectCategory[1]) {
+      userCategory('주식');
+    } else if (selectCategory[2]) {
+      userCategory('주식');
+    } else if (selectCategory[3]) {
+      userCategory('주식');
+    }
+  }
+
   //뉴스레터 frequency, 다중일택
   RxBool frequencySelect = false.obs;
   RxList<bool> frequencyList = [false, false, false, false].obs;
+  RxString userGoal = 'unknown'.obs;
 
   void selectFrequency(int index) {
     frequencySelect.value = true;
@@ -111,6 +135,21 @@ class UserViewModel extends GetxController {
       } else {
         frequencyList[i] = false;
       }
+    }
+  }
+
+  //List<bool> -> 최종 값으로 변환
+  void setFrequency(List<bool> selectFrequency) {
+    if (selectFrequency[0]) {
+      userGoal('매일');
+    } else if (selectFrequency[1]) {
+      userGoal('일주일에 5~6번');
+    } else if (selectFrequency[2]) {
+      userGoal('일주일에 3~4번');
+    } else if (selectFrequency[3]) {
+      userGoal('일주일에 1~2번');
+    } else {
+      userGoal('건너뛰기');
     }
   }
 

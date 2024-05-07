@@ -90,36 +90,4 @@ class _LoginScreenState extends State<LoginScreen>
     _animationController.dispose(); // 애니메이션 컨트롤러 해제
     super.dispose();
   }
-
-  Future<void> webSignIn() async {
-    // 고유한 redirect uri
-    final redirect_uri = dotenv.get("BASE_URL");
-
-    // 백엔드에서 미리 작성된 API 호출
-    final url = Uri.parse('/login/naver?redirect-uri=${redirect_uri}');
-
-    //final url = Uri.parse('oauth/kakao');
-
-    // 백엔드가 제공한 로그인 페이지에서 로그인 후 callback 데이터 반환
-    final result = await FlutterWebAuth.authenticate(
-        url: url.toString(), callbackUrlScheme: HomeScreen().toString());
-
-    // 백엔드에서 redirect한 callback 데이터 파싱
-    final accessToken = Uri.parse(result).queryParameters['access-token'];
-    final refreshToken = Uri.parse(result).queryParameters['refresh-token'];
-
-    print(accessToken);
-    print(refreshToken);
-
-    // . . .
-    // FlutterSecureStorage 또는 SharedPreferences 를 통한
-    // Token 저장 및 관리
-    await saveTokens(accessToken!, refreshToken!);
-  }
-
-  Future<void> saveTokens(String accessToken, String refreshToken) async {
-    const storage = FlutterSecureStorage();
-    await storage.write(key: 'accessToken', value: accessToken);
-    await storage.write(key: 'refreshToken', value: refreshToken);
-  }
 }

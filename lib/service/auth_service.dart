@@ -45,7 +45,7 @@ void getKakaoUserInfo() async {
     User user = await UserApi.instance.me();
     print('사용자 정보 요청 성공'
         '\n회원번호: ${user.id}'
-        '\n연령대: ${user.kakaoAccount?.ageRange}'
+        '\n연령대: ${user.kakaoAccount?.email}'
         '\n성별: ${user.kakaoAccount?.gender}');
   } catch (error) {
     print('사용자 정보 요청 실패 $error');
@@ -86,9 +86,15 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
       print('응답 성공');
       switch (loginPlatform) {
         case LoginPlatform.KAKAO:
+          User user = await UserApi.instance.me();
+          String? userEmail = user.kakaoAccount!.email;
+
           final prefs = await SharedPreferences.getInstance();
           prefs.setString('accessToken', response.data['accessToken']);
+
+          prefs.setString('email', userEmail!);
           prefs.setString('refreshToken', response.data['refreshToken']);
+          prefs.setString('provider', 'KAKAO');
           bool isRegistered = response.data['isRegistered'];
 
           if (isRegistered == true) {
@@ -168,6 +174,34 @@ Future<void> kakaoLogin() async {
     } catch (error) {
       print('카카오계정으로 로그인 실패 $error');
     }
+  }
+}
+
+Future<void> onboarding(var formData) async {
+  try {
+    Dio dio = Dio();
+    dio.options.baseUrl = dotenv.get("BASE_URL");
+    dio.options.validateStatus = (status) {
+      return status! < 500;
+    };
+    Response response;
+
+    response = await dio.post(
+      "/api/users",
+      data: {
+        formData
+      },
+    );
+
+    if(response.statusCode == 400) {
+      print('BAD REQUEST');
+    }
+    if(response.statusCode == 200) {
+      print('유저 정보 전송 성공');
+    }
+
+  } catch (e) {
+    print(e);
   }
 }
 
