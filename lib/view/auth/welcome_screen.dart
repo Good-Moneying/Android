@@ -1,6 +1,7 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide FormData;
 import 'package:intl/intl.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -59,19 +60,18 @@ class WelcomeScreen extends GetView<UserViewModel> {
                     onPressed: () async {
                       //저장된 데이터 가져오기
                       final prefs = await SharedPreferences.getInstance();
-                      String? email = prefs.getString('email');
-                      String? refreshToken = prefs.getString('refreshToken');
-                      String? provider = prefs.getString('provider');
+                      String email = prefs.getString('email')!;
+                      String refreshToken = prefs.getString('refreshToken')!;
+                      String provider = prefs.getString('provider')!;
 
                       //입력한 데이터 가져오기
                       controller.setGender(controller.genderList.value);
                       controller.setCategory(controller.interestList.value);
                       controller.setFrequency(controller.frequencyList.value);
-                      final formatBirth = DateFormat('yyyy-MM-dd').format(controller.selectedDate.value);
+                      final formatBirth = DateFormat('yyyyMMdd').format(controller.selectedDate.value);
 
-                      print(formatBirth);
                       //넘겨줄 데이터 구성
-                      final formData = <String, dynamic> {
+                      final formData = <String, dynamic>{
                         "email": email,
                         "nickname": controller.nicknameController.value.text,
                         "refreshToken": refreshToken,
@@ -84,7 +84,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
 
 
                       //출력테스트
-                      //print(formData.fields);
+                      print(formData);
                       //서버에 데이터 전송
                       await onboarding(formData);
 

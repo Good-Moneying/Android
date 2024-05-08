@@ -181,7 +181,6 @@ Future<void> kakaoLogin() async {
 
 Future<void> onboarding(final formData) async {
   try {
-
     Dio dio = Dio();
     dio.options.baseUrl = dotenv.get("BASE_URL");
     dio.options.validateStatus = (status) {
@@ -191,23 +190,21 @@ Future<void> onboarding(final formData) async {
 
     response = await dio.post(
       "/api/users",
-      data: {
-        formData
-      },
-      options: Options(
-        headers: {
-          HttpHeaders.contentTypeHeader: 'application/json',
-        }
-      )
+      options: Options(headers: {
+        Headers.acceptHeader: 'application/json',
+        Headers.contentTypeHeader: 'application/json'
+      }),
+      data: formData,
     );
+    print(response.statusCode);
 
-    if(response.statusCode == 400) {
+    
+    if (response.statusCode == 400) {
       print('BAD REQUEST');
     }
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       print('유저 정보 전송 성공');
     }
-
   } catch (e) {
     print(e);
   }

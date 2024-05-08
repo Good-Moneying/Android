@@ -81,9 +81,9 @@ class UserViewModel extends GetxController {
   //List<bool> -> 최종 값으로 변환
   void setGender(List<bool> selectGender) {
     if (selectGender[0]) {
-      userGender('남자');
+      userGender('MALE');
     } else if (selectGender[1]) {
-      userGender('여자');
+      userGender('FEMALE');
     }
   }
 
@@ -112,13 +112,13 @@ class UserViewModel extends GetxController {
 
   void setCategory(List<bool> selectCategory) {
     if (selectCategory[0]) {
-      userCategory('주식');
+      userCategory('STOCK');
     } else if (selectCategory[1]) {
-      userCategory('코인');
+      userCategory('COIN');
     } else if (selectCategory[2]) {
       userCategory('금리');
     } else if (selectCategory[3]) {
-      userCategory('부동산');
+      userCategory('ESTATE');
     }
   }
 
@@ -141,13 +141,13 @@ class UserViewModel extends GetxController {
   //List<bool> -> 최종 값으로 변환
   void setFrequency(List<bool> selectFrequency) {
     if (selectFrequency[0]) {
-      userGoal('매일');
+      userGoal('EVERYDAY');
     } else if (selectFrequency[1]) {
-      userGoal('일주일에 5~6번');
+      userGoal('FIVE_TO_SIX');
     } else if (selectFrequency[2]) {
-      userGoal('일주일에 3~4번');
+      userGoal('THREE_TO_FOUR');
     } else if (selectFrequency[3]) {
-      userGoal('일주일에 1~2번');
+      userGoal('ONE_TO_TWO');
     } else {
       userGoal('건너뛰기');
     }
