@@ -32,7 +32,10 @@ class ProfileScreen extends StatelessWidget {
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(16.0,12,0,0),
-                  child: Image.asset('assets/images/mypage_profile.png',width: 54,height: 54,),
+                  child: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    backgroundImage: AssetImage('assets/images/mypage_moi_dotori.png'),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),
