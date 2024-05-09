@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //GetxService : 화면을 떠나도 메모리가 유지됨, 로그인상태를 유지하는 상황에서 적합
@@ -78,6 +79,8 @@ class UserViewModel extends GetxController {
   }
 
   //생년월일
+  TextEditingController birthController = TextEditingController();
+
   var selectedDate = DateTime.now().obs;
   RxBool dateSelect = false.obs;
 

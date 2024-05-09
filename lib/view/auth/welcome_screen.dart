@@ -76,7 +76,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                         "nickname": controller.nicknameController.value.text,
                         "refreshToken": refreshToken,
                         "gender": controller.userGender.value,
-                        "birthDay": formatBirth,
+                        "birthDay": controller.birthController.value.text,
                         "provider": provider,
                         "category": controller.userCategory.value,
                         "goal": controller.userGoal.value,
