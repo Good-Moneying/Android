@@ -166,29 +166,6 @@ class InfoScreen extends GetView<UserViewModel> {
               ),
                Row(
                   children: [
-                    // Expanded(
-                    //   child: Container(
-                    //     height: Get.height * 0.06,
-                    //     decoration: BoxDecoration(
-                    //       borderRadius: BorderRadius.circular(12),
-                    //       border: Border.all(
-                    //         color: AppColors.g2,
-                    //       ),
-                    //     ),
-                    //     child: Padding(
-                    //       padding: const EdgeInsets.fromLTRB(10, 12, 0, 0),
-                    //       child: Text(
-                    //         controller.dateSelect.value == false
-                    //             ? '생년월일을 선택해주세요'
-                    //             : '${controller.selectedDate.value?.year.toString()}/${controller.selectedDate.value?.month.toString().padLeft(2, '0')}/${controller.selectedDate.value?.day.toString().padLeft(2, '0')}',
-                    //         style: FontStyles.Ln1_m.copyWith(
-                    //             color: controller.dateSelect.value == false
-                    //                 ? AppColors.g3
-                    //                 : AppColors.black),
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
                     Expanded(
                       child: TextFormField(
                         onTapOutside: (event) =>

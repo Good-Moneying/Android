@@ -68,7 +68,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       controller.setGender(controller.genderList.value);
                       controller.setCategory(controller.interestList.value);
                       controller.setFrequency(controller.frequencyList.value);
-                      final formatBirth = DateFormat('yyyyMMdd').format(controller.selectedDate.value);
+                      //final formatBirth = DateFormat('yyyyMMdd').format(controller.selectedDate.value);
 
                       //넘겨줄 데이터 구성
                       final formData = <String, dynamic>{
