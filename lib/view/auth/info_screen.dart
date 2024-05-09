@@ -203,8 +203,13 @@ class InfoScreen extends GetView<UserViewModel> {
                             color: AppColors.black),
                         maxLength: 8,
                         inputFormatters: [
-
+                          //가운데에 슬래시 넣어주는 형태로 변경하기
                         ],
+                        onFieldSubmitted: (String value) {
+                          if(value.length ==8){
+                            controller.dateSelect.value = true;
+                          }
+                        },
                         decoration: InputDecoration(
                           counterText: '',
                           hintText: '생년월일 8자리를 입력해주세요.',
