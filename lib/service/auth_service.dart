@@ -69,6 +69,7 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
         print('case : kakao');
         response = await dio.get(
           "/api/oauth/KAKAO",
+          queryParameters: {'prodiver':'kakao'},
           options: Options(
             headers: {
               'OAuth': accessToken,
@@ -220,5 +221,37 @@ Future<void> signOut(BuildContext context) async {
     await UserApi.instance.logout();
   } catch (error) {
     print('카카오계정으로 로그인 아웃 실패 $error');
+  }
+}
+
+//닉네임 중복 확인
+Future<void> isDuplicate(String value) async {
+  try {
+    Dio dio = Dio();
+    dio.options.baseUrl = dotenv.get("BASE_URL");
+    dio.options.validateStatus = (status) {
+      return status! < 500;
+    };
+    Response response;
+
+    response = await dio.post(
+      '/api/users/validate/nickname',
+      options: Options(headers: {
+        Headers.contentTypeHeader: 'application/json'
+      }),
+      data: {
+        'nickname': value
+      },
+    );
+    print(response.statusCode);
+
+    if (response.statusCode == 409) {
+      print('이미 존재하는 닉네임입니다.');
+    }
+    if (response.statusCode == 200) {
+      print('사용 가능한 닉네임입니다.');
+    }
+  } catch (e) {
+    print(e);
   }
 }

@@ -30,18 +30,6 @@ class UserViewModel extends GetxController {
     isNicknameValid.value = regExp.hasMatch(value);
   }
 
-  //닉네임 중복 여부 확인
-  Future<bool> isDuplicate(String value) async {
-    try {
-      final response = await dio.get('user 닉네임 받아올 경로');
-      if (response.statusCode == 200) {
-        return false;
-      }
-      return true;
-    } catch (e) {
-      return true;
-    }
-  }
 
   //오류 상태 저장
   void setDisplayError(bool display) {

@@ -9,6 +9,7 @@ import 'package:meetup/design/widgets/progress_bar.dart';
 import 'package:meetup/routes/get_pages.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:meetup/service/auth_service.dart';
 
 class NicknameScreen extends GetView<UserViewModel> {
   const NicknameScreen({super.key});
@@ -197,14 +198,16 @@ class NicknameScreen extends GetView<UserViewModel> {
                       width: Get.width * 0.25,
                       child: ElevatedButton(
                         onPressed: () async {
-                          bool isDuplicate = await controller
-                              .isDuplicate(controller.nicknameController.text);
+                          // bool isDuplicate = await isDuplicate(controller.nicknameController.text);
+                          await isDuplicate(controller.nicknameController.value.text);
 
-                          if (!isDuplicate) {
-                            //중복 검사에서 걸리지 않았을 때
-                          } else {
-                            //중복 검사에서 걸렸을 때
-                          }
+                          // if (!isDuplicate) {
+                          //   //중복 검사에서 걸리지 않았을 때
+                          //   print('사용 가능한 닉네임 입니다.');
+                          // } else {
+                          //   //중복 검사에서 걸렸을 때
+                          //   print('사용 가능한 닉네임 입니다.');
+                          // }
                         },
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.zero,
