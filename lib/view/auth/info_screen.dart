@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 
@@ -12,6 +13,8 @@ import '../../design/widgets/progress_bar.dart';
 import '../../routes/get_pages.dart';
 
 class InfoScreen extends GetView<UserViewModel> {
+  final formatBirth = MaskTextInputFormatter(mask: '####-##-##');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,7 +79,7 @@ class InfoScreen extends GetView<UserViewModel> {
                 style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
               ),
               SizedBox(
-                height: Get.height * 0.04,
+                height: Get.height * 0.03,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
@@ -155,7 +158,7 @@ class InfoScreen extends GetView<UserViewModel> {
                 ],
               ),
               SizedBox(
-                height: Get.height * 0.04,
+                height: Get.height * 0.03,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 10),
@@ -164,52 +167,58 @@ class InfoScreen extends GetView<UserViewModel> {
                   style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
                 ),
               ),
-               Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        onTapOutside: (event) =>
-                            FocusManager.instance.primaryFocus?.unfocus(),
-                        controller: controller.birthController,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.datetime,
-                        onChanged: (text) {
-                          print("text field: $text");
-                        },
-                        style: FontStyles.Ln1_m.copyWith(
-                            color: AppColors.black),
-                        maxLength: 8,
-                        inputFormatters: [
-                          //가운데에 슬래시 넣어주는 형태로 변경하기
-                        ],
-                        onFieldSubmitted: (String value) {
-                          if(value.length ==8){
-                            controller.dateSelect.value = true;
-                          }
-                        },
-                        decoration: InputDecoration(
-                          counterText: '',
-                          hintText: '생년월일 8자리를 입력해주세요.',
-                          hintStyle: FontStyles.Ln1_m.copyWith(
-                              color: AppColors.g3),
-                          //border 색깔
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: AppColors.g2,
-                            ),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextFormField(
+                      onTapOutside: (event) {
+                        if (controller.birthController.value.text.length ==
+                            10) {
+                          controller.dateSelect.value = true;
+                        } else {
+                          controller.dateSelect.value = false;
+                        }
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      controller: controller.birthController,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.datetime,
+                      onChanged: (text) {
+                        print("text field: $text");
+                      },
+                      style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                      maxLength: 10,
+                      inputFormatters: [formatBirth],
+                      onFieldSubmitted: (String value) {
+                        if (value.length == 10) {
+                          controller.dateSelect.value = true;
+                        } else {
+                          controller.dateSelect.value = false;
+                        }
+                      },
+                      decoration: InputDecoration(
+                        counterText: '',
+                        hintText: '생년월일 8자리를 입력해주세요.',
+                        hintStyle:
+                            FontStyles.Ln1_m.copyWith(color: AppColors.g3),
+                        //border 색깔
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: AppColors.g2,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(8),
-                            borderSide: const BorderSide(
-                              color: AppColors.v5,
-                            ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: AppColors.v5,
                           ),
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
               Spacer(),
               Obx(
                 () => SizedBox(

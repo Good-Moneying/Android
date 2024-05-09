@@ -68,7 +68,8 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       controller.setGender(controller.genderList.value);
                       controller.setCategory(controller.interestList.value);
                       controller.setFrequency(controller.frequencyList.value);
-                      //final formatBirth = DateFormat('yyyyMMdd').format(controller.selectedDate.value);
+                      String formatBirth = controller.birthController.value.text.replaceAll('-', '');
+
 
                       //넘겨줄 데이터 구성
                       final formData = <String, dynamic>{
@@ -76,7 +77,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                         "nickname": controller.nicknameController.value.text,
                         "refreshToken": refreshToken,
                         "gender": controller.userGender.value,
-                        "birthDay": controller.birthController.value.text,
+                        "birthDay": formatBirth,
                         "provider": provider,
                         "category": controller.userCategory.value,
                         "goal": controller.userGoal.value,
@@ -86,7 +87,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       //출력테스트
                       print(formData);
                       //서버에 데이터 전송
-                      await onboarding(formData);
+                      //await onboarding(formData);
 
                       Get.offAll(BottomNavigationView());
                     },
