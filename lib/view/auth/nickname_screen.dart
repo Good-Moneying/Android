@@ -196,30 +196,33 @@ class NicknameScreen extends GetView<UserViewModel> {
                     SizedBox(
                       height: Get.height * 0.07,
                       width: Get.width * 0.25,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          // bool isDuplicate = await isDuplicate(controller.nicknameController.text);
-                          await isDuplicate(controller.nicknameController.value.text);
-
-                          // if (!isDuplicate) {
-                          //   //중복 검사에서 걸리지 않았을 때
-                          //   print('사용 가능한 닉네임 입니다.');
-                          // } else {
-                          //   //중복 검사에서 걸렸을 때
-                          //   print('사용 가능한 닉네임 입니다.');
-                          // }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          padding: EdgeInsets.zero,
-                          backgroundColor: AppColors.g6,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                      child: Obx(
+                        () => ElevatedButton(
+                          onPressed: () async {
+                            //닉네임 중복값 업데이트
+                            controller.isNickDuplicate(await isDuplicate(
+                                controller.nicknameController.value.text));
+                          },
+                          style: ElevatedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            backgroundColor: controller.isNickDuplicate.value
+                                ? AppColors.g6
+                                : AppColors.g2,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
-                        ),
-                        child: Text(
-                          '중복 검사',
-                          style: FontStyles.Bn2_sb.copyWith(
-                              color: AppColors.white),
+                          child: controller.isNickDuplicate.value
+                              ? Text(
+                                  '중복 검사',
+                                  style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.white),
+                                )
+                              : Text(
+                                  '검사 완료',
+                                  style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.g5),
+                                ),
                         ),
                       ),
                     ),
@@ -227,22 +230,22 @@ class NicknameScreen extends GetView<UserViewModel> {
                 ),
               ),
               Spacer(),
-              ElevatedButton(
-                // onPressed: !controller.isDisplayError.value &&
-                //                       controller.isNicknameValid.value, ? null : () {
-                //   Get.toNamed(Routes.INFO);
-                // },
-                onPressed: () {
-                  controller.setEnabled(0.54);
-                  Get.toNamed(Routes.INFO);
-                },
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(50),
-                  backgroundColor: AppColors.v5,
-                ),
-                child: Text(
-                  '다음',
-                  style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+              Obx(
+                () => ElevatedButton(
+                  onPressed: controller.isNickDuplicate.value
+                      ? null
+                      : () {
+                          controller.setEnabled(0.54);
+                          Get.toNamed(Routes.INFO);
+                        },
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(50),
+                    backgroundColor: AppColors.v5,
+                  ),
+                  child: Text(
+                    '다음',
+                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+                  ),
                 ),
               ),
             ],

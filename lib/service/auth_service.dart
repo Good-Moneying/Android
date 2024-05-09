@@ -225,7 +225,7 @@ Future<void> signOut(BuildContext context) async {
 }
 
 //닉네임 중복 확인
-Future<void> isDuplicate(String value) async {
+Future<bool> isDuplicate(String value) async {
   try {
     Dio dio = Dio();
     dio.options.baseUrl = dotenv.get("BASE_URL");
@@ -247,11 +247,15 @@ Future<void> isDuplicate(String value) async {
 
     if (response.statusCode == 409) {
       print('이미 존재하는 닉네임입니다.');
+      return true;
     }
     if (response.statusCode == 200) {
       print('사용 가능한 닉네임입니다.');
+      return false;
     }
+    return true;
   } catch (e) {
     print(e);
+    return true;
   }
 }
