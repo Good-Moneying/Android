@@ -171,37 +171,151 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0),
-                        child: Image.asset('assets/images/mypage_banner.png'),
+                        child: Image.asset('assets/images/mypage_banner.png',width: 328,height: 97,),
                       ),
-                      Row(
-                        children: [
-                          Container(width: 158,height: 72,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Colors.white
-                            ),
-                            child: Center(
-                              child: Row(
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16.0,12,0,0),
+                        child: Row(
+                          children: [
+                            Container(width: 158,height: 72,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.white
+                              ),
+                              child:
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 16.0),
+                                      child: Column(
+                                        children: [
+                                          Text(
+                                            '주식',
+                                            style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                                          ),
+                                      RichText(text: TextSpan(
+                                        text: '10', style: FontStyles.Caption2_m.copyWith(color: AppColors.v6),
+                                        children: <TextSpan>[
+                                          TextSpan(text: '개',style: FontStyles.Caption2_m.copyWith(color: AppColors.g5),//기본style을 지정해줘야함
+                                          ),
+                                        ],
+                                      ),
+                                      ),
+                                        ]),
+                                    ),
+                                    SvgPicture.asset('assets/images/mypage_transaction 17.svg')
+                                  ],
+                                ),
+                              ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12.0),
+                              child: Container(width: 158,height: 72,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white
+                                ),
+                                child:
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 16.0),
+                                      child: Column(
+                                          children: [
+                                            Text(
+                                              '코인',
+                                              style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                                            ),
+                                            RichText(text: TextSpan(
+                                              text: '6', style: FontStyles.Caption2_m.copyWith(color: AppColors.v6),
+                                              children: <TextSpan>[
+                                                TextSpan(text: '개',style: FontStyles.Caption2_m.copyWith(color: AppColors.g5),//기본style을 지정해줘야함
+                                                ),
+                                              ],
+                                            ),
+                                            ),
+                                          ]),
+                                    ),
+                                    Image.asset('assets/images/mypage_coins.png',width: 40,height: 40,)
+                                  ],
+                                ),
+                              ),
+                            )],
+                        ),
+
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16.0,12,0,0),
+                        child: Row(
+                          children: [
+                            Container(width: 158,height: 72,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white
+                              ),
+                              child:
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                 children: [
-                                  Column(
-                                    children: [
-                                      Text(
-                                        '주식',
-                                        style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
-                                      ),
-                                  RichText(text: TextSpan(
-                                    text: '10 ', style: FontStyles.Caption2_m.copyWith(color: AppColors.v6),
-                                    children: <TextSpan>[
-                                      TextSpan(text: '개',style: FontStyles.Caption2_m.copyWith(color: AppColors.g5),//기본style을 지정해줘야함
-                                      ),
-                                    ],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 16.0),
+                                    child: Column(
+                                        children: [
+                                          Text(
+                                            '금리',
+                                            style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                                          ),
+                                          RichText(text: TextSpan(
+                                            text: '3', style: FontStyles.Caption2_m.copyWith(color: AppColors.v6),
+                                            children: <TextSpan>[
+                                              TextSpan(text: '개',style: FontStyles.Caption2_m.copyWith(color: AppColors.g5),//기본style을 지정해줘야함
+                                              ),
+                                            ],
+                                          ),
+                                          ),
+                                        ]),
                                   ),
-                                  ),
-                                    ]),
-                                  SvgPicture.asset('')
+                                  Image.asset('assets/images/mypage_bank.png',width: 40,height: 40,)
                                 ],
                               ),
-                            ))],
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 12.0),
+                              child: Container(width: 158,height: 72,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: Colors.white
+                                ),
+                                child:
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 16.0),
+                                      child: Column(
+                                          children: [
+                                            Text(
+                                              '부동산',
+                                              style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                                            ),
+                                            RichText(text: TextSpan(
+                                              text: '1', style: FontStyles.Caption2_m.copyWith(color: AppColors.v6),
+                                              children: <TextSpan>[
+                                                TextSpan(text: '개',style: FontStyles.Caption2_m.copyWith(color: AppColors.g5),//기본style을 지정해줘야함
+                                                ),
+                                              ],
+                                            ),
+                                            ),
+                                          ]),
+                                    ),
+                                    Image.asset('assets/images/mypage_bank_statement.png',width: 40,height: 40,)
+                                  ],
+                                ),
+                              ),
+                            )],
+                        ),
+
                       ),
                     ],
                   ),
