@@ -125,12 +125,33 @@ class ProfileScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text('일',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                  SizedBox(width: 2), // 간격 추가
                                   Text('월',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                  SizedBox(width: 2), // 간격 추가
                                   Text('화',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                  SizedBox(width: 2),
                                   Text('수',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                  SizedBox(width: 2),
                                   Text('목',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                  SizedBox(width: 2),
                                   Text('금',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                  SizedBox(width: 2),
                                   Text('토',style: FontStyles.Label1_Normal_m.copyWith(color: AppColors.g4),),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 13.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  SvgPicture.asset('assets/images/mypage_subtract.svg'),
+                                  SvgPicture.asset('assets/images/mypage_subtract.svg'),
+                                  SvgPicture.asset('assets/images/mypage_subtract.svg'),
+                                  SvgPicture.asset('assets/images/mypage_unfill.svg'),
+                                  SvgPicture.asset('assets/images/mypage_unfill.svg'),
+                                  SvgPicture.asset('assets/images/mypage_unfill.svg'),
+                                  SvgPicture.asset('assets/images/mypage_unfill.svg'),
                                 ],
                               ),
                             )
@@ -138,7 +159,50 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+
+                  ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16,32,0,0),
+                        child: Row(
+                          children: [
+                            Text('나의 아카이브',style: FontStyles.Headline2_b.copyWith(color: AppColors.g6),)
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 12.0),
+                        child: Image.asset('assets/images/mypage_banner.png'),
+                      ),
+                      Row(
+                        children: [
+                          Container(width: 158,height: 72,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white
+                            ),
+                            child: Center(
+                              child: Row(
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        '주식',
+                                        style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                                      ),
+                                  RichText(text: TextSpan(
+                                    text: '10 ', style: FontStyles.Caption2_m.copyWith(color: AppColors.v6),
+                                    children: <TextSpan>[
+                                      TextSpan(text: '개',style: FontStyles.Caption2_m.copyWith(color: AppColors.g5),//기본style을 지정해줘야함
+                                      ),
+                                    ],
+                                  ),
+                                  ),
+                                    ]),
+                                  SvgPicture.asset('')
+                                ],
+                              ),
+                            ))],
+                      ),
                     ],
                   ),
           )),
