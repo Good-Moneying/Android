@@ -170,8 +170,12 @@ class ProfileScreen extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 12.0),
-                        child: Image.asset('assets/images/mypage_banner.png',width: 328,height: 97,),
+                        padding: const EdgeInsets.fromLTRB(16,12.0,0,0),
+                        child: Row(
+                          children: [
+                            Image.asset('assets/images/mypage_banner.png',width: 328,height: 97,),
+                          ],
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(16.0,12,0,0),
@@ -315,8 +319,27 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             )],
                         ),
-
                       ),
+                      GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(16.0,12,0,0),
+                          child: Row(
+                            children: [
+                              Container(
+                                width: 328,height: 55,
+                                decoration: BoxDecoration(color: AppColors.white, borderRadius: BorderRadius.circular(10)),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text('나의 단어장',style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),),
+                                    SvgPicture.asset('assets/icons/mypage_chevron_right.svg')
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      )
                     ],
                   ),
           )),
