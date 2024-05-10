@@ -85,9 +85,9 @@ class InterestScreen extends GetView<UserViewModel> {
                       },
                       child: Column(
                         children: [
-                          SvgPicture.asset(controller.interestList[0]
-                              ? 'assets/icons/stock_fill.svg'
-                              : 'assets/icons/stock_unfill.svg'),
+                          Image.asset(controller.interestList[0]
+                              ? 'assets/icons/stock_fill.png'
+                              : 'assets/icons/stock_unfill.png'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
@@ -110,9 +110,9 @@ class InterestScreen extends GetView<UserViewModel> {
                       },
                       child: Column(
                         children: [
-                          SvgPicture.asset(controller.interestList[1]
-                              ? 'assets/icons/coin_fill.svg'
-                              : 'assets/icons/coin_unfill.svg'),
+                          Image.asset(controller.interestList[1]
+                              ? 'assets/icons/coin_fill.png'
+                              : 'assets/icons/coin_unfill.png'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
@@ -143,9 +143,9 @@ class InterestScreen extends GetView<UserViewModel> {
                       },
                       child: Column(
                         children: [
-                          SvgPicture.asset(controller.interestList[2]
-                              ? 'assets/icons/interestrate_fill.svg'
-                              : 'assets/icons/interestrate_unfill.svg'),
+                          Image.asset(controller.interestList[2]
+                              ? 'assets/icons/interestrate_fill.png'
+                              : 'assets/icons/interestrate_unfill.png'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
@@ -168,9 +168,9 @@ class InterestScreen extends GetView<UserViewModel> {
                       },
                       child: Column(
                         children: [
-                          SvgPicture.asset(controller.interestList[3]
-                              ? 'assets/icons/realestate_fill.svg'
-                              : 'assets/icons/realestate_unfill.svg'),
+                          Image.asset(controller.interestList[3]
+                              ? 'assets/icons/estate_fill.png'
+                              : 'assets/icons/estate_unfill.png'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
