@@ -44,16 +44,12 @@ class NicknameScreen extends GetView<UserViewModel> {
               SizedBox(
                 height: Get.height * 0.05,
               ),
-              Text(
-                '1/4',
-                style: FontStyles.Headline1_m.copyWith(color: AppColors.y6),
-              ),
               RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
                       text: '두둑',
-                      style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                      style: FontStyles.Title2_b.copyWith(color: AppColors.v6),
                     ),
                     TextSpan(
                       text: '에서 사용할',
@@ -243,11 +239,14 @@ class NicknameScreen extends GetView<UserViewModel> {
                         },
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppColors.v5,
+                    backgroundColor: AppColors.v6,
                   ),
                   child: Text(
                     '다음',
-                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+                    style: FontStyles.Bn1_b.copyWith(
+                        color: controller.isNickDuplicate.value
+                            ? Color(0xFFAAAAB9)
+                            : AppColors.white),
                   ),
                 ),
               ),

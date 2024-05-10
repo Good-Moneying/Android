@@ -44,17 +44,13 @@ class InfoScreen extends GetView<UserViewModel> {
               SizedBox(
                 height: Get.height * 0.05,
               ),
-              Text(
-                '2/4',
-                style: FontStyles.Headline1_m.copyWith(color: AppColors.y6),
-              ),
               RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
                       text: controller.nicknameController.value.text,
                       style:
-                          FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                          FontStyles.Title2_b.copyWith(color: AppColors.v6),
                     ),
                     TextSpan(
                       text: '님의',
@@ -234,7 +230,7 @@ class InfoScreen extends GetView<UserViewModel> {
                           },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      backgroundColor: AppColors.v5,
+                      backgroundColor: AppColors.v6,
                     ),
                     child: Text(
                       '다음',

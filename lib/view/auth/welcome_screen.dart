@@ -44,7 +44,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       TextSpan(
                         text: '두둑',
                         style:
-                            FontStyles.Title1_b.copyWith(color: AppColors.v5),
+                            FontStyles.Title1_b.copyWith(color: AppColors.v6),
                       ),
                       TextSpan(
                         text: '과 함께 시작하세요!',
@@ -93,7 +93,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      backgroundColor: AppColors.v5,
+                      backgroundColor: AppColors.v6,
                     ),
                     child: Text(
                       '시작하기',

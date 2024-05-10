@@ -41,16 +41,12 @@ class InterestScreen extends GetView<UserViewModel> {
             SizedBox(
               height: Get.height * 0.05,
             ),
-            Text(
-              '3/4',
-              style: FontStyles.Headline1_m.copyWith(color: AppColors.y6),
-            ),
             RichText(
               text: TextSpan(
                 children: [
                   TextSpan(
                     text: controller.nicknameController.value.text,
-                    style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                    style: FontStyles.Title2_b.copyWith(color: AppColors.v6),
                   ),
                   TextSpan(
                     text: '님의',
@@ -197,7 +193,7 @@ class InterestScreen extends GetView<UserViewModel> {
                       },
                 style: ElevatedButton.styleFrom(
                   minimumSize: const Size.fromHeight(50),
-                  backgroundColor: AppColors.v5,
+                  backgroundColor: AppColors.v6,
                 ),
                 child: Text(
                   '다음',
