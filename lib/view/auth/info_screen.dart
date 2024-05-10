@@ -53,12 +53,13 @@ class InfoScreen extends GetView<UserViewModel> {
                   children: [
                     TextSpan(
                       text: controller.nicknameController.value.text,
-                      style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                      style:
+                          FontStyles.Title2_b.copyWith(color: AppColors.v5),
                     ),
                     TextSpan(
                       text: '님의',
-                      style:
-                          FontStyles.Title2_m.copyWith(color: AppColors.black),
+                      style: FontStyles.Title2_m.copyWith(
+                          color: AppColors.black),
                     )
                   ],
                 ),
@@ -186,7 +187,8 @@ class InfoScreen extends GetView<UserViewModel> {
                       onChanged: (text) {
                         print("text field: $text");
                       },
-                      style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                      style:
+                          FontStyles.Ln1_m.copyWith(color: AppColors.black),
                       maxLength: 10,
                       inputFormatters: [formatBirth],
                       onFieldSubmitted: (String value) {

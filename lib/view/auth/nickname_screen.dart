@@ -93,8 +93,11 @@ class NicknameScreen extends GetView<UserViewModel> {
                         },
                         child: Obx(
                           () => SizedBox(
-                            //오류 텍스트로 인한 크기 조절
-                            height: Get.height * 0.07,
+                            //오류&helper 텍스트로 인한 크기 조절
+                            height: controller.isDisplayError.value ||
+                            controller.isNickDuplicate.value == false
+                                ? Get.height * 0.14
+                                : Get.height * 0.07,
                             child: TextFormField(
                               onTapOutside: (event) =>
                                   FocusManager.instance.primaryFocus?.unfocus(),
@@ -103,7 +106,6 @@ class NicknameScreen extends GetView<UserViewModel> {
                               keyboardType: TextInputType.name,
                               onChanged: (text) {
                                 controller.checkNickname(text);
-                                controller.isFirstTab(true);
                                 print("text field: $text");
                               },
                               style: FontStyles.Ln1_m.copyWith(
@@ -135,19 +137,15 @@ class NicknameScreen extends GetView<UserViewModel> {
                                 hintText: '닉네임을 적어주세요',
                                 hintStyle: FontStyles.Ln1_m.copyWith(
                                     color: AppColors.g3),
-                                //isDisplayError에서 바꿀 예정!!!! isDuplicated를 통과한 다음!!
-                                helperText: controller.isFirstTab.value ==
-                                            true &&
-                                        controller.isDisplayError.value == false
-                                    ? "닉네임을 사용할 수 있습니다"
-                                    : null,
-                                //isDisplayError에서 바꿀 예정!!!! isDuplicated를 통과한 다음!!
-                                helperStyle: controller.isFirstTab.value ==
-                                            true &&
-                                        controller.isDisplayError.value == false
-                                    ? FontStyles.Caption2_m.copyWith(
-                                        color: Colors.blue)
-                                    : null,
+                                helperText:
+                                    controller.isNickDuplicate.value == false
+                                        ? "닉네임을 사용할 수 있습니다"
+                                        : null,
+                                helperStyle:
+                                    controller.isNickDuplicate.value == false
+                                        ? FontStyles.Caption2_m.copyWith(
+                                            color: Colors.blue)
+                                        : null,
                                 errorText: controller.isDisplayError.value
                                     ? "닉네임을 사용할 수 없습니다"
                                     : null,
@@ -198,11 +196,14 @@ class NicknameScreen extends GetView<UserViewModel> {
                       width: Get.width * 0.25,
                       child: Obx(
                         () => ElevatedButton(
-                          onPressed: () async {
-                            //닉네임 중복값 업데이트
-                            controller.isNickDuplicate(await isDuplicate(
-                                controller.nicknameController.value.text));
-                          },
+                          onPressed: controller.isDisplayError.value
+                              ? null
+                              : () async {
+                                  //닉네임 중복값 업데이트
+                                  controller.isNickDuplicate(await isDuplicate(
+                                      controller
+                                          .nicknameController.value.text));
+                                },
                           style: ElevatedButton.styleFrom(
                             padding: EdgeInsets.zero,
                             backgroundColor: controller.isNickDuplicate.value
@@ -216,7 +217,9 @@ class NicknameScreen extends GetView<UserViewModel> {
                               ? Text(
                                   '중복 검사',
                                   style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.white),
+                                      color: controller.isDisplayError.value
+                                          ? AppColors.g5
+                                          : AppColors.white),
                                 )
                               : Text(
                                   '검사 완료',
