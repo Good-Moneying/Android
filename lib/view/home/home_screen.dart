@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -61,31 +62,58 @@ class HomeScreen extends StatelessWidget {
                 color: AppColors.white,
                 surfaceTintColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(7)),
+                    borderRadius: BorderRadius.circular(12)),
                 elevation: 3,
                 child: Padding(
                   padding: const EdgeInsets.all(15.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.25,
-                          fit: BoxFit.fill,
-                        ),
+                      Stack(
+                        children: [
+                          ClipRRect(
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(12),
+                            ),
+                            //임시 사진
+                            child: Image.network(
+                              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                              height: Get.height * 0.25,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Positioned(
+                            top: 13,
+                            right: 16,
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Container(
+                                  width: 34,
+                                  height: 34,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.white.withOpacity(0.5),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(6)),
+                                  ),
+                                ),
+                                SvgPicture.asset(
+                                    'assets/icons/bookmark_unfill.svg'),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
                       SizedBox(
                         height: Get.height * 0.03,
                       ),
-                      Text(
-                        '테슬라 주가 갑자기 오른 이유는?',
-                        style: FontStyles.Headline2_b.copyWith(
-                            color: AppColors.black),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        child: Text(
+                          '테슬라 주가 갑자기 오른 이유는?',
+                          style: FontStyles.Headline2_b.copyWith(
+                              color: AppColors.black),
+                        ),
                       ),
                       Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -156,6 +184,45 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
+              // CarouselSlider.builder(
+              //     itemCount: 3,
+              //     itemBuilder: (context, index, ),
+              //     options: options),
+              Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(10),
+                    ),
+                    //임시 사진
+                    child: Image.network(
+                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                      height: Get.height * 0.16,
+                      width: Get.width * 0.6,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                  Positioned(
+                    right: 10,
+                    child: Text(
+                      '1',
+                      style:
+                          FontStyles.Title1_b.copyWith(color: AppColors.white),
+                    ),
+                  ),
+                  Positioned(
+                    left: 10,
+                    bottom: 10,
+                    child: Text(
+                      '“코인 급등 랠리?”\n도지코인 거래 급감',
+                      style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: Get.height * 0.05,
+              ),
               //추천 뉴스
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
@@ -198,8 +265,9 @@ class HomeScreen extends StatelessWidget {
               ),
               RecommendU(),
               RecommendU(),
+              RecommendU(),
               SizedBox(
-                height: Get.height * 0.02,
+                height: Get.height * 0.05,
               ),
               //오늘의 단어
               Padding(
@@ -228,7 +296,7 @@ class HomeScreen extends StatelessWidget {
                 color: AppColors.white,
                 surfaceTintColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(15),
@@ -244,7 +312,25 @@ class HomeScreen extends StatelessWidget {
                           ),
                           CustomChip(label: '기업'),
                           Spacer(),
-                          SvgPicture.asset('assets/icons/bookmark_unfill.svg'),
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: 34,
+                                height: 34,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                                  border: Border.all(
+                                    color: AppColors.g2.withOpacity(0.3),
+                                  ),
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                  'assets/icons/bookmark_unfill.svg'),
+                            ],
+                          ),
+
                         ],
                       ),
                       Text(
@@ -261,7 +347,7 @@ class HomeScreen extends StatelessWidget {
                         text: TextSpan(
                           text:
                               '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
-                          style: FontStyles.Bn1_r.copyWith(color: AppColors.g5),
+                          style: FontStyles.Bn1_r.copyWith(color: AppColors.g5, height: 1.5),
                         ),
                       ),
                     ],
