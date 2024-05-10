@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -192,7 +191,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-
               CarouselSlider(
                 items: [
                   Stack(
@@ -209,6 +207,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           fit: BoxFit.fill,
                         ),
                       ),
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        child: Container(
+                          height: Get.height * 0.16,
+                          width: Get.width * 0.6,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: FractionalOffset.bottomCenter,
+                                  end: FractionalOffset.topCenter,
+                                  colors: [
+                                Color(0xFF212121),
+                                Color(0xFF212121).withOpacity(0.1),
+                              ])),
+                        ),
+                      ),
                       Positioned(
                         right: 10,
                         child: Text(
@@ -219,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Positioned(
                         left: 10,
-                        bottom: 70,
+                        bottom: 30,
                         child: Text(
                           '“코인 급등 랠리?”\n도지코인 거래 급감',
                           style: FontStyles.Lr1_sb.copyWith(
@@ -240,6 +255,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           height: Get.height * 0.16,
                           width: Get.width * 0.6,
                           fit: BoxFit.fill,
+                        ),
+                      ),
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        child: Container(
+                          height: Get.height * 0.16,
+                          width: Get.width * 0.6,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: FractionalOffset.bottomCenter,
+                                  end: FractionalOffset.topCenter,
+                                  colors: [
+                                Color(0xFF212121),
+                                Color(0xFF212121).withOpacity(0.1),
+                              ])),
                         ),
                       ),
                       Positioned(
@@ -252,7 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Positioned(
                         left: 10,
-                        bottom: 70,
+                        bottom: 30,
                         child: Text(
                           '“코인 급등 랠리?”\n도지코인 거래 급감',
                           style: FontStyles.Lr1_sb.copyWith(
@@ -275,6 +307,23 @@ class _HomeScreenState extends State<HomeScreen> {
                           fit: BoxFit.fill,
                         ),
                       ),
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        child: Container(
+                          height: Get.height * 0.16,
+                          width: Get.width * 0.6,
+                          decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: FractionalOffset.bottomCenter,
+                                  end: FractionalOffset.topCenter,
+                                  colors: [
+                                Color(0xFF212121),
+                                Color(0xFF212121).withOpacity(0.1),
+                              ])),
+                        ),
+                      ),
                       Positioned(
                         right: 10,
                         child: Text(
@@ -285,7 +334,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Positioned(
                         left: 10,
-                        bottom: 70,
+                        bottom: 30,
                         child: Text(
                           '“코인 급등 랠리?”\n도지코인 거래 급감',
                           style: FontStyles.Lr1_sb.copyWith(
@@ -296,6 +345,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ],
                 options: CarouselOptions(
+                  height: Get.height * 0.18,
                   autoPlay: true,
                   viewportFraction: 0.7,
                   onPageChanged: (index, reason) {
@@ -314,8 +364,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     effect: ExpandingDotsEffect(
                       activeDotColor: AppColors.g5,
                       dotColor: AppColors.g3,
-                      dotHeight: 9,
-                      dotWidth: 9,
+                      dotHeight: 6,
+                      dotWidth: 6,
                     ),
                   ),
                 ],
@@ -408,7 +458,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Text(
                             '테슬라 요건',
                             style:
-                                FontStyles.Bn1_b.copyWith(color: AppColors.v7),
+                                FontStyles.Bn1_b.copyWith(color: AppColors.v6),
                           ),
                           CustomChip(label: '기업'),
                           Spacer(),
