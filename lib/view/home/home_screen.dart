@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_controller.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
 import 'package:meetup/design/widgets/history_widget.dart';
 import 'package:meetup/design/widgets/recommend_box.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -15,8 +17,15 @@ import '../../design/widgets/tooltip_balloon.dart';
 import '../../routes/get_pages.dart';
 import 'news_letter_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int _indicatorIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -184,38 +193,129 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              // CarouselSlider.builder(
-              //     itemCount: 3,
-              //     itemBuilder: (context, index, ),
-              //     options: options),
-              Stack(
+              CarouselSlider(
+                items: [
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        //임시 사진
+                        child: Image.network(
+                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                          height: Get.height * 0.16,
+                          width: Get.width * 0.6,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        child: Text(
+                          '1',
+                          style: FontStyles.Title1_b.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
+                      Positioned(
+                        left: 10,
+                        bottom: 70,
+                        child: Text(
+                          '“코인 급등 랠리?”\n도지코인 거래 급감',
+                          style: FontStyles.Lr1_sb.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        //임시 사진
+                        child: Image.network(
+                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                          height: Get.height * 0.16,
+                          width: Get.width * 0.6,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        child: Text(
+                          '2',
+                          style: FontStyles.Title1_b.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
+                      Positioned(
+                        left: 10,
+                        bottom: 70,
+                        child: Text(
+                          '“코인 급등 랠리?”\n도지코인 거래 급감',
+                          style: FontStyles.Lr1_sb.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: const BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                        //임시 사진
+                        child: Image.network(
+                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                          height: Get.height * 0.16,
+                          width: Get.width * 0.6,
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Positioned(
+                        right: 10,
+                        child: Text(
+                          '3',
+                          style: FontStyles.Title1_b.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
+                      Positioned(
+                        left: 10,
+                        bottom: 70,
+                        child: Text(
+                          '“코인 급등 랠리?”\n도지코인 거래 급감',
+                          style: FontStyles.Lr1_sb.copyWith(
+                              color: AppColors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+                options: CarouselOptions(
+                  autoPlay: true,
+                  viewportFraction: 0.7,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _indicatorIndex = index;
+                    });
+                  },
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(10),
-                    ),
-                    //임시 사진
-                    child: Image.network(
-                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                      height: Get.height * 0.16,
-                      width: Get.width * 0.6,
-                      fit: BoxFit.fill,
-                    ),
-                  ),
-                  Positioned(
-                    right: 10,
-                    child: Text(
-                      '1',
-                      style:
-                          FontStyles.Title1_b.copyWith(color: AppColors.white),
-                    ),
-                  ),
-                  Positioned(
-                    left: 10,
-                    bottom: 10,
-                    child: Text(
-                      '“코인 급등 랠리?”\n도지코인 거래 급감',
-                      style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
+                  AnimatedSmoothIndicator(
+                    activeIndex: _indicatorIndex,
+                    count: 3,
+                    effect: ExpandingDotsEffect(
+                      activeDotColor: AppColors.g5,
+                      dotColor: AppColors.g3,
+                      dotHeight: 9,
+                      dotWidth: 9,
                     ),
                   ),
                 ],
@@ -320,7 +420,7 @@ class HomeScreen extends StatelessWidget {
                                 height: 34,
                                 decoration: BoxDecoration(
                                   borderRadius:
-                                  BorderRadius.all(Radius.circular(6)),
+                                      BorderRadius.all(Radius.circular(6)),
                                   border: Border.all(
                                     color: AppColors.g2.withOpacity(0.3),
                                   ),
@@ -330,7 +430,6 @@ class HomeScreen extends StatelessWidget {
                                   'assets/icons/bookmark_unfill.svg'),
                             ],
                           ),
-
                         ],
                       ),
                       Text(
@@ -347,7 +446,8 @@ class HomeScreen extends StatelessWidget {
                         text: TextSpan(
                           text:
                               '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
-                          style: FontStyles.Bn1_r.copyWith(color: AppColors.g5, height: 1.5),
+                          style: FontStyles.Bn1_r.copyWith(
+                              color: AppColors.g5, height: 1.5),
                         ),
                       ),
                     ],
