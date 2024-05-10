@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
-        title: Text('홈화면입니다.'),
+        title: Text('홈화면'),
       ),
       body: SingleChildScrollView(
         child: Padding(
