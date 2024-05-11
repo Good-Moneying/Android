@@ -43,69 +43,68 @@ class ProfileScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 12.0),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 14.0),
-                    child: Row(
-                      children: [
-                        Column(
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 18,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(54),
-                                color: AppColors.y5,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  'LV. 1',
-                                  style: FontStyles.Caption1_sb.copyWith(
-                                      color: AppColors.g1),
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 4.0),
-                              child: Text('김두둑'),
-                            ),
-                          ],
+                  padding: const EdgeInsets.only(top: 12.0, left: 14),
+                  child: Column(
+                    children: [
+                      Container(
+                        width: 40,
+                        height: 18,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(54),
+                          color: AppColors.y5,
                         ),
-                        SizedBox(
-                          width: 150,
-                        ),
-                        SizedBox(
-                          child: Container(
-                            width: 89,
-                            height: 47,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(32),
-                                color: Colors.white),
-                            child: Center(
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Image.asset(
-                                    'assets/images/mypage_dotoricoin 1.png',
-                                    width: 29,
-                                    height: 31,
-                                  ),
-                                  SizedBox(
-                                    width: 8,
-                                  ),
-                                  Text('12',
-                                      style: FontStyles.Heading1_sb.copyWith(
-                                          color: AppColors.g6)),
-                                ],
-                              ),
-                            ),
+                        child: Center(
+                          child: Text(
+                            'LV. 1',
+                            style: FontStyles.Caption1_sb.copyWith(
+                                color: AppColors.g1),
                           ),
                         ),
-                        SizedBox(
-                          width: 16,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 4.0),
+                        child: Text('김두둑'),
+                      ),
+                    ],
+                  ),
+                ),
+                Spacer(),
+                Padding(
+                  padding: const EdgeInsets.only(top: 12.0,left: 14.0),
+                  child: Row(
+                    children: [
+                      // SizedBox(
+                      //   width: 150,
+                      // ),
+                      Container(
+                        width: 89,
+                        height: 47,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(32),
+                            color: Colors.white),
+                        child: Center(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Image.asset(
+                                'assets/images/mypage_dotoricoin 1.png',
+                                width: 29,
+                                height: 31,
+                              ),
+                              SizedBox(
+                                width: 8,
+                              ),
+                              Text('12',
+                                  style: FontStyles.Heading1_sb.copyWith(
+                                      color: AppColors.g6)),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
+                      ),
+                      // SizedBox(
+                      //   width: 16,
+                      // ),
+                    ],
                   ),
                 ),
               ],
