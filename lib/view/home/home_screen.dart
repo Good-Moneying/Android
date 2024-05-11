@@ -7,7 +7,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
 import 'package:meetup/design/widgets/history_widget.dart';
-import 'package:meetup/design/widgets/recommend_box.dart';
+import 'package:meetup/design/widgets/home/recommend_box.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
