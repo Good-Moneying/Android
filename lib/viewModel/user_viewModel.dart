@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 //GetxService : 화면을 떠나도 메모리가 유지됨, 로그인상태를 유지하는 상황에서 적합
@@ -20,6 +23,7 @@ class UserViewModel extends GetxController {
   Rx<bool> isNicknameValid = false.obs;
   Rx<bool> isDisplayError = false.obs;
   Rx<bool> isFocused = false.obs;
+  Rx<bool> isNickDuplicate = true.obs;
 
   //닉네임 필터링
   void checkNickname(String value) {
@@ -27,18 +31,6 @@ class UserViewModel extends GetxController {
     isNicknameValid.value = regExp.hasMatch(value);
   }
 
-  //닉네임 중복 여부 확인
-  Future<bool> isDuplicate(String value) async {
-    try {
-      final response = await dio.get('user 닉네임 받아올 경로');
-      if (response.statusCode == 200) {
-        return false;
-      }
-      return true;
-    } catch (e) {
-      return true;
-    }
-  }
 
   //오류 상태 저장
   void setDisplayError(bool display) {
@@ -62,6 +54,7 @@ class UserViewModel extends GetxController {
   //gender, 이중일택
   RxBool genderSelect = false.obs;
   RxList<bool> genderList = [false, false].obs;
+  RxString userGender = 'unknown'.obs;
 
   void selectGender(int index) {
     genderSelect.value = true;
@@ -74,25 +67,54 @@ class UserViewModel extends GetxController {
     }
   }
 
+  //List<bool> -> 최종 값으로 변환
+  void setGender(List<bool> selectGender) {
+    if (selectGender[0]) {
+      userGender('MALE');
+    } else if (selectGender[1]) {
+      userGender('FEMALE');
+    }
+  }
+
   //생년월일
-  var selectedDate = DateTime.now().obs;
+  TextEditingController birthController = TextEditingController();
+  RxBool dateSelect = false.obs;
 
   //interest, 다중선택
   RxBool interestSelect = false.obs;
-  RxList<bool> interestList = [false, false, false, false, false, false].obs;
+  RxList<bool> interestList = [false, false, false, false].obs;
+  RxString userCategory = 'unknown'.obs;
 
   void selectInterest(int index) async {
-    interestSelect.value = true;
     for (int i = 0; i < interestList.length; i++) {
       if (i == index) {
         interestList[i] = !interestList[i];
       }
+    }
+
+    if (interestList.contains(true)) {
+      interestSelect.value = true;
+    } else {
+      interestSelect.value = false;
+    }
+  }
+
+  void setCategory(List<bool> selectCategory) {
+    if (selectCategory[0]) {
+      userCategory('STOCK');
+    } else if (selectCategory[1]) {
+      userCategory('COIN');
+    } else if (selectCategory[2]) {
+      userCategory('금리');
+    } else if (selectCategory[3]) {
+      userCategory('ESTATE');
     }
   }
 
   //뉴스레터 frequency, 다중일택
   RxBool frequencySelect = false.obs;
   RxList<bool> frequencyList = [false, false, false, false].obs;
+  RxString userGoal = 'unknown'.obs;
 
   void selectFrequency(int index) {
     frequencySelect.value = true;
@@ -102,6 +124,21 @@ class UserViewModel extends GetxController {
       } else {
         frequencyList[i] = false;
       }
+    }
+  }
+
+  //List<bool> -> 최종 값으로 변환
+  void setFrequency(List<bool> selectFrequency) {
+    if (selectFrequency[0]) {
+      userGoal('EVERYDAY');
+    } else if (selectFrequency[1]) {
+      userGoal('FIVE_TO_SIX');
+    } else if (selectFrequency[2]) {
+      userGoal('THREE_TO_FOUR');
+    } else if (selectFrequency[3]) {
+      userGoal('ONE_TO_TWO');
+    } else {
+      userGoal('건너뛰기');
     }
   }
 
