@@ -163,7 +163,7 @@ Future<void> kakaoLogin() async {
     }
   } else {
     try {
-      OAuthToken Token = await UserApi.instance.loginWithKakaoTalk();
+      OAuthToken Token = await UserApi.instance.loginWithKakaoAccount();
       // String myatoken = Token.accessToken;
       // print('카카오톡으로 로그인 성공');
       // print('accessToken : $myatoken');
