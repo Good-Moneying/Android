@@ -10,6 +10,7 @@ import 'package:meetup/view/auth/login_screen.dart';
 import 'package:meetup/view/auth/nickname_screen.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/view/home/home_screen.dart';
+import 'package:meetup/view/home/live_news_screen.dart';
 import 'routes/get_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -47,7 +48,7 @@ class MyApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: LoginScreen(),
+      home: LiveNewsScreen(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
