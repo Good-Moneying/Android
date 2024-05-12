@@ -3,40 +3,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 
-class NewsLetterScreen extends StatefulWidget {
-  const NewsLetterScreen({Key? key}) : super(key: key);
+import '../../viewModel/home_viewModel.dart';
 
-  @override
-  _NewsLetterScreenState createState() => _NewsLetterScreenState();
-}
-
-class _NewsLetterScreenState extends State<NewsLetterScreen> {
-  bool _isPressed1 = false;
-  bool _isPressed2 = false;
-  bool _isPressed3 = false;
-  bool _isPressedCheck = false;
-
+class NewsLetterScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.white,
-        title: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: SvgPicture.asset('assets/images/newsletter_logo1.svg'),
-            ),
-            Expanded(
-              child: Container(),
-            ), // 공간을 채우기 위한 빈 컨테이너
-          ],
-        )
-      ),
+          backgroundColor: AppColors.white,
+          title: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                child: SvgPicture.asset('assets/images/newsletter_logo1.svg'),
+              ),
+              Expanded(
+                child: Container(),
+              ), // 공간을 채우기 위한 빈 컨테이너
+            ],
+          )),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
@@ -53,14 +44,14 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text("테슬라 주가 갑자기\n오른 이유는?",
-                            style: FontStyles.Title2_sb.copyWith(
-                                color: AppColors.black)),
+                        style: FontStyles.Title2_sb.copyWith(
+                            color: AppColors.black)),
                     Expanded(child: Container()),
                     IconButton(
-                        icon: SvgPicture.asset(
-                            'assets/icons/newsletter_bookmark.svg'),
-                        onPressed: () {},
-                      ),
+                      icon: SvgPicture.asset(
+                          'assets/icons/newsletter_bookmark.svg'),
+                      onPressed: () {},
+                    ),
                   ],
                 ),
               ),
@@ -69,28 +60,38 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                 child: Row(
                   children: [
                     Container(
-                      width: 56, height: 22,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: AppColors.g1),
+                      width: 56,
+                      height: 22,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4),
+                          color: AppColors.g1),
                       child: Center(
-                        child: Text('미국경제',style: FontStyles.Caption2_m.copyWith(color: AppColors.g6),),
+                        child: Text(
+                          '미국경제',
+                          style: FontStyles.Caption2_m.copyWith(
+                              color: AppColors.g6),
+                        ),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0),
                       child: Container(
-                        width: 36, height: 22,
+                        width: 36,
+                        height: 22,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
                             color: AppColors.g1),
                         child: Center(
-                          child: Text('금리',style: FontStyles.Caption2_m.copyWith(color: AppColors.g6),),
+                          child: Text(
+                            '금리',
+                            style: FontStyles.Caption2_m.copyWith(
+                                color: AppColors.g6),
+                          ),
                         ),
                       ),
-                    )
-                    ,Padding(
-                        padding: const EdgeInsets.fromLTRB(16,0,0,0),
+                    ),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                         child: Text("2024.04.25",
                             style:
                                 FontStyles.Ln1_r.copyWith(color: Colors.grey))),
@@ -98,8 +99,11 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                       // 오른쪽에 여백 추가
-                      child:
-                          Image.asset('assets/icons/newsletter_editorprofile.png',width: 20,height: 20,),
+                      child: Image.asset(
+                        'assets/icons/newsletter_editorprofile.png',
+                        width: 20,
+                        height: 20,
+                      ),
                     ),
                     RichText(
                       text: TextSpan(
@@ -243,11 +247,11 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
                         child: Container(
-                          width: 328, height: 164,
+                          width: 328,
+                          height: 164,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: AppColors.g1
-                          ),
+                              borderRadius: BorderRadius.circular(16),
+                              color: AppColors.g1),
                         )),
                     Padding(
                         padding:
@@ -262,11 +266,11 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
                         child: Container(
-                          width: 328, height: 164,
+                          width: 328,
+                          height: 164,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
-                              color: AppColors.g1
-                          ),
+                              color: AppColors.g1),
                         )),
                     Padding(
                       padding: const EdgeInsets.only(top: 40.0),
@@ -294,8 +298,9 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                             Expanded(
                                               child: Text(
                                                 "내 생각 작성하기",
-                                                style: FontStyles.Br2_m.copyWith(
-                                                    color: AppColors.g6),
+                                                style:
+                                                    FontStyles.Br2_m.copyWith(
+                                                        color: AppColors.g6),
                                                 textAlign: TextAlign.center,
                                               ),
                                             ),
@@ -333,16 +338,14 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     MainAxisAlignment.start,
                                                 children: [
                                                   Padding(
-                                                    padding:
-                                                        const EdgeInsets.fromLTRB(
-                                                            23.0,
-                                                            16.0,
-                                                            0.0,
-                                                            16.0),
+                                                    padding: const EdgeInsets
+                                                        .fromLTRB(
+                                                        23.0, 16.0, 0.0, 16.0),
                                                     // 오른쪽에 여백 추가
                                                     child: Text(
                                                         "앞으로 어떻게 될 것 같나요?",
-                                                        style: FontStyles.Lr1_sb,
+                                                        style:
+                                                            FontStyles.Lr1_sb,
                                                         textAlign:
                                                             TextAlign.center),
                                                   ),
@@ -350,212 +353,148 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                               ),
                                               Row(
                                                 children: [
-                                                  ButtonTheme(
-                                                      minWidth: 90,
-                                                      height: 31,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                right: 8.0),
-                                                        child: OutlinedButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              _isPressed1 =
-                                                                  !_isPressed1; // 버튼이 눌릴 때마다 상태를 토글합니다.
-                                                            });
-                                                            // 버튼 눌렀을 때 수행할 작업 추가
-                                                          },
-                                                          style: ButtonStyle(
-                                                            side: MaterialStateProperty
-                                                                .resolveWith<
-                                                                    BorderSide>(
-                                                              (Set<MaterialState>
-                                                                  states) {
-                                                                // 테두리 색 변경
-                                                                if (_isPressed1) {
-                                                                  // 버튼이 눌렸을 때
-                                                                  return BorderSide(
-                                                                      color: AppColors
-                                                                          .v5); // 원하는 색상으로 변경
-                                                                }
-                                                                return BorderSide(
-                                                                    color: AppColors
-                                                                        .g3); // 원하는 색상으로 변경
-                                                              },
-                                                            ),
-                                                            foregroundColor:
-                                                                MaterialStateProperty
-                                                                    .resolveWith<
-                                                                        Color>(
-                                                              (Set<MaterialState>
-                                                                  states) {
-                                                                // 글씨 색 변경
-                                                                if (_isPressed1) {
-                                                                  // 버튼이 눌렸을 때
-                                                                  return AppColors
-                                                                      .v5; // 원하는 색상으로 변경
-                                                                }
-                                                                return Color(
-                                                                    0xFFAAAAB9); // 원하는 색상으로 변경
-                                                              },
-                                                            ),
-                                                            backgroundColor:
-                                                                MaterialStateProperty
-                                                                    .resolveWith<
-                                                                        Color>(
-                                                              (Set<MaterialState>
-                                                                  states) {
-                                                                // 버튼 색 변경
-                                                                if (_isPressed1) {
-                                                                  // 버튼이 눌렸을 때
-                                                                  return AppColors
-                                                                      .v1; // 원하는 색상으로 변경
-                                                                }
-                                                                return AppColors
-                                                                    .white; // 원하는 색상으로 변경
-                                                              },
-                                                            ),
-                                                          ),
-                                                          child: Text('긍정적인 전망',
-                                                              style: FontStyles
-                                                                  .Caption1_sb), // 버튼의 텍스트
-                                                        ),
-                                                      )),
-                                                  ButtonTheme(
-                                                      minWidth: 90,
-                                                      height: 31,
-                                                      child: OutlinedButton(
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            _isPressed2 =
-                                                                !_isPressed2; // 버튼이 눌릴 때마다 상태를 토글합니다.
-                                                          });
-                                                          // 버튼 눌렀을 때 수행할 작업 추가
+                                                  Obx(() => InkWell(
+                                                        onTap: () {
+                                                          controller
+                                                              .selectAgree(0);
                                                         },
-                                                        style: ButtonStyle(
-                                                          side:
-                                                              MaterialStateProperty
-                                                                  .resolveWith<
-                                                                      BorderSide>(
-                                                            (Set<MaterialState>
-                                                                states) {
-                                                              // 테두리 색 변경
-                                                              if (_isPressed2) {
-                                                                // 버튼이 눌렸을 때
-                                                                return BorderSide(
-                                                                    color: AppColors
-                                                                        .v5); // 원하는 색상으로 변경
-                                                              }
-                                                              return BorderSide(
-                                                                  color: AppColors
-                                                                      .g3); // 원하는 색상으로 변경
-                                                            },
-                                                          ),
-                                                          foregroundColor:
-                                                              MaterialStateProperty
-                                                                  .resolveWith<
-                                                                      Color>(
-                                                            (Set<MaterialState>
-                                                                states) {
-                                                              // 글씨 색 변경
-                                                              if (_isPressed2) {
-                                                                // 버튼이 눌렸을 때
-                                                                return AppColors
-                                                                    .v5; // 원하는 색상으로 변경
-                                                              }
-                                                              return Color(
-                                                                  0xFFAAAAB9); // 원하는 색상으로 변경
-                                                            },
-                                                          ),
-                                                          backgroundColor:
-                                                              MaterialStateProperty
-                                                                  .resolveWith<
-                                                                      Color>(
-                                                            (Set<MaterialState>
-                                                                states) {
-                                                              // 버튼 색 변경
-                                                              if (_isPressed2) {
-                                                                // 버튼이 눌렸을 때
-                                                                return AppColors
-                                                                    .v1; // 원하는 색상으로 변경
-                                                              }
-                                                              return AppColors
-                                                                  .white; // 원하는 색상으로 변경
-                                                            },
-                                                          ),
+                                                        child: Column(
+                                                          children: [
+                                                            controller
+                                                                    .isDialogAgreeList[0]
+                                                                ? Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14.6),
+                                                                        color: AppColors
+                                                                            .v1,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                AppColors.v6)),
+                                                                    child: Text(
+                                                                      '긍정적인 전망',
+                                                                      style: FontStyles
+                                                                              .Caption2_sb
+                                                                          .copyWith(
+                                                                              color: AppColors.v6),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14.6),
+                                                                        color: AppColors
+                                                                            .g3,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                Color(0xFFAAAAB9))),
+                                                                    child: Text(
+                                                                      '긍정적인 전망',
+                                                                      style: FontStyles
+                                                                              .Caption2_sb
+                                                                          .copyWith(
+                                                                              color: Color(0xFFAAAAB9)),
+                                                                    ),
+                                                                  )
+                                                          ],
                                                         ),
-                                                        child: Text('부정적인 전망',
-                                                            style: FontStyles
-                                                                .Caption1_sb), // 버튼의 텍스트
                                                       )),
-                                                  ButtonTheme(
-                                                      minWidth: 90,
-                                                      height: 31,
-                                                      child: Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                left: 8.0),
-                                                        child: OutlinedButton(
-                                                          onPressed: () {
-                                                            setState(() {
-                                                              _isPressed3 =
-                                                                  !_isPressed3; // 버튼이 눌릴 때마다 상태를 토글합니다.
-                                                            });
-                                                          },
-                                                          style: ButtonStyle(
-                                                            side: MaterialStateProperty
-                                                                .resolveWith<
-                                                                    BorderSide>(
-                                                              (Set<MaterialState>
-                                                                  states) {
-                                                                // 테두리 색 변경
-                                                                if (_isPressed3) {
-                                                                  // 버튼이 눌렸을 때
-                                                                  return BorderSide(
-                                                                      color: AppColors
-                                                                          .v5); // 원하는 색상으로 변경
-                                                                }
-                                                                return BorderSide(
-                                                                    color: AppColors
-                                                                        .g3); // 원하는 색상으로 변경
-                                                              },
-                                                            ),
-                                                            foregroundColor:
-                                                                MaterialStateProperty
-                                                                    .resolveWith<
-                                                                        Color>(
-                                                              (Set<MaterialState>
-                                                                  states) {
-                                                                // 글씨 색 변경
-                                                                if (_isPressed3) {
-                                                                  // 버튼이 눌렸을 때
-                                                                  return AppColors
-                                                                      .v5; // 원하는 색상으로 변경
-                                                                }
-                                                                return Color(
-                                                                    0xFFAAAAB9); // 원하는 색상으로 변경
-                                                              },
-                                                            ),
-                                                            backgroundColor:
-                                                                MaterialStateProperty
-                                                                    .resolveWith<
-                                                                        Color>(
-                                                              (Set<MaterialState>
-                                                                  states) {
-                                                                // 버튼 색 변경
-                                                                if (_isPressed3) {
-                                                                  // 버튼이 눌렸을 때
-                                                                  return AppColors
-                                                                      .v1; // 원하는 색상으로 변경
-                                                                }
-                                                                return AppColors
-                                                                    .white; // 원하는 색상으로 변경
-                                                              },
-                                                            ),
-                                                          ),
-                                                          child: Text('잘 모르겠음',
-                                                              style: FontStyles
-                                                                  .Caption1_sb), // 버튼의 텍스트
+                                                  Obx(() => InkWell(
+                                                        onTap: () {
+                                                          controller
+                                                              .selectAgree(1);
+                                                        },
+                                                        child: Column(
+                                                          children: [
+                                                            controller
+                                                                    .isDialogAgreeList[1]
+                                                                ? Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14.6),
+                                                                        color: AppColors
+                                                                            .v1,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                AppColors.v6)),
+                                                                    child: Text(
+                                                                      '부정적인 전망',
+                                                                      style: FontStyles
+                                                                              .Caption2_sb
+                                                                          .copyWith(
+                                                                              color: AppColors.v6),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14.6),
+                                                                        color: AppColors
+                                                                            .g3,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                Color(0xFFAAAAB9))),
+                                                                    child: Text(
+                                                                      '부정적인 전망',
+                                                                      style: FontStyles
+                                                                              .Caption2_sb
+                                                                          .copyWith(
+                                                                              color: Color(0xFFAAAAB9)),
+                                                                    ),
+                                                                  )
+                                                          ],
+                                                        ),
+                                                      )),
+                                                  Obx(() => InkWell(
+                                                        onTap: () {
+                                                          controller
+                                                              .selectAgree(2);
+                                                        },
+                                                        child: Column(
+                                                          children: [
+                                                            controller
+                                                                    .isDialogAgreeList[2]
+                                                                ? Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14.6),
+                                                                        color: AppColors
+                                                                            .v1,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                AppColors.v6)),
+                                                                    child: Text(
+                                                                      '잘 모르겠음',
+                                                                      style: FontStyles
+                                                                              .Caption2_sb
+                                                                          .copyWith(
+                                                                              color: AppColors.v6),
+                                                                    ),
+                                                                  )
+                                                                : Container(
+                                                                    decoration: BoxDecoration(
+                                                                        borderRadius:
+                                                                            BorderRadius.circular(
+                                                                                14.6),
+                                                                        color: AppColors
+                                                                            .g3,
+                                                                        border: Border.all(
+                                                                            color:
+                                                                                Color(0xFFAAAAB9))),
+                                                                    child: Text(
+                                                                      '잘 모르겠음',
+                                                                      style: FontStyles
+                                                                              .Caption2_sb
+                                                                          .copyWith(
+                                                                              color: Color(0xFFAAAAB9)),
+                                                                    ),
+                                                                  )
+                                                          ],
                                                         ),
                                                       ))
                                                 ],
@@ -563,8 +502,9 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                               SizedBox(
                                                 height: 120,
                                                 child: Padding(
-                                                  padding: const EdgeInsets.only(
-                                                      top: 16.0),
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          top: 16.0),
                                                   child: TextFormField(
                                                     keyboardType:
                                                         TextInputType.multiline,
@@ -579,10 +519,11 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                         hintStyle: FontStyles
                                                                 .Caption2_r
                                                             .copyWith(
-                                                                color:
-                                                                    AppColors.g5),
+                                                                color: AppColors
+                                                                    .g5),
                                                         filled: true,
-                                                        fillColor: AppColors.g1),
+                                                        fillColor:
+                                                            AppColors.g1),
                                                   ),
                                                 ),
                                               ),
@@ -596,7 +537,8 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     value: _isPressedCheck,
                                                     onChanged: (value) {
                                                       setState(() {
-                                                        _isPressedCheck = value!;
+                                                        _isPressedCheck =
+                                                            value!;
                                                       });
                                                     },
                                                   ),
@@ -604,7 +546,8 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     "나 혼자만 볼래요",
                                                     style: FontStyles.Label2_r
                                                         .copyWith(
-                                                            color: AppColors.g6),
+                                                            color:
+                                                                AppColors.g6),
                                                   )
                                                 ],
                                               ),
@@ -616,7 +559,8 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                     "내 생각은 ‘둘러보기’에 공유될 수 있어요!",
                                                     style: FontStyles.Caption2_r
                                                         .copyWith(
-                                                            color: AppColors.g4),
+                                                            color:
+                                                                AppColors.g4),
                                                   ),
                                                 ],
                                               ),
@@ -627,20 +571,25 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                   onPressed: () {},
                                                   child: Text(
                                                     "작성완료",
-                                                    style: FontStyles.Caption1_sb
+                                                    style: FontStyles
+                                                            .Caption1_sb
                                                         .copyWith(
-                                                            color: Colors.white),
+                                                            color:
+                                                                Colors.white),
                                                   ),
-                                                  style: ElevatedButton.styleFrom(
-                                                      backgroundColor:
-                                                          AppColors.v6,
-                                                      shape:
-                                                          RoundedRectangleBorder(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                                3), // 네모난 모서리를 위한 값 설정
-                                                      ),
-                                                      minimumSize: Size(286, 37)),
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          backgroundColor:
+                                                              AppColors.v6,
+                                                          shape:
+                                                              RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        3), // 네모난 모서리를 위한 값 설정
+                                                          ),
+                                                          minimumSize:
+                                                              Size(286, 37)),
                                                 ),
                                               )
                                             ],
@@ -673,13 +622,12 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 40.0),
                       child: Container(
-                        width: double.infinity, height: 8,
-                        decoration: BoxDecoration(
-                          color: AppColors.g1
-                        ),
+                        width: double.infinity,
+                        height: 8,
+                        decoration: BoxDecoration(color: AppColors.g1),
                       ),
-                    )
-                    ,Row(
+                    ),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
@@ -694,9 +642,11 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                       ],
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: Image.asset('assets/images/newsletter_blurcomment.png',width: double.infinity,)
-                    )
+                        padding: const EdgeInsets.only(top: 16.0),
+                        child: Image.asset(
+                          'assets/images/newsletter_blurcomment.png',
+                          width: double.infinity,
+                        ))
                   ],
                 ),
               ),
