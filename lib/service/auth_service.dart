@@ -147,9 +147,9 @@ Future<void> kakaoLogin() async {
       // 카카오톡에 연결된 카카오계정이 없는 경우, 카카오계정으로 로그인
       try {
         OAuthToken Token = await UserApi.instance.loginWithKakaoTalk();
-        // String myatoken = Token.accessToken;
+        String myatoken = Token.accessToken;
         // print('카카오톡으로 로그인 성공');
-        // print('accessToken : $myatoken');
+        print('accessToken : $myatoken');
         if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
           // 홈화면 이동
           Get.toNamed(Routes.HOME);
@@ -163,10 +163,10 @@ Future<void> kakaoLogin() async {
     }
   } else {
     try {
-      OAuthToken Token = await UserApi.instance.loginWithKakaoTalk();
-      // String myatoken = Token.accessToken;
+      OAuthToken Token = await UserApi.instance.loginWithKakaoAccount();
+      String myatoken = Token.accessToken;
       // print('카카오톡으로 로그인 성공');
-      // print('accessToken : $myatoken');
+      print('accessToken : $myatoken');
       if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
         // 홈화면 이동
         Get.toNamed(Routes.HOME);
@@ -221,6 +221,33 @@ Future<void> signOut(BuildContext context) async {
     await UserApi.instance.logout();
   } catch (error) {
     print('카카오계정으로 로그인 아웃 실패 $error');
+  }
+}
+
+Future<void> test(String accessToken) async {
+  try{
+    Dio dio = Dio();
+    dio.options.baseUrl = dotenv.get("BASE_URL");
+    dio.options.headers['Authorization'] = 'Bearer $accessToken';
+    dio.options.validateStatus = (status) {
+      return status! < 500;
+    };
+    Response response;
+
+    response = await dio.get(
+      '/api/users/test'
+    );
+
+    if(response.statusCode ==200){
+      print('test 코드 출력 성공');
+    }
+    else {
+      print('test 실패');
+      print(response.statusCode);
+    }
+  }
+  catch (e) {
+
   }
 }
 
