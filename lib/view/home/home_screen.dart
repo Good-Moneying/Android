@@ -16,19 +16,15 @@ import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/tooltip_balloon.dart';
 import '../../routes/get_pages.dart';
+import '../../viewModel/home_viewModel.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends GetView<HomeViewModel> {
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _indicatorIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+
+    Get.put(HomeViewModel());
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -282,23 +278,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   autoPlay: true,
                   viewportFraction: 0.7,
                   onPageChanged: (index, reason) {
-                    setState(() {
-                      _indicatorIndex = index;
-                    });
+                      controller.indicatorIndex.value = index;
                   },
                 ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  AnimatedSmoothIndicator(
-                    activeIndex: _indicatorIndex,
-                    count: 3,
-                    effect: ExpandingDotsEffect(
-                      activeDotColor: AppColors.g5,
-                      dotColor: AppColors.g3,
-                      dotHeight: 6,
-                      dotWidth: 6,
+                  Obx(
+                  () => AnimatedSmoothIndicator(
+                      activeIndex: controller.indicatorIndex.value,
+                      count: 3,
+                      effect: ExpandingDotsEffect(
+                        activeDotColor: AppColors.g5,
+                        dotColor: AppColors.g3,
+                        dotHeight: 6,
+                        dotWidth: 6,
+                      ),
                     ),
                   ),
                 ],
