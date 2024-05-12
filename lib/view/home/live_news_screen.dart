@@ -276,12 +276,76 @@ class LiveNewsScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text('+5.74%', style: FontStyles.Headline1_m.copyWith(color: Colors.red),),
-                            Text('173,300원', style: FontStyles.Label2_r.copyWith(color: AppColors.g6),)
+                            Text('173,300원', style: FontStyles.Label2_r.copyWith(color: AppColors.g6),),
                           ],
                         )
                       ],
                     ),
                   ),
+                ),
+                Padding(
+                    padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
+                    child: Container(
+                      width: 328, height: 164,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: AppColors.g1
+                      ),
+                    )),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                        },
+                        icon: Image.asset(
+                          'assets/images/newsletter_think3.png',
+                          width: 143,
+                          height: 143,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16.0), // 패딩 추가
+                        child: IconButton(
+                          onPressed: () {},
+                          icon: Image.asset(
+                            'assets/images/newsletter_invest1.png',
+                            width: 143,
+                            height: 143,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Container(
+                    width: double.infinity, height: 8,
+                    decoration: BoxDecoration(
+                        color: AppColors.g1
+                    ),
+                  ),
+                )
+                ,Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(
+                          16.0, 32.0, 0.0, 12.0), // 좌측으로부터 일정한 간격을 주기 위한 패딩
+                      child: Text(
+                        "다른 사람들의 생각은?",
+                        style: FontStyles.Heading2_b.copyWith(
+                            color: AppColors.g6),
+                      ),
+                    ),
+                  ],
+                ),
+                Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Image.asset('assets/images/newsletter_blurcomment.png',width: double.infinity,)
                 )
               ],
             ),
