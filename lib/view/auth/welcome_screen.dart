@@ -62,6 +62,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       final prefs = await SharedPreferences.getInstance();
                       String email = prefs.getString('email')!;
                       String refreshToken = prefs.getString('refreshToken')!;
+                      String accessToken = prefs.getString('accessToken')!;
                       String provider = prefs.getString('provider')!;
 
                       //입력한 데이터 가져오기
@@ -87,7 +88,8 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       //출력테스트
                       print(formData);
                       //서버에 데이터 전송
-                      //await onboarding(formData);
+                      await test(accessToken);
+                      await onboarding(formData);
 
                       Get.offAll(BottomNavigationView());
                     },

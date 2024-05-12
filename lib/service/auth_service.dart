@@ -224,6 +224,32 @@ Future<void> signOut(BuildContext context) async {
   }
 }
 
+Future<void> test(String accessToken) async {
+  try{
+    Dio dio = Dio();
+    dio.options.baseUrl = dotenv.get("BASE_URL");
+    dio.options.headers['Authorization'] = 'Bearer $accessToken';
+    dio.options.validateStatus = (status) {
+      return status! < 500;
+    };
+    Response response;
+
+    response = await dio.get(
+      '/api/users/test',
+    );
+
+    if(response.statusCode ==200){
+      print('test 코드 출력 성공');
+    }
+    else {
+      print('test 실패');
+    }
+  }
+  catch (e) {
+
+  }
+}
+
 //닉네임 중복 확인
 Future<bool> isDuplicate(String value) async {
   try {
