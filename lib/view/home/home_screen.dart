@@ -1,4 +1,3 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -6,13 +5,10 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:meetup/design/widgets/chip_editor.dart';
-import 'package:meetup/design/widgets/history_widget.dart';
 import 'package:meetup/design/widgets/home/editor_card.dart';
+import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
 import 'package:meetup/design/widgets/home/today_word.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/tooltip_balloon.dart';
@@ -127,185 +123,8 @@ class HomeScreen extends GetView<HomeViewModel> {
                   ],
                 ),
               ),
-              CarouselSlider(
-                items: [
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: FractionalOffset.bottomCenter,
-                                  end: FractionalOffset.topCenter,
-                                  colors: [
-                                Color(0xFF212121),
-                                Color(0xFF212121).withOpacity(0.1),
-                              ])),
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        child: Text(
-                          '1',
-                          style: FontStyles.Title1_b.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 10,
-                        bottom: 30,
-                        child: Text(
-                          '“코인 급등 랠리?”\n도지코인 거래 급감',
-                          style: FontStyles.Lr1_sb.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: FractionalOffset.bottomCenter,
-                                  end: FractionalOffset.topCenter,
-                                  colors: [
-                                Color(0xFF212121),
-                                Color(0xFF212121).withOpacity(0.1),
-                              ])),
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        child: Text(
-                          '2',
-                          style: FontStyles.Title1_b.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 10,
-                        bottom: 30,
-                        child: Text(
-                          '“코인 급등 랠리?”\n도지코인 거래 급감',
-                          style: FontStyles.Lr1_sb.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: FractionalOffset.bottomCenter,
-                                  end: FractionalOffset.topCenter,
-                                  colors: [
-                                Color(0xFF212121),
-                                Color(0xFF212121).withOpacity(0.1),
-                              ])),
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        child: Text(
-                          '3',
-                          style: FontStyles.Title1_b.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 10,
-                        bottom: 30,
-                        child: Text(
-                          '“코인 급등 랠리?”\n도지코인 거래 급감',
-                          style: FontStyles.Lr1_sb.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-                options: CarouselOptions(
-                  height: Get.height * 0.18,
-                  autoPlay: true,
-                  viewportFraction: 0.7,
-                  onPageChanged: (index, reason) {
-                    controller.indicatorIndex.value = index;
-                  },
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Obx(
-                    () => AnimatedSmoothIndicator(
-                      activeIndex: controller.indicatorIndex.value,
-                      count: 3,
-                      effect: ExpandingDotsEffect(
-                        activeDotColor: AppColors.g5,
-                        dotColor: AppColors.g3,
-                        dotHeight: 6,
-                        dotWidth: 6,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+              newsSlider(),
+              newsIndicator(),
               SizedBox(
                 height: Get.height * 0.05,
               ),
