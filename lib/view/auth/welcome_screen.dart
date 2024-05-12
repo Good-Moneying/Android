@@ -1,13 +1,18 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
+import 'package:get/get.dart' hide FormData;
+import 'package:intl/intl.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../routes/get_pages.dart';
+import '../../service/auth_service.dart';
+import '../../viewModel/user_viewModel.dart';
 
-class WelcomeScreen extends StatelessWidget {
+class WelcomeScreen extends GetView<UserViewModel> {
   const WelcomeScreen({super.key});
 
   @override
@@ -39,7 +44,7 @@ class WelcomeScreen extends StatelessWidget {
                       TextSpan(
                         text: '두둑',
                         style:
-                        FontStyles.Title1_b.copyWith(color: AppColors.v5),
+                            FontStyles.Title1_b.copyWith(color: AppColors.v6),
                       ),
                       TextSpan(
                         text: '과 함께 시작하세요!',
@@ -52,13 +57,43 @@ class WelcomeScreen extends StatelessWidget {
                 Spacer(),
                 SizedBox(
                   child: ElevatedButton(
-                    onPressed: () {
-                      //임시적
+                    onPressed: () async {
+                      //저장된 데이터 가져오기
+                      final prefs = await SharedPreferences.getInstance();
+                      String email = prefs.getString('email')!;
+                      String refreshToken = prefs.getString('refreshToken')!;
+                      String provider = prefs.getString('provider')!;
+
+                      //입력한 데이터 가져오기
+                      controller.setGender(controller.genderList.value);
+                      controller.setCategory(controller.interestList.value);
+                      controller.setFrequency(controller.frequencyList.value);
+                      String formatBirth = controller.birthController.value.text.replaceAll('-', '');
+
+
+                      //넘겨줄 데이터 구성
+                      final formData = <String, dynamic>{
+                        "email": email,
+                        "nickname": controller.nicknameController.value.text,
+                        "refreshToken": refreshToken,
+                        "gender": controller.userGender.value,
+                        "birthDay": formatBirth,
+                        "provider": provider,
+                        "category": controller.userCategory.value,
+                        "goal": controller.userGoal.value,
+                      };
+
+
+                      //출력테스트
+                      print(formData);
+                      //서버에 데이터 전송
+                      //await onboarding(formData);
+
                       Get.offAll(BottomNavigationView());
                     },
                     style: ElevatedButton.styleFrom(
                       minimumSize: const Size.fromHeight(50),
-                      backgroundColor: AppColors.v5,
+                      backgroundColor: AppColors.v6,
                     ),
                     child: Text(
                       '시작하기',

@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 
 class AppColors {
   //violet
-  static const Color v1 = Color(0xFFF1E9FE);
-  static const Color v2 = Color(0xFFD4BCFD);
-  static const Color v3 = Color(0xFFB790FC);
-  static const Color v4 = Color(0xFF9B63FA);
-  static const Color v5 = Color(0xFF7E37F9);
-  static const Color v6 = Color(0xFF6916F8);
-  static const Color v7 = Color(0xFF5807E6);
-  static const Color v8 = Color(0xFF4C06C5);
-  static const Color v9 = Color(0xFF3F05A4);
+  static const Color v1 = Color(0xFFEAE9FE);
+  static const Color v2 = Color(0xFFD7D7FD);
+  static const Color v3 = Color(0xFFB9B6FC);
+  static const Color v4 = Color(0xFF968DF8);
+  static const Color v5 = Color(0xFF735EF4);
+  static const Color v6 = Color(0xFF552FE9);
+  static const Color v7 = Color(0xFF522BD6);
+  static const Color v8 = Color(0xFF4323B4);
+  static const Color v9 = Color(0xFF391F93);
 
   //yellow
   static const Color y1 = Color(0xFFFFF9E9);
