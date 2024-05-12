@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -44,26 +45,26 @@ class TodayWord extends StatelessWidget {
                 ),
                 CustomChip(label: '기업'),
                 Spacer(),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: 34,
-                      height: 34,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.all(Radius.circular(6)),
-                        border: Border.all(
-                          color: AppColors.g2.withOpacity(0.3),
+                GestureDetector(
+                  onTap: onBookMark,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                          border: Border.all(
+                            color: AppColors.g2.withOpacity(0.3),
+                          ),
                         ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: onBookMark,
-                      child: SvgPicture.asset(isBookMark
+                      SvgPicture.asset(isBookMark
                           ? 'assets/icons/bookmark_fill.svg'
                           : 'assets/icons/bookmark_unfill.svg'),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),

@@ -15,8 +15,6 @@ class EditorCard extends StatelessWidget {
   final bool isBookMark;
   final Function() onEditor;
 
-
-
   const EditorCard({
     super.key,
     required this.title,
@@ -34,8 +32,7 @@ class EditorCard extends StatelessWidget {
       child: Card(
         color: AppColors.white,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 3,
         child: Padding(
           padding: const EdgeInsets.all(15.0),
@@ -58,25 +55,25 @@ class EditorCard extends StatelessWidget {
                   Positioned(
                     top: 13,
                     right: 16,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: onEditor,
-                          child: Container(
+                    child: GestureDetector(
+                      onTap: onEditor,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
                             width: 34,
                             height: 34,
                             decoration: BoxDecoration(
                               color: AppColors.white.withOpacity(0.5),
                               borderRadius:
-                              BorderRadius.all(Radius.circular(6)),
+                                  BorderRadius.all(Radius.circular(6)),
                             ),
                           ),
-                        ),
-                        SvgPicture.asset(isBookMark
-                            ? 'assets/icons/bookmark_fill.svg'
-                            : 'assets/icons/bookmark_unfill.svg'),
-                      ],
+                          SvgPicture.asset(isBookMark
+                              ? 'assets/icons/bookmark_fill.svg'
+                              : 'assets/icons/bookmark_unfill.svg'),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -88,8 +85,8 @@ class EditorCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 5.0),
                 child: Text(
                   title,
-                  style: FontStyles.Headline2_b.copyWith(
-                      color: AppColors.black),
+                  style:
+                      FontStyles.Headline2_b.copyWith(color: AppColors.black),
                 ),
               ),
               Row(

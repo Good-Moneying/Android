@@ -66,12 +66,12 @@ class HomeScreen extends GetView<HomeViewModel> {
                     'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                 isBookMark: controller.isEditorBookMark.value,
                 onEditor: () {
-                controller.isEditorBookMark.value
-                    ? controller.isEditorBookMark.value = false
-                    : controller.isEditorBookMark.value = true;
+                  controller.isEditorBookMark.value
+                      ? controller.isEditorBookMark.value = false
+                      : controller.isEditorBookMark.value = true;
 
-                print(controller.isEditorBookMark.value);
-              },
+                  print(controller.isEditorBookMark.value);
+                },
               ),
               //에디터 카드
               SizedBox(
