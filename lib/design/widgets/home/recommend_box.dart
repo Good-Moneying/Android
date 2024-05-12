@@ -9,7 +9,21 @@ import '../../style/FontStyles.dart';
 import '../chip_editor.dart';
 
 class RecommendU extends StatelessWidget {
-  const RecommendU({super.key});
+  final String image;
+  final String title;
+  final String tag;
+  final bool isRecommend;
+  final Function() onRecommend;
+
+
+  const RecommendU({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.tag,
+    required this.isRecommend,
+    required this.onRecommend,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +42,7 @@ class RecommendU extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(10.0),
                   child: Image.network(
-                    'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                    image,
                     height: Get.height * 0.13,
                     width: Get.width * 0.3,
                     fit: BoxFit.fill,
@@ -39,7 +53,7 @@ class RecommendU extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    '“코인 급등 랠리?” 도지코인 거래 급감',
+                    title,
                     style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                     softWrap: true,
                   ),
@@ -47,23 +61,28 @@ class RecommendU extends StatelessWidget {
                 SizedBox(
                   width: Get.width * 0.03,
                 ),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: 34,
-                      height: 34,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(6)),
-                        border: Border.all(
-                          color: AppColors.g2.withOpacity(0.3),
+                GestureDetector(
+                  onTap: onRecommend,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                          border: Border.all(
+                            color: AppColors.g2.withOpacity(0.3),
+                          ),
                         ),
                       ),
-                    ),
-                    SvgPicture.asset(
-                        'assets/icons/bookmark_unfill.svg'),
-                  ],
+                      SvgPicture.asset(
+                          isRecommend
+                              ? 'assets/icons/bookmark_fill.svg'
+                              : 'assets/icons/bookmark_unfill.svg'
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -74,7 +93,7 @@ class RecommendU extends StatelessWidget {
           bottom: 10,
           child: Row(
             children: [
-              CustomChip(label: '코인'),
+              CustomChip(label: tag),
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: History(),
