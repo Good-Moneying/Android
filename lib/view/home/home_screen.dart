@@ -19,11 +19,8 @@ import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
-
-
   @override
   Widget build(BuildContext context) {
-
     Get.put(HomeViewModel());
     return Scaffold(
       backgroundColor: AppColors.g1,
@@ -65,7 +62,8 @@ class HomeScreen extends GetView<HomeViewModel> {
               //에디터 카드 위젯 만들기
               EditorCard(
                 title: 'title',
-                image: 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                image:
+                    'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
               ),
               //에디터 카드
               SizedBox(
@@ -278,7 +276,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                   autoPlay: true,
                   viewportFraction: 0.7,
                   onPageChanged: (index, reason) {
-                      controller.indicatorIndex.value = index;
+                    controller.indicatorIndex.value = index;
                   },
                 ),
               ),
@@ -286,7 +284,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Obx(
-                  () => AnimatedSmoothIndicator(
+                    () => AnimatedSmoothIndicator(
                       activeIndex: controller.indicatorIndex.value,
                       count: 3,
                       effect: ExpandingDotsEffect(
@@ -371,10 +369,21 @@ class HomeScreen extends GetView<HomeViewModel> {
                   ],
                 ),
               ),
-              TodayWord(
+              Obx(
+                () => TodayWord(
                   title: 'title',
                   engTitle: 'engTitle',
-                  meaning: 'meaning'),
+                  meaning: 'meaning',
+                  isBookMark: controller.isWordBookMark.value,
+                  onBookMark: () {
+                    controller.isWordBookMark.value
+                        ? controller.isWordBookMark.value = false
+                        : controller.isWordBookMark.value = true;
+
+                    print(controller.isWordBookMark.value);
+                  },
+                ),
+              ),
             ],
           ),
         ),
