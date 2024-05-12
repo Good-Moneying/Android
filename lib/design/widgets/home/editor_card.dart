@@ -9,7 +9,15 @@ import '../chip_editor.dart';
 import '../history_widget.dart';
 
 class EditorCard extends StatelessWidget {
-  const EditorCard({super.key});
+  final String title;
+  final String image;
+
+
+  const EditorCard({
+    super.key,
+    required this.title,
+    required this.image,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +44,7 @@ class EditorCard extends StatelessWidget {
                     ),
                     //임시 사진
                     child: Image.network(
-                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                      image,
                       height: Get.height * 0.25,
                       fit: BoxFit.fill,
                     ),
@@ -69,7 +77,7 @@ class EditorCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(bottom: 5.0),
                 child: Text(
-                  '테슬라 주가 갑자기 오른 이유는?',
+                  title,
                   style: FontStyles.Headline2_b.copyWith(
                       color: AppColors.black),
                 ),

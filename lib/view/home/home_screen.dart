@@ -7,7 +7,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
 import 'package:meetup/design/widgets/history_widget.dart';
+import 'package:meetup/design/widgets/home/editor_card.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
+import 'package:meetup/design/widgets/home/today_word.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -65,82 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: Get.height * 0.02,
               ),
               //에디터 카드 위젯 만들기
-              InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.EDITORNEWS);
-                },
-                child: Card(
-                  color: AppColors.white,
-                  surfaceTintColor: Colors.transparent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  elevation: 3,
-                  child: Padding(
-                    padding: const EdgeInsets.all(15.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: const BorderRadius.all(
-                                Radius.circular(12),
-                              ),
-                              //임시 사진
-                              child: Image.network(
-                                'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                                height: Get.height * 0.25,
-                                fit: BoxFit.fill,
-                              ),
-                            ),
-                            Positioned(
-                              top: 13,
-                              right: 16,
-                              child: Stack(
-                                alignment: Alignment.center,
-                                children: [
-                                  Container(
-                                    width: 34,
-                                    height: 34,
-                                    decoration: BoxDecoration(
-                                      color: AppColors.white.withOpacity(0.5),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(6)),
-                                    ),
-                                  ),
-                                  SvgPicture.asset(
-                                      'assets/icons/bookmark_unfill.svg'),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        SizedBox(
-                          height: Get.height * 0.03,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 5.0),
-                          child: Text(
-                            '테슬라 주가 갑자기 오른 이유는?',
-                            style: FontStyles.Headline2_b.copyWith(
-                                color: AppColors.black),
-                          ),
-                        ),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            CustomChip(label: '미국경제'),
-                            CustomChip(label: '금리'),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0, left: 10),
-                              child: History(),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              EditorCard(
+                title: 'title',
+                image: 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
               ),
               //에디터 카드
               SizedBox(
@@ -446,68 +375,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              Card(
-                color: AppColors.white,
-                surfaceTintColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            '테슬라 요건',
-                            style:
-                                FontStyles.Bn1_b.copyWith(color: AppColors.v6),
-                          ),
-                          CustomChip(label: '기업'),
-                          Spacer(),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                width: 34,
-                                height: 34,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                  border: Border.all(
-                                    color: AppColors.g2.withOpacity(0.3),
-                                  ),
-                                ),
-                              ),
-                              SvgPicture.asset(
-                                  'assets/icons/bookmark_unfill.svg'),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Tesla’s requirements',
-                        style: FontStyles.Ln1_m.copyWith(color: AppColors.g3),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.01,
-                      ),
-                      //뜻
-                      RichText(
-                        maxLines: 3,
-                        softWrap: true,
-                        text: TextSpan(
-                          text:
-                              '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
-                          style: FontStyles.Bn1_r.copyWith(
-                              color: AppColors.g5, height: 1.5),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              TodayWord(
+                  title: 'title',
+                  engTitle: 'engTitle',
+                  meaning: 'meaning'),
             ],
           ),
         ),

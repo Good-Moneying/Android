@@ -7,7 +7,16 @@ import '../../style/FontStyles.dart';
 import '../chip_editor.dart';
 
 class TodayWord extends StatelessWidget {
-  const TodayWord({super.key});
+  final String title;
+  final String engTitle;
+  final String meaning;
+
+  const TodayWord({
+    super.key,
+    required this.title,
+    required this.engTitle,
+    required this.meaning,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +34,7 @@ class TodayWord extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '테슬라 요건',
+                  title,
                   style:
                   FontStyles.Bn1_b.copyWith(color: AppColors.v6),
                 ),
@@ -52,7 +61,7 @@ class TodayWord extends StatelessWidget {
               ],
             ),
             Text(
-              'Tesla’s requirements',
+              engTitle,
               style: FontStyles.Ln1_m.copyWith(color: AppColors.g3),
             ),
             SizedBox(
@@ -64,7 +73,7 @@ class TodayWord extends StatelessWidget {
               softWrap: true,
               text: TextSpan(
                 text:
-                '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
+                meaning,
                 style: FontStyles.Bn1_r.copyWith(
                     color: AppColors.g5, height: 1.5),
               ),
