@@ -33,7 +33,7 @@ class TodayWord extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.fromLTRB(16, 12, 12, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

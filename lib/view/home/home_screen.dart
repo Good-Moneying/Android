@@ -9,6 +9,7 @@ import 'package:meetup/design/widgets/home/editor_card.dart';
 import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
 import 'package:meetup/design/widgets/home/today_word.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/tooltip_balloon.dart';
@@ -16,6 +17,8 @@ import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
+  final userController = Get.find<UserViewModel>();
+
   @override
   Widget build(BuildContext context) {
     Get.put(HomeViewModel());
@@ -26,7 +29,7 @@ class HomeScreen extends GetView<HomeViewModel> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -39,7 +42,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                           color: AppColors.black),
                     ),
                     TextSpan(
-                      text: '두둑',
+                      text: '뉴씽',
                       style:
                           FontStyles.Heading1_b.copyWith(color: AppColors.v6),
                     )
@@ -50,7 +53,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                 height: Get.height * 0.01,
               ),
               Text(
-                '오늘의 경제 지식! 두둑하게 챙겨가세요',
+                '오늘의 새로운 경제 지식! 함께 생각해볼까요?',
                 style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),
               ),
               SizedBox(
@@ -138,7 +141,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                         children: [
                           //닉네임 들어갈 부분
                           TextSpan(
-                            text: '두식이',
+                            text: userController.nicknameController.value.text,
                             style: FontStyles.Headline2_b.copyWith(
                                 color: AppColors.v6),
                           ),

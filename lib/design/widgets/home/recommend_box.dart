@@ -35,7 +35,7 @@ class RecommendU extends StatelessWidget {
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           child: Padding(
-            padding: const EdgeInsets.all(5.0),
+            padding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -52,10 +52,13 @@ class RecommendU extends StatelessWidget {
                   width: Get.width * 0.03,
                 ),
                 Expanded(
-                  child: Text(
-                    title,
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
-                    softWrap: true,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10.0),
+                    child: Text(
+                      title,
+                      style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                      softWrap: true,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -63,25 +66,28 @@ class RecommendU extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: onRecommend,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: [
-                      Container(
-                        width: 34,
-                        height: 34,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(6)),
-                          border: Border.all(
-                            color: AppColors.g2.withOpacity(0.3),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 6.0),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Container(
+                          width: 34,
+                          height: 34,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(6)),
+                            border: Border.all(
+                              color: AppColors.g2.withOpacity(0.3),
+                            ),
                           ),
                         ),
-                      ),
-                      SvgPicture.asset(
-                          isRecommend
-                              ? 'assets/icons/bookmark_fill.svg'
-                              : 'assets/icons/bookmark_unfill.svg'
-                      ),
-                    ],
+                        SvgPicture.asset(
+                            isRecommend
+                                ? 'assets/icons/bookmark_fill.svg'
+                                : 'assets/icons/bookmark_unfill.svg'
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
