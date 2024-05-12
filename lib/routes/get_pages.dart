@@ -63,6 +63,7 @@ class Pages {
     GetPage(
       name: Routes.INVEST,
       page: () => InvestScreen(),
+      transition: Transition.leftToRightWithFade,
     ),
     GetPage(
       name: Routes.SEARCH,

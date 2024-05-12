@@ -22,9 +22,9 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.g1,
+      backgroundColor: AppColors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.g2,
+        backgroundColor: AppColors.white,
         title: Row(
           children: [
             Padding(
@@ -35,19 +35,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
               child: Container(),
             ), // 공간을 채우기 위한 빈 컨테이너
           ],
-        ),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-            // 앱 바 오른쪽에 아이콘 버튼을 배치
-            child: IconButton(
-              icon: SvgPicture.asset('assets/icons/newsletter_bell.svg'),
-              onPressed: () {
-                // 아이콘 버튼이 눌렸을 때 수행할 작업을 추가합니다.
-              },
-            ),
-          ),
-        ],
+        )
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -56,100 +44,79 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: RichText(
-                    text: TextSpan(
-                      text: '오늘의 ',
-                      style: FontStyles.Heading1_b.copyWith(
-                          color: AppColors.black), //기본style을 지정해줘야함
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: '두둑',
-                          style: FontStyles.Heading1_b.copyWith(
-                              color: AppColors.v6), //기본style을 지정해줘야함
-                        ),
-                      ],
-                    ),
-                  )),
-              Padding(
                 padding: const EdgeInsets.fromLTRB(0, 4, 0, 0), // 오른쪽에 여백 추가
                 child: SvgPicture.asset('assets/images/newsletter_line.svg'),
               ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    // 오른쪽에 여백 추가
-                    child: SvgPicture.asset(
-                        'assets/images/newsletter_america.svg'),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(4, 0, 0, 0),
-                    // 오른쪽에 여백 추가
-                    child:
-                        SvgPicture.asset('assets/images/newsletter_rate.svg'),
-                  ),
-                  Expanded(child: Container()),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    // 오른쪽에 여백 추가
-                    child: IconButton(
-                      icon: SvgPicture.asset(
-                          'assets/images/newsletter_wallet.svg'),
-                      onPressed: () {
-                        // 아이콘 버튼이 눌렸을 때 수행할 작업을 추가합니다.
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                    // 오른쪽에 여백 추가
-                    child: IconButton(
-                      icon: SvgPicture.asset(
-                          'assets/images/newsletter_bookmark.svg'),
-                      onPressed: () {},
-                    ),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("테슬라 주가 갑자기\n오른 이유는?",
+                            style: FontStyles.Title2_sb.copyWith(
+                                color: AppColors.black)),
+                    Expanded(child: Container()),
+                    IconButton(
+                        icon: SvgPicture.asset(
+                            'assets/icons/newsletter_bookmark.svg'),
+                        onPressed: () {},
+                      ),
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                      child: Text("테슬라 주가 갑자기\n오른 이유는?",
-                          style: FontStyles.Title2_sb.copyWith(
-                              color: AppColors.black)))
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(0, 0, 16.0, 0),
-                      child: Text("2024.04.25",
-                          style:
-                              FontStyles.Ln1_r.copyWith(color: Colors.grey))),
-                  Expanded(child: Container()),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 0, 1, 0),
-                    // 오른쪽에 여백 추가
-                    child:
-                        SvgPicture.asset('assets/images/newsletter_editor.svg'),
-                  ),
-                  RichText(
-                    text: TextSpan(
-                      text: 'Edit By. ',
-                      style: FontStyles.Ln1_r.copyWith(
-                          color: AppColors.g3), //기본style을 지정해줘야함
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: 'Amy',
-                          style: FontStyles.Ln1_r.copyWith(
-                              color: AppColors.g4), //기본style을 지정해줘야함
+              Padding(
+                padding: const EdgeInsets.only(top: 16.0),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 56, height: 22,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: AppColors.g1),
+                      child: Center(
+                        child: Text('미국경제',style: FontStyles.Caption2_m.copyWith(color: AppColors.g6),),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 4.0),
+                      child: Container(
+                        width: 36, height: 22,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(4),
+                            color: AppColors.g1),
+                        child: Center(
+                          child: Text('금리',style: FontStyles.Caption2_m.copyWith(color: AppColors.g6),),
                         ),
-                      ],
+                      ),
+                    )
+                    ,Padding(
+                        padding: const EdgeInsets.fromLTRB(16,0,0,0),
+                        child: Text("2024.04.25",
+                            style:
+                                FontStyles.Ln1_r.copyWith(color: Colors.grey))),
+                    Expanded(child: Container()),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
+                      // 오른쪽에 여백 추가
+                      child:
+                          Image.asset('assets/icons/newsletter_editorprofile.png',width: 20,height: 20,),
                     ),
-                  ),
-                ],
+                    RichText(
+                      text: TextSpan(
+                        text: 'Edit By. ',
+                        style: FontStyles.Caption1_r.copyWith(
+                            color: AppColors.g3), //기본style을 지정해줘야함
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: 'Amy',
+                            style: FontStyles.Caption1_m.copyWith(
+                                color: AppColors.g3), //기본style을 지정해줘야함
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Container(
                 width: 380,
@@ -157,7 +124,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                 margin: EdgeInsets.only(top: 16),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white),
+                    color: AppColors.g1),
                 child: Column(
                   children: [
                     Row(
@@ -169,7 +136,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                             alignment: Alignment.topCenter,
                             // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                             child: Text(
-                              "3줄 요약",
+                              "두둑한 3줄 요약",
                               style: FontStyles.Heading1_b.copyWith(
                                   color: AppColors.v5),
                             ),
@@ -272,11 +239,16 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                         )),
                     Text(
                         "지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.",
-                        style: FontStyles.Ln1_r),
+                        style: FontStyles.Ln1_r.copyWith(color: Colors.black)),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
-                        child: SvgPicture.asset(
-                            'assets/images/newsletter_blur.svg')),
+                        child: Container(
+                          width: 328, height: 164,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(16),
+                            color: AppColors.g1
+                          ),
+                        )),
                     Padding(
                         padding:
                             const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
@@ -289,111 +261,186 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                         style: FontStyles.Ln1_r),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
-                        child: SvgPicture.asset(
-                            'assets/images/newsletter_blur.svg')),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        IconButton(
-                          onPressed: () {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return StatefulBuilder(builder:
-                                      (BuildContext context,
-                                          StateSetter setState) {
-                                    return AlertDialog(
-                                      surfaceTintColor: Colors.transparent,
-                                      backgroundColor: AppColors.white,
-                                      insetPadding: EdgeInsets.zero,
-                                      contentPadding: const EdgeInsets.only(
-                                          left: 16.0, right: 16.0),
-                                      title: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              "내 생각 작성하기",
-                                              style: FontStyles.Br2_m.copyWith(
-                                                  color: AppColors.g6),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                          ),
-                                          IconButton(
-                                            onPressed: () {
-                                              Navigator.of(context).pop();
-                                            },
-                                            icon: SvgPicture.asset(
-                                                'assets/images/newsletter_close.svg'), // 닫기 아이콘
-                                          ),
-                                        ],
-                                      ),
-                                      content: Expanded(
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
+                        child: Container(
+                          width: 328, height: 164,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: AppColors.g1
+                          ),
+                        )),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return StatefulBuilder(builder:
+                                        (BuildContext context,
+                                            StateSetter setState) {
+                                      return AlertDialog(
+                                        surfaceTintColor: Colors.transparent,
+                                        backgroundColor: AppColors.white,
+                                        insetPadding: EdgeInsets.zero,
+                                        contentPadding: const EdgeInsets.only(
+                                            left: 16.0, right: 16.0),
+                                        title: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
                                           children: [
-                                            Container(
-                                              height: 1.0,
-                                              width: double.infinity,
-                                              color: AppColors.g2,
-                                            ),
-                                            Padding(
-                                              padding:
-                                                  const EdgeInsets.fromLTRB(
-                                                      0, 12.0, 0, 16),
+                                            Expanded(
                                               child: Text(
-                                                "뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",
-                                                style: FontStyles.Bn1_m,
+                                                "내 생각 작성하기",
+                                                style: FontStyles.Br2_m.copyWith(
+                                                    color: AppColors.g6),
+                                                textAlign: TextAlign.center,
                                               ),
                                             ),
-                                            SvgPicture.asset(
-                                                'assets/images/newsletter_line3.svg'),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.start,
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.fromLTRB(
-                                                          23.0,
-                                                          16.0,
-                                                          0.0,
-                                                          16.0),
-                                                  // 오른쪽에 여백 추가
-                                                  child: Text(
-                                                      "앞으로 어떻게 될 것 같나요?",
-                                                      style: FontStyles.Lr1_sb,
-                                                      textAlign:
-                                                          TextAlign.center),
-                                                ),
-                                              ],
+                                            IconButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              icon: SvgPicture.asset(
+                                                  'assets/images/newsletter_close.svg'), // 닫기 아이콘
                                             ),
-                                            Row(
-                                              children: [
-                                                ButtonTheme(
-                                                    minWidth: 90,
-                                                    height: 31,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              right: 8.0),
+                                          ],
+                                        ),
+                                        content: Expanded(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                height: 1.0,
+                                                width: double.infinity,
+                                                color: AppColors.g2,
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.fromLTRB(
+                                                        0, 12.0, 0, 16),
+                                                child: Text(
+                                                  "뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",
+                                                  style: FontStyles.Bn1_m,
+                                                ),
+                                              ),
+                                              SvgPicture.asset(
+                                                  'assets/images/newsletter_line3.svg'),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.fromLTRB(
+                                                            23.0,
+                                                            16.0,
+                                                            0.0,
+                                                            16.0),
+                                                    // 오른쪽에 여백 추가
+                                                    child: Text(
+                                                        "앞으로 어떻게 될 것 같나요?",
+                                                        style: FontStyles.Lr1_sb,
+                                                        textAlign:
+                                                            TextAlign.center),
+                                                  ),
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  ButtonTheme(
+                                                      minWidth: 90,
+                                                      height: 31,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                right: 8.0),
+                                                        child: OutlinedButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              _isPressed1 =
+                                                                  !_isPressed1; // 버튼이 눌릴 때마다 상태를 토글합니다.
+                                                            });
+                                                            // 버튼 눌렀을 때 수행할 작업 추가
+                                                          },
+                                                          style: ButtonStyle(
+                                                            side: MaterialStateProperty
+                                                                .resolveWith<
+                                                                    BorderSide>(
+                                                              (Set<MaterialState>
+                                                                  states) {
+                                                                // 테두리 색 변경
+                                                                if (_isPressed1) {
+                                                                  // 버튼이 눌렸을 때
+                                                                  return BorderSide(
+                                                                      color: AppColors
+                                                                          .v5); // 원하는 색상으로 변경
+                                                                }
+                                                                return BorderSide(
+                                                                    color: AppColors
+                                                                        .g3); // 원하는 색상으로 변경
+                                                              },
+                                                            ),
+                                                            foregroundColor:
+                                                                MaterialStateProperty
+                                                                    .resolveWith<
+                                                                        Color>(
+                                                              (Set<MaterialState>
+                                                                  states) {
+                                                                // 글씨 색 변경
+                                                                if (_isPressed1) {
+                                                                  // 버튼이 눌렸을 때
+                                                                  return AppColors
+                                                                      .v5; // 원하는 색상으로 변경
+                                                                }
+                                                                return Color(
+                                                                    0xFFAAAAB9); // 원하는 색상으로 변경
+                                                              },
+                                                            ),
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .resolveWith<
+                                                                        Color>(
+                                                              (Set<MaterialState>
+                                                                  states) {
+                                                                // 버튼 색 변경
+                                                                if (_isPressed1) {
+                                                                  // 버튼이 눌렸을 때
+                                                                  return AppColors
+                                                                      .v1; // 원하는 색상으로 변경
+                                                                }
+                                                                return AppColors
+                                                                    .white; // 원하는 색상으로 변경
+                                                              },
+                                                            ),
+                                                          ),
+                                                          child: Text('긍정적인 전망',
+                                                              style: FontStyles
+                                                                  .Caption1_sb), // 버튼의 텍스트
+                                                        ),
+                                                      )),
+                                                  ButtonTheme(
+                                                      minWidth: 90,
+                                                      height: 31,
                                                       child: OutlinedButton(
                                                         onPressed: () {
                                                           setState(() {
-                                                            _isPressed1 =
-                                                                !_isPressed1; // 버튼이 눌릴 때마다 상태를 토글합니다.
+                                                            _isPressed2 =
+                                                                !_isPressed2; // 버튼이 눌릴 때마다 상태를 토글합니다.
                                                           });
                                                           // 버튼 눌렀을 때 수행할 작업 추가
                                                         },
                                                         style: ButtonStyle(
-                                                          side: MaterialStateProperty
-                                                              .resolveWith<
-                                                                  BorderSide>(
+                                                          side:
+                                                              MaterialStateProperty
+                                                                  .resolveWith<
+                                                                      BorderSide>(
                                                             (Set<MaterialState>
                                                                 states) {
                                                               // 테두리 색 변경
-                                                              if (_isPressed1) {
+                                                              if (_isPressed2) {
                                                                 // 버튼이 눌렸을 때
                                                                 return BorderSide(
                                                                     color: AppColors
@@ -411,7 +458,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                             (Set<MaterialState>
                                                                 states) {
                                                               // 글씨 색 변경
-                                                              if (_isPressed1) {
+                                                              if (_isPressed2) {
                                                                 // 버튼이 눌렸을 때
                                                                 return AppColors
                                                                     .v5; // 원하는 색상으로 변경
@@ -427,7 +474,7 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                             (Set<MaterialState>
                                                                 states) {
                                                               // 버튼 색 변경
-                                                              if (_isPressed1) {
+                                                              if (_isPressed2) {
                                                                 // 버튼이 눌렸을 때
                                                                 return AppColors
                                                                     .v1; // 원하는 색상으로 변경
@@ -437,275 +484,219 @@ class _NewsLetterScreenState extends State<NewsLetterScreen> {
                                                             },
                                                           ),
                                                         ),
-                                                        child: Text('긍정적인 전망',
+                                                        child: Text('부정적인 전망',
                                                             style: FontStyles
                                                                 .Caption1_sb), // 버튼의 텍스트
-                                                      ),
-                                                    )),
-                                                ButtonTheme(
-                                                    minWidth: 90,
-                                                    height: 31,
-                                                    child: OutlinedButton(
-                                                      onPressed: () {
-                                                        setState(() {
-                                                          _isPressed2 =
-                                                              !_isPressed2; // 버튼이 눌릴 때마다 상태를 토글합니다.
-                                                        });
-                                                        // 버튼 눌렀을 때 수행할 작업 추가
-                                                      },
-                                                      style: ButtonStyle(
-                                                        side:
-                                                            MaterialStateProperty
+                                                      )),
+                                                  ButtonTheme(
+                                                      minWidth: 90,
+                                                      height: 31,
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets.only(
+                                                                left: 8.0),
+                                                        child: OutlinedButton(
+                                                          onPressed: () {
+                                                            setState(() {
+                                                              _isPressed3 =
+                                                                  !_isPressed3; // 버튼이 눌릴 때마다 상태를 토글합니다.
+                                                            });
+                                                          },
+                                                          style: ButtonStyle(
+                                                            side: MaterialStateProperty
                                                                 .resolveWith<
                                                                     BorderSide>(
-                                                          (Set<MaterialState>
-                                                              states) {
-                                                            // 테두리 색 변경
-                                                            if (_isPressed2) {
-                                                              // 버튼이 눌렸을 때
-                                                              return BorderSide(
-                                                                  color: AppColors
-                                                                      .v5); // 원하는 색상으로 변경
-                                                            }
-                                                            return BorderSide(
-                                                                color: AppColors
-                                                                    .g3); // 원하는 색상으로 변경
-                                                          },
-                                                        ),
-                                                        foregroundColor:
-                                                            MaterialStateProperty
-                                                                .resolveWith<
-                                                                    Color>(
-                                                          (Set<MaterialState>
-                                                              states) {
-                                                            // 글씨 색 변경
-                                                            if (_isPressed2) {
-                                                              // 버튼이 눌렸을 때
-                                                              return AppColors
-                                                                  .v5; // 원하는 색상으로 변경
-                                                            }
-                                                            return Color(
-                                                                0xFFAAAAB9); // 원하는 색상으로 변경
-                                                          },
-                                                        ),
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .resolveWith<
-                                                                    Color>(
-                                                          (Set<MaterialState>
-                                                              states) {
-                                                            // 버튼 색 변경
-                                                            if (_isPressed2) {
-                                                              // 버튼이 눌렸을 때
-                                                              return AppColors
-                                                                  .v1; // 원하는 색상으로 변경
-                                                            }
-                                                            return AppColors
-                                                                .white; // 원하는 색상으로 변경
-                                                          },
-                                                        ),
-                                                      ),
-                                                      child: Text('부정적인 전망',
-                                                          style: FontStyles
-                                                              .Caption1_sb), // 버튼의 텍스트
-                                                    )),
-                                                ButtonTheme(
-                                                    minWidth: 90,
-                                                    height: 31,
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.only(
-                                                              left: 8.0),
-                                                      child: OutlinedButton(
-                                                        onPressed: () {
-                                                          setState(() {
-                                                            _isPressed3 =
-                                                                !_isPressed3; // 버튼이 눌릴 때마다 상태를 토글합니다.
-                                                          });
-                                                        },
-                                                        style: ButtonStyle(
-                                                          side: MaterialStateProperty
-                                                              .resolveWith<
-                                                                  BorderSide>(
-                                                            (Set<MaterialState>
-                                                                states) {
-                                                              // 테두리 색 변경
-                                                              if (_isPressed3) {
-                                                                // 버튼이 눌렸을 때
+                                                              (Set<MaterialState>
+                                                                  states) {
+                                                                // 테두리 색 변경
+                                                                if (_isPressed3) {
+                                                                  // 버튼이 눌렸을 때
+                                                                  return BorderSide(
+                                                                      color: AppColors
+                                                                          .v5); // 원하는 색상으로 변경
+                                                                }
                                                                 return BorderSide(
                                                                     color: AppColors
-                                                                        .v5); // 원하는 색상으로 변경
-                                                              }
-                                                              return BorderSide(
-                                                                  color: AppColors
-                                                                      .g3); // 원하는 색상으로 변경
-                                                            },
-                                                          ),
-                                                          foregroundColor:
-                                                              MaterialStateProperty
-                                                                  .resolveWith<
-                                                                      Color>(
-                                                            (Set<MaterialState>
-                                                                states) {
-                                                              // 글씨 색 변경
-                                                              if (_isPressed3) {
-                                                                // 버튼이 눌렸을 때
+                                                                        .g3); // 원하는 색상으로 변경
+                                                              },
+                                                            ),
+                                                            foregroundColor:
+                                                                MaterialStateProperty
+                                                                    .resolveWith<
+                                                                        Color>(
+                                                              (Set<MaterialState>
+                                                                  states) {
+                                                                // 글씨 색 변경
+                                                                if (_isPressed3) {
+                                                                  // 버튼이 눌렸을 때
+                                                                  return AppColors
+                                                                      .v5; // 원하는 색상으로 변경
+                                                                }
+                                                                return Color(
+                                                                    0xFFAAAAB9); // 원하는 색상으로 변경
+                                                              },
+                                                            ),
+                                                            backgroundColor:
+                                                                MaterialStateProperty
+                                                                    .resolveWith<
+                                                                        Color>(
+                                                              (Set<MaterialState>
+                                                                  states) {
+                                                                // 버튼 색 변경
+                                                                if (_isPressed3) {
+                                                                  // 버튼이 눌렸을 때
+                                                                  return AppColors
+                                                                      .v1; // 원하는 색상으로 변경
+                                                                }
                                                                 return AppColors
-                                                                    .v5; // 원하는 색상으로 변경
-                                                              }
-                                                              return Color(
-                                                                  0xFFAAAAB9); // 원하는 색상으로 변경
-                                                            },
+                                                                    .white; // 원하는 색상으로 변경
+                                                              },
+                                                            ),
                                                           ),
-                                                          backgroundColor:
-                                                              MaterialStateProperty
-                                                                  .resolveWith<
-                                                                      Color>(
-                                                            (Set<MaterialState>
-                                                                states) {
-                                                              // 버튼 색 변경
-                                                              if (_isPressed3) {
-                                                                // 버튼이 눌렸을 때
-                                                                return AppColors
-                                                                    .v1; // 원하는 색상으로 변경
-                                                              }
-                                                              return AppColors
-                                                                  .white; // 원하는 색상으로 변경
-                                                            },
-                                                          ),
+                                                          child: Text('잘 모르겠음',
+                                                              style: FontStyles
+                                                                  .Caption1_sb), // 버튼의 텍스트
                                                         ),
-                                                        child: Text('잘 모르겠음',
-                                                            style: FontStyles
-                                                                .Caption1_sb), // 버튼의 텍스트
-                                                      ),
-                                                    ))
-                                              ],
-                                            ),
-                                            SizedBox(
-                                              height: 120,
-                                              child: Padding(
+                                                      ))
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 120,
+                                                child: Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      top: 16.0),
+                                                  child: TextFormField(
+                                                    keyboardType:
+                                                        TextInputType.multiline,
+                                                    maxLines: null,
+                                                    maxLength: 200,
+                                                    expands: true,
+                                                    decoration: InputDecoration(
+                                                        border:
+                                                            OutlineInputBorder(),
+                                                        hintText:
+                                                            '여러분의 생각을 남겨보세요. (최대 200자)',
+                                                        hintStyle: FontStyles
+                                                                .Caption2_r
+                                                            .copyWith(
+                                                                color:
+                                                                    AppColors.g5),
+                                                        filled: true,
+                                                        fillColor: AppColors.g1),
+                                                  ),
+                                                ),
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Checkbox(
+                                                    activeColor: AppColors.v4,
+                                                    checkColor: Colors.white,
+                                                    value: _isPressedCheck,
+                                                    onChanged: (value) {
+                                                      setState(() {
+                                                        _isPressedCheck = value!;
+                                                      });
+                                                    },
+                                                  ),
+                                                  Text(
+                                                    "나 혼자만 볼래요",
+                                                    style: FontStyles.Label2_r
+                                                        .copyWith(
+                                                            color: AppColors.g6),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Text(
+                                                    "내 생각은 ‘둘러보기’에 공유될 수 있어요!",
+                                                    style: FontStyles.Caption2_r
+                                                        .copyWith(
+                                                            color: AppColors.g4),
+                                                  ),
+                                                ],
+                                              ),
+                                              Padding(
                                                 padding: const EdgeInsets.only(
                                                     top: 16.0),
-                                                child: TextFormField(
-                                                  keyboardType:
-                                                      TextInputType.multiline,
-                                                  maxLines: null,
-                                                  maxLength: 200,
-                                                  expands: true,
-                                                  decoration: InputDecoration(
-                                                      border:
-                                                          OutlineInputBorder(),
-                                                      hintText:
-                                                          '여러분의 생각을 남겨보세요. (최대 200자)',
-                                                      hintStyle: FontStyles
-                                                              .Caption2_r
-                                                          .copyWith(
-                                                              color:
-                                                                  AppColors.g5),
-                                                      filled: true,
-                                                      fillColor: AppColors.g1),
+                                                child: ElevatedButton(
+                                                  onPressed: () {},
+                                                  child: Text(
+                                                    "작성완료",
+                                                    style: FontStyles.Caption1_sb
+                                                        .copyWith(
+                                                            color: Colors.white),
+                                                  ),
+                                                  style: ElevatedButton.styleFrom(
+                                                      backgroundColor:
+                                                          AppColors.v6,
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                3), // 네모난 모서리를 위한 값 설정
+                                                      ),
+                                                      minimumSize: Size(286, 37)),
                                                 ),
-                                              ),
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Checkbox(
-                                                  activeColor: AppColors.v4,
-                                                  checkColor: Colors.white,
-                                                  value: _isPressedCheck,
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      _isPressedCheck = value!;
-                                                    });
-                                                  },
-                                                ),
-                                                Text(
-                                                  "나 혼자만 볼래요",
-                                                  style: FontStyles.Label2_r
-                                                      .copyWith(
-                                                          color: AppColors.g6),
-                                                )
-                                              ],
-                                            ),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.end,
-                                              children: [
-                                                Text(
-                                                  "내 생각은 ‘둘러보기’에 공유될 수 있어요!",
-                                                  style: FontStyles.Caption2_r
-                                                      .copyWith(
-                                                          color: AppColors.g4),
-                                                ),
-                                              ],
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 16.0),
-                                              child: ElevatedButton(
-                                                onPressed: () {},
-                                                child: Text(
-                                                  "작성완료",
-                                                  style: FontStyles.Caption1_sb
-                                                      .copyWith(
-                                                          color: Colors.white),
-                                                ),
-                                                style: ElevatedButton.styleFrom(
-                                                    backgroundColor:
-                                                        AppColors.v6,
-                                                    shape:
-                                                        RoundedRectangleBorder(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              3), // 네모난 모서리를 위한 값 설정
-                                                    ),
-                                                    minimumSize: Size(286, 37)),
-                                              ),
-                                            )
-                                          ],
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    );
+                                      );
+                                    });
                                   });
-                                });
-                          },
-                          icon: Image.asset(
-                            'assets/images/newsletter_think3.png',
-                            width: 143,
-                            height: 143,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 16.0), // 패딩 추가
-                          child: IconButton(
-                            onPressed: () {},
+                            },
                             icon: Image.asset(
-                              'assets/images/newsletter_invest1.png',
+                              'assets/images/newsletter_think3.png',
                               width: 143,
                               height: 143,
                             ),
                           ),
-                        ),
-                      ],
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0), // 패딩 추가
+                            child: IconButton(
+                              onPressed: () {},
+                              icon: Image.asset(
+                                'assets/images/newsletter_invest1.png',
+                                width: 143,
+                                height: 143,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                    SvgPicture.asset('assets/images/newsletter_line.svg'),
-                    Row(
+                    Padding(
+                      padding: const EdgeInsets.only(top: 40.0),
+                      child: Container(
+                        width: double.infinity, height: 8,
+                        decoration: BoxDecoration(
+                          color: AppColors.g1
+                        ),
+                      ),
+                    )
+                    ,Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(
-                              16.0, 24.0, 0.0, 12.0), // 좌측으로부터 일정한 간격을 주기 위한 패딩
+                              16.0, 32.0, 0.0, 12.0), // 좌측으로부터 일정한 간격을 주기 위한 패딩
                           child: Text(
                             "다른 사람들의 생각은?",
-                            style: FontStyles.Heading1_b.copyWith(
+                            style: FontStyles.Heading2_b.copyWith(
                                 color: AppColors.g6),
                           ),
                         ),
                       ],
                     ),
-                    Image.asset('assets/images/newsletter_review.png')
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16.0),
+                      child: Image.asset('assets/images/newsletter_blurcomment.png',width: double.infinity,)
+                    )
                   ],
                 ),
               ),
