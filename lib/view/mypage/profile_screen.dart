@@ -44,6 +44,7 @@ class ProfileScreen extends StatelessWidget {
                           AssetImage('assets/images/mypage_moi_dotori.png'),
                     ),
                   ),
+
                   Padding(
                     padding: const EdgeInsets.only(top: 12.0),
                     child: Padding(
@@ -73,9 +74,7 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(
-                            width: 150,
-                          ),
+                          Spacer(),
                           SizedBox(
                             child: Container(
                               width: 89,
@@ -109,6 +108,7 @@ class ProfileScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+
                   ),
                 ],
               ),

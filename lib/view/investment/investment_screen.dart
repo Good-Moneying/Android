@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../routes/get_pages.dart';
 
 class InvestScreen extends StatelessWidget {
   const InvestScreen({super.key});
@@ -14,7 +17,7 @@ class InvestScreen extends StatelessWidget {
           children: [
             Text('모의투자'),
           ],
-        )
+        ),
       ),
     );
   }
