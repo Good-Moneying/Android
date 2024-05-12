@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -17,30 +17,36 @@ class FrequencyScreen extends GetView<UserViewModel> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: SvgPicture.asset(
+            'assets/icons/back_left.svg',
+            height: 36,
+            width: 36,
+          ),
+        ),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: Get.height * 0.05,
-              ),
               //진행률 바
               MyProgressBar(percent: controller.getPercentProgress.value),
               SizedBox(
                 height: Get.height * 0.05,
-              ),
-              Text(
-                '4/4',
-                style: FontStyles.Headline1_m.copyWith(color: AppColors.y6),
               ),
               RichText(
                 text: TextSpan(
                   children: [
                     TextSpan(
                       text: '뉴스레터',
-                      style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                      style: FontStyles.Title2_b.copyWith(color: AppColors.v6),
                     ),
                     TextSpan(
                       text: '를',
@@ -62,7 +68,6 @@ class FrequencyScreen extends GetView<UserViewModel> {
                 style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
               ),
               SizedBox(height: Get.height * 0.1),
-              //삼항 연산자 추가!!!!! 바깥 테두리 버튼 스타일
               Padding(
                 padding: const EdgeInsets.only(bottom: 25.0),
                 child: Obx(
@@ -78,7 +83,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                             : AppColors.white,
                         side: BorderSide(
                           color: controller.frequencyList[0]
-                              ? AppColors.v5
+                              ? AppColors.v6
                               : AppColors.g3,
                         ),
                         shape: RoundedRectangleBorder(
@@ -87,7 +92,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                       '매일',
                       style: FontStyles.Bn2_sb.copyWith(
                         color: controller.frequencyList[0]
-                            ? AppColors.v5
+                            ? AppColors.v6
                             : AppColors.g4,
                       ),
                     ),
@@ -109,7 +114,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                             : AppColors.white,
                         side: BorderSide(
                           color: controller.frequencyList[1]
-                              ? AppColors.v5
+                              ? AppColors.v6
                               : AppColors.g3,
                         ),
                         shape: RoundedRectangleBorder(
@@ -118,7 +123,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                       '일주일에 5~6번',
                       style: FontStyles.Bn2_sb.copyWith(
                         color: controller.frequencyList[1]
-                            ? AppColors.v5
+                            ? AppColors.v6
                             : AppColors.g4,
                       ),
                     ),
@@ -140,7 +145,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                             : AppColors.white,
                         side: BorderSide(
                           color: controller.frequencyList[2]
-                              ? AppColors.v5
+                              ? AppColors.v6
                               : AppColors.g3,
                         ),
                         shape: RoundedRectangleBorder(
@@ -149,7 +154,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                       '일주일에 3~4번',
                       style: FontStyles.Bn2_sb.copyWith(
                         color: controller.frequencyList[2]
-                            ? AppColors.v5
+                            ? AppColors.v6
                             : AppColors.g4,
                       ),
                     ),
@@ -171,7 +176,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                             : AppColors.white,
                         side: BorderSide(
                           color: controller.frequencyList[3]
-                              ? AppColors.v5
+                              ? AppColors.v6
                               : AppColors.g3,
                         ),
                         shape: RoundedRectangleBorder(
@@ -180,7 +185,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
                       '일주일에 1~2번',
                       style: FontStyles.Bn2_sb.copyWith(
                         color: controller.frequencyList[3]
-                            ? AppColors.v5
+                            ? AppColors.v6
                             : AppColors.g4,
                       ),
                     ),
