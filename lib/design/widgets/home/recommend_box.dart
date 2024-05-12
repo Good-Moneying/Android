@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'history_widget.dart';
-import '../style/ColorStyles.dart';
-import '../style/FontStyles.dart';
-import 'chip_editor.dart';
+import '../history_widget.dart';
+import '../../style/ColorStyles.dart';
+import '../../style/FontStyles.dart';
+import '../chip_editor.dart';
 
 class RecommendU extends StatelessWidget {
   const RecommendU({super.key});
