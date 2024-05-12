@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -11,12 +12,17 @@ import '../history_widget.dart';
 class EditorCard extends StatelessWidget {
   final String title;
   final String image;
+  final bool isBookMark;
+  final Function() onEditor;
+
 
 
   const EditorCard({
     super.key,
     required this.title,
     required this.image,
+    required this.isBookMark,
+    required this.onEditor,
   });
 
   @override
@@ -55,17 +61,21 @@ class EditorCard extends StatelessWidget {
                     child: Stack(
                       alignment: Alignment.center,
                       children: [
-                        Container(
-                          width: 34,
-                          height: 34,
-                          decoration: BoxDecoration(
-                            color: AppColors.white.withOpacity(0.5),
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(6)),
+                        GestureDetector(
+                          onTap: onEditor,
+                          child: Container(
+                            width: 34,
+                            height: 34,
+                            decoration: BoxDecoration(
+                              color: AppColors.white.withOpacity(0.5),
+                              borderRadius:
+                              BorderRadius.all(Radius.circular(6)),
+                            ),
                           ),
                         ),
-                        SvgPicture.asset(
-                            'assets/icons/bookmark_unfill.svg'),
+                        SvgPicture.asset(isBookMark
+                            ? 'assets/icons/bookmark_fill.svg'
+                            : 'assets/icons/bookmark_unfill.svg'),
                       ],
                     ),
                   ),
