@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
@@ -11,8 +14,11 @@ import 'package:meetup/design/style/FontStyles.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
+
   @override
   Widget build(BuildContext context) {
+    final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    controller.getEditorNews(); // 뉴스 데이터 가져오기
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -43,14 +49,17 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("테슬라 주가 갑자기\n오른 이유는?",
-                        style: FontStyles.Title2_sb.copyWith(
-                            color: AppColors.black)),
+                    Obx(() =>
+                        Text(controller.news.value['editor'],
+                            style: FontStyles.Title2_sb.copyWith(
+                                color: AppColors.black)),
+                    ),
                     Expanded(child: Container()),
-                    IconButton(
+                        IconButton(
                       icon: SvgPicture.asset(
                           'assets/icons/newsletter_bookmark.svg'),
-                      onPressed: () {},
+                      onPressed: () {
+                      },
                     ),
                   ],
                 ),
@@ -363,6 +372,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             controller
                                                                     .isDialogAgreeList[0]
                                                                 ? Container(
+                                                                    width: 90,
+                                                                    height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(
@@ -381,6 +392,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                     ),
                                                                   )
                                                                 : Container(
+                                                                    width: 90,
+                                                                    height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(
@@ -411,6 +424,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             controller
                                                                     .isDialogAgreeList[1]
                                                                 ? Container(
+                                                                    width: 90,
+                                                                    height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(
@@ -429,6 +444,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                     ),
                                                                   )
                                                                 : Container(
+                                                                    width: 90,
+                                                                    height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(
@@ -459,6 +476,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             controller
                                                                     .isDialogAgreeList[2]
                                                                 ? Container(
+                                                                    width: 90,
+                                                                    height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(
@@ -477,6 +496,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                     ),
                                                                   )
                                                                 : Container(
+                                                                    width: 90,
+                                                                    height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
                                                                             BorderRadius.circular(
@@ -527,7 +548,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                   ),
                                                 ),
                                               ),
-                                              Row(
+                                              /*Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
                                                 children: [
@@ -550,7 +571,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                 AppColors.g6),
                                                   )
                                                 ],
-                                              ),
+                                              ),*/
                                               Row(
                                                 mainAxisAlignment:
                                                     MainAxisAlignment.end,
