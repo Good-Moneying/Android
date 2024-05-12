@@ -251,6 +251,21 @@ class LiveNewsScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
+                  padding: const EdgeInsets.only(top:16.0, right: 16),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        '뉴스 전문 보기', style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),
+                      ),
+                      SizedBox(
+                        width: 8,
+                      )
+                      ,SvgPicture.asset('assets/icons/view_more.svg')
+                    ],
+                  ),
+                )
+                ,Padding(
                   padding: const EdgeInsets.only(top: 59.0),
                   child: Text('하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체\n'
                       '를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어\n'
