@@ -312,393 +312,412 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               borderRadius: BorderRadius.circular(16),
                               color: AppColors.g1),
                         )),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('오늘의 ',style: FontStyles.Br2_sb),
+                              SvgPicture.asset('assets/icons/editor_newthink.svg'),
+                              Text(' 어떠셨나요?',style: FontStyles.Br2_sb),
+                            ],
+                          ),
+                        ),
+                    Image.asset(
+                      'assets/icons/news_letter_think.png',
+                      width: 143,
+                      height: 143,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 40.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          IconButton(
-                            onPressed: () {
-                              showDialog(
-                                  barrierDismissible: false,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return StatefulBuilder(builder:
-                                        (BuildContext context,
-                                            StateSetter setState) {
-                                      return AlertDialog(
-                                        surfaceTintColor: Colors.transparent,
-                                        backgroundColor: AppColors.white,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(13.2),
-                                        ),
-                                        //insetPadding: EdgeInsets.zero,
-                                        contentPadding: const EdgeInsets.only(
-                                            left: 16.0, right: 16.0),
-                                        title: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                "내 생각 작성하기",
-                                                style:
-                                                    FontStyles.Br2_m.copyWith(
-                                                        color: AppColors.g6),
-                                                textAlign: TextAlign.center,
-                                              ),
-                                            ),
-                                            IconButton(
-                                              onPressed: () {
-                                                Navigator.of(context).pop();
-                                              },
-                                              icon: SvgPicture.asset(
-                                                  'assets/images/newsletter_close.svg'), // 닫기 아이콘
-                                            ),
-                                          ],
-                                        ),
-                                        content: Expanded(
-                                          child: Column(
-                                            mainAxisSize: MainAxisSize.min,
+                          Theme(
+                            data: ThemeData(
+                              splashColor:
+                              Colors.transparent,
+                              highlightColor:
+                              Colors.transparent,
+                            ),
+                            child: IconButton(
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return StatefulBuilder(builder:
+                                          (BuildContext context,
+                                              StateSetter setState) {
+                                        return AlertDialog(
+                                          surfaceTintColor: Colors.transparent,
+                                          backgroundColor: AppColors.white,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(13.2),
+                                          ),
+                                          //insetPadding: EdgeInsets.zero,
+                                          contentPadding: const EdgeInsets.only(
+                                              left: 16.0, right: 16.0),
+                                          title: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              Container(
-                                                height: 1.0,
-                                                width: double.infinity,
-                                                color: AppColors.g2,
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.fromLTRB(
-                                                        0, 12.0, 0, 16),
+                                              Expanded(
                                                 child: Text(
-                                                  "뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",
-                                                  style: FontStyles.Bn1_m,
-                                                ),
-                                              ),
-                                              SvgPicture.asset(
-                                                  'assets/images/newsletter_line3.svg'),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: const EdgeInsets
-                                                        .fromLTRB(
-                                                        23.0, 16.0, 0.0, 16.0),
-                                                    // 오른쪽에 여백 추가
-                                                    child: Text(
-                                                        "앞으로 어떻게 될 것 같나요?",
-                                                        style: FontStyles.Br2_sb
-                                                            .copyWith(
-                                                                color: AppColors
-                                                                    .v6),
-                                                        textAlign:
-                                                            TextAlign.center),
-                                                  ),
-                                                ],
-                                              ),
-                                              Theme(
-                                                data: ThemeData(
-                                                  splashColor:
-                                                      Colors.transparent,
-                                                  highlightColor:
-                                                      Colors.transparent,
-                                                ),
-                                                child: Row(
-                                                  children: [
-                                                    Obx(() => InkWell(
-                                                          onTap: () {
-                                                            controller
-                                                                .selectAgree(0);
-                                                          },
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 8.0),
-                                                            child: Column(
-                                                              children: [
-                                                                controller
-                                                                        .isDialogAgreeList[0]
-                                                                    ? Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            31,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(14.6),
-                                                                            color: AppColors.v1,
-                                                                            border: Border.all(color: AppColors.v6)),
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Text(
-                                                                            '긍정적인 전망',
-                                                                            style:
-                                                                                FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    : Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            31,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(14.6),
-                                                                            border: Border.all(color: Color(0xFFAAAAB9))),
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Text(
-                                                                            '긍정적인 전망',
-                                                                            style:
-                                                                                FontStyles.Caption2_sb.copyWith(color: Color(0xFFAAAAB9)),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        )),
-                                                    Obx(() => InkWell(
-                                                          onTap: () {
-                                                            controller
-                                                                .selectAgree(1);
-                                                          },
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 8.0),
-                                                            child: Column(
-                                                              children: [
-                                                                controller
-                                                                        .isDialogAgreeList[1]
-                                                                    ? Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            31,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(14.6),
-                                                                            color: AppColors.v1,
-                                                                            border: Border.all(color: AppColors.v6)),
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Text(
-                                                                            '부정적인 전망',
-                                                                            style:
-                                                                                FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    : Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            31,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(14.6),
-                                                                            border: Border.all(color: Color(0xFFAAAAB9))),
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Text(
-                                                                            '부정적인 전망',
-                                                                            style:
-                                                                                FontStyles.Caption2_sb.copyWith(color: Color(0xFFAAAAB9)),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        )),
-                                                    Obx(() => InkWell(
-                                                          onTap: () {
-                                                            controller
-                                                                .selectAgree(2);
-                                                          },
-                                                          child: Padding(
-                                                            padding:
-                                                                const EdgeInsets
-                                                                    .only(
-                                                                    left: 8.0),
-                                                            child: Column(
-                                                              children: [
-                                                                controller
-                                                                        .isDialogAgreeList[2]
-                                                                    ? Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            31,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(14.6),
-                                                                            color: AppColors.v1,
-                                                                            border: Border.all(color: AppColors.v6)),
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Text(
-                                                                            '잘 모르겠음',
-                                                                            style:
-                                                                                FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                                    : Container(
-                                                                        width:
-                                                                            90,
-                                                                        height:
-                                                                            31,
-                                                                        decoration: BoxDecoration(
-                                                                            borderRadius:
-                                                                                BorderRadius.circular(14.6),
-                                                                            border: Border.all(color: Color(0xFFAAAAB9))),
-                                                                        child:
-                                                                            Center(
-                                                                          child:
-                                                                              Text(
-                                                                            '잘 모르겠음',
-                                                                            style:
-                                                                                FontStyles.Caption2_sb.copyWith(color: Color(0xFFAAAAB9)),
-                                                                          ),
-                                                                        ),
-                                                                      )
-                                                              ],
-                                                            ),
-                                                          ),
-                                                        ))
-                                                  ],
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                height: 120,
-                                                child: Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          top: 16.0),
-                                                  child: TextFormField(
-                                                    keyboardType:
-                                                        TextInputType.multiline,
-                                                    maxLines: null,
-                                                    maxLength: 200,
-                                                    expands: true,
-                                                    decoration: InputDecoration(
-                                                        border:
-                                                            OutlineInputBorder(),
-                                                        hintText:
-                                                            '여러분의 생각을 남겨보세요. (최대 200자)',
-                                                        hintStyle: FontStyles
-                                                                .Caption2_r
-                                                            .copyWith(
-                                                                color: AppColors
-                                                                    .g5),
-                                                        filled: true,
-                                                        fillColor:
-                                                            AppColors.g1),
-                                                  ),
-                                                ),
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Obx(() => Checkbox(
-                                                        activeColor:
-                                                            AppColors.v5,
-                                                        checkColor:
-                                                            Colors.white,
-                                                        value: controller
-                                                            .isLookAlone.value,
-                                                        onChanged: (value) {
-                                                          controller
-                                                              .selectLook();
-                                                        },
-                                                      )),
-                                                  Text(
-                                                    "나 혼자만 볼래요",
-                                                    style: FontStyles.Label2_r
-                                                        .copyWith(
-                                                            color:
-                                                                AppColors.g6),
-                                                  )
-                                                ],
-                                              ),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.end,
-                                                children: [
-                                                  Text(
-                                                    "내 생각은 ‘둘러보기’에 공유될 수 있어요!",
-                                                    style: FontStyles.Caption2_r
-                                                        .copyWith(
-                                                            color:
-                                                                AppColors.g4),
-                                                  ),
-                                                ],
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    top: 32.0),
-                                                child: ElevatedButton(
-                                                  onPressed: () {
-                                                    Navigator.of(context).pop();
-                                                  },
-                                                  child: Text(
-                                                    "시작하기",
-                                                    style: FontStyles
-                                                            .Caption1_sb
-                                                        .copyWith(
-                                                            color:
-                                                                Colors.white),
-                                                  ),
+                                                  "내 생각 작성하기",
                                                   style:
-                                                      ElevatedButton.styleFrom(
-                                                          backgroundColor:
-                                                              AppColors.v6,
-                                                          shape:
-                                                              RoundedRectangleBorder(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        50),
-                                                          ),
-                                                          minimumSize:
-                                                              Size(286, 37)),
+                                                      FontStyles.Br2_m.copyWith(
+                                                          color: AppColors.g6),
+                                                  textAlign: TextAlign.center,
                                                 ),
-                                              )
+                                              ),
+                                              IconButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                icon: SvgPicture.asset(
+                                                    'assets/images/newsletter_close.svg'), // 닫기 아이콘
+                                              ),
                                             ],
                                           ),
-                                        ),
-                                      );
+                                          content: Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Container(
+                                                  height: 1.0,
+                                                  width: double.infinity,
+                                                  color: AppColors.g2,
+                                                ),
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          0, 12.0, 0, 16),
+                                                  child: Text(
+                                                    "뉴스레터를 읽은 후\n여러분의 생각을 자유롭게 작성해보세요!",
+                                                    style: FontStyles.Bn1_m,
+                                                  ),
+                                                ),
+                                                SvgPicture.asset(
+                                                    'assets/images/newsletter_line3.svg'),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                          .fromLTRB(
+                                                          23.0, 16.0, 0.0, 16.0),
+                                                      // 오른쪽에 여백 추가
+                                                      child: Text(
+                                                          "앞으로 어떻게 될 것 같나요?",
+                                                          style: FontStyles.Br2_sb
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .v6),
+                                                          textAlign:
+                                                              TextAlign.center),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Theme(
+                                                  data: ThemeData(
+                                                    splashColor:
+                                                        Colors.transparent,
+                                                    highlightColor:
+                                                        Colors.transparent,
+                                                  ),
+                                                  child: Row(
+                                                    children: [
+                                                      Obx(() => InkWell(
+                                                            onTap: () {
+                                                              controller
+                                                                  .selectAgree(0);
+                                                            },
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 8.0),
+                                                              child: Column(
+                                                                children: [
+                                                                  controller
+                                                                          .isDialogAgreeList[0]
+                                                                      ? Container(
+                                                                          width:
+                                                                              90,
+                                                                          height:
+                                                                              31,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(14.6),
+                                                                              color: AppColors.v1,
+                                                                              border: Border.all(color: AppColors.v6)),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              '긍정적인 전망',
+                                                                              style:
+                                                                                  FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      : Container(
+                                                                          width:
+                                                                              90,
+                                                                          height:
+                                                                              31,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(14.6),
+                                                                              border: Border.all(color: Color(0xFFAAAAB9))),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              '긍정적인 전망',
+                                                                              style:
+                                                                                  FontStyles.Caption2_sb.copyWith(color: Color(0xFFAAAAB9)),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          )),
+                                                      Obx(() => InkWell(
+                                                            onTap: () {
+                                                              controller
+                                                                  .selectAgree(1);
+                                                            },
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 8.0),
+                                                              child: Column(
+                                                                children: [
+                                                                  controller
+                                                                          .isDialogAgreeList[1]
+                                                                      ? Container(
+                                                                          width:
+                                                                              90,
+                                                                          height:
+                                                                              31,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(14.6),
+                                                                              color: AppColors.v1,
+                                                                              border: Border.all(color: AppColors.v6)),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              '부정적인 전망',
+                                                                              style:
+                                                                                  FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      : Container(
+                                                                          width:
+                                                                              90,
+                                                                          height:
+                                                                              31,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(14.6),
+                                                                              border: Border.all(color: Color(0xFFAAAAB9))),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              '부정적인 전망',
+                                                                              style:
+                                                                                  FontStyles.Caption2_sb.copyWith(color: Color(0xFFAAAAB9)),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          )),
+                                                      Obx(() => InkWell(
+                                                            onTap: () {
+                                                              controller
+                                                                  .selectAgree(2);
+                                                            },
+                                                            child: Padding(
+                                                              padding:
+                                                                  const EdgeInsets
+                                                                      .only(
+                                                                      left: 8.0),
+                                                              child: Column(
+                                                                children: [
+                                                                  controller
+                                                                          .isDialogAgreeList[2]
+                                                                      ? Container(
+                                                                          width:
+                                                                              90,
+                                                                          height:
+                                                                              31,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(14.6),
+                                                                              color: AppColors.v1,
+                                                                              border: Border.all(color: AppColors.v6)),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              '잘 모르겠음',
+                                                                              style:
+                                                                                  FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                      : Container(
+                                                                          width:
+                                                                              90,
+                                                                          height:
+                                                                              31,
+                                                                          decoration: BoxDecoration(
+                                                                              borderRadius:
+                                                                                  BorderRadius.circular(14.6),
+                                                                              border: Border.all(color: Color(0xFFAAAAB9))),
+                                                                          child:
+                                                                              Center(
+                                                                            child:
+                                                                                Text(
+                                                                              '잘 모르겠음',
+                                                                              style:
+                                                                                  FontStyles.Caption2_sb.copyWith(color: Color(0xFFAAAAB9)),
+                                                                            ),
+                                                                          ),
+                                                                        )
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ))
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBox(
+                                                  height: 120,
+                                                  child: Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            top: 16.0),
+                                                    child: TextFormField(
+                                                      keyboardType:
+                                                          TextInputType.multiline,
+                                                      maxLines: null,
+                                                      maxLength: 200,
+                                                      expands: true,
+                                                      decoration: InputDecoration(
+                                                          border:
+                                                              OutlineInputBorder(),
+                                                          hintText:
+                                                              '여러분의 생각을 남겨보세요. (최대 200자)',
+                                                          hintStyle: FontStyles
+                                                                  .Caption2_r
+                                                              .copyWith(
+                                                                  color: AppColors
+                                                                      .g5),
+                                                          filled: true,
+                                                          fillColor:
+                                                              AppColors.g1),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    Obx(() => Checkbox(
+                                                          activeColor:
+                                                              AppColors.v5,
+                                                          checkColor:
+                                                              Colors.white,
+                                                          value: controller
+                                                              .isLookAlone.value,
+                                                          onChanged: (value) {
+                                                            controller
+                                                                .selectLook();
+                                                          },
+                                                        )),
+                                                    Text(
+                                                      "나 혼자만 볼래요",
+                                                      style: FontStyles.Label2_r
+                                                          .copyWith(
+                                                              color:
+                                                                  AppColors.g6),
+                                                    )
+                                                  ],
+                                                ),
+                                                Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.end,
+                                                  children: [
+                                                    Text(
+                                                      "내 생각은 ‘둘러보기’에 공유될 수 있어요!",
+                                                      style: FontStyles.Caption2_r
+                                                          .copyWith(
+                                                              color:
+                                                                  AppColors.g4),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Padding(
+                                                  padding: const EdgeInsets.only(
+                                                      top: 32.0),
+                                                  child: ElevatedButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context).pop();
+                                                    },
+                                                    child: Text(
+                                                      "시작하기",
+                                                      style: FontStyles
+                                                              .Caption1_sb
+                                                          .copyWith(
+                                                              color:
+                                                                  Colors.white),
+                                                    ),
+                                                    style:
+                                                        ElevatedButton.styleFrom(
+                                                            backgroundColor:
+                                                                AppColors.v6,
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          50),
+                                                            ),
+                                                            minimumSize:
+                                                                Size(286, 37)),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      });
                                     });
-                                  });
-                            },
-                            icon: Image.asset(
-                              'assets/images/newsletter_think3.png',
-                              width: 143,
-                              height: 143,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0), // 패딩 추가
-                            child: IconButton(
-                              onPressed: () {},
-                              icon: Image.asset(
-                                'assets/images/newsletter_invest1.png',
-                                width: 143,
-                                height: 143,
-                              ),
+                              },
+                              icon: Container(
+                                width: 328, height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: AppColors.v6
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      '내 생각 작성하기',style: FontStyles.Bn1_b.copyWith(color: Colors.white),
+                                    )),
+                              )
                             ),
                           ),
                         ],
