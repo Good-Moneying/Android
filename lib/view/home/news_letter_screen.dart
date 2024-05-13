@@ -312,6 +312,22 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               borderRadius: BorderRadius.circular(16),
                               color: AppColors.g1),
                         )),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 50.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text('오늘의 ',style: FontStyles.Br2_sb),
+                              SvgPicture.asset('assets/icons/editor_newthink.svg'),
+                              Text(' 어떠셨나요?',style: FontStyles.Br2_sb),
+                            ],
+                          ),
+                        ),
+                    Image.asset(
+                      'assets/icons/news_letter_think.png',
+                      width: 143,
+                      height: 143,
+                    ),
                     Padding(
                       padding: const EdgeInsets.only(top: 40.0),
                       child: Row(
@@ -691,22 +707,17 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                       });
                                     });
                               },
-                              icon: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text('오늘의 ',style: FontStyles.Br2_sb),
-                                      SvgPicture.asset('assets/icons/editor_newthink.svg'),
-                                      Text(' 어떠셨나요?',style: FontStyles.Br2_sb),
-                                    ],
-                                  )
-                                  ,Image.asset(
-                                    'assets/icons/news_letter_think.png',
-                                    width: 143,
-                                    height: 143,
-                                  ),
-                                ],
-                              ),
+                              icon: Container(
+                                width: 328, height: 50,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: AppColors.v6
+                                ),
+                                child: Center(
+                                    child: Text(
+                                      '내 생각 작성하기',style: FontStyles.Bn1_b.copyWith(color: Colors.white),
+                                    )),
+                              )
                             ),
                           ),
                         ],
