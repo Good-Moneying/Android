@@ -35,14 +35,18 @@ class WelcomeScreen extends GetView<UserViewModel> {
                   height: Get.height * 0.1,
                 ),
                 Text(
-                  '경제 금융 지식',
+                  '준비완료!',
+                  style: FontStyles.Title1_b.copyWith(color: AppColors.v6),
+                ),
+                Text(
+                  '이제 경제 금융 지식',
                   style: FontStyles.Title2_sb.copyWith(color: AppColors.black),
                 ),
                 RichText(
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: '두둑',
+                        text: '뉴씽',
                         style:
                             FontStyles.Title1_b.copyWith(color: AppColors.v6),
                       ),
