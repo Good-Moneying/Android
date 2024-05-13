@@ -12,6 +12,7 @@ class TodayWord extends StatelessWidget {
   final String title;
   final String engTitle;
   final String meaning;
+  final String category;
   final bool isBookMark;
   final Function() onBookMark;
 
@@ -20,6 +21,7 @@ class TodayWord extends StatelessWidget {
     required this.title,
     required this.engTitle,
     required this.meaning,
+    required this.category,
     required this.isBookMark,
     required this.onBookMark,
   });
@@ -43,7 +45,7 @@ class TodayWord extends StatelessWidget {
                   title,
                   style: FontStyles.Bn1_b.copyWith(color: AppColors.v6),
                 ),
-                CustomChip(label: '기업'),
+                CustomChip(label: category),
                 Spacer(),
                 GestureDetector(
                   onTap: onBookMark,

@@ -88,8 +88,8 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       //출력테스트
                       print(formData);
                       //서버에 데이터 전송
-                      await test(accessToken);
-                      await onboarding(formData);
+                      //await test(accessToken);
+                      //await onboarding(formData);
 
                       Get.offAll(BottomNavigationView());
                     },

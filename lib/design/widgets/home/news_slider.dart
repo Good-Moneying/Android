@@ -53,7 +53,7 @@ newsSlider() {
             left: 10,
             bottom: 30,
             child: Text(
-              '“코인 급등 랠리?”\n도지코인 거래 급감',
+              controller.homeModel!.realtimeTrendNewsLetters[0].title,
               style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
@@ -100,7 +100,7 @@ newsSlider() {
             left: 10,
             bottom: 30,
             child: Text(
-              '“코인 급등 랠리?”\n도지코인 거래 급감',
+              controller.homeModel!.realtimeTrendNewsLetters[1].title,
               style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
@@ -147,7 +147,7 @@ newsSlider() {
             left: 10,
             bottom: 30,
             child: Text(
-              '“코인 급등 랠리?”\n도지코인 거래 급감',
+              controller.homeModel!.realtimeTrendNewsLetters[2].title,
               style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
