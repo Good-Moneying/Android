@@ -317,17 +317,23 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('오늘의 ',style: FontStyles.Br2_sb),
-                      //SvgPicture.asset('assets/icons/editor_newthink.svg'),
-                      Text(' 어떠셨나요?',style: FontStyles.Br2_sb),
+                      Text('이 ',style: FontStyles.Br2_sb),
+                      SvgPicture.asset('assets/icons/editor_live.svg'),
+                      SvgPicture.asset('assets/icons/editor_newthink.svg'),
+                      Text(' 에 대한 생각 듣고싶어요!',style: FontStyles.Br2_sb),
                     ],
                   ),
                 ),
-                /*Image.asset(
-                  'assets/icons/news_letter_think.png',
-                  width: 143,
-                  height: 143,
-                ),*/
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/icons/news_letter_think.png',
+                      width: 143,
+                      height: 143,
+                    ),
+                  ],
+                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
                   child: Row(
