@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 
@@ -205,10 +206,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           child: Align(
                               alignment: Alignment.topCenter,
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Text(
-                                  "급격한 기준금리 인상에도 불구하고, 미국의\n경제는 상대적으로 호황을 누리고 있음.",
-                                  style: FontStyles.Ln1_m.copyWith(
-                                      color: AppColors.g6))),
+                              child: Obx(
+                                      () =>Text(
+                                    controller.splitParagraph(controller.news.value.blocks[1].content, 1),softWrap: true,
+                                    style: FontStyles.Ln1_m.copyWith(
+                                        color: AppColors.g6),
+                                  ))),
                         ),
                       ],
                     ),
@@ -230,10 +233,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           child: Align(
                               alignment: Alignment.topCenter,
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Text(
-                                  "이민자 증가, 높은 고용 유연성, 인공지능(AI)\n발전 등에 따른 노동생산성 향상이 미국 경제\n호황의 대표적 요인으로 꼽히고 있음.",
-                                  style: FontStyles.Ln1_m.copyWith(
-                                      color: AppColors.g6))),
+                              child: Obx(
+                                      () =>Text(
+                                    controller.splitParagraph(controller.news.value.blocks[1].content, 2),softWrap: true,
+                                    style: FontStyles.Ln1_m.copyWith(
+                                        color: AppColors.g6),
+                                  ))),
                         ),
                       ],
                     ),
@@ -250,22 +255,39 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     Padding(
                         padding:
                             const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
-                        child: Text(
-                          "불과 몇 주 사이에 미국 통화 정책을 바라보는 분위기가 완\n전히 바뀌었어요. 얼마 전까진 다들 ‘올해 6월에 금리 인하\n가 시작될 것’이라고 했는데, 이젠 ‘아직 멀었다’는 사람이 많\n아졌죠.\n",
-                          style: FontStyles.Ln1_r,
-                        )),
-                    Text(
-                        "지난 16일(현지시간) 제롬 파월 미국 연방준비제도(Fed·연\n준) 의장은 사실상 6월 금리 인하가 무산됐음을 인정했어\n요. 파월 의장은 “최근 데이터는 (금리 인하에 대한) 확신을\n주지 못했고, 그런 확신을 얻는 데에는 예상보다 더 오랜 시\n간이 걸릴 것”이라고 말했어요.",
-                        style: FontStyles.Ln1_r.copyWith(color: Colors.black)),
+                        child: Obx(()=>Text(
+                          controller.news.value.blocks[2].content,
+                          softWrap: true
+                          ,style: FontStyles.Ln1_r,
+                        ))),
+                    Obx(() => Text(
+                      controller.news.value.blocks[3].content,
+                        softWrap: true
+                        ,style: FontStyles.Ln1_r.copyWith(color: Colors.black))),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
-                        child: Container(
+                        /*child: Container(
                           width: 328,
                           height: 164,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(16),
                               color: AppColors.g1),
-                        )),
+                        )*/
+                      child: Obx(()=>Image.network(
+                        width: 328, height: 164
+                        ,controller.news.value.blocks[4].content,
+                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                          if (loadingProgress == null) {
+                            return child;
+                          } else {
+                            return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                          }
+                        },
+                        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                          return Text('Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                        },
+                      ),
+                    )),
                     Padding(
                         padding:
                             const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
