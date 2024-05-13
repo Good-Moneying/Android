@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -11,12 +12,15 @@ import '../history_widget.dart';
 class EditorCard extends StatelessWidget {
   final String title;
   final String image;
-
+  final bool isBookMark;
+  final Function() onEditor;
 
   const EditorCard({
     super.key,
     required this.title,
     required this.image,
+    required this.isBookMark,
+    required this.onEditor,
   });
 
   @override
@@ -28,11 +32,10 @@ class EditorCard extends StatelessWidget {
       child: Card(
         color: AppColors.white,
         surfaceTintColor: Colors.transparent,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         elevation: 3,
         child: Padding(
-          padding: const EdgeInsets.all(15.0),
+          padding: const EdgeInsets.all(20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -52,21 +55,25 @@ class EditorCard extends StatelessWidget {
                   Positioned(
                     top: 13,
                     right: 16,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Container(
-                          width: 34,
-                          height: 34,
-                          decoration: BoxDecoration(
-                            color: AppColors.white.withOpacity(0.5),
-                            borderRadius:
-                            BorderRadius.all(Radius.circular(6)),
+                    child: GestureDetector(
+                      onTap: onEditor,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: [
+                          Container(
+                            width: 34,
+                            height: 34,
+                            decoration: BoxDecoration(
+                              color: AppColors.white.withOpacity(0.5),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(6)),
+                            ),
                           ),
-                        ),
-                        SvgPicture.asset(
-                            'assets/icons/bookmark_unfill.svg'),
-                      ],
+                          SvgPicture.asset(isBookMark
+                              ? 'assets/icons/bookmark_fill.svg'
+                              : 'assets/icons/bookmark_unfill.svg'),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -78,8 +85,8 @@ class EditorCard extends StatelessWidget {
                 padding: const EdgeInsets.only(bottom: 5.0),
                 child: Text(
                   title,
-                  style: FontStyles.Headline2_b.copyWith(
-                      color: AppColors.black),
+                  style:
+                      FontStyles.Headline2_b.copyWith(color: AppColors.black),
                 ),
               ),
               Row(

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
@@ -10,12 +12,16 @@ class TodayWord extends StatelessWidget {
   final String title;
   final String engTitle;
   final String meaning;
+  final bool isBookMark;
+  final Function() onBookMark;
 
   const TodayWord({
     super.key,
     required this.title,
     required this.engTitle,
     required this.meaning,
+    required this.isBookMark,
+    required this.onBookMark,
   });
 
   @override
@@ -27,7 +33,7 @@ class TodayWord extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.fromLTRB(16, 12, 12, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -35,28 +41,30 @@ class TodayWord extends StatelessWidget {
               children: [
                 Text(
                   title,
-                  style:
-                  FontStyles.Bn1_b.copyWith(color: AppColors.v6),
+                  style: FontStyles.Bn1_b.copyWith(color: AppColors.v6),
                 ),
                 CustomChip(label: '기업'),
                 Spacer(),
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Container(
-                      width: 34,
-                      height: 34,
-                      decoration: BoxDecoration(
-                        borderRadius:
-                        BorderRadius.all(Radius.circular(6)),
-                        border: Border.all(
-                          color: AppColors.g2.withOpacity(0.3),
+                GestureDetector(
+                  onTap: onBookMark,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Container(
+                        width: 34,
+                        height: 34,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(6)),
+                          border: Border.all(
+                            color: AppColors.g2.withOpacity(0.3),
+                          ),
                         ),
                       ),
-                    ),
-                    SvgPicture.asset(
-                        'assets/icons/bookmark_unfill.svg'),
-                  ],
+                      SvgPicture.asset(isBookMark
+                          ? 'assets/icons/bookmark_fill.svg'
+                          : 'assets/icons/bookmark_unfill.svg'),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -72,10 +80,9 @@ class TodayWord extends StatelessWidget {
               maxLines: 3,
               softWrap: true,
               text: TextSpan(
-                text:
-                meaning,
-                style: FontStyles.Bn1_r.copyWith(
-                    color: AppColors.g5, height: 1.5),
+                text: meaning,
+                style:
+                    FontStyles.Bn1_r.copyWith(color: AppColors.g5, height: 1.5),
               ),
             ),
           ],

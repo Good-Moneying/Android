@@ -9,7 +9,9 @@ class HomeViewModel extends GetxController {
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
 
   Rx<bool> isEditorBookMark = false.obs;
-  Rx<bool> isRecommendBookMark = false.obs;
+  Rx<bool> isRecommendFirst = false.obs;
+  Rx<bool> isRecommendSecond = false.obs;
+  Rx<bool> isRecommendThird = false.obs;
   Rx<bool> isWordBookMark = false.obs;
   Rx<int> indicatorIndex = 0.obs;
   Rx<bool> isDialogAgree = false.obs;
