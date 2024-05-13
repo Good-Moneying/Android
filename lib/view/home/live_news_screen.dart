@@ -323,11 +323,11 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     ],
                   ),
                 ),
-                Image.asset(
+                /*Image.asset(
                   'assets/icons/news_letter_think.png',
                   width: 143,
                   height: 143,
-                ),
+                ),*/
                 Padding(
                   padding: const EdgeInsets.only(top: 40.0),
                   child: Row(
