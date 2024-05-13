@@ -1,12 +1,11 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:meetup/model/home/home_model.dart';
 import 'package:meetup/repository/home_repository.dart';
 
-import '../model/news_letter_model.dart';
+import '../model/home/news_letter_model.dart';
 
 class HomeViewModel extends GetxController {
-
-  final HomeRepository _repository = HomeRepository(); // 의존성 주입
 
   Rx<bool> isEditorBookMark = false.obs;
   Rx<bool> isRecommendFirst = false.obs;
@@ -17,6 +16,29 @@ class HomeViewModel extends GetxController {
   Rx<bool> isDialogAgree = false.obs;
   RxList<bool> isDialogAgreeList = [false, false, false].obs;
   Rx<bool> isLookAlone = false.obs;
+
+
+  final HomeRepository _repository = HomeRepository(); // 의존성 주입
+  late final Rxn<HomeModel> _homeModel;
+
+  HomeModel? get homeModel => _homeModel.value;
+
+  @override
+  void onInit() {
+    super.onInit();
+
+    getHomeModel();
+    _homeModel = Rxn<HomeModel>();
+  }
+
+  Future<void> getHomeModel() async {
+    try{
+      _homeModel.value = await _repository.getHomeModel();
+    } catch(e){
+      print('$e');
+    }
+  }
+
 
   Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
     publishedAt: "",
