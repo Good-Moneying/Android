@@ -51,9 +51,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                   children: [
                     Obx(
                       () => Flexible(
-                        child: Text(controller.news.value.blocks[0].content,softWrap: true,
-                            style: FontStyles.Title2_sb.copyWith(
-                                color: AppColors.black),),
+                        child: Text(
+                          controller.news.value.blocks[0].content,
+                          softWrap: true,
+                          style: FontStyles.Title2_sb.copyWith(
+                              color: AppColors.black),
+                        ),
                       ),
                     ),
                     //Expanded(child: Container()),
@@ -102,11 +105,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Obx(
-                                () =>Text(controller.news.value.publishedAt,
-                            style:
-                                FontStyles.Ln1_r.copyWith(color: Colors.grey)))
-                    ),
+                        child: Obx(() => Text(controller.news.value.publishedAt,
+                            style: FontStyles.Ln1_r.copyWith(
+                                color: Colors.grey)))),
                     Expanded(child: Container()),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
@@ -117,22 +118,23 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                         height: 20,
                       ),
                     ),
-                Obx(
-                      () =>RichText(
-                      text: TextSpan(
-                        text: 'Edit By. ',
-                        style: FontStyles.Caption1_r.copyWith(
-                            color: AppColors.g3), //기본style을 지정해줘야함
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: controller.news.value.editor,
-                            style: FontStyles.Caption1_m.copyWith(
-                                color: AppColors.g3), //기본style을 지정해줘야함
-                          ),
-                        ],
+                    Obx(
+                      () => RichText(
+                        text: TextSpan(
+                          text: 'Edit By. ',
+                          style: FontStyles.Caption1_r.copyWith(
+                              color: AppColors.g3), //기본style을 지정해줘야함
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: controller.news.value.editor,
+                              style: FontStyles.Caption1_m.copyWith(
+                                  color: AppColors.g3), //기본style을 지정해줘야함
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                )],
+                    )
+                  ],
                 ),
               ),
               Container(
@@ -179,36 +181,11 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           child: Align(
                               alignment: Alignment.topCenter,
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Obx(
-                                      () =>Text(
-                                controller.splitParagraph(controller.news.value.blocks[1].content, 0),softWrap: true,
-                                style: FontStyles.Ln1_m.copyWith(
-                                    color: AppColors.g6),
-                              ))),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                          child: Align(
-                              alignment: Alignment.topCenter,
-                              // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: SvgPicture.asset(
-                                  'assets/images/newsletter_dotori.svg')),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(
-                              18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                          child: Align(
-                              alignment: Alignment.topCenter,
-                              // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Obx(
-                                      () =>Text(
-                                    controller.splitParagraph(controller.news.value.blocks[1].content, 1),softWrap: true,
+                              child: Obx(() => Text(
+                                    controller.splitParagraph(
+                                        controller.news.value.blocks[1].content,
+                                        0),
+                                    softWrap: true,
                                     style: FontStyles.Ln1_m.copyWith(
                                         color: AppColors.g6),
                                   ))),
@@ -233,9 +210,40 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           child: Align(
                               alignment: Alignment.topCenter,
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Obx(
-                                      () =>Text(
-                                    controller.splitParagraph(controller.news.value.blocks[1].content, 2),softWrap: true,
+                              child: Obx(() => Text(
+                                    controller.splitParagraph(
+                                        controller.news.value.blocks[1].content,
+                                        1),
+                                    softWrap: true,
+                                    style: FontStyles.Ln1_m.copyWith(
+                                        color: AppColors.g6),
+                                  ))),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                              18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter,
+                              // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: SvgPicture.asset(
+                                  'assets/images/newsletter_dotori.svg')),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(
+                              18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                          child: Align(
+                              alignment: Alignment.topCenter,
+                              // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                              child: Obx(() => Text(
+                                    controller.splitParagraph(
+                                        controller.news.value.blocks[1].content,
+                                        2),
+                                    softWrap: true,
                                     style: FontStyles.Ln1_m.copyWith(
                                         color: AppColors.g6),
                                   ))),
@@ -255,15 +263,14 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     Padding(
                         padding:
                             const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
-                        child: Obx(()=>Text(
-                          controller.news.value.blocks[2].content,
-                          softWrap: true
-                          ,style: FontStyles.Ln1_r,
-                        ))),
-                    Obx(() => Text(
-                      controller.news.value.blocks[3].content,
-                        softWrap: true
-                        ,style: FontStyles.Ln1_r.copyWith(color: Colors.black))),
+                        child: Obx(() => Text(
+                              controller.news.value.blocks[2].content,
+                              softWrap: true,
+                              style: FontStyles.Ln1_r,
+                            ))),
+                    Obx(() => Text(controller.news.value.blocks[3].content,
+                        softWrap: true,
+                        style: FontStyles.Ln1_r.copyWith(color: Colors.black))),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
                         /*child: Container(
@@ -273,21 +280,26 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               borderRadius: BorderRadius.circular(16),
                               color: AppColors.g1),
                         )*/
-                      child: Obx(()=>Image.network(
-                        width: 328, height: 164
-                        ,controller.news.value.blocks[4].content,
-                        loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) {
-                            return child;
-                          } else {
-                            return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                          }
-                        },
-                        errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
-                          return Text('Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                        },
-                      ),
-                    )),
+                        child: Obx(
+                          () => Image.network(
+                            width: 328,
+                            height: 164,
+                            controller.news.value.blocks[4].content,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                              }
+                            },
+                            errorBuilder: (BuildContext context, Object error,
+                                StackTrace? stackTrace) {
+                              return Text(
+                                  'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                            },
+                          ),
+                        )),
                     Padding(
                         padding:
                             const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
