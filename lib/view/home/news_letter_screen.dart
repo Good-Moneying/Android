@@ -335,7 +335,10 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                       return AlertDialog(
                                         surfaceTintColor: Colors.transparent,
                                         backgroundColor: AppColors.white,
-                                        insetPadding: EdgeInsets.zero,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(13.2),
+                                        ),
+                                        //insetPadding: EdgeInsets.zero,
                                         contentPadding: const EdgeInsets.only(
                                             left: 16.0, right: 16.0),
                                         title: Row(
@@ -392,7 +395,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                     child: Text(
                                                         "앞으로 어떻게 될 것 같나요?",
                                                         style:
-                                                            FontStyles.Lr1_sb,
+                                                            FontStyles.Br2_sb.copyWith(color: AppColors.v6),
                                                         textAlign:
                                                             TextAlign.center),
                                                   ),
@@ -405,57 +408,58 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                           controller
                                                               .selectAgree(0);
                                                         },
-                                                        child: Column(
-                                                          children: [
-                                                            controller
-                                                                    .isDialogAgreeList[0]
-                                                                ? Container(
-                                                                    width: 90,
-                                                                    height: 31,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
-                                                                        color: AppColors
-                                                                            .v1,
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                AppColors.v6)),
-                                                                    child:
-                                                                        Center(
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(left: 8.0),
+                                                          child: Column(
+                                                            children: [
+                                                              controller
+                                                                      .isDialogAgreeList[0]
+                                                                  ? Container(
+                                                                      width: 90,
+                                                                      height: 31,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  14.6),
+                                                                          color: AppColors
+                                                                              .v1,
+                                                                          border: Border.all(
+                                                                              color:
+                                                                                  AppColors.v6)),
                                                                       child:
-                                                                          Text(
-                                                                        '긍정적인 전망',
-                                                                        style: FontStyles.Caption2_sb.copyWith(
-                                                                            color:
-                                                                                AppColors.v6),
+                                                                          Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '긍정적인 전망',
+                                                                          style: FontStyles.Caption2_sb.copyWith(
+                                                                              color:
+                                                                                  AppColors.v6),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    width: 90,
-                                                                    height: 31,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
-                                                                        color: AppColors
-                                                                            .g3,
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                Color(0xFFAAAAB9))),
-                                                                    child:
-                                                                        Center(
+                                                                    )
+                                                                  : Container(
+                                                                      width: 90,
+                                                                      height: 31,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  14.6),
+                                                                          border: Border.all(
+                                                                              color:
+                                                                                  Color(0xFFAAAAB9))),
                                                                       child:
-                                                                          Text(
-                                                                        '긍정적인 전망',
-                                                                        style: FontStyles.Caption2_sb.copyWith(
-                                                                            color:
-                                                                                Color(0xFFAAAAB9)),
+                                                                          Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '긍정적인 전망',
+                                                                          style: FontStyles.Caption2_sb.copyWith(
+                                                                              color:
+                                                                                  Color(0xFFAAAAB9)),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                          ],
+                                                                    )
+                                                            ],
+                                                          ),
                                                         ),
                                                       )),
                                                   Obx(() => InkWell(
@@ -463,57 +467,58 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                           controller
                                                               .selectAgree(1);
                                                         },
-                                                        child: Column(
-                                                          children: [
-                                                            controller
-                                                                    .isDialogAgreeList[1]
-                                                                ? Container(
-                                                                    width: 90,
-                                                                    height: 31,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
-                                                                        color: AppColors
-                                                                            .v1,
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                AppColors.v6)),
-                                                                    child:
-                                                                        Center(
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(left: 8.0),
+                                                          child: Column(
+                                                            children: [
+                                                              controller
+                                                                      .isDialogAgreeList[1]
+                                                                  ? Container(
+                                                                      width: 90,
+                                                                      height: 31,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  14.6),
+                                                                          color: AppColors
+                                                                              .v1,
+                                                                          border: Border.all(
+                                                                              color:
+                                                                                  AppColors.v6)),
                                                                       child:
-                                                                          Text(
-                                                                        '부정적인 전망',
-                                                                        style: FontStyles.Caption2_sb.copyWith(
-                                                                            color:
-                                                                                AppColors.v6),
+                                                                          Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '부정적인 전망',
+                                                                          style: FontStyles.Caption2_sb.copyWith(
+                                                                              color:
+                                                                                  AppColors.v6),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    width: 90,
-                                                                    height: 31,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
-                                                                        color: AppColors
-                                                                            .g3,
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                Color(0xFFAAAAB9))),
-                                                                    child:
-                                                                        Center(
+                                                                    )
+                                                                  : Container(
+                                                                      width: 90,
+                                                                      height: 31,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  14.6),
+                                                                          border: Border.all(
+                                                                              color:
+                                                                                  Color(0xFFAAAAB9))),
                                                                       child:
-                                                                          Text(
-                                                                        '부정적인 전망',
-                                                                        style: FontStyles.Caption2_sb.copyWith(
-                                                                            color:
-                                                                                Color(0xFFAAAAB9)),
+                                                                          Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '부정적인 전망',
+                                                                          style: FontStyles.Caption2_sb.copyWith(
+                                                                              color:
+                                                                                  Color(0xFFAAAAB9)),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                          ],
+                                                                    )
+                                                            ],
+                                                          ),
                                                         ),
                                                       )),
                                                   Obx(() => InkWell(
@@ -521,57 +526,58 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                           controller
                                                               .selectAgree(2);
                                                         },
-                                                        child: Column(
-                                                          children: [
-                                                            controller
-                                                                    .isDialogAgreeList[2]
-                                                                ? Container(
-                                                                    width: 90,
-                                                                    height: 31,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
-                                                                        color: AppColors
-                                                                            .v1,
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                AppColors.v6)),
-                                                                    child:
-                                                                        Center(
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(left: 8.0),
+                                                          child: Column(
+                                                            children: [
+                                                              controller
+                                                                      .isDialogAgreeList[2]
+                                                                  ? Container(
+                                                                      width: 90,
+                                                                      height: 31,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  14.6),
+                                                                          color: AppColors
+                                                                              .v1,
+                                                                          border: Border.all(
+                                                                              color:
+                                                                                  AppColors.v6)),
                                                                       child:
-                                                                          Text(
-                                                                        '잘 모르겠음',
-                                                                        style: FontStyles.Caption2_sb.copyWith(
-                                                                            color:
-                                                                                AppColors.v6),
+                                                                          Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '잘 모르겠음',
+                                                                          style: FontStyles.Caption2_sb.copyWith(
+                                                                              color:
+                                                                                  AppColors.v6),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                                : Container(
-                                                                    width: 90,
-                                                                    height: 31,
-                                                                    decoration: BoxDecoration(
-                                                                        borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
-                                                                        color: AppColors
-                                                                            .g3,
-                                                                        border: Border.all(
-                                                                            color:
-                                                                                Color(0xFFAAAAB9))),
-                                                                    child:
-                                                                        Center(
+                                                                    )
+                                                                  : Container(
+                                                                      width: 90,
+                                                                      height: 31,
+                                                                      decoration: BoxDecoration(
+                                                                          borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  14.6),
+                                                                          border: Border.all(
+                                                                              color:
+                                                                                  Color(0xFFAAAAB9))),
                                                                       child:
-                                                                          Text(
-                                                                        '잘 모르겠음',
-                                                                        style: FontStyles.Caption2_sb.copyWith(
-                                                                            color:
-                                                                                Color(0xFFAAAAB9)),
+                                                                          Center(
+                                                                        child:
+                                                                            Text(
+                                                                          '잘 모르겠음',
+                                                                          style: FontStyles.Caption2_sb.copyWith(
+                                                                              color:
+                                                                                  Color(0xFFAAAAB9)),
+                                                                        ),
                                                                       ),
-                                                                    ),
-                                                                  )
-                                                          ],
+                                                                    )
+                                                            ],
+                                                          ),
                                                         ),
                                                       ))
                                                 ],
