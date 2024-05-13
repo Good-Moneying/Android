@@ -2,14 +2,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
+import 'package:meetup/viewModel/profile_viewModel.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ProfileScreen extends GetView<ProfileViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ProfileViewModel());
+    controller.getProfileData();
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -72,9 +77,11 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4.0),
-                                  child: Text(
-                                    '김두둑',
-                                    style: FontStyles.Bn1_b,
+                                  child: Obx(()=>
+                                    Text(
+                                      controller.profileModel?.attendances[0][0]?.dayOfWeek ?? '널',
+                                      style: FontStyles.Bn1_b,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -104,9 +111,10 @@ class ProfileScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 8,
                                         ),
-                                        Text('12',
-                                            style: FontStyles.Br1_sb.copyWith(
-                                                color: AppColors.g6)),
+                                        Obx(()=>Text(controller.profileModel?.reward?.toString() ?? 'N/A',
+                                              style: FontStyles.Br1_sb.copyWith(
+                                                  color: AppColors.g6)),
+                                        ),
                                       ],
                                     ),
                                   ),
