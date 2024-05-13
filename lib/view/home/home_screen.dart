@@ -145,7 +145,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                         children: [
                           //닉네임 들어갈 부분
                           TextSpan(
-                            text: userController.nicknameController.value.text,
+                            text: '두식이',
                             style: FontStyles.Headline2_b.copyWith(
                                 color: AppColors.v6),
                           ),
