@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
@@ -13,6 +15,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -315,7 +318,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text('오늘의 ',style: FontStyles.Br2_sb),
-                      SvgPicture.asset('assets/icons/editor_newthink.svg'),
+                      //SvgPicture.asset('assets/icons/editor_newthink.svg'),
                       Text(' 어떠셨나요?',style: FontStyles.Br2_sb),
                     ],
                   ),
