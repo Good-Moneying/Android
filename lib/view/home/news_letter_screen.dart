@@ -273,13 +273,6 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                         style: FontStyles.Ln1_r.copyWith(color: Colors.black))),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
-                        /*child: Container(
-                          width: 328,
-                          height: 164,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: AppColors.g1),
-                        )*/
                         child: Obx(
                           () => Image.network(
                             width: 328,
@@ -327,6 +320,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           IconButton(
                             onPressed: () {
                               showDialog(
+                                  barrierDismissible: false,
                                   context: context,
                                   builder: (BuildContext context) {
                                     return StatefulBuilder(builder:
@@ -655,7 +649,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                               ),
                                               Padding(
                                                 padding: const EdgeInsets.only(
-                                                    top: 16.0),
+                                                    top: 32.0),
                                                 child: ElevatedButton(
                                                   onPressed: () {
                                                     Navigator.of(context).pop();
