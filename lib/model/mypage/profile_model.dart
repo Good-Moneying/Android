@@ -1,19 +1,23 @@
-class ProfileModel{
+class ProfileModel {
   final String nickname;
   final int reward;
-  final List<Attendances> attendances;
+  final List<List<Attendances>> attendances; // List<List<Attendances>>로 변경
 
   ProfileModel({
     required this.nickname,
     required this.reward,
     required this.attendances,
-});
+  });
 
-  factory ProfileModel.fromJson(Map<String, dynamic> json){
+  factory ProfileModel.fromJson(Map<String, dynamic> json) {
     return ProfileModel(
-        nickname: json['nickname'],
-        reward: json['reward'],
-        attendances: List<Attendances>.from(json['attendances'].map((attendances)=>Attendances.fromJson(attendances)))
+      nickname: json['nickname'],
+      reward: json['reward'],
+      attendances: (json['attendances']['attendances'] as List)
+          .map((attendancesList) => (attendancesList as List)
+          .map((attendances) => Attendances.fromJson(attendances))
+          .toList())
+          .toList(),
     );
   }
 }
