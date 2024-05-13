@@ -41,6 +41,9 @@ class HomeViewModel extends GetxController {
     for (int i = 0; i < isDialogAgreeList.length; i++) {
       if (i == index) {
         isDialogAgreeList[i] = !isDialogAgreeList[i];
+      } else {
+        // 다른 버튼들의 상태를 초기화
+        isDialogAgreeList[i] = false;
       }
     }
 

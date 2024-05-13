@@ -651,7 +651,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 padding: const EdgeInsets.only(
                                                     top: 16.0),
                                                 child: ElevatedButton(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                    Navigator.of(context).pop();
+                                                  },
                                                   child: Text(
                                                     "시작하기",
                                                     style: FontStyles
