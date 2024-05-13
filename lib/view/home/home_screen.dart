@@ -17,11 +17,14 @@ import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
-  final userController = Get.find<UserViewModel>();
+ // final userController = Get.find<UserViewModel>();
+
 
   @override
   Widget build(BuildContext context) {
     Get.put(HomeViewModel());
+    controller.getHomeModel();
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -62,8 +65,9 @@ class HomeScreen extends GetView<HomeViewModel> {
               //에디터 카드 위젯
               Obx(
                 () => EditorCard(
-                  title: 'title',
+                  title: controller.homeModel?.todayNewsLetter.title ?? '비어있음',
                   image:
+                      controller.homeModel?.todayNewsLetter.thumbnail ??
                       'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                   isBookMark: controller.isEditorBookMark.value,
                   onEditor: () {
@@ -126,7 +130,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                   ],
                 ),
               ),
-              newsSlider(),
+              Obx(() => newsSlider()),
               newsIndicator(),
               SizedBox(
                 height: Get.height * 0.05,
@@ -175,7 +179,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                 () => RecommendU(
                   image:
                       'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: '"코인 급등 랠리?" 도지코인 거래 급감',
+                  title: controller.homeModel!.customizeNewsLetters[0].title,
                   tag: '코인',
                   isRecommend: controller.isRecommendFirst.value,
                   onRecommend: () {
@@ -189,7 +193,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                 () => RecommendU(
                   image:
                       'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: '두식이님에게 추천 뉴스',
+                  title: controller.homeModel!.customizeNewsLetters[1].title,
                   tag: '주식',
                   isRecommend: controller.isRecommendSecond.value,
                   onRecommend: () {
@@ -203,7 +207,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                 () => RecommendU(
                   image:
                       'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: '테스트',
+                  title: controller.homeModel!.customizeNewsLetters[2].title,
                   tag: '금리',
                   isRecommend: controller.isRecommendThird.value,
                   onRecommend: () {
@@ -241,9 +245,10 @@ class HomeScreen extends GetView<HomeViewModel> {
               ),
               Obx(
                 () => TodayWord(
-                  title: 'title',
-                  engTitle: 'engTitle',
-                  meaning: 'meaning',
+                  title: controller.homeModel?.todayTerm.koreanName ?? '비어있음',
+                  engTitle: controller.homeModel?.todayTerm.englishName ?? '비어있음',
+                  meaning: controller.homeModel?.todayTerm.description ?? '비어있음',
+                  category: controller.homeModel?.todayTerm.category ?? '비어있음',
                   isBookMark: controller.isWordBookMark.value,
                   onBookMark: () {
                     controller.isWordBookMark.value
