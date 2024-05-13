@@ -48,7 +48,7 @@ class NicknameScreen extends GetView<UserViewModel> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '두둑',
+                      text: '뉴씽',
                       style: FontStyles.Title2_b.copyWith(color: AppColors.v6),
                     ),
                     TextSpan(
