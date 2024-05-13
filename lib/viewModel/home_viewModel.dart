@@ -14,6 +14,7 @@ class HomeViewModel extends GetxController {
   Rx<int> indicatorIndex = 0.obs;
   Rx<bool> isDialogAgree = false.obs;
   RxList<bool> isDialogAgreeList = [false, false, false].obs;
+  Rx<bool> isLookAlone = false.obs;
 
   Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
     publishedAt: "",
@@ -53,6 +54,10 @@ class HomeViewModel extends GetxController {
    String splitParagraph(String text, int i) {
     List<String> parts = text.split("\n");
     return parts[i];
+  }
+
+  void selectLook() {
+    isLookAlone.value = !isLookAlone.value;
   }
 
 }
