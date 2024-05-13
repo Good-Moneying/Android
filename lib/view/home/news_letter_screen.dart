@@ -14,7 +14,6 @@ import 'package:meetup/design/style/FontStyles.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
-
   @override
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
@@ -49,17 +48,18 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Obx(() =>
-                        Text(controller.news.value['editor'],
+                    Obx(
+                      () => Flexible(
+                        child: Text(controller.news.value.blocks[0].content,softWrap: true,
                             style: FontStyles.Title2_sb.copyWith(
-                                color: AppColors.black)),
+                                color: AppColors.black),),
+                      ),
                     ),
-                    Expanded(child: Container()),
-                        IconButton(
+                    //Expanded(child: Container()),
+                    IconButton(
                       icon: SvgPicture.asset(
                           'assets/icons/newsletter_bookmark.svg'),
-                      onPressed: () {
-                      },
+                      onPressed: () {},
                     ),
                   ],
                 ),
@@ -101,9 +101,11 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Text("2024.04.25",
+                        child: Obx(
+                                () =>Text(controller.news.value.publishedAt,
                             style:
-                                FontStyles.Ln1_r.copyWith(color: Colors.grey))),
+                                FontStyles.Ln1_r.copyWith(color: Colors.grey)))
+                    ),
                     Expanded(child: Container()),
                     Padding(
                       padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
@@ -114,21 +116,22 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                         height: 20,
                       ),
                     ),
-                    RichText(
+                Obx(
+                      () =>RichText(
                       text: TextSpan(
                         text: 'Edit By. ',
                         style: FontStyles.Caption1_r.copyWith(
                             color: AppColors.g3), //기본style을 지정해줘야함
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Amy',
+                            text: controller.news.value.editor,
                             style: FontStyles.Caption1_m.copyWith(
                                 color: AppColors.g3), //기본style을 지정해줘야함
                           ),
                         ],
                       ),
                     ),
-                  ],
+                )],
                 ),
               ),
               Container(
@@ -175,11 +178,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           child: Align(
                               alignment: Alignment.topCenter,
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Text(
-                                "물가상승률이 예상보다 높아 불과 몇 주 만에\n전문가들의 미국 기준금리 인하 예상 시점이\n한참 미뤄졌음.",
+                              child: Obx(
+                                      () =>Text(
+                                controller.splitParagraph(controller.news.value.blocks[1].content, 0),softWrap: true,
                                 style: FontStyles.Ln1_m.copyWith(
                                     color: AppColors.g6),
-                              )),
+                              ))),
                         ),
                       ],
                     ),
@@ -383,12 +387,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                         border: Border.all(
                                                                             color:
                                                                                 AppColors.v6)),
-                                                                    child: Text(
-                                                                      '긍정적인 전망',
-                                                                      style: FontStyles
-                                                                              .Caption2_sb
-                                                                          .copyWith(
-                                                                              color: AppColors.v6),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '긍정적인 전망',
+                                                                        style: FontStyles.Caption2_sb.copyWith(
+                                                                            color:
+                                                                                AppColors.v6),
+                                                                      ),
                                                                     ),
                                                                   )
                                                                 : Container(
@@ -403,12 +410,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                         border: Border.all(
                                                                             color:
                                                                                 Color(0xFFAAAAB9))),
-                                                                    child: Text(
-                                                                      '긍정적인 전망',
-                                                                      style: FontStyles
-                                                                              .Caption2_sb
-                                                                          .copyWith(
-                                                                              color: Color(0xFFAAAAB9)),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '긍정적인 전망',
+                                                                        style: FontStyles.Caption2_sb.copyWith(
+                                                                            color:
+                                                                                Color(0xFFAAAAB9)),
+                                                                      ),
                                                                     ),
                                                                   )
                                                           ],
@@ -435,12 +445,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                         border: Border.all(
                                                                             color:
                                                                                 AppColors.v6)),
-                                                                    child: Text(
-                                                                      '부정적인 전망',
-                                                                      style: FontStyles
-                                                                              .Caption2_sb
-                                                                          .copyWith(
-                                                                              color: AppColors.v6),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '부정적인 전망',
+                                                                        style: FontStyles.Caption2_sb.copyWith(
+                                                                            color:
+                                                                                AppColors.v6),
+                                                                      ),
                                                                     ),
                                                                   )
                                                                 : Container(
@@ -455,12 +468,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                         border: Border.all(
                                                                             color:
                                                                                 Color(0xFFAAAAB9))),
-                                                                    child: Text(
-                                                                      '부정적인 전망',
-                                                                      style: FontStyles
-                                                                              .Caption2_sb
-                                                                          .copyWith(
-                                                                              color: Color(0xFFAAAAB9)),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '부정적인 전망',
+                                                                        style: FontStyles.Caption2_sb.copyWith(
+                                                                            color:
+                                                                                Color(0xFFAAAAB9)),
+                                                                      ),
                                                                     ),
                                                                   )
                                                           ],
@@ -487,12 +503,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                         border: Border.all(
                                                                             color:
                                                                                 AppColors.v6)),
-                                                                    child: Text(
-                                                                      '잘 모르겠음',
-                                                                      style: FontStyles
-                                                                              .Caption2_sb
-                                                                          .copyWith(
-                                                                              color: AppColors.v6),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '잘 모르겠음',
+                                                                        style: FontStyles.Caption2_sb.copyWith(
+                                                                            color:
+                                                                                AppColors.v6),
+                                                                      ),
                                                                     ),
                                                                   )
                                                                 : Container(
@@ -507,12 +526,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                         border: Border.all(
                                                                             color:
                                                                                 Color(0xFFAAAAB9))),
-                                                                    child: Text(
-                                                                      '잘 모르겠음',
-                                                                      style: FontStyles
-                                                                              .Caption2_sb
-                                                                          .copyWith(
-                                                                              color: Color(0xFFAAAAB9)),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Text(
+                                                                        '잘 모르겠음',
+                                                                        style: FontStyles.Caption2_sb.copyWith(
+                                                                            color:
+                                                                                Color(0xFFAAAAB9)),
+                                                                      ),
                                                                     ),
                                                                   )
                                                           ],

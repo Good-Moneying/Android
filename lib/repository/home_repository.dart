@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../model/news_letter_model.dart';
+
 class HomeRepository {
   final Dio _dio = Dio();
 
@@ -12,13 +14,13 @@ class HomeRepository {
     };
   }
 
-  Future<Map<String, dynamic>> getEditorNews() async {
+  Future<NewsLetterModel> getEditorNews() async {
     try {
       print('getEditorNews() 호출');
       final response = await _dio.get("/api/newsletters/test");
 
       if (response.statusCode == 200) {
-        return response.data;
+        return NewsLetterModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception('Failed to load editor news: ${response.statusMessage}');

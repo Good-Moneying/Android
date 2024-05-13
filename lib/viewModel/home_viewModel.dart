@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 import 'package:meetup/repository/home_repository.dart';
 
+import '../model/news_letter_model.dart';
+
 class HomeViewModel extends GetxController {
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
@@ -13,12 +15,19 @@ class HomeViewModel extends GetxController {
   Rx<bool> isDialogAgree = false.obs;
   RxList<bool> isDialogAgreeList = [false, false, false].obs;
 
-  Rx<Map<String, dynamic>> news = Rx<Map<String, dynamic>>({}); // 뉴스 데이터를 저장할 Rx 변수 추가
+  Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
+    publishedAt: "",
+    editor: "",
+    blocks: [],
+    comments: [],
+    isCommented: false,
+  ));
+
 
   void getEditorNews() async{
     try{
       print("getEditorNews() start!");
-      var data = await _repository.getEditorNews();
+      NewsLetterModel data = await _repository.getEditorNews();
       news.value = data;
 
     } catch(e){
@@ -41,5 +50,9 @@ class HomeViewModel extends GetxController {
     }
   }
 
+   String splitParagraph(String text, int i) {
+    List<String> parts = text.split("\n");
+    return parts[i];
+  }
 
 }
