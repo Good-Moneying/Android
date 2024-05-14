@@ -60,7 +60,7 @@ class ProfileRepository{
   Future<ArchivesNewsLetterModel> getNewsLetterData() async {
     try {
       print('getNewsLetterData() 호출');
-      final response = await _dio.get("/api/archives/newsletters/{category}");
+      final response = await _dio.get("/api/archives/newsletters/{category}/test", queryParameters: {'category' : ''});
 
       if (response.statusCode == 200) {
         return ArchivesNewsLetterModel.fromJson(response.data);
@@ -72,4 +72,5 @@ class ProfileRepository{
       throw Exception('Error occurred!!!: $e');
     }
   }
+
 }
