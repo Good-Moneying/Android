@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../model/mypage/archives_term_model.dart';
 import '../model/mypage/profile_model.dart';
 
 class ProfileRepository{
@@ -13,19 +14,45 @@ class ProfileRepository{
       return status! < 500;
     };
   }
-  
+
   Future<ProfileModel> getProfileData() async {
-    try{
+    try {
       print('getProfileData() 호출');
       final response = await _dio.get("/api/users/mypage");
 
-      if(response.statusCode == 200){
+      if (response.statusCode == 200) {
         return ProfileModel.fromJson(response.data);
-      } else{
-        throw Exception('마이페이지 실패 : ${response.statusMessage}' );
+      } else {
+        throw Exception('마이페이지 실패! : ${response.statusCode} - ${response.statusMessage}');
       }
-    } catch(e){
-      throw Exception('Error occurred: $e');
+    } catch (e) {
+      print('오류 발생!: $e');
+      throw Exception('Error occurred!!: $e');
+    }
+  }
+
+  Future<ArchivesTermModel> getTermData() async {
+    try {
+      print('getTermData() 호출');
+      final response = await _dio.get("/api/archives/terms");
+
+      if (response.statusCode == 200) {
+        return ArchivesTermModel.fromJson(response.data);
+      } else {
+        throw Exception('failed!! : ${response.statusCode} - ${response.statusMessage}');
+        
+      }
+    } catch (e) {
+      if (e is DioError) {
+        final errorResponse = e.response;
+        if (errorResponse != null) {
+          print('서버 응답 코드: ${errorResponse.statusCode}');
+          print('서버 응답 메시지: ${errorResponse.statusMessage}');
+          print('서버 응답 데이터: ${errorResponse.data}');
+        }
+      }
+      print('오류 발생!!: $e');
+      throw Exception('error! : $e');
     }
   }
 }
