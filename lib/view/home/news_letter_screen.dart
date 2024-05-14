@@ -11,7 +11,6 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:get/state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
-
 import '../../viewModel/home_viewModel.dart';
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
