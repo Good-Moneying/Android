@@ -35,7 +35,7 @@ class NicknameScreen extends GetView<UserViewModel> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(18, 10, 18, 18),
+          padding: EdgeInsets.fromLTRB(16, 10, 16, 16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -44,20 +44,14 @@ class NicknameScreen extends GetView<UserViewModel> {
               SizedBox(
                 height: Get.height * 0.05,
               ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '뉴씽',
-                      style: FontStyles.Title2_b.copyWith(color: AppColors.v6),
-                    ),
-                    TextSpan(
-                      text: '에서 사용할',
-                      style:
-                          FontStyles.Title2_m.copyWith(color: AppColors.black),
-                    )
-                  ],
-                ),
+              Row(
+                children: [
+                  SvgPicture.asset('assets/icons/logo_newthing.svg'),
+                  Text(
+                    '에서 사용할',
+                    style: FontStyles.Title2_m.copyWith(color: AppColors.black),
+                  ),
+                ],
               ),
               Text(
                 '닉네임을 알려주세요',

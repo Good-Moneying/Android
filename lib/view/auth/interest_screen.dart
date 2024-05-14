@@ -32,7 +32,7 @@ class InterestScreen extends GetView<UserViewModel> {
       ),
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
+            padding: EdgeInsets.fromLTRB(16, 10, 16, 16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
