@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
@@ -7,6 +8,7 @@ import '../../design/style/ColorStyles.dart';
 import 'package:get/get.dart';
 
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/history_widget.dart';
 
 class TodayTermScreen extends StatelessWidget {
   const TodayTermScreen({super.key});
@@ -154,17 +156,23 @@ class TodayTermScreen extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Align(
-                                alignment: Alignment.topCenter,
-                                child: SvgPicture.asset(
-                                    'assets/images/newsletter_dotori.svg'),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: SvgPicture.asset(
+                                      'assets/images/newsletter_dotori.svg'),
+                                ),
                               ),
-                              Align(
-                                alignment: Alignment.topCenter,
-                                child: Text(
-                                  '“미국 기업 ‘테슬라’가 적자였음에도 불구하고 \n나스닥에서 상장한 후 크게 발전한 사례에서 \n따와서 ‘테슬라 요건’이라는 이름이 붙었어요!”',
-                                  style: FontStyles.Ln1_r.copyWith(
-                                      color: AppColors.black),
+                              Flexible(
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Text(
+                                    '“미국 기업 ‘테슬라’가 적자였음에도 불구하고 나스닥에서 상장한 후 크게 발전한 사례에서 따와서 ‘테슬라 요건’이라는 이름이 붙었어요!”',
+                                    style: FontStyles.Ln1_r.copyWith(
+                                        color: AppColors.black),
+                                    softWrap: true,
+                                  ),
                                 ),
                               ),
                             ],
@@ -175,17 +183,23 @@ class TodayTermScreen extends StatelessWidget {
                           child: Row(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Align(
-                                alignment: Alignment.topCenter,
-                                child: SvgPicture.asset(
-                                    'assets/images/newsletter_dotori.svg'),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 12.0),
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: SvgPicture.asset(
+                                      'assets/images/newsletter_dotori.svg'),
+                                ),
                               ),
-                              Align(
-                                alignment: Alignment.topCenter,
-                                child: Text(
-                                  '“미국 기업 ‘테슬라’가 적자였음에도 불구하고 \n나스닥에서 상장한 후 크게 발전한 사례에서 \n따와서 ‘테슬라 요건’이라는 이름이 붙었어요!”',
-                                  style: FontStyles.Ln1_r.copyWith(
-                                      color: AppColors.black),
+                              Flexible(
+                                child: Align(
+                                  alignment: Alignment.topCenter,
+                                  child: Text(
+                                    '“우리나라는 2017년부터 테슬라 요건을 적용하고 있어요.”',
+                                    style: FontStyles.Ln1_r.copyWith(
+                                        color: AppColors.black),
+                                    softWrap: true,
+                                  ),
                                 ),
                               ),
                             ],
@@ -194,17 +208,23 @@ class TodayTermScreen extends StatelessWidget {
                         Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: SvgPicture.asset(
-                                  'assets/images/newsletter_dotori.svg'),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 12.0),
+                              child: Align(
+                                alignment: Alignment.topCenter,
+                                child: SvgPicture.asset(
+                                    'assets/images/newsletter_dotori.svg'),
+                              ),
                             ),
-                            Align(
-                              alignment: Alignment.topCenter,
-                              child: Text(
-                                '“미국 기업 ‘테슬라’가 적자였음에도 불구하고 \n나스닥에서 상장한 후 크게 발전한 사례에서 \n따와서 ‘테슬라 요건’이라는 이름이 붙었어요!”',
-                                style: FontStyles.Ln1_r.copyWith(
-                                    color: AppColors.black),
+                            Flexible(
+                              child: Align(
+                                alignment: Alignment.topCenter,
+                                child: Text(
+                                  '“국내에서 테슬라 요건으로 최초 상장한 기업은 온라인 상거래 플랫폼 사업을 영위하는 카페24예요.”',
+                                  style: FontStyles.Ln1_r.copyWith(
+                                      color: AppColors.black),
+                                  softWrap: true,
+                                ),
                               ),
                             ),
                           ],
@@ -219,12 +239,84 @@ class TodayTermScreen extends StatelessWidget {
                 color: AppColors.g1,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 21.0),
+                padding: const EdgeInsets.only(top: 21.0, bottom: 16.0),
                 child: Text(
                   '관련 뉴스',
                   style:
                       FontStyles.Headline1_b.copyWith(color: AppColors.black),
                 ),
+              ),
+              Stack(
+                children: [
+                  Card(
+                    color: AppColors.white,
+                    surfaceTintColor: Colors.transparent,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14)),
+                    child: Padding(
+                      padding: const EdgeInsets.all(5.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                              height: Get.height * 0.13,
+                              width: Get.width * 0.3,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.03,
+                          ),
+                          Expanded(
+                            child: Text(
+                              '“코인 급등 랠리?” 도지코인 거래 급감',
+                              style: FontStyles.Ln1_m.copyWith(
+                                  color: AppColors.black),
+                              softWrap: true,
+                            ),
+                          ),
+                          SizedBox(
+                            width: Get.width * 0.03,
+                          ),
+                          Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                width: 34,
+                                height: 34,
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(6)),
+                                  border: Border.all(
+                                    color: AppColors.g2.withOpacity(0.3),
+                                  ),
+                                ),
+                              ),
+                              SvgPicture.asset(
+                                  'assets/icons/bookmark_unfill.svg'),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    left: 125,
+                    bottom: 10,
+                    child: Row(
+                      children: [
+                        CustomChip(label: '코인'),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 10),
+                          child: History(),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ],
           ),
