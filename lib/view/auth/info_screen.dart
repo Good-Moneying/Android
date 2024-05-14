@@ -27,8 +27,6 @@ class InfoScreen extends GetView<UserViewModel> {
           },
           icon: SvgPicture.asset(
             'assets/icons/back_left.svg',
-            height: 36,
-            width: 36,
           ),
         ),
       ),
