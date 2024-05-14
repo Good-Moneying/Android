@@ -80,7 +80,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                   padding: const EdgeInsets.only(top: 4.0),
                                   child: Obx(()=>
                                     Text(
-                                      controller.profileModel?.attendances[0][0]?.dayOfWeek ?? '널',
+                                      controller.profileModel?.attendances?.data?[0]?.dayOfWeek ?? 'No data',
                                       style: FontStyles.Bn1_b,
                                     ),
                                   ),

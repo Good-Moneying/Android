@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
+import '../model/mypage/archives_news_letter_model.dart';
 import '../model/mypage/archives_term_model.dart';
 import '../model/mypage/profile_model.dart';
 
@@ -18,7 +19,7 @@ class ProfileRepository{
   Future<ProfileModel> getProfileData() async {
     try {
       print('getProfileData() 호출');
-      final response = await _dio.get("/api/users/mypage");
+      final response = await _dio.get("/api/users/mypage/test");
 
       if (response.statusCode == 200) {
         return ProfileModel.fromJson(response.data);
@@ -53,6 +54,22 @@ class ProfileRepository{
       }
       print('오류 발생!!: $e');
       throw Exception('error! : $e');
+    }
+  }
+
+  Future<ArchivesNewsLetterModel> getNewsLetterData() async {
+    try {
+      print('getNewsLetterData() 호출');
+      final response = await _dio.get("/api/archives/newsletters/{category}");
+
+      if (response.statusCode == 200) {
+        return ArchivesNewsLetterModel.fromJson(response.data);
+      } else {
+        throw Exception('마이페이지 실패!!! : ${response.statusCode} - ${response.statusMessage}');
+      }
+    } catch (e) {
+      print('오류 발생!!!: $e');
+      throw Exception('Error occurred!!!: $e');
     }
   }
 }
