@@ -57,10 +57,10 @@ class ProfileRepository{
     }
   }
 
-  Future<ArchivesNewsLetterModel> getNewsLetterData() async {
+  Future<ArchivesNewsLetterModel> getNewsLetterData(String category) async {
     try {
       print('getNewsLetterData() 호출');
-      final response = await _dio.get("/api/archives/newsletters/{category}/test", queryParameters: {'category' : ''});
+      final response = await _dio.get("/api/archives/newsletters/$category/test");
 
       if (response.statusCode == 200) {
         return ArchivesNewsLetterModel.fromJson(response.data);
