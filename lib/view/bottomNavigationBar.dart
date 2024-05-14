@@ -72,7 +72,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                   'assets/icons/home_unfill.svg',
                 ),
                 activeIcon: Lottie.asset(
-                  'assets/lottie/MAIN2.json',
+                  'assets/lottie/MAIN_new.json',
                   width: 24,
                   height: 24,
                   repeat: false,
@@ -91,10 +91,10 @@ class BottomNavigationView extends GetView<AppViewModel> {
                 label: '생각더하기'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/search_unfill.svg',
+                  'assets/icons/divide_unfill.svg',
                 ),
                 activeIcon: Lottie.asset(
-                  'assets/lottie/search.json',
+                  'assets/lottie/divide_new.json',
                   repeat: false,
                 ),
                 label: '생각나누기'),
@@ -105,7 +105,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                 activeIcon: Lottie.asset(
                   width: 24,
                   height: 24,
-                  'assets/lottie/MY2.json',
+                  'assets/lottie/MY_new.json',
                   repeat: false,
                 ),
                 label: '마이페이지'),
