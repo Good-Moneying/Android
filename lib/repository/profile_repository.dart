@@ -35,7 +35,7 @@ class ProfileRepository{
   Future<ArchivesTermModel> getTermData() async {
     try {
       print('getTermData() 호출');
-      final response = await _dio.get("/api/archives/terms");
+      final response = await _dio.get("/api/archives/terms/test");
 
       if (response.statusCode == 200) {
         return ArchivesTermModel.fromJson(response.data);
