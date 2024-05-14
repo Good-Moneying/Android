@@ -15,6 +15,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
     Get.put(ProfileViewModel());
     controller.getProfileData();
     controller.getTermData();
+    controller.getNewsLetterData('finance');
 
     return Scaffold(
       backgroundColor: AppColors.g1,
@@ -355,9 +356,9 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             padding: const EdgeInsets.only(top: 16.0),
                             child: Column(children: [
                               Text(
-                                '주식',
-                                style: FontStyles.Bn2_sb.copyWith(
-                                    color: AppColors.black),
+                                  '주식',style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.black),
+
                               ),
                               RichText(
                                 text: TextSpan(
