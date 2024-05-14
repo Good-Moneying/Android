@@ -1,33 +1,30 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:meetup/design/widgets/chip_editor.dart';
-import 'package:meetup/design/widgets/history_widget.dart';
-import 'package:meetup/design/widgets/recommend_box.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:meetup/design/widgets/home/editor_card.dart';
+import 'package:meetup/design/widgets/home/news_slider.dart';
+import 'package:meetup/design/widgets/home/recommend_box.dart';
+import 'package:meetup/design/widgets/home/today_word.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/tooltip_balloon.dart';
 import '../../routes/get_pages.dart';
-import 'news_letter_screen.dart';
+import '../../viewModel/home_viewModel.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen extends GetView<HomeViewModel> {
+ // final userController = Get.find<UserViewModel>();
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  int _indicatorIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    Get.put(HomeViewModel());
+    controller.getHomeModel();
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -35,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -48,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColors.black),
                     ),
                     TextSpan(
-                      text: '두둑',
+                      text: '뉴씽',
                       style:
                           FontStyles.Heading1_b.copyWith(color: AppColors.v6),
                     )
@@ -59,83 +56,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 height: Get.height * 0.01,
               ),
               Text(
-                '오늘의 경제 지식! 두둑하게 챙겨가세요',
+                '오늘의 새로운 경제 지식! 함께 생각해볼까요?',
                 style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),
               ),
               SizedBox(
                 height: Get.height * 0.02,
               ),
-              //에디터 카드 위젯 만들기
-              Card(
-                color: AppColors.white,
-                surfaceTintColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
-                elevation: 3,
-                child: Padding(
-                  padding: const EdgeInsets.all(15.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Stack(
-                        children: [
-                          ClipRRect(
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(12),
-                            ),
-                            //임시 사진
-                            child: Image.network(
-                              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                              height: Get.height * 0.25,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Positioned(
-                            top: 13,
-                            right: 16,
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                Container(
-                                  width: 34,
-                                  height: 34,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white.withOpacity(0.5),
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(6)),
-                                  ),
-                                ),
-                                SvgPicture.asset(
-                                    'assets/icons/bookmark_unfill.svg'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.03,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 5.0),
-                        child: Text(
-                          '테슬라 주가 갑자기 오른 이유는?',
-                          style: FontStyles.Headline2_b.copyWith(
-                              color: AppColors.black),
-                        ),
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          CustomChip(label: '미국경제'),
-                          CustomChip(label: '금리'),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 8.0, left: 10),
-                            child: History(),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+              //에디터 카드 위젯
+              Obx(
+                () => EditorCard(
+                  title: controller.homeModel?.todayNewsLetter.title ?? '비어있음',
+                  image:
+                      controller.homeModel?.todayNewsLetter.thumbnail ??
+                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                  isBookMark: controller.isEditorBookMark.value,
+                  onEditor: () {
+                    controller.isEditorBookMark.value
+                        ? controller.isEditorBookMark.value = false
+                        : controller.isEditorBookMark.value = true;
+                  },
                 ),
               ),
               //에디터 카드
@@ -191,185 +130,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              CarouselSlider(
-                items: [
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: FractionalOffset.bottomCenter,
-                                  end: FractionalOffset.topCenter,
-                                  colors: [
-                                Color(0xFF212121),
-                                Color(0xFF212121).withOpacity(0.1),
-                              ])),
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        child: Text(
-                          '1',
-                          style: FontStyles.Title1_b.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 10,
-                        bottom: 30,
-                        child: Text(
-                          '“코인 급등 랠리?”\n도지코인 거래 급감',
-                          style: FontStyles.Lr1_sb.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: FractionalOffset.bottomCenter,
-                                  end: FractionalOffset.topCenter,
-                                  colors: [
-                                Color(0xFF212121),
-                                Color(0xFF212121).withOpacity(0.1),
-                              ])),
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        child: Text(
-                          '2',
-                          style: FontStyles.Title1_b.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 10,
-                        bottom: 30,
-                        child: Text(
-                          '“코인 급등 랠리?”\n도지코인 거래 급감',
-                          style: FontStyles.Lr1_sb.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        //임시 사진
-                        child: Image.network(
-                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                      ClipRRect(
-                        borderRadius: const BorderRadius.all(
-                          Radius.circular(10),
-                        ),
-                        child: Container(
-                          height: Get.height * 0.16,
-                          width: Get.width * 0.6,
-                          decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: FractionalOffset.bottomCenter,
-                                  end: FractionalOffset.topCenter,
-                                  colors: [
-                                Color(0xFF212121),
-                                Color(0xFF212121).withOpacity(0.1),
-                              ])),
-                        ),
-                      ),
-                      Positioned(
-                        right: 10,
-                        child: Text(
-                          '3',
-                          style: FontStyles.Title1_b.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                      Positioned(
-                        left: 10,
-                        bottom: 30,
-                        child: Text(
-                          '“코인 급등 랠리?”\n도지코인 거래 급감',
-                          style: FontStyles.Lr1_sb.copyWith(
-                              color: AppColors.white),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-                options: CarouselOptions(
-                  height: Get.height * 0.18,
-                  autoPlay: true,
-                  viewportFraction: 0.7,
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      _indicatorIndex = index;
-                    });
-                  },
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  AnimatedSmoothIndicator(
-                    activeIndex: _indicatorIndex,
-                    count: 3,
-                    effect: ExpandingDotsEffect(
-                      activeDotColor: AppColors.g5,
-                      dotColor: AppColors.g3,
-                      dotHeight: 6,
-                      dotWidth: 6,
-                    ),
-                  ),
-                ],
-              ),
+              Obx(() => newsSlider()),
+              newsIndicator(),
               SizedBox(
                 height: Get.height * 0.05,
               ),
@@ -382,11 +144,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       text: TextSpan(
                         children: [
                           //닉네임 들어갈 부분
-                          TextSpan(
-                            text: '두식이',
+                          /*TextSpan(
+                            text: userController.nicknameController.value.text,
                             style: FontStyles.Headline2_b.copyWith(
                                 color: AppColors.v6),
-                          ),
+                          ),*/
                           TextSpan(
                             text: '님에게 추천해요!',
                             style: FontStyles.Headline2_b.copyWith(
@@ -413,9 +175,48 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              RecommendU(),
-              RecommendU(),
-              RecommendU(),
+              Obx(
+                () => RecommendU(
+                  image:
+                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                  title: controller.homeModel!.customizeNewsLetters[0].title,
+                  tag: '코인',
+                  isRecommend: controller.isRecommendFirst.value,
+                  onRecommend: () {
+                    controller.isRecommendFirst.value
+                        ? controller.isRecommendFirst.value = false
+                        : controller.isRecommendFirst.value = true;
+                  },
+                ),
+              ),
+              Obx(
+                () => RecommendU(
+                  image:
+                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                  title: controller.homeModel!.customizeNewsLetters[1].title,
+                  tag: '주식',
+                  isRecommend: controller.isRecommendSecond.value,
+                  onRecommend: () {
+                    controller.isRecommendSecond.value
+                        ? controller.isRecommendSecond.value = false
+                        : controller.isRecommendSecond.value = true;
+                  },
+                ),
+              ),
+              Obx(
+                () => RecommendU(
+                  image:
+                      'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                  title: controller.homeModel!.customizeNewsLetters[2].title,
+                  tag: '금리',
+                  isRecommend: controller.isRecommendThird.value,
+                  onRecommend: () {
+                    controller.isRecommendThird.value
+                        ? controller.isRecommendThird.value = false
+                        : controller.isRecommendThird.value = true;
+                  },
+                ),
+              ),
               SizedBox(
                 height: Get.height * 0.05,
               ),
@@ -442,66 +243,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
               ),
-              Card(
-                color: AppColors.white,
-                surfaceTintColor: Colors.transparent,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            '테슬라 요건',
-                            style:
-                                FontStyles.Bn1_b.copyWith(color: AppColors.v6),
-                          ),
-                          CustomChip(label: '기업'),
-                          Spacer(),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                width: 34,
-                                height: 34,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                  border: Border.all(
-                                    color: AppColors.g2.withOpacity(0.3),
-                                  ),
-                                ),
-                              ),
-                              SvgPicture.asset(
-                                  'assets/icons/bookmark_unfill.svg'),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Text(
-                        'Tesla’s requirements',
-                        style: FontStyles.Ln1_m.copyWith(color: AppColors.g3),
-                      ),
-                      SizedBox(
-                        height: Get.height * 0.01,
-                      ),
-                      //뜻
-                      RichText(
-                        maxLines: 3,
-                        softWrap: true,
-                        text: TextSpan(
-                          text:
-                              '주식 시장에 상장하기 위한 요건을 갖추기 못한 기업들 중에서 잠재력이 큰 곳들을 골라 상장 기회를 주는 제도에요!',
-                          style: FontStyles.Bn1_r.copyWith(
-                              color: AppColors.g5, height: 1.5),
-                        ),
-                      ),
-                    ],
-                  ),
+              Obx(
+                () => TodayWord(
+                  title: controller.homeModel?.todayTerm.koreanName ?? '비어있음',
+                  engTitle: controller.homeModel?.todayTerm.englishName ?? '비어있음',
+                  meaning: controller.homeModel?.todayTerm.description ?? '비어있음',
+                  category: controller.homeModel?.todayTerm.category ?? '비어있음',
+                  isBookMark: controller.isWordBookMark.value,
+                  onBookMark: () {
+                    controller.isWordBookMark.value
+                        ? controller.isWordBookMark.value = false
+                        : controller.isWordBookMark.value = true;
+                  },
                 ),
               ),
             ],
