@@ -68,158 +68,179 @@ class NicknameScreen extends GetView<UserViewModel> {
                 height: Get.height * 0.03,
               ),
               //텍스트 폼 필드
-              SizedBox(
-                height: Get.height * 0.1,
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Focus(
-                        onFocusChange: (focused) {
-                          controller.setFocus(focused);
-                          if (!focused) {
-                            controller.setDisplayError(
-                                !controller.isNicknameValid.value);
-                          }
-                        },
-                        child: Obx(
-                          () => SizedBox(
-                            //오류&helper 텍스트로 인한 크기 조절
-                            height: controller.isDisplayError.value ||
-                            controller.isNickDuplicate.value == false
-                                ? Get.height * 0.14
-                                : Get.height * 0.07,
-                            child: TextFormField(
-                              onTapOutside: (event) =>
-                                  FocusManager.instance.primaryFocus?.unfocus(),
-                              controller: controller.nicknameController,
-                              textInputAction: TextInputAction.done,
-                              keyboardType: TextInputType.name,
-                              onChanged: (text) {
-                                controller.checkNickname(text);
-                                print("text field: $text");
-                              },
-                              style: FontStyles.Ln1_m.copyWith(
-                                  color: AppColors.black),
-                              decoration: InputDecoration(
-                                //contentPadding: const EdgeInsets.fromLTRB(10, -10, 10, 0),
-                                suffix: GestureDetector(
-                                  onTap: () {
-                                    controller.nicknameController.clear();
-                                    FocusScope.of(context)
-                                        .requestFocus(FocusNode());
-                                  },
-                                  child: SvgPicture.asset(
-                                    width: 17,
-                                    height: 17,
-                                    'assets/icons/text_clear.svg',
-                                  ),
-                                ),
-                                // IconButton(
-                                //         onPressed: () {
-                                //           controller.nicknameController.clear();
-                                //         },
-                                //         icon: SvgPicture.asset(
-                                //           width: 17,
-                                //           height: 17,
-                                //           'assets/icons/text_clear.svg',
-                                //         ),
-                                //       ),
-                                hintText: '닉네임을 적어주세요',
-                                hintStyle: FontStyles.Ln1_m.copyWith(
-                                    color: AppColors.g3),
-                                helperText:
-                                    controller.isNickDuplicate.value == false
-                                        ? "닉네임을 사용할 수 있습니다"
-                                        : null,
-                                helperStyle:
-                                    controller.isNickDuplicate.value == false
-                                        ? FontStyles.Caption2_m.copyWith(
-                                            color: Colors.blue)
-                                        : null,
-                                errorText: controller.isDisplayError.value
-                                    ? "닉네임을 사용할 수 없습니다"
-                                    : null,
-                                errorStyle: controller.isDisplayError.value
-                                    ? FontStyles.Caption2_m.copyWith(
-                                        color: Colors.red)
-                                    : null,
-                                //border 색깔
-                                enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    color: AppColors.g2,
-                                  ),
-                                ),
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: const BorderSide(
-                                    color: AppColors.v5,
-                                  ),
-                                ),
-                                errorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                    color: controller.isDisplayError.value
-                                        ? const Color(0xFFFA5862)
-                                        : AppColors.g2,
-                                  ),
-                                ),
-                                focusedErrorBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(8),
-                                  borderSide: BorderSide(
-                                    color: controller.isDisplayError.value
-                                        ? const Color(0xFFFA5862)
-                                        : AppColors.g2,
+              Obx(
+                    ()=> SizedBox(
+                  height: controller.isDisplayError.value ||
+                          controller.isNickDuplicate.value == false
+                      ? Get.height * 0.14
+                      : Get.height * 0.1,
+                  child: Padding(
+                    padding: controller.isDisplayError.value ||
+                        controller.isNickDuplicate.value == false
+                        ? const EdgeInsets.only(top: 10.0) : EdgeInsets.zero,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Focus(
+                            onFocusChange: (focused) {
+                              controller.setFocus(focused);
+                              if (!focused) {
+                                controller.setDisplayError(
+                                    !controller.isNicknameValid.value);
+                              }
+                            },
+                            child: Obx(
+                              () => SizedBox(
+                                //오류&helper 텍스트로 인한 크기 조절
+                                height: controller.isDisplayError.value ||
+                                        controller.isNickDuplicate.value == false
+                                    ? Get.height * 0.14
+                                    : Get.height * 0.07,
+                                child: Padding(
+                                  padding: controller.isDisplayError.value ||
+                                          controller.isNickDuplicate.value == false
+                                      ? const EdgeInsets.only(
+                                          top: 20.0,
+                                        )
+                                      : EdgeInsets.zero,
+                                  child: TextFormField(
+                                    onTapOutside: (event) => FocusManager
+                                        .instance.primaryFocus
+                                        ?.unfocus(),
+                                    controller: controller.nicknameController,
+                                    textInputAction: TextInputAction.done,
+                                    keyboardType: TextInputType.name,
+                                    onChanged: (text) {
+                                      controller.checkNickname(text);
+                                      print("text field: $text");
+                                    },
+                                    style: FontStyles.Ln1_m.copyWith(
+                                        color: AppColors.black),
+                                    decoration: InputDecoration(
+                                      //contentPadding: const EdgeInsets.fromLTRB(10, -10, 10, 0),
+                                      suffix: GestureDetector(
+                                        onTap: () {
+                                          controller.nicknameController.clear();
+                                          FocusScope.of(context)
+                                              .requestFocus(FocusNode());
+                                        },
+                                        child: SvgPicture.asset(
+                                          width: 17,
+                                          height: 17,
+                                          'assets/icons/text_clear.svg',
+                                        ),
+                                      ),
+                                      // IconButton(
+                                      //         onPressed: () {
+                                      //           controller.nicknameController.clear();
+                                      //         },
+                                      //         icon: SvgPicture.asset(
+                                      //           width: 17,
+                                      //           height: 17,
+                                      //           'assets/icons/text_clear.svg',
+                                      //         ),
+                                      //       ),
+                                      hintText: '닉네임을 적어주세요',
+                                      hintStyle: FontStyles.Ln1_m.copyWith(
+                                          color: AppColors.g3),
+                                      helperText:
+                                          controller.isNickDuplicate.value ==
+                                                  false
+                                              ? "닉네임을 사용할 수 있습니다"
+                                              : null,
+                                      helperStyle:
+                                          controller.isNickDuplicate.value ==
+                                                  false
+                                              ? FontStyles.Caption2_m.copyWith(
+                                                  color: Colors.blue)
+                                              : null,
+                                      errorText: controller.isDisplayError.value
+                                          ? "닉네임을 사용할 수 없습니다"
+                                          : null,
+                                      errorStyle: controller.isDisplayError.value
+                                          ? FontStyles.Caption2_m.copyWith(
+                                              color: Colors.red)
+                                          : null,
+                                      //border 색깔
+                                      enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                          color: AppColors.g2,
+                                        ),
+                                      ),
+                                      focusedBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: const BorderSide(
+                                          color: AppColors.v5,
+                                        ),
+                                      ),
+                                      errorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(
+                                          color: controller.isDisplayError.value
+                                              ? const Color(0xFFFA5862)
+                                              : AppColors.g2,
+                                        ),
+                                      ),
+                                      focusedErrorBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                        borderSide: BorderSide(
+                                          color: controller.isDisplayError.value
+                                              ? const Color(0xFFFA5862)
+                                              : AppColors.g2,
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: Get.width * 0.03,
-                    ),
-                    SizedBox(
-                      height: Get.height * 0.07,
-                      width: Get.width * 0.25,
-                      child: Obx(
-                        () => ElevatedButton(
-                          onPressed: controller.isDisplayError.value
-                              ? null
-                              : () async {
-                                  //닉네임 중복값 업데이트
-                                  controller.isNickDuplicate(await isDuplicate(
-                                      controller
-                                          .nicknameController.value.text));
-                                },
-                          style: ElevatedButton.styleFrom(
-                            padding: EdgeInsets.zero,
-                            backgroundColor: controller.isNickDuplicate.value
-                                ? AppColors.g6
-                                : AppColors.g2,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(12),
+                        SizedBox(
+                          width: Get.width * 0.03,
+                        ),
+                        SizedBox(
+                          height: Get.height * 0.07,
+                          width: Get.width * 0.25,
+                          child: Obx(
+                            () => ElevatedButton(
+                              onPressed: controller.isDisplayError.value
+                                  ? null
+                                  : () async {
+                                      //닉네임 중복값 업데이트
+                                      controller.isNickDuplicate(
+                                          await isDuplicate(controller
+                                              .nicknameController.value.text));
+                                    },
+                              style: ElevatedButton.styleFrom(
+                                padding: EdgeInsets.zero,
+                                backgroundColor: controller.isNickDuplicate.value
+                                    ? AppColors.g6
+                                    : AppColors.g2,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                              ),
+                              child: controller.isNickDuplicate.value
+                                  ? Text(
+                                      '중복 검사',
+                                      style: FontStyles.Bn2_sb.copyWith(
+                                          color: controller.isDisplayError.value
+                                              ? AppColors.g5
+                                              : AppColors.white),
+                                    )
+                                  : Text(
+                                      '검사 완료',
+                                      style: FontStyles.Bn2_sb.copyWith(
+                                          color: AppColors.g5),
+                                    ),
                             ),
                           ),
-                          child: controller.isNickDuplicate.value
-                              ? Text(
-                                  '중복 검사',
-                                  style: FontStyles.Bn2_sb.copyWith(
-                                      color: controller.isDisplayError.value
-                                          ? AppColors.g5
-                                          : AppColors.white),
-                                )
-                              : Text(
-                                  '검사 완료',
-                                  style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.g5),
-                                ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               Spacer(),
