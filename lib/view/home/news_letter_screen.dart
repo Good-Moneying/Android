@@ -11,13 +11,12 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:get/state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
-
 import '../../viewModel/home_viewModel.dart';
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
-    final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     controller.getEditorNews(); // 뉴스 데이터 가져오기
     return Scaffold(
       backgroundColor: AppColors.white,

@@ -15,7 +15,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(

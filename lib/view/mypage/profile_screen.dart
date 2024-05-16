@@ -2,14 +2,20 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
+import 'package:meetup/viewModel/profile_viewModel.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
-
+class ProfileScreen extends GetView<ProfileViewModel> {
   @override
   Widget build(BuildContext context) {
+    //Get.put(ProfileViewModel());
+    controller.getProfileData();
+    controller.getTermData();
+    controller.getNewsLetterData('');
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -72,9 +78,13 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4.0),
-                                  child: Text(
-                                    '김두둑',
-                                    style: FontStyles.Bn1_b,
+                                  child: Obx(
+                                    () => Text(
+                                      controller.profileModel?.attendances
+                                              ?.data?[0]?.dayOfWeek ??
+                                          'No data',
+                                      style: FontStyles.Bn1_b,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -94,7 +104,8 @@ class ProfileScreen extends StatelessWidget {
                                       border: Border.all(color: AppColors.g1)),
                                   child: Center(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/mypage_rain.png',
@@ -104,9 +115,14 @@ class ProfileScreen extends StatelessWidget {
                                         SizedBox(
                                           width: 8,
                                         ),
-                                        Text('12',
-                                            style: FontStyles.Br1_sb.copyWith(
-                                                color: AppColors.g6)),
+                                        Obx(
+                                          () => Text(
+                                              controller.profileModel?.reward
+                                                      ?.toString() ??
+                                                  'N/A',
+                                              style: FontStyles.Br1_sb.copyWith(
+                                                  color: AppColors.g6)),
+                                        ),
                                       ],
                                     ),
                                   ),
@@ -143,19 +159,19 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               Text(
                                 '0',
-                                style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                style: FontStyles.Ln1_m.copyWith(
+                                    color: AppColors.g6),
                               )
                             ],
                           ),
                         ),
                       ),
-                       Center(
-                          child: VerticalDivider(
-                            thickness: 1,
-                            color: AppColors.g1,
-                          ),
+                      Center(
+                        child: VerticalDivider(
+                          thickness: 1,
+                          color: AppColors.g1,
                         ),
-
+                      ),
                       Flexible(
                         flex: 1,
                         child: Center(
@@ -169,7 +185,8 @@ class ProfileScreen extends StatelessWidget {
                               ),
                               Text(
                                 '0',
-                                style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                style: FontStyles.Ln1_m.copyWith(
+                                    color: AppColors.g6),
                               )
                             ],
                           ),
@@ -184,8 +201,8 @@ class ProfileScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(top: 32.0, left: 16),
                     child: Text(
                       '목표 달성률',
-                      style: FontStyles.Headline2_b.copyWith(
-                          color: Colors.black),
+                      style:
+                          FontStyles.Headline2_b.copyWith(color: Colors.black),
                     ),
                   ),
                 ],
@@ -209,7 +226,8 @@ class ProfileScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 20.0, left: 15),
+                              padding:
+                                  const EdgeInsets.only(top: 20.0, left: 15),
                               child: RichText(
                                   text: TextSpan(
                                 text: '일주일 중에 ',
@@ -231,7 +249,8 @@ class ProfileScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 20.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     '일',
@@ -280,7 +299,8 @@ class ProfileScreen extends StatelessWidget {
                             Padding(
                               padding: const EdgeInsets.only(top: 13.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SvgPicture.asset(
                                       'assets/icons/mypage_cloud_fill.svg'),
@@ -312,7 +332,8 @@ class ProfileScreen extends StatelessWidget {
                   children: [
                     Text(
                       '나의 아카이브',
-                      style: FontStyles.Headline2_b.copyWith(color: AppColors.g6),
+                      style:
+                          FontStyles.Headline2_b.copyWith(color: AppColors.g6),
                     )
                   ],
                 ),
@@ -344,7 +365,8 @@ class ProfileScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 16.0),
-                            child: Column(children: [
+                            child: Column(children:
+                            [
                               Text(
                                 '주식',
                                 style: FontStyles.Bn2_sb.copyWith(
@@ -359,7 +381,8 @@ class ProfileScreen extends StatelessWidget {
                                     TextSpan(
                                       text: '개',
                                       style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g5), //기본style을 지정해줘야함
+                                          color:
+                                              AppColors.g5), //기본style을 지정해줘야함
                                     ),
                                   ],
                                 ),
@@ -449,7 +472,8 @@ class ProfileScreen extends StatelessWidget {
                                     TextSpan(
                                       text: '개',
                                       style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g5), //기본style을 지정해줘야함
+                                          color:
+                                              AppColors.g5), //기본style을 지정해줘야함
                                     ),
                                   ],
                                 ),

@@ -50,5 +50,39 @@ class HomeRepository {
     }
   }
 
+  Future getArchivesTerm(int termId) async {
+    try {
+      final response = await _dio.get("/api/archives/$termId");
+
+      if (response.statusCode == 200) {
+
+        //return HomeModel.fromJson(response.data);
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception('Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
+
+  Future getArchivesNews(int newsId) async {
+    try {
+      final response = await _dio.get("/api/archives/$newsId");
+
+      if (response.statusCode == 200) {
+
+        //return HomeModel.fromJson(response.data);
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception('Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
+
 
 }
