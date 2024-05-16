@@ -12,6 +12,7 @@ import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/home/live_news_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
+import 'package:meetup/view/home/today_term_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'binding/settings_binding.dart';
 import 'routes/get_pages.dart';

@@ -8,8 +8,9 @@ abstract class Routes {
   static const FREQUENCY = '/auth/frequency';
   static const WELCOME = '/auth/welcome';
   static const HOME = '/';
-  static const INVEST = '/invest';
-  static const SEARCH = '/search';
+  static const PLUS = '/plus';
+  static const SHARE = '/share';
   static const PROFILE = '/profile';
   static const EDITORNEWS = '/home/editor';
+  static const TODAYTERM = '/home/term';
 }
