@@ -12,6 +12,7 @@ import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/home/live_news_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
+import 'package:meetup/view/home/today_term_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'routes/get_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: LoginScreen(),
+      home: TodayTermScreen(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,

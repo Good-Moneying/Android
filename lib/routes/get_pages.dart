@@ -7,6 +7,8 @@ import 'package:meetup/view/auth/login_screen.dart';
 import 'package:meetup/view/auth/welcome_screen.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
+import 'package:meetup/view/home/today_term_screen.dart';
+import 'package:meetup/view/investment/investment_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/share/share_screen.dart';
@@ -76,6 +78,10 @@ class Pages {
     GetPage(
       name: Routes.EDITORNEWS,
       page: () => NewsLetterScreen(),
+    ),
+    GetPage(
+      name: Routes.TODAYTERM,
+      page: () => TodayTermScreen(),
     ),
   ];
 }
