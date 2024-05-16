@@ -19,6 +19,7 @@ import '../../viewModel/home_viewModel.dart';
 class HomeScreen extends GetView<HomeViewModel> {
  // final userController = Get.find<UserViewModel>();
 
+
   @override
   Widget build(BuildContext context) {
     Get.put(HomeViewModel());
@@ -143,11 +144,11 @@ class HomeScreen extends GetView<HomeViewModel> {
                       text: TextSpan(
                         children: [
                           //닉네임 들어갈 부분
-                          TextSpan(
-                            text: '두식이',
+                          /*TextSpan(
+                            text: userController.nicknameController.value.text,
                             style: FontStyles.Headline2_b.copyWith(
                                 color: AppColors.v6),
-                          ),
+                          ),*/
                           TextSpan(
                             text: '님에게 추천해요!',
                             style: FontStyles.Headline2_b.copyWith(
