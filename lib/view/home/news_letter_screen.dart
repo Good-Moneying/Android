@@ -42,8 +42,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(0, 4, 0, 0), // 오른쪽에 여백 추가
                 child: SvgPicture.asset('assets/images/newsletter_line.svg'),
-              ),
-              Padding(
+              ), 
+              Image.asset('assets/images/news_letter_preview.png',width: double.infinity,height: 142,)
+              ,Padding(
                 padding: const EdgeInsets.only(top: 20.0),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
