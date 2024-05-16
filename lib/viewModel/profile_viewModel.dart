@@ -22,13 +22,17 @@ class ProfileViewModel extends GetxController {
   void onInit() {
     super.onInit();
 
-    getProfileData();
+    // Rxn 객체 초기화
     _profileModel = Rxn<ProfileModel>();
-    getTermData();
     _archivesTermModel = Rxn<ArchivesTermModel>();
-    getNewsLetterData('defaultCategory');
     _archivesNewsLetterModel = Rxn<ArchivesNewsLetterModel>();
+
+    // 데이터 가져오기
+    getProfileData();
+    getTermData();
+    getNewsLetterData('defaultCategory');
   }
+
 
   Future<void> getProfileData() async{
     try{
