@@ -12,6 +12,7 @@ import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/search/search_screen.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 
+import '../binding/settings_binding.dart';
 import '../view/auth/nickname_screen.dart';
 import '../view/bottomNavigationBar.dart';
 
@@ -76,6 +77,9 @@ class Pages {
     GetPage(
       name: Routes.EDITORNEWS,
       page: () => NewsLetterScreen(),
+      binding: BindingsBuilder(() {
+        SettingsBinding().dependencies();
+      }),
     ),
   ];
 }
