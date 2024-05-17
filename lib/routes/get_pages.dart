@@ -11,6 +11,7 @@ import 'package:meetup/view/home/today_term_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/share/share_screen.dart';
+import 'package:meetup/view/share/survey_screen.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 
 import '../binding/settings_binding.dart';
@@ -85,6 +86,10 @@ class Pages {
     GetPage(
       name: Routes.TODAYTERM,
       page: () => TodayTermScreen(),
+    ),
+    GetPage(
+      name: Routes.SURVEY,
+      page: () => SurveyScreen(),
     ),
   ];
 }

@@ -10,6 +10,7 @@ abstract class Routes {
   static const HOME = '/';
   static const PLUS = '/plus';
   static const SHARE = '/share';
+  static const SURVEY = '/share/survey';
   static const PROFILE = '/profile';
   static const EDITORNEWS = '/home/editor';
   static const TODAYTERM = '/home/term';
