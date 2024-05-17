@@ -185,7 +185,7 @@ class AddSurveyScreen extends StatelessWidget {
                 textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
                 label: '다음',
                 onPressed: () {
-                  Get.toNamed(Routes.SHARE);
+                  Get.toNamed(Routes.SURVEY);
                 },
               ),
             ],

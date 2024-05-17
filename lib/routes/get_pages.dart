@@ -13,6 +13,7 @@ import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/share/add_survey_screen.dart';
 import 'package:meetup/view/share/quiz/one_quiz_screen.dart';
 import 'package:meetup/view/share/quiz/result_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/two_quiz_screen.dart';
 import 'package:meetup/view/share/share_screen.dart';
 import 'package:meetup/view/share/survey_screen.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
@@ -101,6 +102,10 @@ class Pages {
     GetPage(
       name: Routes.FIRSTQUIZ,
       page: () => OneQuizScreen(),
+    ),
+    GetPage(
+      name: Routes.SECONDQUIZ,
+      page: () => TwoQuizScreen(),
     ),
     GetPage(
       name: Routes.RESULTQUIZ,

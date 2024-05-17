@@ -12,6 +12,7 @@ abstract class Routes {
   static const SHARE = '/share';
   static const ADDSURVEY = '/share/add';
   static const FIRSTQUIZ = '/share/quiz/one';
+  static const SECONDQUIZ = '/share/quiz/two';
   static const RESULTQUIZ = '/share/quiz/result';
   static const SURVEY = '/share/survey';
   static const PROFILE = '/profile';

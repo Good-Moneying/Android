@@ -1,20 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:meetup/design/style/ColorStyles.dart';
-import 'package:meetup/design/style/FontStyles.dart';
-import 'package:meetup/design/widgets/appBar/back_appBar.dart';
-import 'package:meetup/design/widgets/custom_button.dart';
-import 'package:meetup/design/widgets/progress_bar.dart';
-import 'package:meetup/design/widgets/share/choice_quiz.dart';
-import 'package:meetup/design/widgets/share/hint_dialog.dart';
 
-import '../../../routes/get_pages.dart';
+import '../../../design/style/ColorStyles.dart';
+import '../../../design/style/FontStyles.dart';
+import '../../../design/widgets/appBar/back_appBar.dart';
+import '../../../design/widgets/custom_button.dart';
+import '../../../design/widgets/progress_bar.dart';
+import '../../../design/widgets/share/choice_quiz.dart';
+import '../../../design/widgets/share/hint_dialog.dart';
 
-class OneQuizScreen extends StatelessWidget {
-  const OneQuizScreen({super.key});
+class TwoQuizScreen extends StatelessWidget {
+  const TwoQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +30,7 @@ class OneQuizScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 48, bottom: 4.0),
                 child: Text(
-                  'Quiz 1',
+                  'Quiz 2',
                   style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
                 ),
               ),
