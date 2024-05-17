@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:meetup/design/style/FontStyles.dart';
 
 class CustomButton extends StatelessWidget {
   final Color backgroundColor;
-  final Color textColor;
+  final TextStyle textStyle;
   final String label;
   final Function() onPressed;
 
   const CustomButton({
     super.key,
     required this.backgroundColor,
-    required this.textColor,
+    required this.textStyle,
     required this.label,
     required this.onPressed,
   });
@@ -24,9 +25,7 @@ class CustomButton extends StatelessWidget {
       ),
       child: Text(
         label,
-        style: TextStyle(
-          color: textColor,
-        ),
+        style: textStyle,
       ),
     );
   }

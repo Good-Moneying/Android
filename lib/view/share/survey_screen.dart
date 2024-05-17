@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -13,18 +14,7 @@ class SurveyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.g6,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: SvgPicture.asset(
-            'assets/icons/back_left.svg',
-            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
-          ),
-        ),
-      ),
+      appBar: BackAppBar(iconColor: AppColors.white),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

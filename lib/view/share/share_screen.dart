@@ -237,7 +237,12 @@ class ShareScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Image.asset('assets/images/quiz_banner.png'),
+            InkWell(
+              onTap: () {
+                Get.toNamed(Routes.FIRSTQUIZ);
+              },
+              child: Image.asset('assets/images/quiz_banner.png'),
+            ),
           ],
         ),
       )),

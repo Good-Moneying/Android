@@ -3,13 +3,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 
-class BackAppBar extends StatelessWidget {
+class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color iconColor;
 
   const BackAppBar({
     super.key,
     required this.iconColor,
   });
+
+  @override
+  Size get preferredSize => AppBar().preferredSize;
 
   @override
   Widget build(BuildContext context) {
@@ -26,4 +29,5 @@ class BackAppBar extends StatelessWidget {
       ),
     );
   }
+
 }
