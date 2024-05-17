@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
-import 'package:meetup/view/investment/investment_screen.dart';
+import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
-import 'package:meetup/view/search/search_screen.dart';
+import 'package:meetup/view/share/share_screen.dart';
 import 'package:meetup/viewModel/app_viewModel.dart';
 import 'package:lottie/lottie.dart';
 import '../design/style/ColorStyles.dart';
@@ -37,10 +37,10 @@ class BottomNavigationView extends GetView<AppViewModel> {
           return HomeScreen();
           break;
         case 1:
-          return InvestScreen();
+          return PlusScreen();
           break;
         case 2:
-          return SearchScreen();
+          return ShareScreen();
           break;
         case 3:
           return ProfileScreen();
@@ -72,7 +72,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                   'assets/icons/home_unfill.svg',
                 ),
                 activeIcon: Lottie.asset(
-                  'assets/lottie/MAIN2.json',
+                  'assets/lottie/MAIN_new.json',
                   width: 24,
                   height: 24,
                   repeat: false,
@@ -80,24 +80,24 @@ class BottomNavigationView extends GetView<AppViewModel> {
                 label: '홈'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/invest_unfill.svg',
+                  'assets/icons/plus_unfill.svg',
                 ),
                 activeIcon: Lottie.asset(
                   width: 24,
                   height: 24,
-                  'assets/lottie/moi2.json',
+                  'assets/lottie/Plus_new.json',
                   repeat: false,
                 ),
-                label: '모의투자'),
+                label: '생각더하기'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  'assets/icons/search_unfill.svg',
+                  'assets/icons/divide_unfill.svg',
                 ),
                 activeIcon: Lottie.asset(
-                  'assets/lottie/search.json',
+                  'assets/lottie/divide_new.json',
                   repeat: false,
                 ),
-                label: '둘러보기'),
+                label: '생각나누기'),
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
                   'assets/icons/profile_unfill.svg',
@@ -105,7 +105,7 @@ class BottomNavigationView extends GetView<AppViewModel> {
                 activeIcon: Lottie.asset(
                   width: 24,
                   height: 24,
-                  'assets/lottie/MY2.json',
+                  'assets/lottie/MY_new.json',
                   repeat: false,
                 ),
                 label: '마이페이지'),

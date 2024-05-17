@@ -27,29 +27,38 @@ class WelcomeScreen extends GetView<UserViewModel> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(18.0),
+            padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: Get.height * 0.1,
                 ),
-                Text(
-                  '경제 금융 지식',
-                  style: FontStyles.Title2_sb.copyWith(color: AppColors.black),
+                Padding(
+                  padding: const EdgeInsets.only(left: 9.0, bottom: 24.0),
+                  child: Text(
+                    '준비완료!',
+                    style: FontStyles.Title1_b.copyWith(color: AppColors.v6),
+                  ),
                 ),
-                RichText(
-                  text: TextSpan(
+                Padding(
+                  padding: const EdgeInsets.only(left: 9.0),
+                  child: Text(
+                    '이제 경제 금융 지식',
+                    style:
+                        FontStyles.Title2_sb.copyWith(color: AppColors.black),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 9.0),
+                  child: Row(
                     children: [
-                      TextSpan(
-                        text: '두둑',
-                        style:
-                            FontStyles.Title1_b.copyWith(color: AppColors.v6),
-                      ),
-                      TextSpan(
-                        text: '과 함께 시작하세요!',
+                      SvgPicture.asset('assets/icons/logo_newthing.svg'),
+                      Text(
+                        '과 함께 시작하세요!',
                         style: FontStyles.Title2_sb.copyWith(
-                            color: AppColors.black),
+                          color: AppColors.black,
+                        ),
                       ),
                     ],
                   ),
@@ -69,8 +78,8 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       controller.setGender(controller.genderList.value);
                       controller.setCategory(controller.interestList.value);
                       controller.setFrequency(controller.frequencyList.value);
-                      String formatBirth = controller.birthController.value.text.replaceAll('-', '');
-
+                      String formatBirth = controller.birthController.value.text
+                          .replaceAll('-', '');
 
                       //넘겨줄 데이터 구성
                       final formData = <String, dynamic>{
@@ -83,7 +92,6 @@ class WelcomeScreen extends GetView<UserViewModel> {
                         "category": controller.userCategory.value,
                         "goal": controller.userGoal.value,
                       };
-
 
                       //출력테스트
                       print(formData);
