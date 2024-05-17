@@ -14,7 +14,7 @@ class SurveyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.g6,
-      appBar: BackAppBar(iconColor: AppColors.white),
+      appBar: BackAppBar(iconColor: AppColors.white, title: null,),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

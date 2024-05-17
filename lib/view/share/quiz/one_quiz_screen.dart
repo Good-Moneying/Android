@@ -19,7 +19,7 @@ class OneQuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BackAppBar(iconColor: AppColors.black),
+      appBar: BackAppBar(iconColor: AppColors.black, title: null,),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),

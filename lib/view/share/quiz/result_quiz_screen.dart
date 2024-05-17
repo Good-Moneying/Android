@@ -16,7 +16,7 @@ class ResultQuizScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: BackAppBar(iconColor: AppColors.black),
+      appBar: BackAppBar(iconColor: AppColors.black, title: null,),
       body: _allCorrect(),
     );
   }

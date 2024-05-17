@@ -28,7 +28,11 @@ class ShareScreen extends StatelessWidget {
             Expanded(
               child: Container(),
             ),
-            SvgPicture.asset('assets/icons/add_survey.svg'),
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.ADDSURVEY);
+              },
+                child: SvgPicture.asset('assets/icons/add_survey.svg'),),
           ],
         ),
       ),

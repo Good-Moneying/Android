@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/style/ColorStyles.dart';
+import 'package:meetup/design/style/FontStyles.dart';
 
 
 class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Color iconColor;
+  final Widget? title;
 
   const BackAppBar({
     super.key,
     required this.iconColor,
+    required this.title,
   });
 
   @override
@@ -27,6 +31,8 @@ class BackAppBar extends StatelessWidget implements PreferredSizeWidget {
           colorFilter: ColorFilter.mode(iconColor, BlendMode.srcIn),
         ),
       ),
+      centerTitle: true,
+      title: title,
     );
   }
 
