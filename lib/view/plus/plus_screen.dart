@@ -64,62 +64,157 @@ class PlusScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Stack(
-              children: [
-                Container(
-                  width: 328, height: 268,
-                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 17.0, top: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Image.asset('assets/icons/plus_te.png', width: 70, height: 70,),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text('테슬라 주가 갑자기 오른 이유는?', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8.0),
-                                  child: badges.Badge(
-                                    badgeContent: Text('글로벌', style: FontStyles.Caption2_m.copyWith(color: AppColors.v5)),
-                                    badgeStyle: BadgeStyle(
-                                      shape: BadgeShape.square,
-                                      borderRadius: BorderRadius.circular(5), // 둥근 모서리 설정
-                                      padding: EdgeInsets.fromLTRB(8,4,8,4), // 배지 내부 여백 설정
-                                      badgeColor: AppColors.v1, // 배지 배경색 설정
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Stack(
+                children: [
+                  Container(
+                    width: 328, height: 268,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 17.0, top: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset('assets/icons/plus_te.png', width: 70, height: 70,),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('테슬라 주가 갑자기 오른 이유는?', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: badges.Badge(
+                                      badgeContent: Text('글로벌', style: FontStyles.Caption2_m.copyWith(color: AppColors.v5)),
+                                      badgeStyle: BadgeStyle(
+                                        shape: BadgeShape.square,
+                                        borderRadius: BorderRadius.circular(5), // 둥근 모서리 설정
+                                        padding: EdgeInsets.fromLTRB(8,4,8,4), // 배지 내부 여백 설정
+                                        badgeColor: AppColors.v1, // 배지 배경색 설정
+                                      ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Container(
+                            width: 306, height: 104,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10), color: AppColors.g1
                             ),
-                          )
-                        ],
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: Container(
-                          width: 306, height: 104,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10), color: AppColors.g1
                           ),
                         ),
-                      ),
-                      Row(
-                        children: [
-                          SvgPicture.asset('assets/icons/plus_time.svg'),
-                          Text('1분 전',style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),)
-                        ],
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/icons/plus_time.svg'),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 4.0),
+                                child: Text('1분 전',style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 150.0),
+                                child: Container(
+                                  width: 104, height: 30,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(29),color: AppColors.v6
+                                  ),
+                                  child: Center(child: Text('생각더하기',style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0, left: 16),
+              child: Stack(
+                children: [
+                  Container(
+                    width: 328, height: 268,
+                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 17.0, top: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Image.asset('assets/icons/plus_te.png', width: 70, height: 70,),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('테슬라 주가 갑자기 오른 이유는?', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 8.0),
+                                    child: badges.Badge(
+                                      badgeContent: Text('글로벌', style: FontStyles.Caption2_m.copyWith(color: AppColors.v5)),
+                                      badgeStyle: BadgeStyle(
+                                        shape: BadgeShape.square,
+                                        borderRadius: BorderRadius.circular(5), // 둥근 모서리 설정
+                                        padding: EdgeInsets.fromLTRB(8,4,8,4), // 배지 내부 여백 설정
+                                        badgeColor: AppColors.v1, // 배지 배경색 설정
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Container(
+                            width: 306, height: 104,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10), color: AppColors.g1
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: Row(
+                            children: [
+                              SvgPicture.asset('assets/icons/plus_time.svg'),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 4.0),
+                                child: Text('1분 전',style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 150.0),
+                                child: Container(
+                                  width: 104, height: 30,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(29),color: AppColors.v6
+                                  ),
+                                  child: Center(child: Text('생각더하기',style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)),
+                                ),
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             )
           ],
         ),
