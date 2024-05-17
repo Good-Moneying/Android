@@ -38,7 +38,11 @@ class InfoScreen extends GetView<UserViewModel> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //진행률 바
-              MyProgressBar(percent: controller.getPercentProgress.value),
+              MyProgressBar(
+                percent: controller.getPercentProgress.value,
+                backgroundColor: AppColors.g1,
+                progressColor: AppColors.v5,
+              ),
               SizedBox(
                 height: Get.height * 0.05,
               ),
