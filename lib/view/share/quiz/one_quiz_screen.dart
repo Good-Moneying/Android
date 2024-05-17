@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/design/widgets/progress_bar.dart';
 import 'package:meetup/design/widgets/share/choice_quiz.dart';
+
+import '../../../routes/get_pages.dart';
 
 class OneQuizScreen extends StatelessWidget {
   const OneQuizScreen({super.key});
@@ -42,6 +45,8 @@ class OneQuizScreen extends StatelessWidget {
               ),
               ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다'),
               ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다'),
+              ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다'),
+              ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다'),
               Spacer(),
               Row(
                 children: [
@@ -51,7 +56,9 @@ class OneQuizScreen extends StatelessWidget {
                       backgroundColor: AppColors.v1,
                       textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
                       label: '힌트 보기',
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.toNamed(Routes.RESULTQUIZ);
+                      },
                     ),
                   ),
                   SizedBox(
@@ -63,7 +70,7 @@ class OneQuizScreen extends StatelessWidget {
                       backgroundColor: AppColors.v1,
                       textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
                       label: '정답 제출하기',
-                      onPressed: () {},
+                      onPressed: null,
                     ),
                   ),
                 ],
