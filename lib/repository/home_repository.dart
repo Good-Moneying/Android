@@ -23,7 +23,8 @@ class HomeRepository {
         return NewsLetterModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
-        throw Exception('Failed to load editor news: ${response.statusMessage}');
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
       }
     } catch (e) {
       // 네트워크 오류 또는 기타 오류 처리
@@ -34,7 +35,9 @@ class HomeRepository {
   Future<HomeModel> getHomeModel() async {
     try {
       print('getHomeModel() 호출');
-      final response = await _dio.get("/api/users/home");
+      final response = await _dio.get(
+        "/api/users/home/test"
+      );
 
       if (response.statusCode == 200) {
         // print('홈모델 응답 성공');
@@ -42,7 +45,8 @@ class HomeRepository {
         return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
-        throw Exception('Failed to load editor news: ${response.statusMessage}');
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
       }
     } catch (e) {
       // 네트워크 오류 또는 기타 오류 처리
@@ -55,11 +59,11 @@ class HomeRepository {
       final response = await _dio.get("/api/archives/$termId");
 
       if (response.statusCode == 200) {
-
         //return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
-        throw Exception('Failed to load editor news: ${response.statusMessage}');
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
       }
     } catch (e) {
       // 네트워크 오류 또는 기타 오류 처리
@@ -72,17 +76,15 @@ class HomeRepository {
       final response = await _dio.get("/api/archives/$newsId");
 
       if (response.statusCode == 200) {
-
         //return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
-        throw Exception('Failed to load editor news: ${response.statusMessage}');
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
       }
     } catch (e) {
       // 네트워크 오류 또는 기타 오류 처리
       throw Exception('Error occurred: $e');
     }
   }
-
-
 }
