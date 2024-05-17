@@ -9,13 +9,12 @@ import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/viewModel/profile_viewModel.dart';
 
 class ProfileScreen extends GetView<ProfileViewModel> {
-
   @override
   Widget build(BuildContext context) {
-    Get.put(ProfileViewModel());
+    //Get.put(ProfileViewModel());
     controller.getProfileData();
     controller.getTermData();
-    controller.getNewsLetterData('finance');
+    controller.getNewsLetterData('');
 
     return Scaffold(
       backgroundColor: AppColors.g1,
@@ -79,9 +78,11 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(top: 4.0),
-                                  child: Obx(()=>
-                                    Text(
-                                      controller.profileModel?.attendances?.data?[0]?.dayOfWeek ?? 'No data',
+                                  child: Obx(
+                                    () => Text(
+                                      controller.profileModel?.attendances
+                                              ?.data?[0]?.dayOfWeek ??
+                                          'No data',
                                       style: FontStyles.Bn1_b,
                                     ),
                                   ),
@@ -103,7 +104,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                       border: Border.all(color: AppColors.g1)),
                                   child: Center(
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                           'assets/icons/mypage_rain.png',
@@ -113,7 +115,11 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                         SizedBox(
                                           width: 8,
                                         ),
-                                        Obx(()=>Text(controller.profileModel?.reward?.toString() ?? 'N/A',
+                                        Obx(
+                                          () => Text(
+                                              controller.profileModel?.reward
+                                                      ?.toString() ??
+                                                  'N/A',
                                               style: FontStyles.Br1_sb.copyWith(
                                                   color: AppColors.g6)),
                                         ),
@@ -153,19 +159,19 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ),
                               Text(
                                 '0',
-                                style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                style: FontStyles.Ln1_m.copyWith(
+                                    color: AppColors.g6),
                               )
                             ],
                           ),
                         ),
                       ),
-                       Center(
-                          child: VerticalDivider(
-                            thickness: 1,
-                            color: AppColors.g1,
-                          ),
+                      Center(
+                        child: VerticalDivider(
+                          thickness: 1,
+                          color: AppColors.g1,
                         ),
-
+                      ),
                       Flexible(
                         flex: 1,
                         child: Center(
@@ -179,7 +185,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ),
                               Text(
                                 '0',
-                                style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                style: FontStyles.Ln1_m.copyWith(
+                                    color: AppColors.g6),
                               )
                             ],
                           ),
@@ -194,8 +201,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     padding: const EdgeInsets.only(top: 32.0, left: 16),
                     child: Text(
                       '목표 달성률',
-                      style: FontStyles.Headline2_b.copyWith(
-                          color: Colors.black),
+                      style:
+                          FontStyles.Headline2_b.copyWith(color: Colors.black),
                     ),
                   ),
                 ],
@@ -219,7 +226,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(top: 20.0, left: 15),
+                              padding:
+                                  const EdgeInsets.only(top: 20.0, left: 15),
                               child: RichText(
                                   text: TextSpan(
                                 text: '일주일 중에 ',
@@ -241,7 +249,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(top: 20.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   Text(
                                     '일',
@@ -290,7 +299,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(top: 13.0),
                               child: Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   SvgPicture.asset(
                                       'assets/icons/mypage_cloud_fill.svg'),
@@ -322,7 +332,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   children: [
                     Text(
                       '나의 아카이브',
-                      style: FontStyles.Headline2_b.copyWith(color: AppColors.g6),
+                      style:
+                          FontStyles.Headline2_b.copyWith(color: AppColors.g6),
                     )
                   ],
                 ),
@@ -354,11 +365,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 16.0),
-                            child: Column(children: [
+                            child: Column(children:
+                            [
                               Text(
-                                  '주식',style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.black),
-
+                                '주식',
+                                style: FontStyles.Bn2_sb.copyWith(
+                                    color: AppColors.black),
                               ),
                               RichText(
                                 text: TextSpan(
@@ -369,7 +381,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     TextSpan(
                                       text: '개',
                                       style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g5), //기본style을 지정해줘야함
+                                          color:
+                                              AppColors.g5), //기본style을 지정해줘야함
                                     ),
                                   ],
                                 ),
@@ -459,7 +472,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     TextSpan(
                                       text: '개',
                                       style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g5), //기본style을 지정해줘야함
+                                          color:
+                                              AppColors.g5), //기본style을 지정해줘야함
                                     ),
                                   ],
                                 ),
