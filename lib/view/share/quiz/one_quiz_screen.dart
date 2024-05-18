@@ -231,7 +231,7 @@ _quizFalse() {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
-                  'assets/icons/disagreement.png'),
+                  'assets/icons/quiz_falseCloud.png'),
             ],
           ),
           Padding(
