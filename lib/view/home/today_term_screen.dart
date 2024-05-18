@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
+import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
+import 'package:meetup/design/widgets/home/term_dialog.dart';
 
 import '../../design/style/ColorStyles.dart';
 import 'package:get/get.dart';
 
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/history_widget.dart';
+import '../../routes/get_pages.dart';
 
 class TodayTermScreen extends StatelessWidget {
   const TodayTermScreen({super.key});
@@ -53,7 +56,22 @@ class TodayTermScreen extends StatelessWidget {
                         FontStyles.Title2_sb.copyWith(color: AppColors.black),
                   ),
                   Spacer(),
-                  SvgPicture.asset('assets/icons/bookmark_unfill.svg'),
+                  GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return StatefulBuilder(
+                              builder:
+                                  (BuildContext context, StateSetter setState) {
+                                return TermDialog();
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: SvgPicture.asset('assets/icons/bookmark_unfill.svg')),
                 ],
               ),
               Padding(
