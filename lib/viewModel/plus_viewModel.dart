@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+
+import '../design/widgets/plus/summary_dialog.dart';
 
 class PlusViewModel extends GetxController {
 
@@ -20,6 +23,7 @@ class PlusViewModel extends GetxController {
     }
   }
 
+
   @override
   void onInit() {
     super.onInit();
@@ -27,4 +31,20 @@ class PlusViewModel extends GetxController {
       currentPage.value = pageController.page?.round() ?? 0;
     });
   }
+
+  @override
+  void onReady(){
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      showDialog(
+        context: Get.context!,
+        barrierDismissible: true,
+        builder: (context) => StatefulBuilder(
+          builder: (BuildContext context, StateSetter setState) {
+            return SummaryDialog();
+          },
+        ),
+      );
+    });
+  }
+
 }
