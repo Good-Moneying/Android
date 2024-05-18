@@ -11,6 +11,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:get/state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
+import 'package:meetup/design/widgets/custom_button.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
@@ -704,7 +705,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                   );
                                 },
                                 icon: Container(
-                                  width: 328,
+                                  width: Get.width*0.8,
                                   height: 50,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(50),
@@ -715,7 +716,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                     style: FontStyles.Bn1_b.copyWith(
                                         color: Colors.white),
                                   )),
-                                )),
+                                ),
+                            ),
                           ),
                         ],
                       ),
