@@ -232,14 +232,23 @@ class HomeScreen extends GetView<HomeViewModel> {
                           color: AppColors.black),
                     ),
                     Spacer(),
-                    Text(
-                      '전체보기',
-                      style:
-                          FontStyles.Caption1_m.copyWith(color: AppColors.g4),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7.0),
-                      child: SvgPicture.asset('assets/icons/view_more.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.TODAYTERM);
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            '전체보기',
+                            style:
+                            FontStyles.Caption1_m.copyWith(color: AppColors.g4),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 7.0),
+                            child: SvgPicture.asset('assets/icons/view_more.svg'),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
