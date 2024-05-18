@@ -109,10 +109,10 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Tooltip(
                       message: '실시간 뉴스를 빠르게 \n핵심만 전달드릴게요!',
                       textStyle: FontStyles.Caption2_r.copyWith(
-                          color: AppColors.white),
+                          color: AppColors.v6),
                       decoration: ShapeDecoration(
                         // borderRadius: BorderRadius.circular(8.0),
-                        color: AppColors.g4.withOpacity(0.95),
+                        color: AppColors.v1.withOpacity(0.95),
                         shape: ToolTipBalloon(),
                       ),
                       triggerMode: TooltipTriggerMode.tap,
@@ -164,10 +164,10 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Tooltip(
                       message: '관심있는 주제 및 나이, 성별에 따른 \n뉴스레터를 추천해드려요!',
                       textStyle: FontStyles.Caption2_r.copyWith(
-                          color: AppColors.white),
+                          color: AppColors.v6),
                       decoration: ShapeDecoration(
                         // borderRadius: BorderRadius.circular(8.0),
-                        color: AppColors.g4.withOpacity(0.95),
+                        color: AppColors.v1.withOpacity(0.95),
                         shape: ToolTipBalloon(),
                       ),
                       triggerMode: TooltipTriggerMode.tap,
