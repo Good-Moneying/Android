@@ -56,7 +56,7 @@ class MyApp extends StatelessWidget {
       //   useMaterial3: true,
       // ),
       initialBinding: SettingsBinding(),
-      home: BottomNavigationView(),
+      home: PlusStep1Screen(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
