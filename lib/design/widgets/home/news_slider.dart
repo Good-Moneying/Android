@@ -7,7 +7,7 @@ import '../../../viewModel/home_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 
-final controller = Get.find<HomeViewModel>();
+final newsController = Get.find<HomeViewModel>();
 
 newsSlider() {
   return CarouselSlider(
@@ -53,7 +53,7 @@ newsSlider() {
             left: 10,
             bottom: 30,
             child: Text(
-              controller.homeModel!.realtimeTrendNewsLetters[0].title,
+              newsController.homeModel!.realtimeTrendNewsLetters[0].title,
               style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
@@ -100,7 +100,7 @@ newsSlider() {
             left: 10,
             bottom: 30,
             child: Text(
-              controller.homeModel!.realtimeTrendNewsLetters[1].title,
+              newsController.homeModel!.realtimeTrendNewsLetters[1].title,
               style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
@@ -147,7 +147,7 @@ newsSlider() {
             left: 10,
             bottom: 30,
             child: Text(
-              controller.homeModel!.realtimeTrendNewsLetters[2].title,
+              newsController.homeModel!.realtimeTrendNewsLetters[2].title,
               style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
@@ -159,7 +159,7 @@ newsSlider() {
       autoPlay: true,
       viewportFraction: 0.7,
       onPageChanged: (index, reason) {
-        controller.indicatorIndex.value = index;
+        newsController.indicatorIndex.value = index;
       },
     ),
   );
@@ -171,7 +171,7 @@ newsIndicator() {
     children: [
       Obx(
         () => AnimatedSmoothIndicator(
-          activeIndex: controller.indicatorIndex.value,
+          activeIndex: newsController.indicatorIndex.value,
           count: 3,
           effect: ExpandingDotsEffect(
             activeDotColor: AppColors.g5,

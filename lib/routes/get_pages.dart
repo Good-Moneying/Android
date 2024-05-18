@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:meetup/binding/share_binding.dart';
 
 import 'package:meetup/view/auth/frequency_screen.dart';
 import 'package:meetup/view/auth/info_screen.dart';
@@ -90,6 +91,7 @@ class Pages {
     GetPage(
       name: Routes.SHARE,
       page: () => ShareScreen(),
+      binding: ShareBinding(),
     ),
     GetPage(
       name: Routes.SURVEY,

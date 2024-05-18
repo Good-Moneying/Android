@@ -5,16 +5,19 @@ import 'package:flutter_svg/svg.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/widgets/share/think_bottomSheet.dart';
+import 'package:meetup/viewModel/share_viewModel.dart';
 
 import '../../design/widgets/home/news_slider.dart';
 import '../../design/widgets/home/recommend_box.dart';
 import '../../routes/get_pages.dart';
 
-class ShareScreen extends StatelessWidget {
+class ShareScreen extends GetView<ShareViewModel> {
   const ShareScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(ShareViewModel());
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -54,18 +57,19 @@ class ShareScreen extends StatelessWidget {
               child: Obx(
                 () => InkWell(
                   onTap: () {
-                    Get.toNamed(Routes.SURVEY);
+                    //Get.toNamed(Routes.SURVEY);
+                    //기사 url로 넘어가도록 해야함
                   },
                   child: RecommendU(
                     image:
                         'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                    title: controller.homeModel!.customizeNewsLetters[0].title,
+                    title: newsController.homeModel!.customizeNewsLetters[0].title,
                     tag: '코인',
-                    isRecommend: controller.isRecommendFirst.value,
+                    isRecommend: newsController.isRecommendFirst.value,
                     onRecommend: () {
-                      controller.isRecommendFirst.value
-                          ? controller.isRecommendFirst.value = false
-                          : controller.isRecommendFirst.value = true;
+                      newsController.isRecommendFirst.value
+                          ? newsController.isRecommendFirst.value = false
+                          : newsController.isRecommendFirst.value = true;
                     },
                   ),
                 ),
@@ -159,112 +163,35 @@ class ShareScreen extends StatelessWidget {
                                 child: InkWell(
                                   onTap: () {
                                     Get.bottomSheet(
-                                      SingleChildScrollView(
-                                        child: Container(
-                                          height: Get.height * 0.5,
-                                          decoration: BoxDecoration(
-                                            color: AppColors.white,
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(12),
-                                              topRight: Radius.circular(12),
-                                            ),
+                                     ThinkContainer(
+                                          textField: TextField(
+                                            controller: controller.thinkController,
+                                            maxLength: 300,
+                                            maxLines: null,
+                                            textInputAction:
+                                            TextInputAction.done,
+                                            keyboardType:
+                                            TextInputType.text,
+                                            style: FontStyles
+                                                .Caption1_r
+                                                .copyWith(
+                                                color: AppColors
+                                                    .black),
+                                            decoration: InputDecoration(
+                                                counterText: '',
+                                                hintText:
+                                                '여러분의 생각을 남겨보세요. (최대 300자)',
+                                                hintStyle: FontStyles
+                                                    .Caption1_r
+                                                    .copyWith(
+                                                    color:
+                                                    AppColors
+                                                        .g5),
+                                                border:
+                                                InputBorder.none),
                                           ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.fromLTRB(
-                                                16, 32, 16, 32),
-                                            child: Column(
-                                              children: [
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 6.0),
-                                                  child: Text(
-                                                    '왜 그렇게 생각하시나요?',
-                                                    style:
-                                                        FontStyles.Headline2_b
-                                                            .copyWith(
-                                                                color: AppColors
-                                                                    .black),
-                                                  ),
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          bottom: 16.0),
-                                                  child: Text(
-                                                    '내 생각을 등록하면 다른 사람들 생각을 볼 수 있어요!',
-                                                    style: FontStyles.Caption1_m
-                                                        .copyWith(
-                                                            color:
-                                                                AppColors.g4),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  height: Get.height * 0.24,
-                                                  width: Get.width,
-                                                  decoration: BoxDecoration(
-                                                    color: AppColors.g1,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            10),
-                                                  ),
-                                                  child: Padding(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            16.0),
-                                                    child: TextField(
-                                                      maxLength: 300,
-                                                      maxLines: null,
-                                                      textInputAction:
-                                                          TextInputAction.done,
-                                                      keyboardType:
-                                                          TextInputType.text,
-                                                      style: FontStyles
-                                                              .Caption1_r
-                                                          .copyWith(
-                                                              color: AppColors
-                                                                  .black),
-                                                      decoration: InputDecoration(
-                                                          counterText: '',
-                                                          hintText:
-                                                              '여러분의 생각을 남겨보세요. (최대 300자)',
-                                                          hintStyle: FontStyles
-                                                                  .Caption1_r
-                                                              .copyWith(
-                                                                  color:
-                                                                      AppColors
-                                                                          .g5),
-                                                          border:
-                                                              InputBorder.none),
-                                                    ),
-                                                  ),
-                                                ),
-                                                Spacer(),
-                                                ElevatedButton(
-                                                  onPressed: () {
-                                                    Get.back();
-                                                  },
-                                                  style:
-                                                      ElevatedButton.styleFrom(
-                                                    minimumSize:
-                                                        const Size.fromHeight(
-                                                            50),
-                                                    backgroundColor:
-                                                        AppColors.v6,
-                                                  ),
-                                                  child: Text(
-                                                    '등록하기',
-                                                    style: FontStyles.Bn1_b
-                                                        .copyWith(
-                                                            color: AppColors
-                                                                .white),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
+                                          onPressed: () { },
                                         ),
-                                      ),
                                     );
                                   },
                                   child: Container(
@@ -302,30 +229,65 @@ class ShareScreen extends StatelessWidget {
                               ),
                               Flexible(
                                 flex: 1,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    border: Border.all(
-                                      color: AppColors.v2,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(14, 1, 14, 8),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                            'assets/icons/disagreement.png'),
-                                        Text(
-                                          '반대',
-                                          style: FontStyles.Caption1_m.copyWith(
-                                              color: AppColors.black),
+                                child: InkWell(
+                                  onTap: () {
+                                    Get.bottomSheet(
+                                      ThinkContainer(
+                                          textField: TextField(
+                                            controller: controller.thinkController,
+                                            maxLength: 300,
+                                            maxLines: null,
+                                            textInputAction:
+                                            TextInputAction.done,
+                                            keyboardType:
+                                            TextInputType.text,
+                                            style: FontStyles
+                                                .Caption1_r
+                                                .copyWith(
+                                                color: AppColors
+                                                    .black),
+                                            decoration: InputDecoration(
+                                                counterText: '',
+                                                hintText:
+                                                '여러분의 생각을 남겨보세요. (최대 300자)',
+                                                hintStyle: FontStyles
+                                                    .Caption1_r
+                                                    .copyWith(
+                                                    color:
+                                                    AppColors
+                                                        .g5),
+                                                border:
+                                                InputBorder.none),
+                                          ),
+                                          onPressed: () { },
                                         ),
-                                      ],
+                                    );
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      color: AppColors.white,
+                                      border: Border.all(
+                                        color: AppColors.v2,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.fromLTRB(14, 1, 14, 8),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Image.asset(
+                                              'assets/icons/disagreement.png'),
+                                          Text(
+                                            '반대',
+                                            style: FontStyles.Caption1_m.copyWith(
+                                                color: AppColors.black),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
