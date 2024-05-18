@@ -65,7 +65,7 @@ class PlusScreen extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 16.0),
+              padding: const EdgeInsets.only(left: 16.0, top: 12),
               child: Stack(
                 children: [
                   Container(
@@ -123,12 +123,17 @@ class PlusScreen extends StatelessWidget {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 150.0),
-                                child: Container(
-                                  width: 104, height: 30,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(29),color: AppColors.v6
+                                child: GestureDetector(
+                                  onTap: (){
+                                    Get.toNamed(Routes.PLUSONBOARDING);
+                                  },
+                                  child: Container(
+                                    width: 104, height: 30,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(29),color: AppColors.v6
+                                    ),
+                                    child: Center(child: Text('생각더하기',style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)),
                                   ),
-                                  child: Center(child: Text('생각더하기',style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)),
                                 ),
                               )
                             ],
