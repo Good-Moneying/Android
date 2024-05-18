@@ -8,7 +8,6 @@ class SettingsBinding extends Bindings{
   void dependencies() {
     Get.put(HomeViewModel());
     Get.put(ProfileViewModel());
-    Get.put(PlusViewModel());
   }
 
 }

@@ -20,4 +20,8 @@ abstract class Routes {
   static const LIVE = '/home/live';
   static const ALLLIVE = '/home/alllive';
   static const TODAYTERM = '/home/term';
+  static const PLUSONBOARDING = '/plus/onboarding';
+  static const PLUSSTEP = '/plus/step';
+  static const PLUSSTORAGE = '/plus/storage';
+  static const PLUSCOMPLETE = '/plus/complete';
 }

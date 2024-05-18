@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../routes/get_pages.dart';
 
 class PlusCompleteScreen extends StatelessWidget {
   const PlusCompleteScreen({super.key});
@@ -55,16 +58,21 @@ class PlusCompleteScreen extends StatelessWidget {
             ),
           ),
           Image.asset('assets/icons/plus_complete.png'),
-          Container(
-            width: 290,
-            height: 48,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(50), color: AppColors.v6),
-            child: Center(
-                child: Text(
-              '구경하기',
-              style: FontStyles.Ln1_sb.copyWith(color: AppColors.white),
-            )),
+          GestureDetector(
+            onTap: (){
+              Get.toNamed(Routes.PLUSSTORAGE);
+            },
+            child: Container(
+              width: 290,
+              height: 48,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50), color: AppColors.v6),
+              child: Center(
+                  child: Text(
+                '구경하기',
+                style: FontStyles.Ln1_sb.copyWith(color: AppColors.white),
+              )),
+            ),
           ),
         ]));
   }
