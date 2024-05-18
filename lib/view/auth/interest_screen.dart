@@ -69,7 +69,7 @@ class InterestScreen extends GetView<UserViewModel> {
               style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
             ),
             SizedBox(
-              height: Get.height * 0.1,
+              height: Get.height * 0.06,
             ),
             //1열
             Row(
@@ -90,7 +90,7 @@ class InterestScreen extends GetView<UserViewModel> {
                             height: Get.height * 0.01,
                           ),
                           Text(
-                            '주식',
+                            '글로벌',
                             style: FontStyles.Br1_sb.copyWith(
                                 color: AppColors.g4),
                           ),
@@ -109,13 +109,13 @@ class InterestScreen extends GetView<UserViewModel> {
                       child: Column(
                         children: [
                           Image.asset(controller.interestList[1]
-                              ? 'assets/icons/coin_fill.png'
-                              : 'assets/icons/coin_unfill.png'),
+                              ? 'assets/icons/finance_fill.png'
+                              : 'assets/icons/finance_unfill.png'),
                           SizedBox(
                             height: Get.height * 0.01,
                           ),
                           Text(
-                            '코인',
+                            '금융',
                             style: FontStyles.Br1_sb.copyWith(
                                 color: AppColors.g4),
                           ),
@@ -124,18 +124,10 @@ class InterestScreen extends GetView<UserViewModel> {
                     ),
                   ),
                 ),
-              ],
-            ),
-            SizedBox(
-              height: Get.height * 0.05,
-            ),
-            //2열
-            Row(
-              children: [
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
-                    () => InkWell(
+                        () => InkWell(
                       onTap: () {
                         controller.selectInterest(2);
                       },
@@ -148,7 +140,7 @@ class InterestScreen extends GetView<UserViewModel> {
                             height: Get.height * 0.01,
                           ),
                           Text(
-                            '금리',
+                            '증권',
                             style: FontStyles.Br1_sb.copyWith(
                                 color: AppColors.g4),
                           ),
@@ -157,6 +149,14 @@ class InterestScreen extends GetView<UserViewModel> {
                     ),
                   ),
                 ),
+              ],
+            ),
+            SizedBox(
+              height: Get.height * 0.03,
+            ),
+            //2열
+            Row(
+              children: [
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
@@ -174,6 +174,114 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '부동산',
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                        () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(4);
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(controller.interestList[4]
+                              ? 'assets/icons/corporation_fill.png'
+                              : 'assets/icons/corporation_unfill.png'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '기업',
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                        () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(5);
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(controller.interestList[5]
+                              ? 'assets/icons/tech_fill.png'
+                              : 'assets/icons/tech_unfill.png'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '테크',
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: Get.height * 0.03,
+            ),
+            //3열
+            Row(
+              children: [
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                        () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(6);
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(controller.interestList[6]
+                              ? 'assets/icons/life_fill.png'
+                              : 'assets/icons/life_unfill.png'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '라이프',
+                            style: FontStyles.Br1_sb.copyWith(
+                                color: AppColors.g4),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Obx(
+                        () => InkWell(
+                      onTap: () {
+                        controller.selectInterest(7);
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(controller.interestList[7]
+                              ? 'assets/icons/policy_fill.png'
+                              : 'assets/icons/policy_unfill.png'),
+                          SizedBox(
+                            height: Get.height * 0.01,
+                          ),
+                          Text(
+                            '정책',
                             style: FontStyles.Br1_sb.copyWith(
                                 color: AppColors.g4),
                           ),
