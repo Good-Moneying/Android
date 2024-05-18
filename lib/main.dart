@@ -18,6 +18,7 @@ import 'package:meetup/view/plus/plus_complete_screen.dart';
 import 'package:meetup/view/plus/plus_onboarding_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/plus/plus_step1_screen.dart';
+import 'package:meetup/view/plus/plus_think_storage.dart';
 import 'binding/settings_binding.dart';
 import 'routes/get_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
       //   useMaterial3: true,
       // ),
       initialBinding: SettingsBinding(),
-      home: PlusCompleteScreen(),
+      home: PlusThinkStorage(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
