@@ -11,6 +11,8 @@ class PlusViewModel extends GetxController {
   PageController pageController = PageController(initialPage: 0);
   Rx<bool> isSummary = false.obs;
   TextEditingController plusComment = TextEditingController();
+  PageController pageControllerOnBoarding = PageController(initialPage: 0);
+
 
   String updatePage(int index){
     currentPage.value = index;
