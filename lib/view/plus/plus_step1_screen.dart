@@ -384,20 +384,22 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                 child: SizedBox(
                   width: 296,
                   height: 150,
-                  child: TextFormField(
-                    keyboardType: TextInputType.multiline,
-                    maxLines: null,
-                    maxLength: 100,
-                    expands: true,
-                    decoration: InputDecoration(
-                      hintText: '작성하고 꼭! 요약하기를 실행해주세요. (최대 100자)',
-                      hintStyle: FontStyles.Caption2_r.copyWith(
-                          color: AppColors.g5),
-                      filled: true,
-                      fillColor: AppColors.g1,
-                      border: InputBorder.none,
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
+                  child: Obx(()
+                    => TextFormField(
+                      keyboardType: TextInputType.multiline,
+                      maxLines: null,
+                      maxLength: 100,
+                      expands: true,
+                      decoration: InputDecoration(
+                        hintText: '작성하고 꼭! 요약하기를 실행해주세요. (최대 100자)',
+                        hintStyle: FontStyles.Caption2_r.copyWith(
+                            color: AppColors.g5),
+                        filled: true,
+                        fillColor: AppColors.g1,
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                      ),
                     ),
                   ),
                 ),
