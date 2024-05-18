@@ -1,8 +1,11 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../routes/get_pages.dart';
 import '../../../viewModel/home_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';

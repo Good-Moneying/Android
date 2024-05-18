@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import '../style/ColorStyles.dart';
 import '../style/FontStyles.dart';
 
 
 class CommentWidget extends StatelessWidget {
-  const CommentWidget({super.key});
+  final String perspective;
+  final String content;
+
+
+
+  const CommentWidget({
+    super.key,
+    required this.content,
+    required this.perspective,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +94,7 @@ class CommentWidget extends StatelessWidget {
           ),
           //댓글 내용 컨테이너
           Container(
+            width: Get.width,
             decoration: BoxDecoration(
               color: AppColors.g1,
               borderRadius: BorderRadius.circular(8),
@@ -108,14 +119,14 @@ class CommentWidget extends StatelessWidget {
                         borderRadius: BorderRadius.circular(54),
                       ),
                       label: Text(
-                        '찬성',
+                        perspective,
                         style:
                         FontStyles.Caption2_sb.copyWith(color: AppColors.v6),
                       ),
                     ),
                   ),
                   Text(
-                    '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
+                    content,
                     style:
                     FontStyles.Caption1_m.copyWith(color: AppColors.g6),
                     softWrap: true,

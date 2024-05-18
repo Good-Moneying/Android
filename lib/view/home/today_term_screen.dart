@@ -1,14 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
+import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
+import 'package:meetup/design/widgets/home/term_dialog.dart';
 
 import '../../design/style/ColorStyles.dart';
 import 'package:get/get.dart';
 
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/history_widget.dart';
+import '../../routes/get_pages.dart';
 
 class TodayTermScreen extends StatelessWidget {
   const TodayTermScreen({super.key});
@@ -17,19 +21,7 @@ class TodayTermScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: SvgPicture.asset(
-            'assets/icons/back_left.svg',
-            height: 36,
-            width: 36,
-          ),
-        ),
-      ),
+      appBar: BackAppBar(iconColor: AppColors.black, title: null),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -64,7 +56,22 @@ class TodayTermScreen extends StatelessWidget {
                         FontStyles.Title2_sb.copyWith(color: AppColors.black),
                   ),
                   Spacer(),
-                  SvgPicture.asset('assets/icons/bookmark_unfill.svg'),
+                  GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          barrierDismissible: false,
+                          context: context,
+                          builder: (BuildContext context) {
+                            return StatefulBuilder(
+                              builder:
+                                  (BuildContext context, StateSetter setState) {
+                                return TermDialog();
+                              },
+                            );
+                          },
+                        );
+                      },
+                      child: SvgPicture.asset('assets/icons/bookmark_unfill.svg')),
                 ],
               ),
               Padding(

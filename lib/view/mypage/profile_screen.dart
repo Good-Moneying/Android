@@ -89,50 +89,48 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              width: 130,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: SizedBox(
-                                child: Container(
-                                  width: 83,
-                                  height: 47,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(32),
-                                      color: Colors.white,
-                                      border: Border.all(color: AppColors.g1)),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/icons/mypage_rain.png',
-                                          width: 29,
-                                          height: 31,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Obx(
-                                          () => Text(
-                                              controller.profileModel?.reward
-                                                      ?.toString() ??
-                                                  'N/A',
-                                              style: FontStyles.Br1_sb.copyWith(
-                                                  color: AppColors.g6)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
+                            // SizedBox(
+                            //   width: 130,
+                            // ),
                           ],
+                        ),
+                      ),
+                    ),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0, right: 16.0),
+                      child: SizedBox(
+                        child: Container(
+                          width: 83,
+                          height: 47,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32),
+                              color: Colors.white,
+                              border: Border.all(color: AppColors.g1)),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/icons/mypage_rain.png',
+                                  width: 29,
+                                  height: 31,
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(
+                                      () => Text(
+                                      controller.profileModel?.reward
+                                          ?.toString() ??
+                                          'N/A',
+                                      style: FontStyles.Br1_sb.copyWith(
+                                          color: AppColors.g6)),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
