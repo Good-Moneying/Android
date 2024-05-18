@@ -9,6 +9,7 @@ class PlusViewModel extends GetxController {
 
   var currentPage = 0.obs;
   PageController pageController = PageController(initialPage: 0);
+  Rx<bool> isSummary = false.obs;
 
   String updatePage(int index){
     currentPage.value = index;
