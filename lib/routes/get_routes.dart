@@ -18,5 +18,6 @@ abstract class Routes {
   static const PROFILE = '/profile';
   static const EDITORNEWS = '/home/editor';
   static const LIVE = '/home/live';
+  static const ALLLIVE = '/home/alllive';
   static const TODAYTERM = '/home/term';
 }

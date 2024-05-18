@@ -6,6 +6,7 @@ import 'package:meetup/view/auth/info_screen.dart';
 import 'package:meetup/view/auth/interest_screen.dart';
 import 'package:meetup/view/auth/login_screen.dart';
 import 'package:meetup/view/auth/welcome_screen.dart';
+import 'package:meetup/view/home/all_live_screen.dart';
 import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/home/live_news_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
@@ -91,6 +92,10 @@ class Pages {
       binding: BindingsBuilder(() {
         SettingsBinding().dependencies();
       }),
+    ),
+    GetPage(
+      name: Routes.ALLLIVE,
+      page: () => AllLiveScreen(),
     ),
     GetPage(
       name: Routes.TODAYTERM,

@@ -11,6 +11,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:get/state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
+import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import '../../viewModel/home_viewModel.dart';
@@ -26,29 +27,13 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
 
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-          backgroundColor: AppColors.white,
-          title: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                child: SvgPicture.asset('assets/images/newsletter_logo1.svg'),
-              ),
-              Expanded(
-                child: Container(),
-              ), // 공간을 채우기 위한 빈 컨테이너
-            ],
-          )),
+      appBar: BackAppBar(iconColor: AppColors.black, title: null),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(left: 16.0, right: 16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(0, 4, 0, 0), // 오른쪽에 여백 추가
-                child: SvgPicture.asset('assets/images/newsletter_line.svg'),
-              ),
               Image.asset(
                 'assets/images/news_letter_preview.png',
                 width: double.infinity,
