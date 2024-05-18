@@ -384,8 +384,8 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                 child: SizedBox(
                   width: 296,
                   height: 150,
-                  child: Obx(()
-                    => TextFormField(
+                  child:TextFormField(
+                      controller: controller.plusComment,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       maxLength: 100,
@@ -400,10 +400,13 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                         enabledBorder: InputBorder.none,
                         focusedBorder: InputBorder.none,
                       ),
+                      onChanged: (text) {
+                        controller.plusComment.value.text;
+                        print("text field: $text");
+                      },
                     ),
                   ),
                 ),
-              ),
               Spacer(),
               GestureDetector(
                     onTap: () {
