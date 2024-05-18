@@ -275,7 +275,11 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                       perspective: '찬성',
                       onFollow: ElevatedButton(
                         onPressed: () {
-                          controller.isFollow(true);
+                          if(controller.isFollow.value == false) {
+                            controller.isFollow(true);
+                          } else {
+                            controller.isFollow(false);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           minimumSize: Size.zero,
@@ -298,12 +302,17 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                       ),
                       onLike: GestureDetector(
                         onTap: () {
-                          controller.isLike(true);
+                          if(controller.isLike.value == false){
+                            controller.isLike(true);
+                          } else {
+                            controller.isLike(false);
+                          }
                         },
                         child: Row(
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(right: 4.0),
+                              //라이크 코멘트 색 채워졌을 때 필요함
                               child: SvgPicture.asset(
                                   'assets/icons/like_comment.svg'),
                             ),
