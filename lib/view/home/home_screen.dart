@@ -109,24 +109,33 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Tooltip(
                       message: '실시간 뉴스를 빠르게 \n핵심만 전달드릴게요!',
                       textStyle: FontStyles.Caption2_r.copyWith(
-                          color: AppColors.white),
+                          color: AppColors.v6),
                       decoration: ShapeDecoration(
                         // borderRadius: BorderRadius.circular(8.0),
-                        color: AppColors.g4.withOpacity(0.95),
+                        color: AppColors.v1.withOpacity(0.95),
                         shape: ToolTipBalloon(),
                       ),
                       triggerMode: TooltipTriggerMode.tap,
                       child: SvgPicture.asset('assets/icons/info.svg'),
                     ),
                     Spacer(),
-                    Text(
-                      '전체보기',
-                      style:
-                          FontStyles.Caption1_m.copyWith(color: AppColors.g4),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7.0),
-                      child: SvgPicture.asset('assets/icons/view_more.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.ALLLIVE);
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            '전체보기',
+                            style:
+                            FontStyles.Caption1_m.copyWith(color: AppColors.g4),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 7.0),
+                            child: SvgPicture.asset('assets/icons/view_more.svg'),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -164,10 +173,10 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Tooltip(
                       message: '관심있는 주제 및 나이, 성별에 따른 \n뉴스레터를 추천해드려요!',
                       textStyle: FontStyles.Caption2_r.copyWith(
-                          color: AppColors.white),
+                          color: AppColors.v6),
                       decoration: ShapeDecoration(
                         // borderRadius: BorderRadius.circular(8.0),
-                        color: AppColors.g4.withOpacity(0.95),
+                        color: AppColors.v1.withOpacity(0.95),
                         shape: ToolTipBalloon(),
                       ),
                       triggerMode: TooltipTriggerMode.tap,

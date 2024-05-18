@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -18,29 +19,13 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
     //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-            backgroundColor: AppColors.white,
-            title: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-                  child: SvgPicture.asset('assets/images/newsletter_logo1.svg'),
-                ),
-                Expanded(
-                  child: Container(),
-                ), // 공간을 채우기 위한 빈 컨테이너
-              ],
-            )),
+        appBar: BackAppBar(iconColor: AppColors.black, title: null),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 4, 0, 0), // 오른쪽에 여백 추가
-                  child: SvgPicture.asset('assets/images/newsletter_line.svg'),
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 5.0),
                   child: Container(
@@ -78,7 +63,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                       Expanded(child: Container()),
                       IconButton(
                         icon: SvgPicture.asset(
-                            'assets/icons/newsletter_bookmark.svg'),
+                            'assets/icons/bookmark_unfill.svg'),
                         onPressed: () {},
                       ),
                     ],
@@ -169,7 +154,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                               alignment: Alignment.topCenter,
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Text(
-                                "두둑한 3줄 요약",
+                                "3줄 요약",
                                 style: FontStyles.Heading1_b.copyWith(
                                     color: AppColors.v5),
                               ),
