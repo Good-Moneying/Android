@@ -768,6 +768,37 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     ? CommentWidget(
                           content: controller.liveController.value.text,
                           perspective: controller.setPerspective(controller.isDialogAgreeList.value),
+                        onFollow: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsetsDirectional.symmetric(
+                                horizontal: 8, vertical: 2),
+                            backgroundColor: AppColors.g6,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          child: Text(
+                            '팔로우',
+                            style: FontStyles.Caption2_m.copyWith(
+                                color: AppColors.white),
+                          ),
+                        ),
+                        onLike: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child:
+                              SvgPicture.asset('assets/icons/like_comment.svg'),
+                            ),
+                            Text(
+                              '27',
+                              style: FontStyles.Caption2_m.copyWith(
+                                  color: AppColors.g3),
+                            ),
+                          ],
+                        ),
                     )
                           : Image.asset(
                         'assets/images/newsletter_blurcomment.png',
