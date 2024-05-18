@@ -2,23 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/design/widgets/plus/stop_dialog.dart';
 import 'package:meetup/design/widgets/plus/summary_dialog.dart';
 import 'package:meetup/design/widgets/tooltip_balloon.dart';
+import 'package:meetup/viewModel/plus_viewModel.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/plus_tooltip.dart';
 
-class PlusStep1Screen extends StatelessWidget {
-  const PlusStep1Screen({super.key});
+class PlusStep1Screen extends GetView<PlusViewModel> {
 
   @override
   Widget build(BuildContext context) {
-    final PageController pageController = PageController(
-      initialPage: 0,
-    );
+    Get.put(PlusViewModel());
+    final PageController pageController = PageController(initialPage: 0);
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -31,12 +33,14 @@ class PlusStep1Screen extends StatelessWidget {
           alignment: Alignment.center,
           children: [
             SvgPicture.asset('assets/icons/plus_say.svg'),
-            Positioned(
-                child: Text(
-                  '왜 발생했을지 곰곰히 생각해보자!',
-                  style: FontStyles.Caption1_sb.copyWith(color: AppColors.g6),
-                  textAlign: TextAlign.center,
-                )),
+            Obx(()
+              => Positioned(
+                  child: Text(
+                    controller.updatePage(controller.currentPage.value),
+                    style: FontStyles.Caption1_sb.copyWith(color: AppColors.g6),
+                    textAlign: TextAlign.center,
+                  )),
+            ),
           ],
         ),
         Padding(
@@ -46,6 +50,9 @@ class PlusStep1Screen extends StatelessWidget {
                 width: 270, // 페이지뷰 높이 설정
                 child: PageView(
                   controller: pageController,
+                  onPageChanged: (index){
+                    controller.updatePage(index);
+                  },
                   children: [
                     // 첫 번째 페이지
                     Container(
@@ -292,17 +299,18 @@ class PlusStep1Screen extends StatelessWidget {
                   ],
                 ))),
         SizedBox(height: 16),
-        Center(
-          child: SmoothPageIndicator(
-            controller: pageController,
-            count: 4,
-            effect: ExpandingDotsEffect(
-                dotHeight: 8,
-                dotWidth: 8,
-                dotColor: AppColors.g3,
-                activeDotColor: AppColors.v5),
-          ),
-        ),
+          Center(
+            child: SmoothPageIndicator(
+                controller: pageController,
+                count: 4,
+                effect: ExpandingDotsEffect(
+                  dotHeight: 8,
+                  dotWidth: 8,
+                  dotColor: AppColors.g3,
+                  activeDotColor: AppColors.v5,
+                ),
+              ),
+            ),
         Padding(
           padding: const EdgeInsets.only(top: 20.0),
           child: Container(
