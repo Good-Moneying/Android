@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:meetup/model/home/home_model.dart';
 import 'package:meetup/repository/home_repository.dart';
@@ -17,6 +18,7 @@ class HomeViewModel extends GetxController {
   RxList<bool> isDialogAgreeList = [false, false, false].obs;
   Rx<bool> isLookAlone = false.obs;
 
+  TextEditingController commentController = TextEditingController();
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
   late final Rxn<HomeModel> _homeModel;
@@ -34,6 +36,15 @@ class HomeViewModel extends GetxController {
   Future<void> getHomeModel() async {
     try{
       _homeModel.value = await _repository.getHomeModel();
+    } catch(e){
+      print('$e');
+    }
+  }
+
+  //코멘트 작성
+  Future<void> postComment(int newsId, String content, String perspective) async {
+    try {
+      await _repository.postComment(newsId, content, perspective);
     } catch(e){
       print('$e');
     }

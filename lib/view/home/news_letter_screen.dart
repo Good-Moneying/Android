@@ -597,6 +597,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                   padding: const EdgeInsets.all(
                                                       16.0),
                                                   child: TextField(
+                                                    controller: controller
+                                                        .commentController,
                                                     maxLength: 200,
                                                     maxLines: null,
                                                     textInputAction:
@@ -673,7 +675,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                   const EdgeInsets.fromLTRB(
                                                       16, 0, 16, 16),
                                               child: ElevatedButton(
-                                                onPressed: () {
+                                                onPressed: () async {
+                                                  //댓글 작성하기
+                                                  await controller.postComment(
+                                                      controller.homeModel!.todayNewsLetter.id,
+                                                      controller.commentController.value.text,
+                                                      "긍정");
                                                   Get.back();
                                                 },
                                                 style: ElevatedButton.styleFrom(
