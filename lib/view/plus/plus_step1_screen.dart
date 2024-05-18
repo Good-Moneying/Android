@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:meetup/design/widgets/plus/stop_dialog.dart';
 import 'package:meetup/design/widgets/plus/summary_dialog.dart';
+import 'package:meetup/design/widgets/tooltip_balloon.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -324,7 +325,23 @@ class PlusStep1Screen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.only(left: 4.0),
                             child:
-                                SvgPicture.asset('assets/icons/plus_info.svg'),
+                                GestureDetector(
+                                  onTap: (){
+                                    Tooltip(
+                                      message: '어떤 이유로 발생했을까요? 어떤 효과가 나타날까요?\n앞선 구름을 보고 느낀 생각을 자유롭게 적어보세요!',
+                                      textStyle: FontStyles.Caption2_r.copyWith(
+                                          color: AppColors.v5),
+                                      decoration: ShapeDecoration(
+                                        // borderRadius: BorderRadius.circular(8.0),
+                                        color: AppColors.g4.withOpacity(0.95),
+                                        shape: ToolTipBalloon(),
+                                      ),
+                                      triggerMode: TooltipTriggerMode.tap,
+                                      child: SvgPicture.asset('assets/icons/info.svg'),
+                                    );
+                                  },
+                                child : SvgPicture.asset('assets/icons/plus_info.svg'),
+                                )
                           ),
                           Spacer(),
                           Padding(
