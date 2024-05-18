@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../style/ColorStyles.dart';
@@ -20,7 +21,11 @@ class SummaryDialog extends StatelessWidget {
       title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children :[
-            SvgPicture.asset('assets/icons/plus_close.svg')
+            GestureDetector(
+              onTap: (){
+                Navigator.of(context).pop();
+              }
+                ,child: SvgPicture.asset('assets/icons/plus_close.svg'))
           ]
       ),
       content: Column(
