@@ -5,9 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:meetup/viewModel/plus_onBoarding_viewModel.dart';
-import 'package:meetup/viewModel/plus_viewModel.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:meetup/viewModel/plus_onBoarding_viewModel.dart';import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
