@@ -23,133 +23,159 @@ class PlusStep1Screen extends StatelessWidget {
           Padding(
               padding: const EdgeInsets.only(top: 30.0),
               child: Container(
-                  height: 480,
-                  width: 330, // 페이지뷰 높이 설정
+                  height: 230,
+                  width: 270, // 페이지뷰 높이 설정
                   child: PageView(
                     controller: pageController,
                     children: [
                       // 첫 번째 페이지
                       Container(
-                        decoration: BoxDecoration(
-                            color: AppColors.v2, // 바깥쪽 Container의 배경색
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 72.0),
-                                child: Container(
-                                  width: 220,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color:
-                                          AppColors.white // 안쪽 Container의 배경색
-                                      ),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: RichText(
-                                            textAlign: TextAlign.center,
-                                            // 가운데 정렬
-                                            text: TextSpan(
-                                              text: '안녕하세요!\n여러분의 생각 더하기를\n도와줄',
-                                              style: FontStyles.Ln1_m.copyWith(
-                                                  color: AppColors.g6),
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: '구르미',
-                                                  style:
-                                                      FontStyles.Ln1_m.copyWith(
-                                                          color: AppColors.v5),
-                                                ),
-                                                TextSpan(
-                                                  text: '에요',
-                                                  style:
-                                                      FontStyles.Ln1_m.copyWith(
-                                                          color: AppColors.g6),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                        width: 270, height: 230,
+                        child: Stack(
+                          children: [
+                            Positioned(child: Container(
+                              width: 270, height: 150
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(17) ,topRight: Radius.circular(17)), color: AppColors.v2,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/icons/plus_cloud1.png', width: 163, height: 98,),
+                                  Text('Lv.1', style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)
+                                ],
                               ),
-                              Image.asset(
-                                'assets/icons/plus_cloudfun.png',
-                                width: 238,
-                                height: 177,
-                              )
-                            ],
-                          ),
+                            )),
+                            Positioned(
+                              top: 150
+                                ,child: Container(
+                              width: 270, height: 80
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(17) ,bottomRight: Radius.circular(17)), color: AppColors.white,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('테슬라의 기술 혁신', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                ],
+                              ),
+                            )),
+                          ],
                         ),
                       ),
                       // 두 번째 페이지
                       Container(
-                        decoration: BoxDecoration(
-                            color: AppColors.v2, // 바깥쪽 Container의 배경색
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Center(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.only(top: 72.0),
-                                child: Container(
-                                  width: 220,
-                                  height: 100,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(12),
-                                      color:
-                                          AppColors.white // 안쪽 Container의 배경색
-                                      ),
-                                  child: Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Center(
-                                          child: RichText(
-                                            textAlign: TextAlign.center,
-                                            // 가운데 정렬
-                                            text: TextSpan(
-                                              text: '생각더하기가 처음이신\n',
-                                              style: FontStyles.Ln1_m.copyWith(
-                                                  color: AppColors.g6),
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                  text: '여러분께 어떻게 생각을 더할지\n',
-                                                  style:
-                                                      FontStyles.Ln1_m.copyWith(
-                                                          color: AppColors.g6),
-                                                ),
-                                                TextSpan(
-                                                  text: '도와드릴게요!',
-                                                  style:
-                                                      FontStyles.Ln1_m.copyWith(
-                                                          color: AppColors.g6),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                        width: 270, height: 230,
+                        child: Stack(
+                          children: [
+                            Positioned(child: Container(
+                              width: 270, height: 150
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(17) ,topRight: Radius.circular(17)), color: AppColors.v2,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/icons/plus_cloud1.png', width: 163, height: 98,),
+                                  Text('Lv.2', style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)
+                                ],
                               ),
-                              Image.asset(
-                                'assets/icons/plus_cloudfun2.png',
-                                width: 238,
-                                height: 177,
-                              )
-                            ],
-                          ),
+                            )),
+                            Positioned(
+                                top: 150
+                                ,child: Container(
+                              width: 270, height: 80
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(17) ,bottomRight: Radius.circular(17)), color: AppColors.white,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('테슬라의 기술 혁신', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                ],
+                              ),
+                            )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 270, height: 230,
+                        child: Stack(
+                          children: [
+                            Positioned(child: Container(
+                              width: 270, height: 150
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(17) ,topRight: Radius.circular(17)), color: AppColors.v2,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/icons/plus_cloud1.png', width: 163, height: 98,),
+                                  Text('Lv.1', style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)
+                                ],
+                              ),
+                            )),
+                            Positioned(
+                                top: 150
+                                ,child: Container(
+                              width: 270, height: 80
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(17) ,bottomRight: Radius.circular(17)), color: AppColors.white,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('테슬라의 기술 혁신', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                ],
+                              ),
+                            )),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        width: 270, height: 230,
+                        child: Stack(
+                          children: [
+                            Positioned(child: Container(
+                              width: 270, height: 150
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(topLeft: Radius.circular(17) ,topRight: Radius.circular(17)), color: AppColors.v2,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Image.asset('assets/icons/plus_cloud1.png', width: 163, height: 98,),
+                                  Text('Lv.1', style: FontStyles.Label2_sb.copyWith(color: AppColors.white),)
+                                ],
+                              ),
+                            )),
+                            Positioned(
+                                top: 150
+                                ,child: Container(
+                              width: 270, height: 80
+                              ,decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(bottomLeft: Radius.circular(17) ,bottomRight: Radius.circular(17)), color: AppColors.white,
+                                border: Border.all(color: AppColors.v1)
+                            ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text('테슬라의 기술 혁신', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                ],
+                              ),
+                            )),
+                          ],
                         ),
                       ),
                     ],
@@ -158,12 +184,12 @@ class PlusStep1Screen extends StatelessWidget {
           Center(
             child: SmoothPageIndicator(
               controller: pageController,
-              count: 5,
+              count: 4,
               effect: ExpandingDotsEffect(
                   dotHeight: 8,
                   dotWidth: 8,
                   dotColor: AppColors.g3,
-                  activeDotColor: AppColors.v4),
+                  activeDotColor: AppColors.v5),
             ),
           ),
         ]));
