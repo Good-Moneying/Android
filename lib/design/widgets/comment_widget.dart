@@ -9,6 +9,8 @@ import '../style/FontStyles.dart';
 class CommentWidget extends StatelessWidget {
   final String perspective;
   final String content;
+  final Widget onFollow;
+  final Widget onLike;
 
 
 
@@ -16,6 +18,8 @@ class CommentWidget extends StatelessWidget {
     super.key,
     required this.content,
     required this.perspective,
+    required this.onFollow,
+    required this.onLike,
   });
 
   @override
@@ -50,23 +54,26 @@ class CommentWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size.zero,
-                            padding: EdgeInsetsDirectional.symmetric(
-                                horizontal: 8, vertical: 2),
-                            backgroundColor: AppColors.g6,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
-                            ),
-                          ),
-                          child: Text(
-                            '팔로우',
-                            style: FontStyles.Caption2_m.copyWith(
-                                color: AppColors.white),
-                          ),
-                        ),
+                        // ElevatedButton(
+                        //   onPressed: () {
+                        //
+                        //   },
+                        //   style: ElevatedButton.styleFrom(
+                        //     minimumSize: Size.zero,
+                        //     padding: EdgeInsetsDirectional.symmetric(
+                        //         horizontal: 8, vertical: 2),
+                        //     backgroundColor: AppColors.g6,
+                        //     shape: RoundedRectangleBorder(
+                        //       borderRadius: BorderRadius.circular(4),
+                        //     ),
+                        //   ),
+                        //   child: Text(
+                        //     '팔로우',
+                        //     style: FontStyles.Caption2_m.copyWith(
+                        //         color: AppColors.white),
+                        //   ),
+                        // ),
+                        onFollow,
                       ],
                     ),
                     Row(
@@ -81,14 +88,19 @@ class CommentWidget extends StatelessWidget {
                   ],
                 ),
                 Spacer(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
-                  child: SvgPicture.asset('assets/icons/like_comment.svg'),
-                ),
-                Text(
-                  '27',
-                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
-                ),
+                onLike,
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: const EdgeInsets.only(right: 4.0),
+                //       child: SvgPicture.asset('assets/icons/like_comment.svg'),
+                //     ),
+                //     Text(
+                //       '27',
+                //       style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                //     ),
+                //   ],
+                // ),
               ],
             ),
           ),

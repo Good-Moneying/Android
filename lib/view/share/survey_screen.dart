@@ -3,18 +3,24 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
+import 'package:meetup/viewModel/survey_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 
-class SurveyScreen extends StatelessWidget {
+class SurveyScreen extends GetView<SurveyViewModel> {
   const SurveyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(SurveyViewModel());
+
     return Scaffold(
       backgroundColor: AppColors.g6,
-      appBar: BackAppBar(iconColor: AppColors.white, title: null,),
+      appBar: BackAppBar(
+        iconColor: AppColors.white,
+        title: null,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -263,7 +269,63 @@ class SurveyScreen extends StatelessWidget {
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
                 children: <Widget>[
-                  // CommentWidget(),
+                  Obx(
+                    () => CommentWidget(
+                      content: '전기차',
+                      perspective: '찬성',
+                      onFollow: ElevatedButton(
+                        onPressed: () {
+                          if(controller.isFollow.value == false) {
+                            controller.isFollow(true);
+                          } else {
+                            controller.isFollow(false);
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          minimumSize: Size.zero,
+                          padding: EdgeInsetsDirectional.symmetric(
+                              horizontal: 8, vertical: 2),
+                          backgroundColor: controller.isFollow.value
+                              ? AppColors.g2
+                              : AppColors.g6,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                        ),
+                        child: Text(
+                          controller.isFollow.value ? '팔로잉' : '팔로우',
+                          style: FontStyles.Caption2_m.copyWith(
+                              color: controller.isFollow.value
+                                  ? AppColors.g5
+                                  : AppColors.white),
+                        ),
+                      ),
+                      onLike: GestureDetector(
+                        onTap: () {
+                          if(controller.isLike.value == false){
+                            controller.isLike(true);
+                          } else {
+                            controller.isLike(false);
+                          }
+                        },
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              //라이크 코멘트 색 채워졌을 때 필요함
+                              child: SvgPicture.asset(
+                                  'assets/icons/like_comment.svg'),
+                            ),
+                            Text(
+                              controller.isLike.value ? '28' : '27',
+                              style: FontStyles.Caption2_m.copyWith(
+                                  color: AppColors.g3),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
                   // CommentWidget(),
                   // CommentWidget(),
                   // CommentWidget(),
