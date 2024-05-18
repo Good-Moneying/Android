@@ -92,37 +92,37 @@ _partCorrect() {
                 RecommendU(
                   image:
                   'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: controller.homeModel!.customizeNewsLetters[0].title,
+                  title: newsController.homeModel!.customizeNewsLetters[0].title,
                   tag: '코인',
-                  isRecommend: controller.isRecommendFirst.value,
+                  isRecommend: newsController.isRecommendFirst.value,
                   onRecommend: () {
-                    controller.isRecommendFirst.value
-                        ? controller.isRecommendFirst.value = false
-                        : controller.isRecommendFirst.value = true;
+                    newsController.isRecommendFirst.value
+                        ? newsController.isRecommendFirst.value = false
+                        : newsController.isRecommendFirst.value = true;
                   },
                 ),
                 RecommendU(
                   image:
                   'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: controller.homeModel!.customizeNewsLetters[0].title,
+                  title: newsController.homeModel!.customizeNewsLetters[0].title,
                   tag: '코인',
-                  isRecommend: controller.isRecommendFirst.value,
+                  isRecommend: newsController.isRecommendFirst.value,
                   onRecommend: () {
-                    controller.isRecommendFirst.value
-                        ? controller.isRecommendFirst.value = false
-                        : controller.isRecommendFirst.value = true;
+                    newsController.isRecommendFirst.value
+                        ? newsController.isRecommendFirst.value = false
+                        : newsController.isRecommendFirst.value = true;
                   },
                 ),
                 RecommendU(
                   image:
                   'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: controller.homeModel!.customizeNewsLetters[0].title,
+                  title: newsController.homeModel!.customizeNewsLetters[0].title,
                   tag: '코인',
-                  isRecommend: controller.isRecommendFirst.value,
+                  isRecommend: newsController.isRecommendFirst.value,
                   onRecommend: () {
-                    controller.isRecommendFirst.value
-                        ? controller.isRecommendFirst.value = false
-                        : controller.isRecommendFirst.value = true;
+                    newsController.isRecommendFirst.value
+                        ? newsController.isRecommendFirst.value = false
+                        : newsController.isRecommendFirst.value = true;
                   },
                 ),
               ],
