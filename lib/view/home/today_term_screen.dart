@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/chip_editor.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
 
@@ -17,19 +18,7 @@ class TodayTermScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: SvgPicture.asset(
-            'assets/icons/back_left.svg',
-            height: 36,
-            width: 36,
-          ),
-        ),
-      ),
+      appBar: BackAppBar(iconColor: AppColors.black, title: null),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),

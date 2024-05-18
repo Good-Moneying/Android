@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -43,6 +45,30 @@ class HomeRepository {
         // print('홈모델 응답 성공');
         // print(HomeModel.fromJson(response.data));
         return HomeModel.fromJson(response.data);
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
+
+  Future<void> postComment(int newsId, String content, String perspective) async {
+    try {
+      final response = await _dio.post(
+          "/api/comments/$newsId",
+        data: {
+          "content": content,
+          "perspective": perspective,
+          "isPrivate": true
+        }
+      );
+
+      if (response.statusCode == 200) {
+        //return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception(

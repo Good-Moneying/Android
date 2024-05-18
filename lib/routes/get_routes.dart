@@ -17,5 +17,6 @@ abstract class Routes {
   static const SURVEY = '/share/survey';
   static const PROFILE = '/profile';
   static const EDITORNEWS = '/home/editor';
+  static const LIVE = '/home/live';
   static const TODAYTERM = '/home/term';
 }

@@ -67,7 +67,8 @@ class HomeScreen extends GetView<HomeViewModel> {
                 () => EditorCard(
                   title: controller.homeModel?.todayNewsLetter.title ?? '비어있음',
                   image:
-                      controller.homeModel?.todayNewsLetter.thumbnail ??
+                       controller.homeModel?.todayNewsLetter.thumbnail
+                          ??
                       'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                   isBookMark: controller.isEditorBookMark.value,
                   onEditor: () {
@@ -231,14 +232,23 @@ class HomeScreen extends GetView<HomeViewModel> {
                           color: AppColors.black),
                     ),
                     Spacer(),
-                    Text(
-                      '전체보기',
-                      style:
-                          FontStyles.Caption1_m.copyWith(color: AppColors.g4),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 7.0),
-                      child: SvgPicture.asset('assets/icons/view_more.svg'),
+                    GestureDetector(
+                      onTap: () {
+                        Get.toNamed(Routes.TODAYTERM);
+                      },
+                      child: Row(
+                        children: [
+                          Text(
+                            '전체보기',
+                            style:
+                            FontStyles.Caption1_m.copyWith(color: AppColors.g4),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 7.0),
+                            child: SvgPicture.asset('assets/icons/view_more.svg'),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
