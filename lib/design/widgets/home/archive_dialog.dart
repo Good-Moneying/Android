@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import '../../../viewModel/user_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
+import '../custom_button.dart';
 
 class ArchiveDialog extends StatelessWidget {
   const ArchiveDialog({super.key});
@@ -21,13 +22,13 @@ class ArchiveDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       titlePadding: EdgeInsets.only(right: 16.0),
-      contentPadding: EdgeInsets.fromLTRB(16, 16, 16, 32),
+      contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 32),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           IconButton(
             onPressed: () {
-              //Get.back();
+              Get.back();
             },
             icon: SvgPicture.asset(
                 'assets/images/newsletter_close.svg'), // 닫기 아이콘
@@ -277,17 +278,36 @@ class ArchiveDialog extends StatelessWidget {
                   ),
                 ),
               ),
+              Flexible(
+                fit: FlexFit.tight,
+                child: Column(
+                  children: [
+                    Image.asset('assets/icons/add_interest.png'),
+                    SizedBox(
+                      height: Get.height * 0.01,
+                    ),
+                    Text(
+                      '추가하기',
+                      style: FontStyles.Br1_sb.copyWith(
+                          color: AppColors.g4),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
-          // CustomButton(
-          //   backgroundColor: AppColors.v6,
-          //   textStyle: FontStyles.Ln1_sb.copyWith(color: AppColors.white),
-          //   label: '완료',
-          //   onPressed: () {
-          //     //네비바
-          //     Get.back();
-          //   },
-          // ),
+          SizedBox(
+            height: Get.height * 0.03,
+          ),
+          CustomButton(
+            backgroundColor: AppColors.v6,
+            textStyle: FontStyles.Ln1_sb.copyWith(color: AppColors.white),
+            label: '완료',
+            onPressed: () {
+              //네비바
+              Get.back();
+            },
+          ),
         ],
       ),
     );

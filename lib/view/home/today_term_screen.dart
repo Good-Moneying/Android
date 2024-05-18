@@ -6,12 +6,14 @@ import 'package:meetup/design/widgets/chip_editor.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
 import 'package:meetup/design/widgets/home/term_dialog.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
 import 'package:get/get.dart';
 
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/history_widget.dart';
+import '../../design/widgets/home/archive_dialog.dart';
 import '../../routes/get_pages.dart';
 
 class TodayTermScreen extends StatelessWidget {
@@ -19,6 +21,8 @@ class TodayTermScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(UserViewModel());
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: BackAppBar(iconColor: AppColors.black, title: null),
@@ -58,6 +62,18 @@ class TodayTermScreen extends StatelessWidget {
                   Spacer(),
                   GestureDetector(
                       onTap: () {
+                        // showDialog(
+                        //   barrierDismissible: false,
+                        //   context: context,
+                        //   builder: (BuildContext context) {
+                        //     return StatefulBuilder(
+                        //       builder:
+                        //           (BuildContext context, StateSetter setState) {
+                        //         return TermDialog();
+                        //       },
+                        //     );
+                        //   },
+                        // );
                         showDialog(
                           barrierDismissible: false,
                           context: context,
@@ -65,7 +81,7 @@ class TodayTermScreen extends StatelessWidget {
                             return StatefulBuilder(
                               builder:
                                   (BuildContext context, StateSetter setState) {
-                                return TermDialog();
+                                return ArchiveDialog();
                               },
                             );
                           },
