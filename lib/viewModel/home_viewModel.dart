@@ -7,7 +7,6 @@ import 'package:meetup/repository/home_repository.dart';
 import '../model/home/news_letter_model.dart';
 
 class HomeViewModel extends GetxController {
-
   Rx<bool> isEditorBookMark = false.obs;
   Rx<bool> isRecommendFirst = false.obs;
   Rx<bool> isRecommendSecond = false.obs;
@@ -16,9 +15,14 @@ class HomeViewModel extends GetxController {
   Rx<int> indicatorIndex = 0.obs;
   Rx<bool> isDialogAgree = false.obs;
   RxList<bool> isDialogAgreeList = [false, false, false].obs;
+  RxString agreeCategory = 'unknown'.obs;
+
   Rx<bool> isLookAlone = false.obs;
 
-  TextEditingController commentController = TextEditingController();
+  TextEditingController editorController = TextEditingController();
+  TextEditingController liveController = TextEditingController();
+  Rx<bool> isPostEditorNews = false.obs;
+  Rx<bool> isPostLiveNews = false.obs;
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
   late final Rxn<HomeModel> _homeModel;
@@ -33,23 +37,40 @@ class HomeViewModel extends GetxController {
     _homeModel = Rxn<HomeModel>();
   }
 
+  String setPerspective(List<bool> selectPerspective) {
+    if (selectPerspective[0]) {
+      return agreeCategory('긍정');
+    } else if (selectPerspective[1]) {
+      return agreeCategory('부정');
+    } else if (selectPerspective[2]) {
+      return agreeCategory('잘모르겠음');
+    }
+    return 'unknown';
+  }
+
   Future<void> getHomeModel() async {
-    try{
+    try {
       _homeModel.value = await _repository.getHomeModel();
-    } catch(e){
+    } catch (e) {
       print('$e');
     }
   }
 
   //코멘트 작성
-  Future<void> postComment(int newsId, String content, String perspective) async {
+  Future<void> postComment(
+      String type, int newsId, String content, String perspective) async {
     try {
-      await _repository.postComment(newsId, content, perspective);
-    } catch(e){
+      if (type == 'EDITOR') {
+        isPostEditorNews(true);
+        await _repository.postComment(newsId, content, perspective);
+      } else {
+        isPostLiveNews(true);
+        await _repository.postComment(newsId, content, perspective);
+      }
+    } catch (e) {
       print('$e');
     }
   }
-
 
   Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
     publishedAt: "",
@@ -59,18 +80,15 @@ class HomeViewModel extends GetxController {
     isCommented: false,
   ));
 
-
-  void getEditorNews() async{
-    try{
+  void getEditorNews() async {
+    try {
       print("getEditorNews() start!");
       NewsLetterModel data = await _repository.getEditorNews();
       news.value = data;
-
-    } catch(e){
+    } catch (e) {
       print('$e');
     }
   }
-
 
   void selectAgree(int index) async {
     for (int i = 0; i < isDialogAgreeList.length; i++) {
@@ -89,7 +107,7 @@ class HomeViewModel extends GetxController {
     }
   }
 
-   String splitParagraph(String text, int i) {
+  String splitParagraph(String text, int i) {
     List<String> parts = text.split("\n");
     return parts[i];
   }
@@ -97,5 +115,4 @@ class HomeViewModel extends GetxController {
   void selectLook() {
     isLookAlone.value = !isLookAlone.value;
   }
-
 }
