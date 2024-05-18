@@ -448,11 +448,10 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                     height: 31,
                                                                     decoration: BoxDecoration(
                                                                         borderRadius:
-                                                                            BorderRadius.circular(
-                                                                                14.6),
+                                                                            BorderRadius.circular(14.6),
                                                                         border: Border.all(
                                                                             color:
-                                                                                Color(0xFFAAAAB9))),
+                                                                            Color(0xFFAAAAB9))),
                                                                     child:
                                                                         Center(
                                                                       child:
