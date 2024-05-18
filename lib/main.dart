@@ -14,6 +14,7 @@ import 'package:meetup/view/home/live_news_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
 import 'package:meetup/view/home/today_term_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
+import 'package:meetup/view/plus/plus_complete_screen.dart';
 import 'package:meetup/view/plus/plus_onboarding_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/plus/plus_step1_screen.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
       //   useMaterial3: true,
       // ),
       initialBinding: SettingsBinding(),
-      home: PlusStep1Screen(),
+      home: PlusCompleteScreen(),
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
