@@ -10,7 +10,12 @@ import 'package:meetup/view/home/news_letter_screen.dart';
 import 'package:meetup/view/home/today_term_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
+import 'package:meetup/view/share/add_survey_screen.dart';
+import 'package:meetup/view/share/quiz/one_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/result_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/two_quiz_screen.dart';
 import 'package:meetup/view/share/share_screen.dart';
+import 'package:meetup/view/share/survey_screen.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 
 import '../binding/settings_binding.dart';
@@ -68,10 +73,6 @@ class Pages {
       transition: Transition.leftToRightWithFade,
     ),
     GetPage(
-      name: Routes.SHARE,
-      page: () => ShareScreen(),
-    ),
-    GetPage(
       name: Routes.PROFILE,
       page: () => ProfileScreen(),
     ),
@@ -85,6 +86,30 @@ class Pages {
     GetPage(
       name: Routes.TODAYTERM,
       page: () => TodayTermScreen(),
+    ),
+    GetPage(
+      name: Routes.SHARE,
+      page: () => ShareScreen(),
+    ),
+    GetPage(
+      name: Routes.SURVEY,
+      page: () => SurveyScreen(),
+    ),
+    GetPage(
+      name: Routes.ADDSURVEY,
+      page: () => AddSurveyScreen(),
+    ),
+    GetPage(
+      name: Routes.FIRSTQUIZ,
+      page: () => OneQuizScreen(),
+    ),
+    GetPage(
+      name: Routes.SECONDQUIZ,
+      page: () => TwoQuizScreen(),
+    ),
+    GetPage(
+      name: Routes.RESULTQUIZ,
+      page: () => ResultQuizScreen(),
     ),
   ];
 }
