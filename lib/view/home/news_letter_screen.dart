@@ -752,7 +752,10 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                         () => Padding(
                         padding: const EdgeInsets.only(top: 16.0),
                         child: controller.isPostEditorNews.value
-                            ? CommentWidget()
+                            ? CommentWidget(
+                          content: controller.editorController.value.text,
+                          perspective: controller.setPerspective(controller.isDialogAgreeList.value),
+                        )
                             : Image.asset(
                           'assets/images/newsletter_blurcomment.png',
                           width: double.infinity,

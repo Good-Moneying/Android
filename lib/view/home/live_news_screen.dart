@@ -765,7 +765,10 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.only(top: 16.0),
                       child: controller.isPostLiveNews.value
-                    ? CommentWidget()
+                    ? CommentWidget(
+                          content: controller.liveController.value.text,
+                          perspective: controller.setPerspective(controller.isDialogAgreeList.value),
+                    )
                           : Image.asset(
                         'assets/images/newsletter_blurcomment.png',
                         width: double.infinity,
