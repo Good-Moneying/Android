@@ -11,8 +11,12 @@ import 'package:meetup/view/home/home_screen.dart';
 import 'package:meetup/view/home/live_news_screen.dart';
 import 'package:meetup/view/home/news_letter_screen.dart';
 import 'package:meetup/view/home/today_term_screen.dart';
+import 'package:meetup/view/plus/plus_complete_screen.dart';
+import 'package:meetup/view/plus/plus_onboarding_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
+import 'package:meetup/view/plus/plus_step1_screen.dart';
+import 'package:meetup/view/plus/plus_think_storage.dart';
 import 'package:meetup/view/share/add_survey_screen.dart';
 import 'package:meetup/view/share/quiz/one_quiz_screen.dart';
 import 'package:meetup/view/share/quiz/result_quiz_screen.dart';
@@ -123,8 +127,20 @@ class Pages {
       page: () => TwoQuizScreen(),
     ),
     GetPage(
-      name: Routes.RESULTQUIZ,
-      page: () => ResultQuizScreen(),
+      name: Routes.PLUSONBOARDING,
+      page: () => PlusOnboardingScreen(),
+    ),
+    GetPage(
+      name: Routes.PLUSCOMPLETE,
+      page: () => PlusCompleteScreen(),
+    ),
+    GetPage(
+      name: Routes.PLUSSTEP,
+      page: () => PlusStep1Screen(),
+    ),
+    GetPage(
+      name: Routes.PLUSSTORAGE,
+      page: () => PlusThinkStorage(),
     ),
   ];
 }
