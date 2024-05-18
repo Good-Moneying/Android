@@ -1,6 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get/get_rx/get_rx.dart';
+import 'package:meetup/design/widgets/comment_widget.dart';
+import 'package:meetup/model/comment_model.dart';
 import 'package:meetup/model/home/home_model.dart';
 import 'package:meetup/repository/home_repository.dart';
 
@@ -16,7 +19,6 @@ class HomeViewModel extends GetxController {
   Rx<bool> isDialogAgree = false.obs;
   RxList<bool> isDialogAgreeList = [false, false, false].obs;
   RxString agreeCategory = 'unknown'.obs;
-
   Rx<bool> isLookAlone = false.obs;
 
   TextEditingController editorController = TextEditingController();
@@ -26,8 +28,12 @@ class HomeViewModel extends GetxController {
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
   late final Rxn<HomeModel> _homeModel;
+  //late final RxList<CommentModel> _commentModel;
+
+  RxList<CommentModel> comments = <CommentModel>[].obs;
 
   HomeModel? get homeModel => _homeModel.value;
+  //List<CommentModel> get commentModel => _commentModel.value;
 
   @override
   void onInit() {
@@ -35,6 +41,7 @@ class HomeViewModel extends GetxController {
 
     getHomeModel();
     _homeModel = Rxn<HomeModel>();
+    //_commentModel = RxList<CommentModel>();
   }
 
   String setPerspective(List<bool> selectPerspective) {
@@ -63,6 +70,10 @@ class HomeViewModel extends GetxController {
       if (type == 'EDITOR') {
         isPostEditorNews(true);
         await _repository.postComment(newsId, content, perspective);
+
+        comments.add(CommentModel(perspective: perspective, content: content));
+        //_commentModel.value?.content = content;
+
       } else {
         isPostLiveNews(true);
         await _repository.postComment(newsId, content, perspective);

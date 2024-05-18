@@ -14,12 +14,16 @@ import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import '../../viewModel/home_viewModel.dart';
+import '../../model/comment_model.dart';
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
     //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     controller.getEditorNews(); // 뉴스 데이터 가져오기
+
+    //List<CommentModel> comments = [];
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -606,7 +610,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 padding:
                                                     const EdgeInsets.all(16.0),
                                                 child: TextField(
-                                                  controller: controller.editorController,
+                                                  controller: controller
+                                                      .editorController,
                                                   maxLength: 200,
                                                   maxLines: null,
                                                   textInputAction:
@@ -681,12 +686,18 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 //댓글 작성하기
                                                 await controller.postComment(
                                                   'EDITOR',
-                                                  controller.homeModel!.todayNewsLetter.id,
-                                                  controller.editorController.value.text,
-                                                  controller.setPerspective(controller.isDialogAgreeList.value),
+                                                  controller.homeModel!
+                                                      .todayNewsLetter.id,
+                                                  controller.editorController
+                                                      .value.text,
+                                                  controller.setPerspective(
+                                                      controller
+                                                          .isDialogAgreeList
+                                                          .value),
                                                 );
 
-                                                controller.editorController.clear();
+                                                controller.editorController
+                                                    .clear();
                                                 Get.back();
                                               },
                                               style: ElevatedButton.styleFrom(
@@ -749,17 +760,26 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                       ],
                     ),
                     Obx(
-                        () => Padding(
+                      () => Padding(
                         padding: const EdgeInsets.only(top: 16.0),
                         child: controller.isPostEditorNews.value
-                            ? CommentWidget(
-                          content: controller.editorController.value.text,
-                          perspective: controller.setPerspective(controller.isDialogAgreeList.value),
-                        )
+                            ? ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: controller.comments.length,
+                                itemBuilder: (context, index) {
+
+                                  String perspective = controller.comments[index].perspective;
+                                  String content = controller.comments[index].content;
+
+                                  return CommentWidget(
+                                      content: content,
+                                      perspective: perspective);
+                                })
                             : Image.asset(
-                          'assets/images/newsletter_blurcomment.png',
-                          width: double.infinity,
-                        ),
+                                'assets/images/newsletter_blurcomment.png',
+                                width: double.infinity,
+                              ),
                       ),
                     ),
                   ],
