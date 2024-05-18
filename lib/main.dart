@@ -16,6 +16,7 @@ import 'package:meetup/view/home/today_term_screen.dart';
 import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/plus/plus_onboarding_screen.dart';
 import 'package:meetup/view/plus/plus_screen.dart';
+import 'package:meetup/view/plus/plus_step1_screen.dart';
 import 'binding/settings_binding.dart';
 import 'routes/get_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -56,7 +57,7 @@ class MyApp extends StatelessWidget {
       // ),
 
       initialBinding: SettingsBinding(),
-      home: PlusOnboardingScreen(),
+      home: PlusStep1Screen(),
 
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
