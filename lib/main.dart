@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
       // ),
 
       initialBinding: SettingsBinding(),
-      home: PlusStep1Screen(),
+      home: LoginScreen(),
 
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,

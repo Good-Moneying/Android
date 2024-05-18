@@ -345,7 +345,10 @@ class PlusStep1Screen extends StatelessWidget {
                                       .g5),
                               filled: true,
                               fillColor:
-                              AppColors.g1),
+                              AppColors.g1,
+                            border: InputBorder.none,
+                            enabledBorder: InputBorder.none,
+                            focusedBorder: InputBorder.none,),
                         ),
                       ),
                     ),
