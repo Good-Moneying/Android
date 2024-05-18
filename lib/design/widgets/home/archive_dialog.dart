@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 
 import '../../../viewModel/user_viewModel.dart';
 import '../../style/ColorStyles.dart';
@@ -21,6 +22,7 @@ class ArchiveDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
+      insetPadding: EdgeInsets.only(left: 8.0, right: 8.0),
       titlePadding: EdgeInsets.only(right: 16.0),
       contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 32),
       title: Row(
@@ -39,7 +41,7 @@ class ArchiveDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
+            padding: const EdgeInsets.only(bottom: 20.0),
             child: RichText(
               text: TextSpan(
                 text: '뉴스레터를 ',
@@ -299,14 +301,22 @@ class ArchiveDialog extends StatelessWidget {
           SizedBox(
             height: Get.height * 0.03,
           ),
-          CustomButton(
-            backgroundColor: AppColors.v6,
-            textStyle: FontStyles.Ln1_sb.copyWith(color: AppColors.white),
-            label: '완료',
-            onPressed: () {
-              //네비바
-              Get.back();
-            },
+          Obx(
+            () => CustomButton(
+              backgroundColor: AppColors.v6,
+              textStyle: FontStyles.Ln1_sb.copyWith(
+                  color: userController.interestSelect.value == false
+                      ? const Color(0xFFAAAAB9)
+                      : AppColors.white
+              ),
+              label: '완료',
+              onPressed: userController.interestSelect.value == false
+                  ? null
+                  : () {
+                //네비바
+                Get.back();
+              },
+            ),
           ),
         ],
       ),
