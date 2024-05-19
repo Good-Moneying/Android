@@ -5,6 +5,7 @@ import 'package:get/get.dart' hide Response;
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import '../routes/get_pages.dart';
@@ -102,6 +103,7 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
 
           if (isRegistered == true) {
             //홈 화면 고고
+            print('가입된 유저입니다');
             return true;
           } else {
             //회원 가입 고고
@@ -130,7 +132,7 @@ Future<void> kakaoLogin() async {
       print('accessToken : $myatoken');
       if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
         // 홈화면 이동
-        Get.toNamed(Routes.HOME);
+        Get.offAll(BottomNavigationView());
       } else {
         // 온보딩 화면 이동
         Get.toNamed(Routes.NICKNAME);
@@ -152,7 +154,7 @@ Future<void> kakaoLogin() async {
         print('accessToken : $myatoken');
         if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
           // 홈화면 이동
-          Get.toNamed(Routes.HOME);
+          Get.offAll(BottomNavigationView());
         } else {
           // 온보딩 화면 이동
           Get.toNamed(Routes.NICKNAME);
@@ -169,7 +171,7 @@ Future<void> kakaoLogin() async {
       print('accessToken : $myatoken');
       if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
         // 홈화면 이동
-        Get.toNamed(Routes.HOME);
+        Get.offAll(BottomNavigationView());
       } else {
         // 온보딩 화면 이동
         Get.toNamed(Routes.NICKNAME);

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:get/get.dart';
@@ -35,7 +36,8 @@ class ShareScreen extends GetView<ShareViewModel> {
               onTap: () {
                 Get.toNamed(Routes.ADDSURVEY);
               },
-                child: SvgPicture.asset('assets/icons/add_survey.svg'),),
+              child: SvgPicture.asset('assets/icons/add_survey.svg'),
+            ),
           ],
         ),
       ),
@@ -63,7 +65,8 @@ class ShareScreen extends GetView<ShareViewModel> {
                   child: RecommendU(
                     image:
                         'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                    title: newsController.homeModel!.customizeNewsLetters[0].title,
+                    title:
+                        newsController.homeModel!.customizeNewsLetters[0].title,
                     tag: '코인',
                     isRecommend: newsController.isRecommendFirst.value,
                     onRecommend: () {
@@ -163,34 +166,30 @@ class ShareScreen extends GetView<ShareViewModel> {
                                 child: InkWell(
                                   onTap: () {
                                     Get.bottomSheet(
-                                     ThinkContainer(
-                                          textField: TextField(
-                                            controller: controller.thinkController,
-                                            maxLength: 300,
-                                            maxLines: null,
-                                            textInputAction:
-                                            TextInputAction.done,
-                                            keyboardType:
-                                            TextInputType.text,
-                                            style: FontStyles
-                                                .Caption1_r
-                                                .copyWith(
-                                                color: AppColors
-                                                    .black),
-                                            decoration: InputDecoration(
-                                                counterText: '',
-                                                hintText:
-                                                '여러분의 생각을 남겨보세요. (최대 300자)',
-                                                hintStyle: FontStyles
-                                                    .Caption1_r
-                                                    .copyWith(
-                                                    color:
-                                                    AppColors
-                                                        .g5),
-                                                border:
-                                                InputBorder.none),
-                                          ),
-                                          onPressed: () { },
+                                        StatefulBuilder(
+                                            builder: (BuildContext context, StateSetter setState) {
+                                              return ThinkContainer(
+                                                textField: TextField(
+                                                  controller:
+                                                  controller.thinkController,
+                                                  maxLength: 300,
+                                                  maxLines: null,
+                                                  textInputAction: TextInputAction.done,
+                                                  keyboardType: TextInputType.text,
+                                                  style: FontStyles.Caption1_r.copyWith(
+                                                      color: AppColors.black),
+                                                  decoration: InputDecoration(
+                                                      counterText: '',
+                                                      hintText:
+                                                      '여러분의 생각을 남겨보세요. (최대 300자)',
+                                                      hintStyle: FontStyles.Caption1_r
+                                                          .copyWith(
+                                                          color: AppColors.g5),
+                                                      border: InputBorder.none),
+                                                ),
+                                                onPressed: () {},
+                                              );
+                                            }
                                         ),
                                     );
                                   },
@@ -233,34 +232,31 @@ class ShareScreen extends GetView<ShareViewModel> {
                                   onTap: () {
                                     Get.bottomSheet(
                                       ThinkContainer(
-                                          textField: TextField(
-                                            controller: controller.thinkController,
-                                            maxLength: 300,
-                                            maxLines: null,
-                                            textInputAction:
-                                            TextInputAction.done,
-                                            keyboardType:
-                                            TextInputType.text,
-                                            style: FontStyles
-                                                .Caption1_r
-                                                .copyWith(
-                                                color: AppColors
-                                                    .black),
-                                            decoration: InputDecoration(
-                                                counterText: '',
-                                                hintText:
-                                                '여러분의 생각을 남겨보세요. (최대 300자)',
-                                                hintStyle: FontStyles
-                                                    .Caption1_r
-                                                    .copyWith(
-                                                    color:
-                                                    AppColors
-                                                        .g5),
-                                                border:
-                                                InputBorder.none),
-                                          ),
-                                          onPressed: () { },
+                                        textField: TextField(
+                                          controller:
+                                              controller.thinkController,
+                                          maxLength: 300,
+                                          maxLines: null,
+                                          textInputAction: TextInputAction.done,
+                                          keyboardType: TextInputType.text,
+                                          style: FontStyles.Caption1_r.copyWith(
+                                              color: AppColors.black),
+                                          decoration: InputDecoration(
+                                              counterText: '',
+                                              hintText:
+                                                  '여러분의 생각을 남겨보세요. (최대 300자)',
+                                              hintStyle: FontStyles.Caption1_r
+                                                  .copyWith(
+                                                      color: AppColors.g5),
+                                              border: InputBorder.none),
                                         ),
+                                        onPressed: controller.thinkController
+                                                .value.text.isEmpty
+                                            ? null
+                                            : () {
+                                                Get.toNamed(Routes.SURVEY);
+                                              },
+                                      ),
                                     );
                                   },
                                   child: Container(
@@ -273,8 +269,8 @@ class ShareScreen extends GetView<ShareViewModel> {
                                       borderRadius: BorderRadius.circular(10),
                                     ),
                                     child: Padding(
-                                      padding:
-                                          const EdgeInsets.fromLTRB(14, 1, 14, 8),
+                                      padding: const EdgeInsets.fromLTRB(
+                                          14, 1, 14, 8),
                                       child: Column(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
@@ -283,8 +279,9 @@ class ShareScreen extends GetView<ShareViewModel> {
                                               'assets/icons/disagreement.png'),
                                           Text(
                                             '반대',
-                                            style: FontStyles.Caption1_m.copyWith(
-                                                color: AppColors.black),
+                                            style:
+                                                FontStyles.Caption1_m.copyWith(
+                                                    color: AppColors.black),
                                           ),
                                         ],
                                       ),
