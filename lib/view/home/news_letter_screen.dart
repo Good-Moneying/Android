@@ -57,7 +57,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     //Expanded(child: Container()),
                     IconButton(
                       icon: SvgPicture.asset(
-                          'assets/icons/newsletter_bookmark.svg'),
+                          'assets/icons/bookmark_unfill.svg'),
                       onPressed: () {},
                     ),
                   ],
