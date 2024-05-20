@@ -39,6 +39,7 @@ class HomeScreen extends GetView<HomeViewModel> {
           return Scaffold(
             backgroundColor: AppColors.g1,
             appBar: AppBar(
+              scrolledUnderElevation: 0,
               backgroundColor: Colors.white,
               title: Row(
                 children: [
