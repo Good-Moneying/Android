@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/mypage/archives_news_letter_model.dart';
 import '../model/mypage/archives_term_model.dart';
@@ -17,10 +18,20 @@ class ProfileRepository{
   }
 
   Future<ProfileModel> getProfileData() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getProfileData() 호출');
-      final response = await _dio.get("/api/users/mypage/test");
+      final response = await _dio.get("/api/users/mypage",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
+      print('마이페이지 테스트');
+      print(response.statusCode);
       if (response.statusCode == 200) {
         return ProfileModel.fromJson(response.data);
       } else {
