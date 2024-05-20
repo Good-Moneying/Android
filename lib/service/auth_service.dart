@@ -5,6 +5,7 @@ import 'package:get/get.dart' hide Response;
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import '../routes/get_pages.dart';
@@ -26,20 +27,20 @@ Future<OAuthToken?> getOAuthToken() async {
   }
 }
 
-// 만료된 ID 토큰을 갱신하는 함수
-Future<OAuthToken> refreshOAuthToken() async {
-  try {
-    OAuthToken? token = await getOAuthToken();
-
-    if (token != null) {
-      return await AuthApi.instance.refreshToken(oldToken: token);
-    } else {
-      throw ("refreshToken is null");
-    }
-  } catch (e) {
-    rethrow;
-  }
-}
+// // 만료된 ID 토큰을 갱신하는 함수
+// Future<OAuthToken> refreshOAuthToken() async {
+//   try {
+//     OAuthToken? token = await getOAuthToken();
+//
+//     if (token != null) {
+//       return await AuthApi.instance.refreshToken(oldToken: token);
+//     } else {
+//       throw ("refreshToken is null");
+//     }
+//   } catch (e) {
+//     rethrow;
+//   }
+// }
 
 //유저 정보 가져오기
 void getKakaoUserInfo() async {
@@ -102,6 +103,7 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
 
           if (isRegistered == true) {
             //홈 화면 고고
+            print('가입된 유저입니다');
             return true;
           } else {
             //회원 가입 고고
@@ -130,7 +132,7 @@ Future<void> kakaoLogin() async {
       print('accessToken : $myatoken');
       if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
         // 홈화면 이동
-        Get.toNamed(Routes.HOME);
+        Get.offAll(BottomNavigationView());
       } else {
         // 온보딩 화면 이동
         Get.toNamed(Routes.NICKNAME);
@@ -152,7 +154,7 @@ Future<void> kakaoLogin() async {
         print('accessToken : $myatoken');
         if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
           // 홈화면 이동
-          Get.toNamed(Routes.HOME);
+          Get.offAll(BottomNavigationView());
         } else {
           // 온보딩 화면 이동
           Get.toNamed(Routes.NICKNAME);
@@ -169,7 +171,7 @@ Future<void> kakaoLogin() async {
       print('accessToken : $myatoken');
       if (await isSignup(LoginPlatform.KAKAO, Token.accessToken)) {
         // 홈화면 이동
-        Get.toNamed(Routes.HOME);
+        Get.offAll(BottomNavigationView());
       } else {
         // 온보딩 화면 이동
         Get.toNamed(Routes.NICKNAME);
@@ -180,6 +182,7 @@ Future<void> kakaoLogin() async {
   }
 }
 
+//온보딩 진행 후 회원가입 데이터 전송
 Future<void> onboarding(final formData) async {
   try {
     Dio dio = Dio();
@@ -199,7 +202,7 @@ Future<void> onboarding(final formData) async {
     );
     print(response.statusCode);
 
-    
+
     if (response.statusCode == 400) {
       print('BAD REQUEST');
     }
@@ -224,32 +227,33 @@ Future<void> signOut(BuildContext context) async {
   }
 }
 
-Future<void> test(String accessToken) async {
-  try{
-    Dio dio = Dio();
-    dio.options.baseUrl = dotenv.get("BASE_URL");
-    dio.options.headers['Authorization'] = 'Bearer $accessToken';
-    dio.options.validateStatus = (status) {
-      return status! < 500;
-    };
-    Response response;
-
-    response = await dio.get(
-      '/api/users/test'
-    );
-
-    if(response.statusCode ==200){
-      print('test 코드 출력 성공');
-    }
-    else {
-      print('test 실패');
-      print(response.statusCode);
-    }
-  }
-  catch (e) {
-
-  }
-}
+////oauth test 함수
+// Future<void> test(String accessToken) async {
+//   try{
+//     Dio dio = Dio();
+//     dio.options.baseUrl = dotenv.get("BASE_URL");
+//     dio.options.headers['Authorization'] = 'Bearer $accessToken';
+//     dio.options.validateStatus = (status) {
+//       return status! < 500;
+//     };
+//     Response response;
+//
+//     response = await dio.get(
+//       '/api/oauth/test'
+//     );
+//
+//     if(response.statusCode ==200){
+//       print('test 코드 출력 성공');
+//     }
+//     else {
+//       print('test 실패');
+//       print(response.statusCode);
+//     }
+//   }
+//   catch (e) {
+//
+//   }
+// }
 
 //닉네임 중복 확인
 Future<bool> isDuplicate(String value) async {

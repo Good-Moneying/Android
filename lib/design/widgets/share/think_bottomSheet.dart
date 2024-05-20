@@ -7,7 +7,7 @@ import '../../style/FontStyles.dart';
 
 class ThinkContainer extends StatelessWidget {
   final Widget textField;
-  final Function() onPressed;
+  final Function()? onPressed;
 
   const ThinkContainer({
     super.key,
@@ -75,9 +75,7 @@ class ThinkContainer extends StatelessWidget {
               ),
               Spacer(),
               ElevatedButton(
-                onPressed: () {
-                  Get.toNamed(Routes.SURVEY);
-                },
+                onPressed: onPressed,
                 style:
                 ElevatedButton.styleFrom(
                   minimumSize:
