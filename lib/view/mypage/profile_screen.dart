@@ -11,7 +11,7 @@ import 'package:meetup/viewModel/profile_viewModel.dart';
 class ProfileScreen extends GetView<ProfileViewModel> {
   @override
   Widget build(BuildContext context) {
-    //Get.put(ProfileViewModel());
+    Get.put(ProfileViewModel());
     controller.getProfileData();
     controller.getTermData();
     controller.getNewsLetterData('');
@@ -89,50 +89,48 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ],
                             ),
-                            SizedBox(
-                              width: 130,
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: SizedBox(
-                                child: Container(
-                                  width: 83,
-                                  height: 47,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(32),
-                                      color: Colors.white,
-                                      border: Border.all(color: AppColors.g1)),
-                                  child: Center(
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/icons/mypage_rain.png',
-                                          width: 29,
-                                          height: 31,
-                                        ),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Obx(
-                                          () => Text(
-                                              controller.profileModel?.reward
-                                                      ?.toString() ??
-                                                  'N/A',
-                                              style: FontStyles.Br1_sb.copyWith(
-                                                  color: AppColors.g6)),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 16,
-                            ),
+                            // SizedBox(
+                            //   width: 130,
+                            // ),
                           ],
+                        ),
+                      ),
+                    ),
+                    Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10.0, right: 16.0),
+                      child: SizedBox(
+                        child: Container(
+                          width: 83,
+                          height: 47,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(32),
+                              color: Colors.white,
+                              border: Border.all(color: AppColors.g1)),
+                          child: Center(
+                            child: Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'assets/icons/mypage_rain.png',
+                                  width: 29,
+                                  height: 31,
+                                ),
+                                SizedBox(
+                                  width: 8,
+                                ),
+                                Obx(
+                                      () => Text(
+                                      controller.profileModel?.reward
+                                          ?.toString() ??
+                                          'N/A',
+                                      style: FontStyles.Br1_sb.copyWith(
+                                          color: AppColors.g6)),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -198,7 +196,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 32.0, left: 16),
+                    padding: const EdgeInsets.only(top: 32.0, left: 45),
                     child: Text(
                       '목표 달성률',
                       style:
@@ -210,6 +208,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: 16,
@@ -327,7 +326,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 43, 0, 0),
+                padding: const EdgeInsets.fromLTRB(45, 43, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -341,6 +340,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 12.0, 0, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       'assets/icons/mypage_banner2.png',
@@ -353,6 +353,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 158,
@@ -445,6 +446,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 158,
@@ -540,6 +542,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 328,
@@ -575,6 +578,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 328,
@@ -610,6 +614,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 328,

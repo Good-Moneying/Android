@@ -8,10 +8,14 @@ import '../style/ColorStyles.dart';
 
 class MyProgressBar extends GetView<UserViewModel> {
   final double percent;
+  final Color backgroundColor;
+  final Color progressColor;
 
   const MyProgressBar({
     super.key,
     required this.percent,
+    required this.backgroundColor,
+    required this.progressColor,
   });
 
   @override
@@ -22,8 +26,8 @@ class MyProgressBar extends GetView<UserViewModel> {
       animationDuration: 1000,
       animateFromLastPercent: true,
       percent: percent,
-      backgroundColor: AppColors.g1,
-      progressColor: AppColors.v5,
+      backgroundColor: backgroundColor,
+      progressColor: progressColor,
       lineHeight: 10,
       barRadius: Radius.circular(10),
     );

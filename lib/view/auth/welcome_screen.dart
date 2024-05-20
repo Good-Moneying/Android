@@ -82,22 +82,22 @@ class WelcomeScreen extends GetView<UserViewModel> {
                           .replaceAll('-', '');
 
                       //넘겨줄 데이터 구성
-                      final formData = <String, dynamic>{
+                      final formData = <String, dynamic> {
                         "email": email,
                         "nickname": controller.nicknameController.value.text,
                         "refreshToken": refreshToken,
                         "gender": controller.userGender.value,
                         "birthDay": formatBirth,
                         "provider": provider,
-                        "category": controller.userCategory.value,
+                        "category": 'finance',
+                        //controller.userCategory.value,
                         "goal": controller.userGoal.value,
                       };
 
                       //출력테스트
                       print(formData);
                       //서버에 데이터 전송
-                      //await test(accessToken);
-                      //await onboarding(formData);
+                      await onboarding(formData);
 
                       Get.offAll(BottomNavigationView());
                     },

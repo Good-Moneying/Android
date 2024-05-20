@@ -1,63 +1,71 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../routes/get_pages.dart';
 import '../../../viewModel/home_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 
-final controller = Get.find<HomeViewModel>();
+final newsController = Get.find<HomeViewModel>();
 
 newsSlider() {
   return CarouselSlider(
     items: [
-      Stack(
-        children: [
-          ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
+      GestureDetector(
+        onTap: () {
+          Get.toNamed(Routes.LIVE);
+        },
+        child: Stack(
+          children: [
+            ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              child: Image.network(
+                newsController.homeModel?.realtimeTrendNewsLetters[0].thumbnail
+                    ?? 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                height: Get.height * 0.16,
+                width: Get.width * 0.6,
+                fit: BoxFit.fill,
+              ),
             ),
-            child: Image.network(
-              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-              height: Get.height * 0.16,
-              width: Get.width * 0.6,
-              fit: BoxFit.fill,
+            ClipRRect(
+              borderRadius: const BorderRadius.all(
+                Radius.circular(10),
+              ),
+              child: Container(
+                height: Get.height * 0.16,
+                width: Get.width * 0.6,
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: FractionalOffset.bottomCenter,
+                        end: FractionalOffset.topCenter,
+                        colors: [
+                      Color(0xFF212121),
+                      Color(0xFF212121).withOpacity(0.1),
+                    ])),
+                child: Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
+                  child: Text(
+                    newsController.homeModel!.realtimeTrendNewsLetters[0].title,
+                    style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
+                  ),
+                ),
+              ),
             ),
-          ),
-          ClipRRect(
-            borderRadius: const BorderRadius.all(
-              Radius.circular(10),
+            Positioned(
+              right: 10,
+              child: Text(
+                '1',
+                style: FontStyles.Title1_b.copyWith(color: AppColors.white),
+              ),
             ),
-            child: Container(
-              height: Get.height * 0.16,
-              width: Get.width * 0.6,
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      begin: FractionalOffset.bottomCenter,
-                      end: FractionalOffset.topCenter,
-                      colors: [
-                    Color(0xFF212121),
-                    Color(0xFF212121).withOpacity(0.1),
-                  ])),
-            ),
-          ),
-          Positioned(
-            right: 10,
-            child: Text(
-              '1',
-              style: FontStyles.Title1_b.copyWith(color: AppColors.white),
-            ),
-          ),
-          Positioned(
-            left: 10,
-            bottom: 30,
-            child: Text(
-              controller.homeModel!.realtimeTrendNewsLetters[0].title,
-              style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
       Stack(
         children: [
@@ -66,7 +74,8 @@ newsSlider() {
               Radius.circular(10),
             ),
             child: Image.network(
-              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+              newsController.homeModel?.realtimeTrendNewsLetters[1].thumbnail
+                  ?? 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
               height: Get.height * 0.16,
               width: Get.width * 0.6,
               fit: BoxFit.fill,
@@ -87,6 +96,13 @@ newsSlider() {
                     Color(0xFF212121),
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
+                child: Text(
+                  newsController.homeModel!.realtimeTrendNewsLetters[1].title,
+                  style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -96,14 +112,6 @@ newsSlider() {
               style: FontStyles.Title1_b.copyWith(color: AppColors.white),
             ),
           ),
-          Positioned(
-            left: 10,
-            bottom: 30,
-            child: Text(
-              controller.homeModel!.realtimeTrendNewsLetters[1].title,
-              style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
-            ),
-          ),
         ],
       ),
       Stack(
@@ -113,7 +121,8 @@ newsSlider() {
               Radius.circular(10),
             ),
             child: Image.network(
-              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+              newsController.homeModel?.realtimeTrendNewsLetters[2].thumbnail
+              ?? 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
               height: Get.height * 0.16,
               width: Get.width * 0.6,
               fit: BoxFit.fill,
@@ -134,6 +143,13 @@ newsSlider() {
                     Color(0xFF212121),
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
+                child: Text(
+                  newsController.homeModel!.realtimeTrendNewsLetters[2].title,
+                  style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
+                ),
+              ),
             ),
           ),
           Positioned(
@@ -141,14 +157,6 @@ newsSlider() {
             child: Text(
               '3',
               style: FontStyles.Title1_b.copyWith(color: AppColors.white),
-            ),
-          ),
-          Positioned(
-            left: 10,
-            bottom: 30,
-            child: Text(
-              controller.homeModel!.realtimeTrendNewsLetters[2].title,
-              style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
             ),
           ),
         ],
@@ -159,7 +167,7 @@ newsSlider() {
       autoPlay: true,
       viewportFraction: 0.7,
       onPageChanged: (index, reason) {
-        controller.indicatorIndex.value = index;
+        newsController.indicatorIndex.value = index;
       },
     ),
   );
@@ -171,7 +179,7 @@ newsIndicator() {
     children: [
       Obx(
         () => AnimatedSmoothIndicator(
-          activeIndex: controller.indicatorIndex.value,
+          activeIndex: newsController.indicatorIndex.value,
           count: 3,
           effect: ExpandingDotsEffect(
             activeDotColor: AppColors.g5,

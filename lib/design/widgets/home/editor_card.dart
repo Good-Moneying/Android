@@ -45,10 +45,10 @@ class EditorCard extends StatelessWidget {
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    //임시 사진
                     child: Image.network(
                       image,
                       height: Get.height * 0.25,
+                      width: Get.width,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -69,9 +69,14 @@ class EditorCard extends StatelessWidget {
                                   BorderRadius.all(Radius.circular(6)),
                             ),
                           ),
-                          SvgPicture.asset(isBookMark
-                              ? 'assets/icons/bookmark_fill.svg'
-                              : 'assets/icons/bookmark_unfill.svg'),
+                          SvgPicture.asset(
+                            isBookMark
+                                ? 'assets/icons/bookmark_fill.svg'
+                                : 'assets/icons/bookmark_unfill.svg',
+                            colorFilter: isBookMark
+                                ? null
+                                : ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                          ),
                         ],
                       ),
                     ),

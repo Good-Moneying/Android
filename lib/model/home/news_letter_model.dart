@@ -1,6 +1,6 @@
 class NewsLetterModel {
   final String publishedAt;
-  final String editor;
+  final String? editor;
   final List<Block> blocks;
   final List<Comment> comments;
   final bool isCommented;
