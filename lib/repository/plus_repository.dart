@@ -69,7 +69,9 @@ class PlusRepository {
             "sentences": sentenceStrings, // 문자열 리스트 전달
           },
           options: Options(headers: {
-            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+            //"Authorization": "Bearer ${prefs.getString('accessToken')}",
+            "Authorization":
+            "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTYyMDk5NTUsImV4cCI6MTcxNjIxMzU1NSwic3ViIjoic3VoeXVuMTAyMDFAbmF2ZXIuY29tIiwiaXNzIjoiZHVkdWsuc2hvcCJ9.Y-uW3x7YmgcuvQmQu8rXLriaCMUNKwkuhL5dsqwC9lE'}"
           }));
 
       if (response.statusCode != 200) {
@@ -98,7 +100,7 @@ class PlusRepository {
       );
 
       if (response.statusCode == 200) {
-        print('post 성공!');
+        print('post 성공!!!!');
       } else {
         throw Exception('postSummaryRequired 실패! : ${response.statusCode} - ${response.statusMessage}');
       }

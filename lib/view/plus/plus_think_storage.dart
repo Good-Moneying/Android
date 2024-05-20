@@ -19,7 +19,7 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(PlusViewModel());
-    controller.postAllSentences(0);
+    controller.postAllSentences(1);
     return Scaffold(
         backgroundColor: AppColors.g1,
         appBar: PlusCompleteAppBar(iconColor: AppColors.black, title: null,),
