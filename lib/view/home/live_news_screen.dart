@@ -775,7 +775,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(right: 4.0),
                               child:
-                              SvgPicture.asset('assets/icons/like_comment.svg'),
+                              SvgPicture.asset('assets/icons/unlike_comment.svg'),
                             ),
                             Text(
                               '27',

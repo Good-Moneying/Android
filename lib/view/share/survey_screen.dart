@@ -314,7 +314,8 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                               padding: const EdgeInsets.only(right: 4.0),
                               //라이크 코멘트 색 채워졌을 때 필요함
                               child: SvgPicture.asset(
-                                  'assets/icons/like_comment.svg'),
+                                  controller.isLike.value ? 'assets/icons/like_comment.svg' :
+                                  'assets/icons/unlike_comment.svg'),
                             ),
                             Text(
                               controller.isLike.value ? '28' : '27',

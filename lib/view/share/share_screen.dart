@@ -19,6 +19,9 @@ class ShareScreen extends GetView<ShareViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(ShareViewModel());
+
+    var shareController = Get.find<ShareViewModel>();
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -166,31 +169,31 @@ class ShareScreen extends GetView<ShareViewModel> {
                                 child: InkWell(
                                   onTap: () {
                                     Get.bottomSheet(
-                                        StatefulBuilder(
-                                            builder: (BuildContext context, StateSetter setState) {
-                                              return ThinkContainer(
-                                                textField: TextField(
-                                                  controller:
-                                                  controller.thinkController,
-                                                  maxLength: 300,
-                                                  maxLines: null,
-                                                  textInputAction: TextInputAction.done,
-                                                  keyboardType: TextInputType.text,
-                                                  style: FontStyles.Caption1_r.copyWith(
-                                                      color: AppColors.black),
-                                                  decoration: InputDecoration(
-                                                      counterText: '',
-                                                      hintText:
-                                                      '여러분의 생각을 남겨보세요. (최대 300자)',
-                                                      hintStyle: FontStyles.Caption1_r
-                                                          .copyWith(
-                                                          color: AppColors.g5),
-                                                      border: InputBorder.none),
-                                                ),
-                                                onPressed: () {},
-                                              );
-                                            }
+                                      ThinkContainer(
+                                        textField: TextField(
+                                          controller: Get.find<ShareViewModel>().thinkController,
+                                          maxLength: 300,
+                                          maxLines: null,
+                                          textInputAction: TextInputAction.done,
+                                          keyboardType: TextInputType.text,
+                                          style: FontStyles.Caption1_r.copyWith(
+                                              color: AppColors.black),
+                                          decoration: InputDecoration(
+                                              counterText: '',
+                                              hintText:
+                                              '여러분의 생각을 남겨보세요. (최대 300자)',
+                                              hintStyle: FontStyles.Caption1_r
+                                                  .copyWith(
+                                                  color: AppColors.g5),
+                                              border: InputBorder.none),
                                         ),
+                                        onPressed: Get.find<ShareViewModel>().thinkController
+                                            .value.text.isEmpty
+                                            ? null
+                                            : () {
+                                          Get.toNamed(Routes.SURVEY);
+                                        },
+                                      )
                                     );
                                   },
                                   child: Container(
@@ -256,7 +259,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                             : () {
                                                 Get.toNamed(Routes.SURVEY);
                                               },
-                                      ),
+                                      )
                                     );
                                   },
                                   child: Container(
