@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:meetup/model/plus/plus_comment_model.dart';
 import 'package:meetup/repository/plus_repository.dart';
 import 'package:meetup/repository/profile_repository.dart';
 
@@ -78,6 +79,15 @@ class PlusViewModel extends GetxController {
   Future<void> postAllSentences(int thinkingId) async {
     try {
       await _repository.postCloudThinking(thinkingId, sentencesList);
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
+
+  Future<void> postSummaryRequired(String comment) async {
+    try {
+      PlusCommentModel dataModel = PlusCommentModel(comment);
+      await _repository.postSummaryRequired(dataModel);
     } catch (e) {
       print('Error: $e');
     }

@@ -1,7 +1,7 @@
-class RequiredPostModel {
+class PlusCommentModel {
   String comment;
 
-  RequiredPostModel(this.comment);
+  PlusCommentModel(this.comment);
 
   Map<String, dynamic> toJson() {
     return {
