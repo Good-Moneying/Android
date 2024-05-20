@@ -13,9 +13,9 @@ class PlusRepository {
     };
   }
 
-  Future<CloudHomeModel> cloudHomeGet() async {
+  Future<CloudHomeModel> getCloudHome() async {
     try {
-      print('cloudHomeGet() 호출');
+      print('getCloudHome() 호출');
       final response = await _dio.get("/api/thinkings/home");
 
       if (response.statusCode == 200) {
