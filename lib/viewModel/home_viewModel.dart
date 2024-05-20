@@ -10,6 +10,8 @@ import 'package:meetup/repository/home_repository.dart';
 import '../model/home/news_letter_model.dart';
 
 class HomeViewModel extends GetxController {
+  Rx<bool> isLoading = true.obs;
+
   Rx<bool> isEditorBookMark = false.obs;
   Rx<bool> isRecommendFirst = false.obs;
   Rx<bool> isRecommendSecond = false.obs;
@@ -58,6 +60,7 @@ class HomeViewModel extends GetxController {
   Future<void> getHomeModel() async {
     try {
       _homeModel.value = await _repository.getHomeModel();
+      isLoading.value = false;
     } catch (e) {
       print('$e');
     }
