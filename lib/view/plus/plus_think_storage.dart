@@ -5,6 +5,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:meetup/design/widgets/appBar/plus_complete_appbar.dart';
+import 'package:meetup/viewModel/plus_home_viewModel.dart';
+import 'package:meetup/viewModel/plus_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -12,11 +14,11 @@ import '../../design/widgets/appBar/back_appBar.dart';
 import '../../routes/get_pages.dart';
 import '../bottomNavigationBar.dart';
 
-class PlusThinkStorage extends StatelessWidget {
-  const PlusThinkStorage({super.key});
+class PlusThinkStorage extends GetView<PlusViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PlusViewModel());
     return Scaffold(
         backgroundColor: AppColors.g1,
         appBar: PlusCompleteAppBar(iconColor: AppColors.black, title: null,),
@@ -70,8 +72,10 @@ class PlusThinkStorage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8), color: AppColors.white
                       ),
                       child: Center(
-                        child: Text(
-                          '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                        child: Obx(()
+                          =>Text(
+                            controller.sentencesList[0].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                          ),
                         ),
                       ),
                     ),
@@ -87,8 +91,10 @@ class PlusThinkStorage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[1].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),
@@ -101,8 +107,10 @@ class PlusThinkStorage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[2].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),
@@ -115,8 +123,10 @@ class PlusThinkStorage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[3].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),
@@ -129,8 +139,10 @@ class PlusThinkStorage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[4].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),

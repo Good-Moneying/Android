@@ -31,9 +31,6 @@ class PlusHomeViewModel extends GetxController{
     }
   }
 
-  void addSentence(String sentence) {
-    sentencesList.add(CloudSentenceModel(sentence));
-  }
 
   Future<void> postAllSentences(int thinkingId) async {
     try {
