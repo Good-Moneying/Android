@@ -374,28 +374,29 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                 child: GestureDetector(
                                   onTap: () {
                                     controller.isSummary.value = true;
+                                    controller.addSentence(controller.plusComment.value.text);
                                   },
-                                  child: Container(
-                                    width: 79,
-                                    height: 33,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(7),
-                                        color: AppColors.g5),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          '요약하기',
-                                          style:
-                                              FontStyles.Caption2_sb.copyWith(
-                                                  color: AppColors.white),
-                                        ),
-                                        SvgPicture.asset(
-                                            'assets/icons/plus_summary.svg')
-                                      ],
+                                    child: Container(
+                                      width: 79,
+                                      height: 33,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(7),
+                                          color: AppColors.g5),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            '요약하기',
+                                            style:
+                                                FontStyles.Caption2_sb.copyWith(
+                                                    color: AppColors.white),
+                                          ),
+                                          SvgPicture.asset(
+                                              'assets/icons/plus_summary.svg')
+                                        ],
+                                      ),
                                     ),
-                                  ),
                                 ),
                               )
                             ],

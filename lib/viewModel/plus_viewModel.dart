@@ -2,11 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:meetup/repository/plus_repository.dart';
+import 'package:meetup/repository/profile_repository.dart';
 
 import '../design/widgets/plus/summary_dialog.dart';
+import '../model/plus/cloud_sentences_model.dart';
 import '../routes/get_pages.dart';
 
 class PlusViewModel extends GetxController {
+
+  final PlusRepository _repository = PlusRepository();
 
   var currentPage = 0.obs;
   PageController pageController = PageController(initialPage: 0);
@@ -14,6 +19,8 @@ class PlusViewModel extends GetxController {
   TextEditingController plusComment = TextEditingController();
   PageController pageControllerOnBoarding = PageController(initialPage: 0);
   final RxInt currentPageIndex = 0.obs;
+  RxList<CloudSentenceModel> sentencesList = <CloudSentenceModel>[].obs;
+
 
 
   String updatePage(int index){
@@ -60,6 +67,13 @@ class PlusViewModel extends GetxController {
         ),
       );
     });
+  }
+
+  void addSentence(String sentence) {
+    sentencesList.add(CloudSentenceModel(sentence));
+    for(int i = 0; i < sentencesList.length; i++) {
+      print('뷰모델: ${sentencesList[i].sentence}');
+    }
   }
 
 }

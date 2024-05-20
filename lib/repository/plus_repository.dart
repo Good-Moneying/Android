@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:meetup/model/plus/cloud_sentences_model.dart';
 
 import '../model/plus/cloud_home_medel.dart';
 
@@ -30,23 +31,19 @@ class PlusRepository {
     }
   }
 
-  Future<void> postCloudThinking(int thinkingId, String sentences) async {
-    try{
-      final response = await _dio.post("/api/thinkings/$thinkingId",
+  Future<void> postCloudThinking(int thinkingId, List<CloudSentenceModel> sentences) async {
+    try {
+      final response = await _dio.post(
+        "/api/thinkings/$thinkingId",
         data: {
-          "sentences": [sentences], // sentences를 리스트 형태로 전달
-        }
-        );
-      if (response.statusCode == 200) {
-        //return HomeModel.fromJson(response.data);
-      } else {
-        // 서버에서 오류 응답을 받은 경우 처리
-        throw Exception(
-            'Failed to load editor news: ${response.statusMessage}');
+          "sentences": sentences, // sentences 리스트를 전달
+        },
+      );
+      if (response.statusCode != 200) {
+        throw Exception('Failed to post data!: ${response.statusMessage}');
       }
     } catch (e) {
-      // 네트워크 오류 또는 기타 오류 처리
-      throw Exception('Error occurred: $e');
+      throw Exception('Error occurred!: $e');
     }
   }
 }
