@@ -12,7 +12,6 @@ class HomeRepository {
 
 
   HomeRepository() {
-
     _dio.options.baseUrl = dotenv.get("BASE_URL");
     _dio.options.validateStatus = (status) {
       return status! < 500;
@@ -20,9 +19,18 @@ class HomeRepository {
   }
 
   Future<NewsLetterModel> getEditorNews() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getEditorNews() 호출');
-      final response = await _dio.get("/api/newsletters/test");
+      final response = await _dio.get(
+          "/api/newsletters/test",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
       if (response.statusCode == 200) {
         return NewsLetterModel.fromJson(response.data);
@@ -86,11 +94,9 @@ class HomeRepository {
       );
 
       print('post 오류 확인');
-      print(prefs.getString('accessToken'));
       print(response.statusCode);
 
       if (response.statusCode == 200) {
-        //return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception(
@@ -102,9 +108,18 @@ class HomeRepository {
     }
   }
 
-  Future getArchivesTerm(int termId) async {
+  Future<void> archivesTerm(int termId) async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
-      final response = await _dio.get("/api/archives/$termId");
+      final response = await _dio.post(
+          "/api/archives/$termId",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);
@@ -119,9 +134,18 @@ class HomeRepository {
     }
   }
 
-  Future getArchivesNews(int newsId) async {
+  Future<void> archivesNews(int newsId) async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
-      final response = await _dio.get("/api/archives/$newsId");
+      final response = await _dio.post(
+          "/api/archives/$newsId",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);

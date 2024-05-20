@@ -86,6 +86,21 @@ class HomeViewModel extends GetxController {
     }
   }
 
+  //뉴스 아카이브
+  Future<void> archivesNews(String type, int id) async {
+    try {
+      if (type == 'NEWS') {
+        await _repository.archivesNews(id);
+      } else {
+        await _repository.archivesTerm(id);
+      }
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  //단어 아카이브
+
   Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
     publishedAt: "",
     editor: "",
