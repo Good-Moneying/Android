@@ -18,19 +18,22 @@ class HomeRepository {
     };
   }
 
-  Future<NewsLetterModel> getEditorNews() async {
+  Future<NewsLetterModel> getEditorNews(int newsId) async {
     final prefs = await SharedPreferences.getInstance();
 
     try {
       print('getEditorNews() 호출');
       final response = await _dio.get(
-          "/api/newsletters/test",
+          "/api/newsletters/$newsId",
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
               }
           )
       );
+
+      print('뉴스레터 통신테스트');
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         return NewsLetterModel.fromJson(response.data);
@@ -113,7 +116,7 @@ class HomeRepository {
     print(prefs.getString('accessToken'));
     try {
       final response = await _dio.post(
-          "/api/archives/$termId",
+          "/api/archives/terms/$termId",
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
@@ -121,7 +124,6 @@ class HomeRepository {
           )
       );
 
-      print('archives 오류 확인');
       print(response.statusCode);
 
       if (response.statusCode == 200) {
@@ -142,7 +144,7 @@ class HomeRepository {
 
     try {
       final response = await _dio.post(
-          "/api/archives/$newsId",
+          "/api/archives/newsletters/$newsId",
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",

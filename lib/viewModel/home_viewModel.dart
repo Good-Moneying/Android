@@ -30,11 +30,13 @@ class HomeViewModel extends GetxController {
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
   late final Rxn<HomeModel> _homeModel;
+  late final Rxn<NewsLetterModel> _newsLetterModel;
   //late final RxList<CommentModel> _commentModel;
 
   RxList<CommentModel> comments = <CommentModel>[].obs;
 
   HomeModel? get homeModel => _homeModel.value;
+  NewsLetterModel? get newsLetterModel => _newsLetterModel.value;
   //List<CommentModel> get commentModel => _commentModel.value;
 
   @override
@@ -43,6 +45,7 @@ class HomeViewModel extends GetxController {
 
     getHomeModel();
     _homeModel = Rxn<HomeModel>();
+    _newsLetterModel = Rxn<NewsLetterModel>();
     //_commentModel = RxList<CommentModel>();
   }
 
@@ -61,6 +64,16 @@ class HomeViewModel extends GetxController {
     try {
       _homeModel.value = await _repository.getHomeModel();
       isLoading.value = false;
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  void getEditorNews(int id) async {
+    try {
+      print("getEditorNews() start!");
+      _newsLetterModel.value = await _repository.getEditorNews(id);
+      //news.value = data;
     } catch (e) {
       print('$e');
     }
@@ -102,23 +115,15 @@ class HomeViewModel extends GetxController {
 
   //단어 아카이브
 
-  Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
-    publishedAt: "",
-    editor: "",
-    blocks: [],
-    comments: [],
-    isCommented: false,
-  ));
+  // Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
+  //   publishedAt: "",
+  //   editor: "",
+  //   blocks: [],
+  //   comments: [],
+  //   isCommented: false,
+  // ));
 
-  void getEditorNews() async {
-    try {
-      print("getEditorNews() start!");
-      NewsLetterModel data = await _repository.getEditorNews();
-      news.value = data;
-    } catch (e) {
-      print('$e');
-    }
-  }
+
 
   void selectAgree(int index) async {
     for (int i = 0; i < isDialogAgreeList.length; i++) {
