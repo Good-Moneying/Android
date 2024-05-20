@@ -57,7 +57,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     //Expanded(child: Container()),
                     IconButton(
                       icon: SvgPicture.asset(
-                          'assets/icons/newsletter_bookmark.svg'),
+                          'assets/icons/bookmark_unfill.svg'),
                       onPressed: () {},
                     ),
                   ],
@@ -338,7 +338,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                 Get.bottomSheet(
                                   SingleChildScrollView(
                                     child: Container(
-                                      height: Get.height * 0.6,
+                                      height: Get.height * 0.57,
                                       decoration: BoxDecoration(
                                         color: AppColors.white,
                                         borderRadius: BorderRadius.only(
@@ -643,22 +643,6 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                           color: AppColors.g6),
                                                 ),
                                               )
-                                            ],
-                                          ),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.end,
-                                            children: [
-                                              Padding(
-                                                padding: const EdgeInsets.only(
-                                                    right: 16.0),
-                                                child: Text(
-                                                  '내 생각은 ‘둘러보기’에 공유될 수 있어요!',
-                                                  style: FontStyles.Caption2_r
-                                                      .copyWith(
-                                                          color: AppColors.g4),
-                                                ),
-                                              ),
                                             ],
                                           ),
                                           Spacer(),

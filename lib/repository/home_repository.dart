@@ -2,12 +2,14 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/home/home_model.dart';
 import '../model/home/news_letter_model.dart';
 
 class HomeRepository {
   final Dio _dio = Dio();
+
 
   HomeRepository() {
     _dio.options.baseUrl = dotenv.get("BASE_URL");
@@ -17,9 +19,18 @@ class HomeRepository {
   }
 
   Future<NewsLetterModel> getEditorNews() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getEditorNews() 호출');
-      final response = await _dio.get("/api/newsletters/test");
+      final response = await _dio.get(
+          "/api/newsletters/test",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
       if (response.statusCode == 200) {
         return NewsLetterModel.fromJson(response.data);
@@ -35,10 +46,18 @@ class HomeRepository {
   }
 
   Future<HomeModel> getHomeModel() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getHomeModel() 호출');
       final response = await _dio.get(
-        "/api/users/home/test"
+        "/api/users/home",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+          }
+        )
+
       );
 
       if (response.statusCode == 200) {
@@ -57,16 +76,54 @@ class HomeRepository {
   }
 
   Future<void> postComment(int newsId, String content, String perspective) async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       final response = await _dio.post(
           "/api/comments/$newsId",
         data: {
           "content": content,
           "perspective": perspective,
-          "isPrivate": true
-        }
+          "isPrivate": false
+        },
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+          },
+        ),
       );
 
+      print('post 오류 확인');
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
+
+  Future<void> archivesTerm(int termId) async {
+    final prefs = await SharedPreferences.getInstance();
+    print(prefs.getString('accessToken'));
+    try {
+      final response = await _dio.post(
+          "/api/archives/$termId",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
+
+      print('archives 오류 확인');
+      print(response.statusCode);
+
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);
       } else {
@@ -80,26 +137,21 @@ class HomeRepository {
     }
   }
 
-  Future getArchivesTerm(int termId) async {
-    try {
-      final response = await _dio.get("/api/archives/$termId");
+  Future<void> archivesNews(int newsId) async {
+    final prefs = await SharedPreferences.getInstance();
 
-      if (response.statusCode == 200) {
-        //return HomeModel.fromJson(response.data);
-      } else {
-        // 서버에서 오류 응답을 받은 경우 처리
-        throw Exception(
-            'Failed to load editor news: ${response.statusMessage}');
-      }
-    } catch (e) {
-      // 네트워크 오류 또는 기타 오류 처리
-      throw Exception('Error occurred: $e');
-    }
-  }
-
-  Future getArchivesNews(int newsId) async {
     try {
-      final response = await _dio.get("/api/archives/$newsId");
+      final response = await _dio.post(
+          "/api/archives/$newsId",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
+
+      print('archives 오류 확인');
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);

@@ -25,6 +25,7 @@ class ShareScreen extends GetView<ShareViewModel> {
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: AppColors.white,
         title: Row(
           children: [

@@ -10,6 +10,8 @@ import 'package:meetup/repository/home_repository.dart';
 import '../model/home/news_letter_model.dart';
 
 class HomeViewModel extends GetxController {
+  Rx<bool> isLoading = true.obs;
+
   Rx<bool> isEditorBookMark = false.obs;
   Rx<bool> isRecommendFirst = false.obs;
   Rx<bool> isRecommendSecond = false.obs;
@@ -46,11 +48,11 @@ class HomeViewModel extends GetxController {
 
   String setPerspective(List<bool> selectPerspective) {
     if (selectPerspective[0]) {
-      return agreeCategory('긍정');
+      return agreeCategory('POSITIVE');
     } else if (selectPerspective[1]) {
-      return agreeCategory('부정');
+      return agreeCategory('NEGATIVE');
     } else if (selectPerspective[2]) {
-      return agreeCategory('잘모르겠음');
+      return agreeCategory('NOTHING');
     }
     return 'unknown';
   }
@@ -58,6 +60,7 @@ class HomeViewModel extends GetxController {
   Future<void> getHomeModel() async {
     try {
       _homeModel.value = await _repository.getHomeModel();
+      isLoading.value = false;
     } catch (e) {
       print('$e');
     }
@@ -82,6 +85,22 @@ class HomeViewModel extends GetxController {
       print('$e');
     }
   }
+
+  //아카이브
+  Future<void> archives(String type, int id) async {
+    try {
+      if (type == 'NEWS') {
+        await _repository.archivesNews(id);
+      } else {
+        //TERM
+        await _repository.archivesTerm(id);
+      }
+    } catch (e) {
+      print('$e');
+    }
+  }
+
+  //단어 아카이브
 
   Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
     publishedAt: "",

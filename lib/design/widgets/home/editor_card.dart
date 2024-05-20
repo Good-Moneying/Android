@@ -45,10 +45,10 @@ class EditorCard extends StatelessWidget {
                     borderRadius: const BorderRadius.all(
                       Radius.circular(12),
                     ),
-                    //임시 사진
                     child: Image.network(
                       image,
                       height: Get.height * 0.25,
+                      width: Get.width,
                       fit: BoxFit.fill,
                     ),
                   ),

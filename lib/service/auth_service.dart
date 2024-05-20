@@ -95,11 +95,12 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
 
           final prefs = await SharedPreferences.getInstance();
           prefs.setString('accessToken', response.data['accessToken']);
-
           prefs.setString('email', userEmail!);
           prefs.setString('refreshToken', response.data['refreshToken']);
           prefs.setString('provider', 'KAKAO');
           bool isRegistered = response.data['isRegistered'];
+
+          //유저 닉네임도 받아와야함
 
           if (isRegistered == true) {
             //홈 화면 고고
