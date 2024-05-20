@@ -191,14 +191,10 @@ Future<void> onboarding(final formData) async {
     dio.options.validateStatus = (status) {
       return status! < 500;
     };
-    Response response;
+    late Response response;
 
     response = await dio.post(
       "/api/users",
-      options: Options(headers: {
-        Headers.acceptHeader: 'application/json',
-        Headers.contentTypeHeader: 'application/json'
-      }),
       data: formData,
     );
     print(response.statusCode);

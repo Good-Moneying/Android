@@ -21,7 +21,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
     //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
-    controller.getEditorNews(); // 뉴스 데이터 가져오기
+    controller.getEditorNews(controller.homeModel!.todayNewsLetter.id); // 뉴스 데이터 가져오기
 
     //List<CommentModel> comments = [];
 
@@ -47,7 +47,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     Obx(
                       () => Flexible(
                         child: Text(
-                          controller.news.value.blocks[0].content,
+                          controller.newsLetterModel?.blocks[0].content ?? 'no data',
                           softWrap: true,
                           style: FontStyles.Title2_sb.copyWith(
                               color: AppColors.black),
@@ -100,7 +100,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                     ),
                     Padding(
                         padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                        child: Obx(() => Text(controller.news.value.publishedAt,
+                        child: Obx(() => Text(controller.newsLetterModel!.publishedAt,
                             style: FontStyles.Ln1_r.copyWith(
                                 color: Colors.grey)))),
                     Expanded(child: Container()),
@@ -121,7 +121,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               color: AppColors.g3), //기본style을 지정해줘야함
                           children: <TextSpan>[
                             TextSpan(
-                              text: controller.news.value.editor,
+                              text: controller.newsLetterModel!.editor,
                               style: FontStyles.Caption1_m.copyWith(
                                   color: AppColors.g3), //기본style을 지정해줘야함
                             ),
@@ -178,7 +178,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Obx(() => Text(
                                     controller.splitParagraph(
-                                        controller.news.value.blocks[1].content,
+                                        controller.newsLetterModel!.blocks[1].content,
                                         0),
                                     softWrap: true,
                                     style: FontStyles.Ln1_m.copyWith(
@@ -207,7 +207,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Obx(() => Text(
                                     controller.splitParagraph(
-                                        controller.news.value.blocks[1].content,
+                                        controller.newsLetterModel!.blocks[1].content,
                                         1),
                                     softWrap: true,
                                     style: FontStyles.Ln1_m.copyWith(
@@ -236,7 +236,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                               child: Obx(() => Text(
                                     controller.splitParagraph(
-                                        controller.news.value.blocks[1].content,
+                                        controller.newsLetterModel!.blocks[1].content,
                                         2),
                                     softWrap: true,
                                     style: FontStyles.Ln1_m.copyWith(
@@ -259,11 +259,11 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                         padding:
                             const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
                         child: Obx(() => Text(
-                              controller.news.value.blocks[2].content,
+                              controller.newsLetterModel!.blocks[2].content,
                               softWrap: true,
                               style: FontStyles.Ln1_r,
                             ))),
-                    Obx(() => Text(controller.news.value.blocks[3].content,
+                    Obx(() => Text(controller.newsLetterModel!.blocks[3].content,
                         softWrap: true,
                         style: FontStyles.Ln1_r.copyWith(color: Colors.black))),
                     Padding(
@@ -272,7 +272,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           () => Image.network(
                             width: 328,
                             height: 164,
-                            controller.news.value.blocks[4].content,
+                            controller.newsLetterModel!.blocks[4].content,
                             loadingBuilder: (BuildContext context, Widget child,
                                 ImageChunkEvent? loadingProgress) {
                               if (loadingProgress == null) {
