@@ -11,7 +11,7 @@ import 'package:meetup/viewModel/profile_viewModel.dart';
 class ProfileScreen extends GetView<ProfileViewModel> {
   @override
   Widget build(BuildContext context) {
-    //Get.put(ProfileViewModel());
+    Get.put(ProfileViewModel());
     controller.getProfileData();
     controller.getTermData();
     controller.getNewsLetterData('');

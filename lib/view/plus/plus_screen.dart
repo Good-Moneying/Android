@@ -5,16 +5,18 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
+import 'package:meetup/viewModel/plus_home_viewModel.dart';
 
 import '../../design/style/FontStyles.dart';
 import '../../routes/get_pages.dart';
 import 'package:badges/badges.dart' as badges;
 
-class PlusScreen extends StatelessWidget {
-  const PlusScreen({super.key});
+class PlusScreen extends GetView<PlusHomeViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PlusHomeViewModel());
+    controller.getCloudHome();
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -89,7 +91,7 @@ class PlusScreen extends StatelessWidget {
                                     child: Column(
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
-                                        Text('테슬라 주가 갑자기 오른 이유는?', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
+                                        Text(controller.cloudHomeModel?.thinkingDetails?[0]?.comment?? 'null', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
                                         Padding(
                                           padding: const EdgeInsets.only(top: 8.0),
                                           child: badges.Badge(
