@@ -20,7 +20,7 @@ class PlusViewModel extends GetxController {
   TextEditingController plusComment = TextEditingController();
   PageController pageControllerOnBoarding = PageController(initialPage: 0);
   final RxInt currentPageIndex = 0.obs;
-  RxList<CloudSentenceModel> sentencesList = List.generate(4, (_) => CloudSentenceModel(''), growable: true).obs;
+  RxList<CloudSentenceModel> sentencesList = List.generate(5, (_) => CloudSentenceModel('ㅂ'), growable: true).obs;
 
 
   String updatePage(int index){
