@@ -29,4 +29,24 @@ class PlusRepository {
       throw Exception('Error occurred!!: $e');
     }
   }
+
+  Future<void> postCloudThinking(int thinkingId, String sentences) async {
+    try{
+      final response = await _dio.post("/api/thinkings/$thinkingId",
+        data: {
+          "sentences": [sentences], // sentences를 리스트 형태로 전달
+        }
+        );
+      if (response.statusCode == 200) {
+        //return HomeModel.fromJson(response.data);
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
 }
