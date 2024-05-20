@@ -149,7 +149,7 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                 Spacer()
                 ,GestureDetector(
                   onTap: (){
-                    controller.postAllSentences(2);
+                    controller.postAllSentences(1);
                     Get.offAll(BottomNavigationView());
                   },
                   child: Container(
