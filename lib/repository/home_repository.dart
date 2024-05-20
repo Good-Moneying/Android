@@ -111,6 +111,7 @@ class HomeRepository {
   Future<void> archivesTerm(int termId) async {
     final prefs = await SharedPreferences.getInstance();
 
+    print(prefs.getString('accessToken'));
     try {
       final response = await _dio.post(
           "/api/archives/$termId",
@@ -120,6 +121,9 @@ class HomeRepository {
               }
           )
       );
+
+      print('archives 오류 확인');
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);
@@ -146,6 +150,9 @@ class HomeRepository {
               }
           )
       );
+
+      print('archives 오류 확인');
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);

@@ -86,12 +86,13 @@ class HomeViewModel extends GetxController {
     }
   }
 
-  //뉴스 아카이브
-  Future<void> archivesNews(String type, int id) async {
+  //아카이브
+  Future<void> archives(String type, int id) async {
     try {
       if (type == 'NEWS') {
         await _repository.archivesNews(id);
       } else {
+        //TERM
         await _repository.archivesTerm(id);
       }
     } catch (e) {

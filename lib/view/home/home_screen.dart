@@ -294,6 +294,12 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isWordBookMark.value
                               ? controller.isWordBookMark.value = false
                               : controller.isWordBookMark.value = true;
+
+                          if(controller.isWordBookMark.value) {
+                            print('아카이브하기');
+                            print(controller.homeModel!.todayTerm.termId);
+                            controller.archives('TERM', controller.homeModel!.todayTerm.termId);
+                          }
                         },
                       ),
                     ),
