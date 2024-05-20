@@ -19,8 +19,7 @@ class PlusViewModel extends GetxController {
   TextEditingController plusComment = TextEditingController();
   PageController pageControllerOnBoarding = PageController(initialPage: 0);
   final RxInt currentPageIndex = 0.obs;
-  RxList<CloudSentenceModel> sentencesList = <CloudSentenceModel>[].obs;
-
+  RxList<CloudSentenceModel> sentencesList = List.generate(4, (_) => CloudSentenceModel(''), growable: true).obs;
 
 
   String updatePage(int index){
@@ -69,8 +68,8 @@ class PlusViewModel extends GetxController {
     });
   }
 
-  void addSentence(String sentence) {
-    sentencesList.add(CloudSentenceModel(sentence));
+  void addSentence(String sentence, int index) {
+    sentencesList[index] = CloudSentenceModel(sentence);
     for(int i = 0; i < sentencesList.length; i++) {
       print('뷰모델: ${sentencesList[i].sentence}');
     }

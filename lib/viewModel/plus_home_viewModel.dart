@@ -30,8 +30,6 @@ class PlusHomeViewModel extends GetxController{
       print('$e');
     }
   }
-
-
   Future<void> postAllSentences(int thinkingId) async {
     try {
       await _repository.postCloudThinking(thinkingId, sentencesList);

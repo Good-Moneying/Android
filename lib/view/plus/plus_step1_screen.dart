@@ -374,7 +374,8 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                 child: GestureDetector(
                                   onTap: () {
                                     controller.isSummary.value = true;
-                                    controller.addSentence(controller.plusComment.value.text);
+                                    print('페이지${controller.currentPageIndex.value}');
+                                    controller.addSentence(controller.plusComment.value.text,controller.currentPageIndex.value);
                                   },
                                     child: Container(
                                       width: 79,
