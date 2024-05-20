@@ -355,7 +355,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             Get.bottomSheet(
                               SingleChildScrollView(
                                 child: Container(
-                                  height: Get.height * 0.6,
+                                  height: Get.height * 0.57,
                                   decoration: BoxDecoration(
                                     color: AppColors.white,
                                     borderRadius: BorderRadius.only(
@@ -655,22 +655,6 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                           )
                                         ],
                                       ),
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          Padding(
-                                            padding: const EdgeInsets.only(
-                                                right: 16.0),
-                                            child: Text(
-                                              '내 생각은 ‘둘러보기’에 공유될 수 있어요!',
-                                              style: FontStyles.Caption2_r
-                                                  .copyWith(
-                                                      color: AppColors.g4),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
                                       Spacer(),
                                       Padding(
                                         padding: const EdgeInsets.fromLTRB(
@@ -753,6 +737,37 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     ? CommentWidget(
                           content: controller.liveController.value.text,
                           perspective: controller.setPerspective(controller.isDialogAgreeList.value),
+                        onFollow: ElevatedButton(
+                          onPressed: () {},
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size.zero,
+                            padding: EdgeInsetsDirectional.symmetric(
+                                horizontal: 8, vertical: 2),
+                            backgroundColor: AppColors.g6,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                          child: Text(
+                            '팔로우',
+                            style: FontStyles.Caption2_m.copyWith(
+                                color: AppColors.white),
+                          ),
+                        ),
+                        onLike: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 4.0),
+                              child:
+                              SvgPicture.asset('assets/icons/unlike_comment.svg'),
+                            ),
+                            Text(
+                              '27',
+                              style: FontStyles.Caption2_m.copyWith(
+                                  color: AppColors.g3),
+                            ),
+                          ],
+                        ),
                     )
                           : Image.asset(
                         'assets/images/newsletter_blurcomment.png',

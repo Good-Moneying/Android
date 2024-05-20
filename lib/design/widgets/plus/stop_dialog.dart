@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:get/get.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
 
+import '../../../routes/get_pages.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 
@@ -34,19 +38,29 @@ class StopDialong extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                width: 114, height: 48
-                ,decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8), border: Border.all(color: AppColors.g2)
+              GestureDetector(
+                onTap: (){
+                  Get.offAll(BottomNavigationView());
+                },
+                child: Container(
+                  width: 114, height: 48
+                  ,decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8), border: Border.all(color: AppColors.g2)
+                ),
+                  child: Center(child: Text('그만하기', style: FontStyles.Ln1_sb.copyWith(color: AppColors.g4),)),
+                ),
               ),
-                child: Center(child: Text('그만하기', style: FontStyles.Ln1_sb.copyWith(color: AppColors.g4),)),
-              ),
-              Container(
-                width: 167, height: 48
-                ,decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8), color: AppColors.v6
-              ),
-                child: Center(child: Text('구름 만들기', style: FontStyles.Ln1_sb.copyWith(color: AppColors.white),)),
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).pop();
+                },
+                child: Container(
+                  width: 167, height: 48
+                  ,decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8), color: AppColors.v6
+                ),
+                  child: Center(child: Text('구름 만들기', style: FontStyles.Ln1_sb.copyWith(color: AppColors.white),)),
+                ),
               ),
             ],
           )
