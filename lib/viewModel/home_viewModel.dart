@@ -48,11 +48,11 @@ class HomeViewModel extends GetxController {
 
   String setPerspective(List<bool> selectPerspective) {
     if (selectPerspective[0]) {
-      return agreeCategory('긍정');
+      return agreeCategory('POSITIVE');
     } else if (selectPerspective[1]) {
-      return agreeCategory('부정');
+      return agreeCategory('NEGATIVE');
     } else if (selectPerspective[2]) {
-      return agreeCategory('잘모르겠음');
+      return agreeCategory('NOTHING');
     }
     return 'unknown';
   }

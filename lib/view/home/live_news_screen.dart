@@ -662,9 +662,11 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         child: ElevatedButton(
                                           onPressed: () async {
                                             //댓글 작성하기
+                                            print('실시간 뉴스의 id 확인');
+                                            print(controller.homeModel!.realtimeTrendNewsLetters[0].id);
                                             await controller.postComment(
                                               'LIVE',
-                                              controller.homeModel!.todayNewsLetter.id,
+                                              controller.homeModel!.realtimeTrendNewsLetters[0].id,
                                               controller.liveController.value.text,
                                               controller.setPerspective(controller.isDialogAgreeList.value),
                                             );

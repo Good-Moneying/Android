@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/home/home_model.dart';
 import '../model/home/news_letter_model.dart';
@@ -9,7 +10,9 @@ import '../model/home/news_letter_model.dart';
 class HomeRepository {
   final Dio _dio = Dio();
 
+
   HomeRepository() {
+
     _dio.options.baseUrl = dotenv.get("BASE_URL");
     _dio.options.validateStatus = (status) {
       return status! < 500;
@@ -35,10 +38,18 @@ class HomeRepository {
   }
 
   Future<HomeModel> getHomeModel() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getHomeModel() 호출');
       final response = await _dio.get(
-        "/api/users/home/test"
+        "/api/users/home",
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+          }
+        )
+
       );
 
       if (response.statusCode == 200) {
@@ -57,15 +68,26 @@ class HomeRepository {
   }
 
   Future<void> postComment(int newsId, String content, String perspective) async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       final response = await _dio.post(
           "/api/comments/$newsId",
         data: {
           "content": content,
           "perspective": perspective,
-          "isPrivate": true
-        }
+          "isPrivate": false
+        },
+        options: Options(
+          headers: {
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+          },
+        ),
       );
+
+      print('post 오류 확인');
+      print(prefs.getString('accessToken'));
+      print(response.statusCode);
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);
