@@ -39,7 +39,14 @@ class HomeScreen extends GetView<HomeViewModel> {
           return Scaffold(
             backgroundColor: AppColors.g1,
             appBar: AppBar(
-              title: Text('홈화면'),
+              backgroundColor: Colors.white,
+              title: Row(
+                children: [
+                  SvgPicture.asset('assets/icons/home_appBar.svg'),
+                  Spacer(),
+                  SvgPicture.asset('assets/icons/notification.svg')
+                ],
+              ),
             ),
             body: SingleChildScrollView(
               child: Padding(
