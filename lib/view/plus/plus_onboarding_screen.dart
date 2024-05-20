@@ -24,16 +24,16 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
         backgroundColor: Colors.white,
       ),
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 16.0),
+        padding: const EdgeInsets.only(bottom: 30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 30.0),
+              padding: const EdgeInsets.only(top: 40.0),
               child: Stack(
                 children: [
                      Container(
-                    height: 480,
+                    height: 500,
                     width: 330, // 페이지뷰 높이 설정
                     child:
                       PageView(
@@ -151,7 +151,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                           // 세 번째 페이지딩
                           Container(
                             width: 330, // 상위 컨테이너의 너비 설정
-                            height: 482,
+                            height: 500,
                             child: Stack(
                               children: [
                                 // 바깥 보라색 컨테이너
@@ -211,7 +211,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                   left: 0,
                                   right: 0,
                                   child: Container(
-                                    height: 290,
+                                    height: 306,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(17),

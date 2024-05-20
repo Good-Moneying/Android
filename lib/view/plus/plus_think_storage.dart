@@ -2,21 +2,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:meetup/design/widgets/appBar/plus_complete_appbar.dart';
+import 'package:meetup/viewModel/plus_home_viewModel.dart';
+import 'package:meetup/viewModel/plus_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/appBar/back_appBar.dart';
+import '../../routes/get_pages.dart';
+import '../bottomNavigationBar.dart';
 
-class PlusThinkStorage extends StatelessWidget {
-  const PlusThinkStorage({super.key});
+class PlusThinkStorage extends GetView<PlusViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    Get.put(PlusViewModel());
+    controller.postAllSentences(0);
     return Scaffold(
         backgroundColor: AppColors.g1,
-        appBar: BackAppBar(iconColor: AppColors.black, title: null,),
+        appBar: PlusCompleteAppBar(iconColor: AppColors.black, title: null,),
         body: Padding(
-          padding: const EdgeInsets.only( bottom: 16.0),
+          padding: const EdgeInsets.only( bottom: 30.0),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -65,8 +73,10 @@ class PlusThinkStorage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8), color: AppColors.white
                       ),
                       child: Center(
-                        child: Text(
-                          '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                        child: Obx(()
+                          =>Text(
+                            controller.sentencesList[0].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                          ),
                         ),
                       ),
                     ),
@@ -75,15 +85,16 @@ class PlusThinkStorage extends StatelessWidget {
                 SvgPicture.asset('assets/icons/plus_arrow.svg'),
               SizedBox(height: 12,)
 
-
               ,Container(
                   width: 300, height: 53,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[1].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),
@@ -96,8 +107,10 @@ class PlusThinkStorage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[2].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),
@@ -110,38 +123,48 @@ class PlusThinkStorage extends StatelessWidget {
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[3].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
                 ),
                 SizedBox(height: 12,),
-                SvgPicture.asset('assets/icons/plus_arrow.svg'),
+                //SvgPicture.asset('assets/icons/plus_arrow.svg'),
                 SizedBox(height: 12,),
-                Container(
+                /*Container(
                   width: 300, height: 53,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
-                    child: Text(
-                      '테슬라의 기술 혁신', style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    child: Obx(()
+                    =>Text(
+                      controller.sentencesList[4].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    ),
                     ),
                   ),
-                ),
+                ),*/
                 Spacer()
-                ,Container(
-                  width: 290,
-                  height: 48,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: AppColors.v6),
-                  child: Center(
-                      child: Text(
-                        '완료하기',
-                        style: FontStyles.Ln1_sb.copyWith(
-                            color: AppColors.white),
-                      )),
+                ,GestureDetector(
+                  onTap: (){
+                    controller.postAllSentences(1);
+                    Get.offAll(BottomNavigationView());
+                  },
+                  child: Container(
+                    width: 290,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: AppColors.v6),
+                    child: Center(
+                        child: Text(
+                          '완료하기',
+                          style: FontStyles.Ln1_sb.copyWith(
+                              color: AppColors.white),
+                        )),
+                  ),
                 ),
           ]),
         ));

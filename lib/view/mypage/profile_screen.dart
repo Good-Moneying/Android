@@ -11,7 +11,7 @@ import 'package:meetup/viewModel/profile_viewModel.dart';
 class ProfileScreen extends GetView<ProfileViewModel> {
   @override
   Widget build(BuildContext context) {
-    //Get.put(ProfileViewModel());
+    Get.put(ProfileViewModel());
     controller.getProfileData();
     controller.getTermData();
     controller.getNewsLetterData('');
@@ -196,7 +196,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 32.0, left: 16),
+                    padding: const EdgeInsets.only(top: 32.0, left: 45),
                     child: Text(
                       '목표 달성률',
                       style:
@@ -208,6 +208,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SizedBox(
                       width: 16,
@@ -325,7 +326,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 43, 0, 0),
+                padding: const EdgeInsets.fromLTRB(45, 43, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -339,6 +340,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16, 12.0, 0, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       'assets/icons/mypage_banner2.png',
@@ -351,6 +353,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 158,
@@ -443,6 +446,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               Padding(
                 padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 158,
@@ -538,6 +542,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 328,
@@ -573,6 +578,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 328,
@@ -608,6 +614,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
                         width: 328,
