@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 import '../design/widgets/plus/summary_dialog.dart';
+import '../routes/get_pages.dart';
 
 class PlusViewModel extends GetxController {
 
@@ -12,6 +13,7 @@ class PlusViewModel extends GetxController {
   Rx<bool> isSummary = false.obs;
   TextEditingController plusComment = TextEditingController();
   PageController pageControllerOnBoarding = PageController(initialPage: 0);
+  final RxInt currentPageIndex = 0.obs;
 
 
   String updatePage(int index){
@@ -19,11 +21,20 @@ class PlusViewModel extends GetxController {
     if(currentPage.value ==0 ){
       return '왜 발생했을지 곰곰히 생각해보자!';
     } else if(currentPage.value == 1){
-        return '어떤 효과가 나타날까?';
+      return '어떤 효과가 나타날까?';
     }else if(currentPage.value == 2){
       return '내가 앞으로 주시해야할 건 뭘까?';
-    } else{
+    } else {
       return '얼마 안 남았어! 한 번만 더 생각해보자';
+    }
+  }
+
+
+  void nextPage() {
+    if (currentPageIndex.value < 3) {
+      currentPageIndex.value++;
+    } else{
+      Get.toNamed(Routes.PLUSCOMPLETE);
     }
   }
 

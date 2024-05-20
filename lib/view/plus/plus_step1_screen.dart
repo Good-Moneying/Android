@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:meetup/design/widgets/appBar/dialog_appBar.dart';
 import 'package:meetup/design/widgets/plus/stop_dialog.dart';
 import 'package:meetup/design/widgets/plus/summary_dialog.dart';
@@ -429,36 +430,35 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                           ),
                         ),
                         Spacer(),
-                        GestureDetector(
-                          onTap: () {},
-                          child: Padding(
-                            padding: const EdgeInsets.only(bottom: 12.0),
-                            child: Obx(
-                                  () => GestureDetector(
-                                onTap: controller.isSummary.value ? () {
-                                  // onTap에 대한 동작
-                                  print("등록하기 버튼을 클릭했습니다.");
-                                } : null,
-                                child: Container(
-                                  width: 290,
-                                  height: 48,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50),
-                                    color: controller.isSummary.value ? AppColors.v6 : AppColors.g2,
-                                  ),
-                                  child: Center(
-                                    child: Text(
-                                      '등록하기',
-                                      style: FontStyles.Ln1_sb.copyWith(
-                                        color: controller.isSummary.value ? AppColors.white : AppColors.g4,
-                                      ),
-                                    ),
+                        Obx(()
+                          => GestureDetector(
+                            onTap: () {
+                              if (controller.isSummary.value) {
+                                controller.nextPage(); // 뷰 모델의 nextPage 메서드 호출
+                                pageController.nextPage(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.ease,
+                                ); // 페이지 컨트롤러를 통해 페이지 변경
+                              }
+                            },
+                            child: Container(
+                              width: 290,
+                              height: 48,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                color: controller.isSummary.value ? AppColors.v6 : AppColors.g2,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '등록하기',
+                                  style: FontStyles.Ln1_sb.copyWith(
+                                    color: controller.isSummary.value ? AppColors.white : AppColors.g4,
                                   ),
                                 ),
                               ),
                             ),
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
