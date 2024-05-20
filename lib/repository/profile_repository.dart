@@ -44,10 +44,20 @@ class ProfileRepository{
   }
 
   Future<ArchivesTermModel> getTermData() async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getTermData() 호출');
-      final response = await _dio.get("/api/archives/terms/test");
+      final response = await _dio.get("/api/archives/terms",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
+      print('아카이브 단어 테스트');
+      print(response.statusCode);
       if (response.statusCode == 200) {
         return ArchivesTermModel.fromJson(response.data);
       } else {
@@ -69,10 +79,20 @@ class ProfileRepository{
   }
 
   Future<ArchivesNewsLetterModel> getNewsLetterData(String category) async {
+    final prefs = await SharedPreferences.getInstance();
+
     try {
       print('getNewsLetterData() 호출');
-      final response = await _dio.get("/api/archives/newsletters/$category/test");
+      final response = await _dio.get("/api/archives/newsletters/$category",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
 
+      print('아카이브 뉴스 테스트');
+      print(response.statusCode);
       if (response.statusCode == 200) {
         return ArchivesNewsLetterModel.fromJson(response.data);
       } else {
