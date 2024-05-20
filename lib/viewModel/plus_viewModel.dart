@@ -75,4 +75,11 @@ class PlusViewModel extends GetxController {
     }
   }
 
+  Future<void> postAllSentences(int thinkingId) async {
+    try {
+      await _repository.postCloudThinking(thinkingId, sentencesList);
+    } catch (e) {
+      print('Error: $e');
+    }
+  }
 }

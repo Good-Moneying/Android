@@ -1,6 +1,11 @@
 class CloudSentenceModel {
-  final String sentence;
+  String sentence;
 
   CloudSentenceModel(this.sentence);
 
+  Map<String, dynamic> toJson() {
+    return {
+      'sentence': sentence,
+    };
+  }
 }

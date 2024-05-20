@@ -7,7 +7,7 @@ import '../model/plus/cloud_home_medel.dart';
 class PlusRepository {
   final Dio _dio = Dio();
 
-  ProfileRepository() {
+  PlusRepository() {
     _dio.options.baseUrl = dotenv.get("BASE_URL");
     _dio.options.validateStatus = (status) {
       return status! < 500;
@@ -40,8 +40,9 @@ class PlusRepository {
         },
       );
       if (response.statusCode != 200) {
-        throw Exception('Failed to post data!: ${response.statusMessage}');
-      }
+        throw Exception('Failed to post data!: ${response.statusCode}');
+      } else
+        print('post 성공!');
     } catch (e) {
       throw Exception('Error occurred!: $e');
     }
