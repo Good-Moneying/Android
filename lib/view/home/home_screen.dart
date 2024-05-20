@@ -201,7 +201,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Obx(
                       () => RecommendU(
                         image:
-                            'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                            controller.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[0].title,
                         tag: '코인',
@@ -216,7 +216,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Obx(
                       () => RecommendU(
                         image:
-                            'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                        controller.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[1].title,
                         tag: '주식',
@@ -231,7 +231,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Obx(
                       () => RecommendU(
                         image:
-                            'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                        controller.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[2].title,
                         tag: '금리',
@@ -282,13 +282,13 @@ class HomeScreen extends GetView<HomeViewModel> {
                     Obx(
                       () => TodayWord(
                         title: controller.homeModel?.todayTerm.koreanName ??
-                            '비어있음',
+                            'no data',
                         engTitle: controller.homeModel?.todayTerm.englishName ??
-                            '비어있음',
+                            'no data',
                         meaning: controller.homeModel?.todayTerm.description ??
-                            '비어있음',
+                            'no data',
                         category:
-                            controller.homeModel?.todayTerm.category ?? '비어있음',
+                            controller.homeModel?.todayTerm.category ?? 'no data',
                         isBookMark: controller.isWordBookMark.value,
                         onBookMark: () {
                           controller.isWordBookMark.value
@@ -296,10 +296,9 @@ class HomeScreen extends GetView<HomeViewModel> {
                               : controller.isWordBookMark.value = true;
 
                           if(controller.isWordBookMark.value) {
-                            print('아카이브하기');
-                            print(controller.homeModel!.todayTerm.termId);
                             controller.archives('TERM', controller.homeModel!.todayTerm.termId);
                           }
+
                         },
                       ),
                     ),

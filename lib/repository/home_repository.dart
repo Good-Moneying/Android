@@ -110,7 +110,6 @@ class HomeRepository {
 
   Future<void> archivesTerm(int termId) async {
     final prefs = await SharedPreferences.getInstance();
-
     print(prefs.getString('accessToken'));
     try {
       final response = await _dio.post(
