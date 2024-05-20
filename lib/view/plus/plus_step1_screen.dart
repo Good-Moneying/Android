@@ -334,7 +334,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Container(
                     width: 328,
-                    height: 283,
+                    height: 300,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                         color: AppColors.white),
@@ -438,21 +438,25 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                 pageController.nextPage(
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.ease,
-                                ); // 페이지 컨트롤러를 통해 페이지 변경
+                                );
+                                controller.isSummary.value = false;// 페이지 컨트롤러를 통해 페이지 변경
                               }
                             },
-                            child: Container(
-                              width: 290,
-                              height: 48,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                color: controller.isSummary.value ? AppColors.v6 : AppColors.g2,
-                              ),
-                              child: Center(
-                                child: Text(
-                                  '등록하기',
-                                  style: FontStyles.Ln1_sb.copyWith(
-                                    color: controller.isSummary.value ? AppColors.white : AppColors.g4,
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Container(
+                                width: 290,
+                                height: 48,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: controller.isSummary.value ? AppColors.v6 : AppColors.g2,
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    '등록하기',
+                                    style: FontStyles.Ln1_sb.copyWith(
+                                      color: controller.isSummary.value ? AppColors.white : AppColors.g4,
+                                    ),
                                   ),
                                 ),
                               ),

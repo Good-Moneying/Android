@@ -2,10 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:meetup/design/widgets/appBar/plus_complete_appbar.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/appBar/back_appBar.dart';
+import '../../routes/get_pages.dart';
+import '../bottomNavigationBar.dart';
 
 class PlusThinkStorage extends StatelessWidget {
   const PlusThinkStorage({super.key});
@@ -14,9 +19,9 @@ class PlusThinkStorage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.g1,
-        appBar: BackAppBar(iconColor: AppColors.black, title: null,),
+        appBar: PlusCompleteAppBar(iconColor: AppColors.black, title: null,),
         body: Padding(
-          padding: const EdgeInsets.only( bottom: 16.0),
+          padding: const EdgeInsets.only( bottom: 30.0),
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -130,18 +135,23 @@ class PlusThinkStorage extends StatelessWidget {
                   ),
                 ),
                 Spacer()
-                ,Container(
-                  width: 290,
-                  height: 48,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: AppColors.v6),
-                  child: Center(
-                      child: Text(
-                        '완료하기',
-                        style: FontStyles.Ln1_sb.copyWith(
-                            color: AppColors.white),
-                      )),
+                ,GestureDetector(
+                  onTap: (){
+                    Get.offAll(BottomNavigationView());
+                  },
+                  child: Container(
+                    width: 290,
+                    height: 48,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: AppColors.v6),
+                    child: Center(
+                        child: Text(
+                          '완료하기',
+                          style: FontStyles.Ln1_sb.copyWith(
+                              color: AppColors.white),
+                        )),
+                  ),
                 ),
           ]),
         ));
