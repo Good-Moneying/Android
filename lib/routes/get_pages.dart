@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:meetup/binding/quiz_binding.dart';
 import 'package:meetup/binding/share_binding.dart';
 
 import 'package:meetup/view/auth/frequency_screen.dart';
@@ -121,10 +122,47 @@ class Pages {
     GetPage(
       name: Routes.FIRSTQUIZ,
       page: () => OneQuizScreen(),
+      binding: QuizBinding(),
     ),
     GetPage(
       name: Routes.SECONDQUIZ,
       page: () => TwoQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.THIRDQUIZ,
+      page: () => OneQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.FOURTHQUIZ,
+      page: () => OneQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.FIFTHQUIZ,
+      page: () => OneQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.SIXTHQUIZ,
+      page: () => OneQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.SEVENTHQUIZ,
+      page: () => OneQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.EIGHTHQUIZ,
+      page: () => OneQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.RESULTQUIZ,
+      page: () => ResultQuizScreen(),
+      binding: QuizBinding(),
     ),
     GetPage(
       name: Routes.PLUSONBOARDING,
