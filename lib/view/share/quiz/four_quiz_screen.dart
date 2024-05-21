@@ -23,14 +23,14 @@ class FourthQuizScreen extends GetView<QuizViewModel> {
     return Scaffold(
       appBar: QuizAppBar(
         onPressed: () {
-          controller.init(true);
+          controller.init4(true);
           Get.back();
         },
       ),
       body: Obx(() {
-        if (controller.init.value) {
+        if (controller.init4.value) {
           return _quiz(context);
-        } else if (controller.firstQ.value) {
+        } else if (controller.firstQ4.value) {
           return _quizCorrect();
         } else {
           return _quizFalse();
@@ -68,28 +68,28 @@ _quiz(BuildContext context) {
           ),
           GestureDetector(
               onTap: () {
-                quizController.init(false);
-                quizController.firstQ(true);
+                quizController.init4(false);
+                quizController.firstQ4(true);
               },
               child: ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다')),
           GestureDetector(
               onTap: () {
-                quizController.init(false);
-                quizController.secondQ(true);
+                quizController.init4(false);
+                quizController.secondQ4(true);
               },
               child: ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다')
           ),
           GestureDetector(
               onTap: () {
-                quizController.init(false);
-                quizController.thirdQ(true);
+                quizController.init4(false);
+                quizController.thirdQ4(true);
               },
               child: ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다')
           ),
           GestureDetector(
               onTap: () {
-                quizController.init(false);
-                quizController.fourthQ(true);
+                quizController.init4(false);
+                quizController.fourthQ4(true);
               },
               child: ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다')
           ),
