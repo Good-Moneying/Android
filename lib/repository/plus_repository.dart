@@ -74,7 +74,7 @@ class PlusRepository {
             "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTYyMDk5NTUsImV4cCI6MTcxNjIxMzU1NSwic3ViIjoic3VoeXVuMTAyMDFAbmF2ZXIuY29tIiwiaXNzIjoiZHVkdWsuc2hvcCJ9.Y-uW3x7YmgcuvQmQu8rXLriaCMUNKwkuhL5dsqwC9lE'}"
           }));
 
-      if (response.statusCode != 200) {
+      if (response.statusCode != 201) {
         throw Exception(
             'Failed to post data!: ${response.statusCode} - ${response.statusMessage}');
       } else {
@@ -86,7 +86,7 @@ class PlusRepository {
     }
   }
 
-  Future<void> postSummaryRequired(PlusCommentModel dataModel) async {
+  Future<String> postSummaryRequired(PlusCommentModel dataModel) async {
     final prefs = await SharedPreferences.getInstance();
     try {
       final response = await _dio.post(
@@ -101,6 +101,7 @@ class PlusRepository {
 
       if (response.statusCode == 200) {
         print('post 성공!!!!');
+        return response.data; // 응답 데이터를 반환
       } else {
         throw Exception('postSummaryRequired 실패! : ${response.statusCode} - ${response.statusMessage}');
       }

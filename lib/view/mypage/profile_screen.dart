@@ -45,7 +45,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 16),
+                      padding: const EdgeInsets.only(left: 16, right: 16),
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         backgroundImage:
@@ -205,128 +205,130 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 16,
-                    ),
-                    Container(
-                      width: 328,
-                      height: 137,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.white),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(top: 20.0, left: 15),
-                              child: RichText(
-                                  text: TextSpan(
-                                text: '일주일 중에 ',
-                                style: FontStyles.Lr1_m.copyWith(
-                                    color: AppColors.g5),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: '3',
-                                    style: FontStyles.Br1_sb.copyWith(
-                                        color: AppColors.v5), //기본style을 지정해줘야함
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 12.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 332,
+                          height: 150,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 16.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.only(top: 20.0, left: 10),
+                                  child: RichText(
+                                      text: TextSpan(
+                                    text: '일주일 중에 ',
+                                    style: FontStyles.Lr1_m.copyWith(
+                                        color: AppColors.g5),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: '3',
+                                        style: FontStyles.Br1_sb.copyWith(
+                                            color: AppColors.v5), //기본style을 지정해줘야함
+                                      ),
+                                      TextSpan(
+                                          text: '일동안 뉴스를 읽었어요!',
+                                          style: FontStyles.Lr1_m.copyWith(
+                                              color: AppColors.g5))
+                                    ],
+                                  )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 20.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        '일',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                      SizedBox(width: 2), // 간격 추가
+                                      Text(
+                                        '월',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                      SizedBox(width: 2), // 간격 추가
+                                      Text(
+                                        '화',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                      SizedBox(width: 2),
+                                      Text(
+                                        '수',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                      SizedBox(width: 2),
+                                      Text(
+                                        '목',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                      SizedBox(width: 2),
+                                      Text(
+                                        '금',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                      SizedBox(width: 2),
+                                      Text(
+                                        '토',
+                                        style: FontStyles.Ln1_m.copyWith(
+                                            color: AppColors.g4),
+                                      ),
+                                    ],
                                   ),
-                                  TextSpan(
-                                      text: '일동안 뉴스를 읽었어요!',
-                                      style: FontStyles.Lr1_m.copyWith(
-                                          color: AppColors.g5))
-                                ],
-                              )),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 13.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_fill.svg'),
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_fill.svg'),
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_fill.svg'),
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_unfill.svg'),
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_unfill.svg'),
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_unfill.svg'),
+                                      SvgPicture.asset(
+                                          'assets/icons/mypage_cloud_unfill.svg'),
+                                    ],
+                                  ),
+                                )
+                              ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Text(
-                                    '일',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                  SizedBox(width: 2), // 간격 추가
-                                  Text(
-                                    '월',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                  SizedBox(width: 2), // 간격 추가
-                                  Text(
-                                    '화',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                  SizedBox(width: 2),
-                                  Text(
-                                    '수',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                  SizedBox(width: 2),
-                                  Text(
-                                    '목',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                  SizedBox(width: 2),
-                                  Text(
-                                    '금',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                  SizedBox(width: 2),
-                                  Text(
-                                    '토',
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g4),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 13.0),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_fill.svg'),
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_fill.svg'),
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_fill.svg'),
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_unfill.svg'),
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_unfill.svg'),
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_unfill.svg'),
-                                  SvgPicture.asset(
-                                      'assets/icons/mypage_cloud_unfill.svg'),
-                                ],
-                              ),
-                            )
-                          ],
+                          ),
                         ),
-                      ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(45, 43, 0, 0),
+                padding: const EdgeInsets.fromLTRB(45, 20, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -338,25 +340,25 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12.0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       'assets/icons/mypage_banner2.png',
-                      width: 328,
-                      height: 97,
+                      width: 350,
+                      height: 110,
                     ),
                   ],
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
+                padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 158,
+                      width: 160,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -398,7 +400,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 158,
+                        width: 160,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -444,12 +446,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
+                padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 158,
+                      width: 160,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -493,7 +495,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 158,
+                        width: 160,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -540,12 +542,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               ),
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 328,
+                        width: 332,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
@@ -576,12 +578,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               ),
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 328,
+                        width: 332,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
@@ -612,12 +614,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               ),
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 12, 0, 0),
+                  padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 328,
+                        width: 332,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,

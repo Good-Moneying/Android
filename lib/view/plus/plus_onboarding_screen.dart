@@ -33,7 +33,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
               child: Stack(
                 children: [
                      Container(
-                    height: 500,
+                    height: 550,
                     width: 330, // 페이지뷰 높이 설정
                     child:
                       PageView(
@@ -68,7 +68,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                               child: RichText(
                                                 textAlign: TextAlign.center, // 가운데 정렬
                                                 text: TextSpan(
-                                                  text: '안녕하세요!\n여러분의 생각 더하기를\n도와줄',
+                                                  text: '안녕하세요!\n여러분의 생각 더하기를\n도와줄 ',
                                                   style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
                                                   children: <TextSpan>[
                                                     TextSpan(
@@ -90,7 +90,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                       ),
                                     ),
                                   ),
-                                  Image.asset('assets/icons/plus_cloudfun.png', width: 238, height: 177,)
+                                  Image.asset('assets/icons/plus_cloudfun.png', width: 330, height: 230,)
                                 ],
                               ),
                             ),
@@ -143,7 +143,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                       ),
                                     ),
                                   ),
-                                  Image.asset('assets/icons/plus_cloudfun2.png', width: 238, height: 177,)
+                                  Image.asset('assets/icons/plus_cloudfun2.png', width: 330, height: 230,)
                                 ],
                               ),
                             ),
@@ -151,7 +151,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                           // 세 번째 페이지딩
                           Container(
                             width: 330, // 상위 컨테이너의 너비 설정
-                            height: 500,
+                            height: 550,
                             child: Stack(
                               children: [
                                 // 바깥 보라색 컨테이너
@@ -159,7 +159,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                   top: 0,
                                   child: Container(
                                     width: 330,
-                                    height: 194,
+                                    height: 220,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(17),
@@ -169,7 +169,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                       border: Border.all(color: AppColors.v1),
                                     ),
                                     child: Padding(
-                                      padding: const EdgeInsets.all(30.0),
+                                      padding: const EdgeInsets.all(40.0),
                                       child: Container(
                                         width: 270,
                                         height: 106,
@@ -207,11 +207,11 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                 ),
                                 // 아래 흰색 컨테이너들
                                 Positioned(
-                                  top: 190,
+                                  top: 220,
                                   left: 0,
                                   right: 0,
                                   child: Container(
-                                    height: 306,
+                                    height: 330,
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(17),
@@ -225,7 +225,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                         Stack(
                                           children: [
                                             Padding(
-                                              padding: const EdgeInsets.only(top: 40.0),
+                                              padding: const EdgeInsets.only(top: 50.0),
                                               child: Container(
                                                 width: 261,
                                                 height: 101,
@@ -239,7 +239,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                               ),
                                             ),
                                             Positioned(
-                                              top: 25,
+                                              top: 35,
                                               left: 114,
                                               child: Image.asset(
                                                 'assets/icons/plus_icon1.png',
@@ -250,7 +250,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                           ],
                                         ),
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 30),
+                                          padding: const EdgeInsets.only(top: 40),
                                           child: Container(
                                             width: 261,
                                             height: 47,
@@ -317,7 +317,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                       ),
                                     ),
                                   ),
-                                  Image.asset('assets/icons/plus_cloud.png', width: 238, height: 177,)
+                                  Image.asset('assets/icons/plus_cloud.png', width: 350, height: 250,)
                                 ],
                               ),
                             ),
@@ -364,7 +364,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                                       ),
                                     ),
                                   ),
-                                  Image.asset('assets/icons/plus_cloud.png', width: 238, height: 177,)
+                                  Image.asset('assets/icons/plus_cloudfun3.png', width: 350, height: 250,)
                                 ],
                               ),
                             ),
