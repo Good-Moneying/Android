@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:intl/intl.dart';
+import 'package:meetup/design/widgets/history_widget.dart';
 import 'package:meetup/design/widgets/home/editor_card.dart';
 import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
@@ -149,6 +151,12 @@ class HomeScreen extends GetView<HomeViewModel> {
                         Spacer(),
                         GestureDetector(
                           onTap: () {
+                            final format = DateTime.parse(controller
+                                .homeModel!.todayNewsLetter.createdAt);
+                            print('formatdate 테스트');
+                            print(format);
+                            print(controller.formatDate(format));
+
                             Get.toNamed(Routes.ALLLIVE);
                           },
                           child: Row(
@@ -218,8 +226,9 @@ class HomeScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RecommendU(
-                        image:
-                            controller.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
+                        image: controller
+                                .homeModel?.customizeNewsLetters[0].thumbnail ??
+                            'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[0].title,
                         isRecommend: controller.isRecommendFirst.value,
@@ -228,12 +237,13 @@ class HomeScreen extends GetView<HomeViewModel> {
                               ? controller.isRecommendFirst.value = false
                               : controller.isRecommendFirst.value = true;
                         },
-                        tag: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: controller.parseCustom1().map((keyword) {
-                          return CustomChip(label: keyword);
-                        }).toList(),
-                      ),
+                        tag: CustomChip(label: controller.parseCustom1()[0],),
+                        history: History(
+                          diff: controller.formatDate(
+                            DateTime.parse(controller
+                                .homeModel!.customizeNewsLetters[0].createdAt),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -241,22 +251,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RecommendU(
-                        image:
-                        controller.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
+                        image: controller
+                                .homeModel?.customizeNewsLetters[1].thumbnail ??
+                            'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[1].title,
-                        tag: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: controller.parseCustom2().map((keyword) {
-                            return CustomChip(label: keyword);
-                          }).toList(),
-                        ),
+                        tag: CustomChip(label: controller.parseCustom1()[1],),
                         isRecommend: controller.isRecommendSecond.value,
                         onRecommend: () {
                           controller.isRecommendSecond.value
                               ? controller.isRecommendSecond.value = false
                               : controller.isRecommendSecond.value = true;
                         },
+                        history: History(
+                          diff: controller.formatDate(
+                            DateTime.parse(controller
+                                .homeModel!.customizeNewsLetters[1].createdAt),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -264,22 +276,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RecommendU(
-                        image:
-                        controller.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
+                        image: controller
+                                .homeModel?.customizeNewsLetters[2].thumbnail ??
+                            'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[2].title,
-                        tag: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: controller.parseCustom3().map((keyword) {
-                            return CustomChip(label: keyword);
-                          }).toList(),
-                        ),
+                        tag: CustomChip(label: controller.parseCustom1()[2],),
                         isRecommend: controller.isRecommendThird.value,
                         onRecommend: () {
                           controller.isRecommendThird.value
                               ? controller.isRecommendThird.value = false
                               : controller.isRecommendThird.value = true;
                         },
+                        history: History(
+                          diff: controller.formatDate(
+                            DateTime.parse(controller
+                                .homeModel!.customizeNewsLetters[2].createdAt),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -330,16 +344,17 @@ class HomeScreen extends GetView<HomeViewModel> {
                             'no data',
                         meaning: controller.homeModel?.todayTerm.description ??
                             'no data',
-                        category:
-                            controller.homeModel?.todayTerm.category ?? 'no data',
+                        category: controller.homeModel?.todayTerm.category ??
+                            'no data',
                         isBookMark: controller.isWordBookMark.value,
                         onBookMark: () {
                           controller.isWordBookMark.value
                               ? controller.isWordBookMark.value = false
                               : controller.isWordBookMark.value = true;
 
-                          if(controller.isWordBookMark.value) {
-                            controller.archives('TERM', controller.homeModel!.todayTerm.termId);
+                          if (controller.isWordBookMark.value) {
+                            controller.archives(
+                                'TERM', controller.homeModel!.todayTerm.termId);
                           }
                         },
                       ),

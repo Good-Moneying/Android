@@ -96,7 +96,7 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
                     }
 
                     return Column(
-                      children: thinkingDetailsWidgets,
+                       children: thinkingDetailsWidgets,
                     );
                   }),
                 ),

@@ -8,6 +8,7 @@ import '../../../design/widgets/custom_button.dart';
 import '../../../design/widgets/home/news_slider.dart';
 import '../../../design/widgets/home/recommend_box.dart';
 import '../../../design/widgets/progress_bar.dart';
+import '../../../design/widgets/history_widget.dart';
 import '../../../design/widgets/share/choice_quiz.dart';
 import '../../../design/widgets/share/hint_dialog.dart';
 import '../../../routes/get_pages.dart';
@@ -385,6 +386,12 @@ _quizFalse() {
                     ? homeController.isRecommendThird.value = false
                     : homeController.isRecommendThird.value = true;
               },
+              history: History(
+                diff: homeController.formatDate(
+                  DateTime.parse(homeController
+                      .homeModel!.customizeNewsLetters[2].createdAt),
+                ),
+              ),
             )
           ),
           CustomButton(

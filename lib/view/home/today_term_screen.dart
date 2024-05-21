@@ -325,7 +325,7 @@ class TodayTermScreen extends StatelessWidget {
                         CustomChip(label: '코인'),
                         Padding(
                           padding: const EdgeInsets.only(left: 10),
-                          child: History(),
+                          child: History(diff: '',),
                         ),
                       ],
                     ),

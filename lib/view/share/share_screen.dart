@@ -14,6 +14,8 @@ import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/home/news_slider.dart';
 import '../../design/widgets/home/recommend_box.dart';
 import '../../routes/get_pages.dart';
+import '../../../design/widgets/history_widget.dart';
+
 
 class ShareScreen extends GetView<ShareViewModel> {
   const ShareScreen({super.key});
@@ -86,6 +88,12 @@ class ShareScreen extends GetView<ShareViewModel> {
                           ? newsController.isRecommendFirst.value = false
                           : newsController.isRecommendFirst.value = true;
                     },
+                    history: History(
+                      diff: newsController.formatDate(
+                        DateTime.parse(newsController
+                            .homeModel!.customizeNewsLetters[0].createdAt),
+                      ),
+                    ),
                   ),
                 ),
               ),

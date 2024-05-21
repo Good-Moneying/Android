@@ -12,6 +12,7 @@ class RecommendU extends StatelessWidget {
   final String image;
   final String title;
   final Widget tag;
+  final Widget history;
   final bool isRecommend;
   final Function() onRecommend;
 
@@ -21,6 +22,7 @@ class RecommendU extends StatelessWidget {
     required this.image,
     required this.title,
     required this.tag,
+    required this.history,
     required this.isRecommend,
     required this.onRecommend,
   });
@@ -102,7 +104,7 @@ class RecommendU extends StatelessWidget {
               tag,
               Padding(
                 padding: const EdgeInsets.only(left: 10),
-                child: History(),
+                child: history,
               ),
             ],
           ),
