@@ -16,7 +16,8 @@ import '../../viewModel/home_viewModel.dart';
 class LiveNewsScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
-    //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    controller.getEditorNews(controller.homeModel!.realtimeTrendNewsLetters[0].id);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: BackAppBar(iconColor: AppColors.black, title: null),
@@ -57,10 +58,17 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("테슬라 주가 갑자기\n오른 이유는?",
-                          style: FontStyles.Title2_sb.copyWith(
-                              color: AppColors.black)),
-                      Expanded(child: Container()),
+                      Obx(
+                            () => Flexible(
+                          child: Text(
+                            controller.newsLetterModel?.title ?? 'none',
+                            softWrap: true,
+                            style: FontStyles.Title2_sb.copyWith(
+                                color: AppColors.black),
+                          ),
+                        ),
+                      ),
+                      //Expanded(child: Container()),
                       IconButton(
                         icon: SvgPicture.asset(
                             'assets/icons/bookmark_unfill.svg'),
@@ -80,59 +88,82 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             borderRadius: BorderRadius.circular(4),
                             color: AppColors.g1),
                         child: Center(
-                          child: Text(
-                            '미국경제',
-                            style: FontStyles.Caption2_m.copyWith(
-                                color: AppColors.g6),
+                          child: Obx(()=>
+                              Text(
+                                controller.splitKeywords(controller.homeModel!.realtimeTrendNewsLetters[0].keywords, 0),
+                                style: FontStyles.Caption2_m.copyWith(
+                                    color: AppColors.g6),
+                              ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 4.0),
-                        child: Container(
-                          width: 36,
-                          height: 22,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: AppColors.g1),
-                          child: Center(
-                            child: Text(
-                              '금리',
-                              style: FontStyles.Caption2_m.copyWith(
-                                  color: AppColors.g6),
+                        child: Expanded(
+                          child: Container(
+                            /*width: 36,*/
+                            height: 22,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: AppColors.g1),
+                            child: Center(
+                              child: Obx(()=>
+                                  Text(
+                                    controller.splitKeywords(controller.homeModel!.realtimeTrendNewsLetters[0].keywords, 1),
+                                    style: FontStyles.Caption2_m.copyWith(
+                                        color: AppColors.g6),
+                                  ),
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                          child: Text("2024.04.25",
+                          child: Obx(() => Text(controller.dateParsing(controller.homeModel!.todayNewsLetter.createdAt),
                               style: FontStyles.Ln1_r.copyWith(
-                                  color: Colors.grey))),
+                                  color: Colors.grey)))),
                       Expanded(child: Container()),
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                         // 오른쪽에 여백 추가
-                        child: Image.asset(
-                          'assets/icons/newsletter_editorprofile.png',
-                          width: 20,
-                          height: 20,
+                        child: Obx(
+                              () => Image.network(
+                            width: 20,
+                            height: 20,
+                            controller.newsLetterModel!.editor!.profileUrl!,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                              }
+                            },
+                            errorBuilder: (BuildContext context, Object error,
+                                StackTrace? stackTrace) {
+                              return Text(
+                                  'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                            },
+                          ),
                         ),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: 'Edit By. ',
-                          style: FontStyles.Caption1_r.copyWith(
-                              color: AppColors.g3), //기본style을 지정해줘야함
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Amy',
-                              style: FontStyles.Caption1_m.copyWith(
-                                  color: AppColors.g3), //기본style을 지정해줘야함
-                            ),
-                          ],
+                      ),*/
+                      Obx(
+                            () => RichText(
+                          text: TextSpan(
+                            text: 'Edit By. ',
+                            style: FontStyles.Caption1_r.copyWith(
+                                color: AppColors.g3), //기본style을 지정해줘야함
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: controller.newsLetterModel?.editor?.nickname,
+                                style: FontStyles.Caption1_m.copyWith(
+                                    color: AppColors.g3), //기본style을 지정해줘야함
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -171,45 +202,27 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             child: Align(
                                 alignment: Alignment.topCenter,
                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: SvgPicture.asset(
-                                    'assets/images/newsletter_dotori.svg')),
+                                child: Image.asset(
+                                  'assets/icons/news_cloud.png', width: 25, height: 25,)
+                            ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: Text(
-                                  "물가상승률이 예상보다 높아 불과 몇 주 만에\n전문가들의 미국 기준금리 인하 예상 시점이\n한참 미뤄졌음.",
-                                  style: FontStyles.Ln1_m.copyWith(
-                                      color: AppColors.g6),
-                                )),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: SvgPicture.asset(
-                                    'assets/images/newsletter_dotori.svg')),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: Text(
-                                    "급격한 기준금리 인상에도 불구하고, 미국의\n경제는 상대적으로 호황을 누리고 있음.",
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g6))),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                              child: Align(
+                                  alignment: Alignment.topCenter,
+                                  // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                                  child: Obx(() => Text(
+                                    controller.splitParagraph(
+                                      controller.newsLetterModel?.summary ?? 'a',
+                                      0,
+                                    ),
+                                    softWrap: true,
+                                    overflow: TextOverflow.visible, // 필요에 따라 변경
+                                    style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                  ))),
+                            ),
                           ),
                         ],
                       ),
@@ -222,19 +235,60 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             child: Align(
                                 alignment: Alignment.topCenter,
                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: SvgPicture.asset(
-                                    'assets/images/newsletter_dotori.svg')),
+                                child: Image.asset(
+                                  'assets/icons/news_cloud.png', width: 25, height: 25,)
+                            ),
                           ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  18.0, 0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                              child: Align(
+                                  alignment: Alignment.topCenter,
+                                  // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                                  child: Obx(() => Text(
+                                    controller.splitParagraph(
+                                      controller.newsLetterModel?.summary ?? 'a',
+                                      1,
+                                    ),
+                                    softWrap: true,
+                                    overflow: TextOverflow.visible, // 필요에 따라 변경
+                                    style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                  ))),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Padding(
                             padding: const EdgeInsets.fromLTRB(
                                 18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
                             child: Align(
                                 alignment: Alignment.topCenter,
                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: Text(
-                                    "이민자 증가, 높은 고용 유연성, 인공지능(AI)\n발전 등에 따른 노동생산성 향상이 미국 경제\n호황의 대표적 요인으로 꼽히고 있음.",
-                                    style: FontStyles.Ln1_m.copyWith(
-                                        color: AppColors.g6))),
+                                child: Image.asset(
+                                  'assets/icons/news_cloud.png', width: 25, height: 25,)
+                            ),
+                          ),
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  18.0, 0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                              child: Align(
+                                  alignment: Alignment.topCenter,
+                                  // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                                  child: Obx(() => Text(
+                                    controller.splitParagraph(
+                                      controller.newsLetterModel?.summary ?? 'a',
+                                      2,
+                                    ),
+                                    softWrap: true,
+                                    overflow: TextOverflow.visible, // 필요에 따라 변경
+                                    style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                  ))),
+                            ),
                           ),
                         ],
                       ),
@@ -259,15 +313,15 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 59.0),
-                  child: Text('하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체\n'
-                      '를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어\n'
-                      '요. 빠른 기준금리 인상에 따라 경착륙(심한 경기 침체), 연\n'
-                      '착륙(약한 경기 침체), 스태그플레이션 등 여러 침체 시나리\n'
-                      '오를 제시했던 전문가들의 예상이 모두 빗나간 거예요.'),
+                  padding: const EdgeInsets.only(top: 40.0),
+                  child: Obx(() => Text(
+                    controller.newsLetterModel?.body?[0].content?? 'null',
+                    softWrap: true,
+                    style: FontStyles.Ln1_r,
+                  )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 74.0),
+                  padding: const EdgeInsets.only(top: 60.0),
                   child: Text(
                     'AI 추천 정보',
                     style: FontStyles.Headline1_b.copyWith(color: AppColors.g6),
@@ -276,7 +330,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: Container(
-                    width: 328,
+                    width: 370,
                     height: 83,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -287,8 +341,8 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                       children: [
                         Image.asset(
                           'assets/images/live_news_company.png',
-                          width: 134,
-                          height: 20,
+                          width: 150,
+                          height: 40,
                         ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -312,7 +366,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                 Padding(
                     padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
                     child: Container(
-                      width: 328,
+                      width: 370,
                       height: 164,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
