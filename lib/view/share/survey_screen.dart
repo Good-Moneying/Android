@@ -8,6 +8,8 @@ import 'package:meetup/viewModel/survey_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 
+final surveyController = Get.find<SurveyViewModel>();
+
 class SurveyScreen extends GetView<SurveyViewModel> {
   const SurveyScreen({super.key});
 
@@ -187,10 +189,11 @@ class SurveyScreen extends GetView<SurveyViewModel> {
               child: Container(
                 color: AppColors.white,
                 width: Get.width,
-                height: Get.height,
+                height: Get.height * 0.9,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
@@ -212,274 +215,117 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                           ),
                         ),
                       ),
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Card(
-                              color: AppColors.v6,
-                              surfaceTintColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 12),
-                                child: Text(
-                                  '전체',
-                                  style: FontStyles.Caption1_m.copyWith(
-                                      color: AppColors.white),
+                      Obx(
+                          () => Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.allComment(true);
+                                  controller.agreeComment(false);
+                                  controller.disagreeComment(false);
+                                },
+                                child: Card(
+                                  color: controller.allComment.value ? AppColors.v6 : AppColors.g1,
+                                  surfaceTintColor: Colors.transparent,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 12),
+                                    child: Text(
+                                      '전체',
+                                      style: FontStyles.Caption1_m.copyWith(
+                                          color:
+                                          controller.allComment.value ?
+                                          AppColors.white : AppColors.g4),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Card(
-                              color: AppColors.g1,
-                              surfaceTintColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 12),
-                                child: Text(
-                                  '찬성',
-                                  style: FontStyles.Caption1_m.copyWith(
-                                      color: AppColors.g4),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.allComment(false);
+                                  controller.agreeComment(true);
+                                  controller.disagreeComment(false);
+                                },
+                                child: Card(
+                                  color: controller.agreeComment.value ? AppColors.v6 : AppColors.g1,
+                                  surfaceTintColor: Colors.transparent,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 12),
+                                    child: Text(
+                                      '찬성',
+                                      style: FontStyles.Caption1_m.copyWith(
+                                          color: controller.agreeComment.value ?
+                                          AppColors.white : AppColors.g4),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 8.0),
-                            child: Card(
-                              color: AppColors.g1,
-                              surfaceTintColor: Colors.transparent,
-                              elevation: 0,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(15)),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 8, horizontal: 12),
-                                child: Text(
-                                  '반대',
-                                  style: FontStyles.Caption1_m.copyWith(
-                                      color: AppColors.g4),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  controller.allComment(false);
+                                  controller.agreeComment(false);
+                                  controller.disagreeComment(true);
+                                },
+                                child: Card(
+                                  color: controller.disagreeComment.value ? AppColors.v6 : AppColors.g1,
+                                  surfaceTintColor: Colors.transparent,
+                                  elevation: 0,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15)),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8, horizontal: 12),
+                                    child: Text(
+                                      '반대',
+                                      style: FontStyles.Caption1_m.copyWith(
+                                          color: controller.disagreeComment.value ?
+                                          AppColors.white : AppColors.g4),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 5.0),
-                            child: Text(
-                              '인기순',
-                              style: FontStyles.Caption1_m.copyWith(
-                                  color: AppColors.g4),
+                            Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 5.0),
+                              child: Text(
+                                '인기순',
+                                style: FontStyles.Caption1_m.copyWith(
+                                    color: AppColors.g4),
+                              ),
                             ),
-                          ),
-                          SvgPicture.asset('assets/icons/view_more.svg'),
-                        ],
+                            SvgPicture.asset('assets/icons/view_more.svg'),
+                          ],
+                        ),
                       ),
-                      ListView(
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        children: <Widget>[
-                          Obx(
-                            () => CommentWidget(
-                              writer: '연디',
-                              time: '5분 전',
-                              content:
-                                  '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
-                              perspective: '찬성',
-                              onFollow: ElevatedButton(
-                                onPressed: () {
-                                  if (controller.isFollow.value == false) {
-                                    controller.isFollow(true);
-                                  } else {
-                                    controller.isFollow(false);
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  minimumSize: Size.zero,
-                                  padding: EdgeInsetsDirectional.symmetric(
-                                      horizontal: 8, vertical: 2),
-                                  backgroundColor: controller.isFollow.value
-                                      ? AppColors.g2
-                                      : AppColors.g6,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                                child: Text(
-                                  controller.isFollow.value ? '팔로잉' : '팔로우',
-                                  style: FontStyles.Caption2_m.copyWith(
-                                      color: controller.isFollow.value
-                                          ? AppColors.g5
-                                          : AppColors.white),
-                                ),
-                              ),
-                              onLike: GestureDetector(
-                                onTap: () {
-                                  if (controller.isLike.value == false) {
-                                    controller.isLike(true);
-                                  } else {
-                                    controller.isLike(false);
-                                  }
-                                },
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 4.0),
-                                      //라이크 코멘트 색 채워졌을 때 필요함
-                                      child: SvgPicture.asset(controller
-                                              .isLike.value
-                                          ? 'assets/icons/like_comment.svg'
-                                          : 'assets/icons/unlike_comment.svg'),
-                                    ),
-                                    Text(
-                                      controller.isLike.value ? '28' : '27',
-                                      style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g3),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Obx(
-                            () => CommentWidget(
-                              writer: '데헌',
-                              time: '1시간 전',
-                              content:
-                                  '전기차는 유지비가 저렴하고, 정부 지원으로 인해 더욱 경제적이게 이용할 수 있습니다.',
-                              perspective: '반대',
-                              onFollow: ElevatedButton(
-                                onPressed: () {
-                                  if (controller.isFollow2.value == false) {
-                                    controller.isFollow2(true);
-                                  } else {
-                                    controller.isFollow2(false);
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  minimumSize: Size.zero,
-                                  padding: EdgeInsetsDirectional.symmetric(
-                                      horizontal: 8, vertical: 2),
-                                  backgroundColor: controller.isFollow2.value
-                                      ? AppColors.g2
-                                      : AppColors.g6,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                                child: Text(
-                                  controller.isFollow2.value ? '팔로잉' : '팔로우',
-                                  style: FontStyles.Caption2_m.copyWith(
-                                      color: controller.isFollow2.value
-                                          ? AppColors.g5
-                                          : AppColors.white),
-                                ),
-                              ),
-                              onLike: GestureDetector(
-                                onTap: () {
-                                  if (controller.isLike2.value == false) {
-                                    controller.isLike2(true);
-                                  } else {
-                                    controller.isLike2(false);
-                                  }
-                                },
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                          const EdgeInsets.only(right: 4.0),
-                                      //라이크 코멘트 색 채워졌을 때 필요함
-                                      child: SvgPicture.asset(controller
-                                              .isLike2.value
-                                          ? 'assets/icons/like_comment.svg'
-                                          : 'assets/icons/unlike_comment.svg'),
-                                    ),
-                                    Text(
-                                      controller.isLike2.value ? '21' : '20',
-                                      style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g3),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          Obx(
-                                () => CommentWidget(
-                              writer: '건우백',
-                              time: '10분 전',
-                              content:
-                              '하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어요.',
-                              perspective: '반대',
-                              onFollow: ElevatedButton(
-                                onPressed: () {
-                                  if (controller.isFollow3.value == false) {
-                                    controller.isFollow3(true);
-                                  } else {
-                                    controller.isFollow3(false);
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  minimumSize: Size.zero,
-                                  padding: EdgeInsetsDirectional.symmetric(
-                                      horizontal: 8, vertical: 2),
-                                  backgroundColor: controller.isFollow3.value
-                                      ? AppColors.g2
-                                      : AppColors.g6,
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                ),
-                                child: Text(
-                                  controller.isFollow3.value ? '팔로잉' : '팔로우',
-                                  style: FontStyles.Caption2_m.copyWith(
-                                      color: controller.isFollow3.value
-                                          ? AppColors.g5
-                                          : AppColors.white),
-                                ),
-                              ),
-                              onLike: GestureDetector(
-                                onTap: () {
-                                  if (controller.isLike3.value == false) {
-                                    controller.isLike3(true);
-                                  } else {
-                                    controller.isLike3(false);
-                                  }
-                                },
-                                child: Row(
-                                  children: [
-                                    Padding(
-                                      padding:
-                                      const EdgeInsets.only(right: 4.0),
-                                      //라이크 코멘트 색 채워졌을 때 필요함
-                                      child: SvgPicture.asset(controller
-                                          .isLike3.value
-                                          ? 'assets/icons/like_comment.svg'
-                                          : 'assets/icons/unlike_comment.svg'),
-                                    ),
-                                    Text(
-                                      controller.isLike3.value ? '11' : '10',
-                                      style: FontStyles.Caption2_m.copyWith(
-                                          color: AppColors.g3),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
+                      Padding(
+                        padding: const EdgeInsets.only(top: 25.0),
+                        child: Obx(
+                          () {
+                            if (controller.allComment.value) {
+                              return _allComment();
+                            } else if (controller.agreeComment.value) {
+                              return _agreeComment();
+                            } else {
+                              return _disagreeComment();
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -491,4 +337,393 @@ class SurveyScreen extends GetView<SurveyViewModel> {
       ),
     );
   }
+}
+
+_allComment() {
+  return ListView(
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    children: <Widget>[
+      Obx(
+        () => CommentWidget(
+          writer: '연디',
+          time: '5분 전',
+          content:
+              '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
+          perspective: '찬성',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow.value == false) {
+                surveyController.isFollow(true);
+              } else {
+                surveyController.isFollow(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor:
+                  surveyController.isFollow.value ? AppColors.g2 : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike.value == false) {
+                surveyController.isLike(true);
+              } else {
+                surveyController.isLike(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike.value ? '28' : '27',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Obx(
+        () => CommentWidget(
+          writer: '데헌',
+          time: '1시간 전',
+          content: '전기차는 유지비가 저렴하고, 정부 지원으로 인해 더욱 경제적이게 이용할 수 있습니다.',
+          perspective: '반대',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow2.value == false) {
+                surveyController.isFollow2(true);
+              } else {
+                surveyController.isFollow2(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor: surveyController.isFollow2.value
+                  ? AppColors.g2
+                  : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow2.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow2.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike2.value == false) {
+                surveyController.isLike2(true);
+              } else {
+                surveyController.isLike2(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike2.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike2.value ? '21' : '20',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Obx(
+        () => CommentWidget(
+          writer: '건우백',
+          time: '10분 전',
+          content:
+              '하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어요.',
+          perspective: '찬성',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow3.value == false) {
+                surveyController.isFollow3(true);
+              } else {
+                surveyController.isFollow3(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor: surveyController.isFollow3.value
+                  ? AppColors.g2
+                  : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow3.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow3.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike3.value == false) {
+                surveyController.isLike3(true);
+              } else {
+                surveyController.isLike3(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike3.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike3.value ? '11' : '10',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+_agreeComment() {
+  return ListView(
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    children: <Widget>[
+      Obx(
+        () => CommentWidget(
+          writer: '연디',
+          time: '5분 전',
+          content:
+              '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
+          perspective: '찬성',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow.value == false) {
+                surveyController.isFollow(true);
+              } else {
+                surveyController.isFollow(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor:
+                  surveyController.isFollow.value ? AppColors.g2 : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike.value == false) {
+                surveyController.isLike(true);
+              } else {
+                surveyController.isLike(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike.value ? '28' : '27',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Obx(
+        () => CommentWidget(
+          writer: '건우백',
+          time: '10분 전',
+          content:
+              '하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어요.',
+          perspective: '찬성',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow3.value == false) {
+                surveyController.isFollow3(true);
+              } else {
+                surveyController.isFollow3(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor: surveyController.isFollow3.value
+                  ? AppColors.g2
+                  : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow3.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow3.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike3.value == false) {
+                surveyController.isLike3(true);
+              } else {
+                surveyController.isLike3(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike3.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike3.value ? '11' : '10',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
+}
+
+_disagreeComment() {
+  return ListView(
+    shrinkWrap: true,
+    physics: NeverScrollableScrollPhysics(),
+    children: <Widget>[
+      Obx(
+        () => CommentWidget(
+          writer: '데헌',
+          time: '1시간 전',
+          content: '전기차는 유지비가 저렴하고, 정부 지원으로 인해 더욱 경제적이게 이용할 수 있습니다.',
+          perspective: '반대',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow2.value == false) {
+                surveyController.isFollow2(true);
+              } else {
+                surveyController.isFollow2(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor: surveyController.isFollow2.value
+                  ? AppColors.g2
+                  : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow2.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow2.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike2.value == false) {
+                surveyController.isLike2(true);
+              } else {
+                surveyController.isLike2(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike2.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike2.value ? '21' : '20',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ],
+  );
 }

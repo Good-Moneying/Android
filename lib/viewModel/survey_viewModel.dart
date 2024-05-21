@@ -11,4 +11,7 @@ class SurveyViewModel extends GetxController {
   Rx<bool> isFollow3 = false.obs;
   Rx<bool> isLike3 = false.obs;
 
+  Rx<bool> allComment = true.obs;
+  Rx<bool> agreeComment = false.obs;
+  Rx<bool> disagreeComment = false.obs;
 }
