@@ -203,8 +203,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               child: Align(
                                   alignment: Alignment.topCenter,
                                   // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                  child: SvgPicture.asset(
-                                      'assets/images/newsletter_dotori.svg')),
+                                  child: Image.asset(
+                                      'assets/icons/news_cloud.png', width: 25, height: 25,)
+                              ),
                             ),
                             Expanded(
                               child: Padding(
@@ -235,8 +236,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               child: Align(
                                   alignment: Alignment.topCenter,
                                   // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                  child: SvgPicture.asset(
-                                      'assets/images/newsletter_dotori.svg')),
+                                  child: Image.asset(
+                                    'assets/icons/news_cloud.png', width: 25, height: 25,)
+                              ),
                             ),
                             Expanded(
                               child: Padding(
@@ -267,8 +269,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               child: Align(
                                   alignment: Alignment.topCenter,
                                   // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                  child: SvgPicture.asset(
-                                      'assets/images/newsletter_dotori.svg')),
+                                  child: Image.asset(
+                                    'assets/icons/news_cloud.png', width: 25, height: 25,)
+                              ),
                             ),
                             Expanded(
                               child: Padding(

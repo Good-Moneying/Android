@@ -16,7 +16,8 @@ import '../../viewModel/home_viewModel.dart';
 class LiveNewsScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
-    //final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
+    controller.getEditorNews(controller.homeModel!.realtimeTrendNewsLetters[0].id);
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: BackAppBar(iconColor: AppColors.black, title: null),
