@@ -190,7 +190,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                 alignment: Alignment.topCenter,
                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                 child: Text(
-                                  "두둑한 3줄 요약",
+                                  "3줄 요약",
                                   style: FontStyles.Heading1_b.copyWith(
                                       color: AppColors.v5),
                                 ),

@@ -43,7 +43,7 @@ class HomeRepository {
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception(
-            'Faile터d to load editor news: ${response.statusMessage}');
+            'Failed to load editor news: ${response.statusMessage}');
       }
     } catch (e) {
       // 네트워크 오류 또는 기타 오류 처리
