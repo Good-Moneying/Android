@@ -7,8 +7,10 @@ import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/share/think_bottomSheet.dart';
+import 'package:meetup/viewModel/home_viewModel.dart';
 import 'package:meetup/viewModel/share_viewModel.dart';
 
+import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/home/news_slider.dart';
 import '../../design/widgets/home/recommend_box.dart';
 import '../../routes/get_pages.dart';
@@ -20,6 +22,7 @@ class ShareScreen extends GetView<ShareViewModel> {
   Widget build(BuildContext context) {
     Get.put(ShareViewModel());
 
+    var homeController = Get.find<HomeViewModel>();
     var shareController = Get.find<ShareViewModel>();
 
     return Scaffold(
@@ -71,7 +74,12 @@ class ShareScreen extends GetView<ShareViewModel> {
                         'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                     title:
                         newsController.homeModel!.customizeNewsLetters[0].title,
-                    tag: '코인',
+                    tag: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: homeController.parseCustom1().map((keyword) {
+                        return CustomChip(label: keyword);
+                      }).toList(),
+                    ),
                     isRecommend: newsController.isRecommendFirst.value,
                     onRecommend: () {
                       newsController.isRecommendFirst.value

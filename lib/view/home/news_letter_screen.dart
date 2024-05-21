@@ -14,6 +14,7 @@ import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
+import '../../design/widgets/chip_editor.dart';
 import '../../viewModel/home_viewModel.dart';
 import '../../model/comment_model.dart';
 
@@ -84,51 +85,18 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Row(
                     children: [
-                      Flexible(
-                        child: Container(
-                          width: 30,
-                          height: 22,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: AppColors.g1),
-                          child: Center(
-                            child: Obx(()=>
-                              Text(
-                                controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 0),
-                                style: FontStyles.Caption2_m.copyWith(
-                                    color: AppColors.g6),
-                              ),
-                            ),
-                          ),
-                        ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseToday().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 4.0),
-                        child: Expanded(
-                          child: Container(
-                            //width: 36,
-                            height: 22,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4),
-                                color: AppColors.g1),
-                            child: Center(
-                              child : Obx(()=>
-                                  Text(
-                                    controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 1),
-                                    style: FontStyles.Caption2_m.copyWith(
-                                        color: AppColors.g6),
-                                  ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
+                          padding: const EdgeInsets.only(left: 12),
                           child: Obx(() => Text(controller.dateParsing(controller.homeModel!.todayNewsLetter.createdAt),
                               style: FontStyles.Ln1_r.copyWith(
-                                  color: Colors.grey)))),
-                      Expanded(child: Container()),
+                                  color: AppColors.g4)))),
+                      //Expanded(child: Container()),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                         // 오른쪽에 여백 추가

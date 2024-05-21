@@ -12,6 +12,7 @@ import 'package:meetup/design/widgets/home/today_word.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/tooltip_balloon.dart';
 import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
@@ -221,13 +222,18 @@ class HomeScreen extends GetView<HomeViewModel> {
                             controller.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[0].title,
-                        tag: '코인',
                         isRecommend: controller.isRecommendFirst.value,
                         onRecommend: () {
                           controller.isRecommendFirst.value
                               ? controller.isRecommendFirst.value = false
                               : controller.isRecommendFirst.value = true;
                         },
+                        tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom1().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
                       ),
                     ),
                   ),
@@ -239,7 +245,12 @@ class HomeScreen extends GetView<HomeViewModel> {
                         controller.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[1].title,
-                        tag: '주식',
+                        tag: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: controller.parseCustom2().map((keyword) {
+                            return CustomChip(label: keyword);
+                          }).toList(),
+                        ),
                         isRecommend: controller.isRecommendSecond.value,
                         onRecommend: () {
                           controller.isRecommendSecond.value
@@ -257,7 +268,12 @@ class HomeScreen extends GetView<HomeViewModel> {
                         controller.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[2].title,
-                        tag: '금리',
+                        tag: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: controller.parseCustom3().map((keyword) {
+                            return CustomChip(label: keyword);
+                          }).toList(),
+                        ),
                         isRecommend: controller.isRecommendThird.value,
                         onRecommend: () {
                           controller.isRecommendThird.value

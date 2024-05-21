@@ -11,7 +11,7 @@ import '../chip_editor.dart';
 class RecommendU extends StatelessWidget {
   final String image;
   final String title;
-  final String tag;
+  final Widget tag;
   final bool isRecommend;
   final Function() onRecommend;
 
@@ -99,7 +99,7 @@ class RecommendU extends StatelessWidget {
           bottom: 10,
           child: Row(
             children: [
-              CustomChip(label: tag),
+              tag,
               Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: History(),

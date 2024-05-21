@@ -5,6 +5,7 @@ import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/viewModel/home_viewModel.dart';
 
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/home/recommend_box.dart';
 
 class AllLiveScreen extends GetView<HomeViewModel> {
@@ -50,7 +51,12 @@ class AllLiveScreen extends GetView<HomeViewModel> {
                   image:
                   'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                   title: controller.homeModel!.customizeNewsLetters[0].title,
-                  tag: '코인',
+                      tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom1().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
                   isRecommend: controller.isRecommendFirst.value,
                   onRecommend: () {
                     controller.isRecommendFirst.value
@@ -64,7 +70,12 @@ class AllLiveScreen extends GetView<HomeViewModel> {
                   image:
                   'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                   title: controller.homeModel!.customizeNewsLetters[1].title,
-                  tag: '주식',
+                      tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom2().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
                   isRecommend: controller.isRecommendSecond.value,
                   onRecommend: () {
                     controller.isRecommendSecond.value
@@ -78,7 +89,12 @@ class AllLiveScreen extends GetView<HomeViewModel> {
                   image:
                   'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                   title: controller.homeModel!.customizeNewsLetters[2].title,
-                  tag: '금리',
+                      tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom3().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
                   isRecommend: controller.isRecommendThird.value,
                   onRecommend: () {
                     controller.isRecommendThird.value
