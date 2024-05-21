@@ -377,6 +377,8 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                     controller.isSummary.value = true;
                                     print('페이지${controller.currentPageIndex.value}');
                                     controller.addSentence(controller.plusComment.value.text,controller.currentPageIndex.value);
+                                    controller.postSummaryRequired(controller.plusComment.value.text);
+                                    controller.setEditText(controller.summary.value);
                                   },
                                     child: Container(
                                       width: 79,
@@ -442,7 +444,8 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.ease,
                                 );
-                                controller.isSummary.value = false;// 페이지 컨트롤러를 통해 페이지 변경
+                                controller.isSummary.value = false;
+                                controller.plusComment.clear();// 페이지 컨트롤러를 통해 페이지 변경
                               }
                             },
                             child: Padding(
