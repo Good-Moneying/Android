@@ -58,10 +58,17 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("테슬라 주가 갑자기\n오른 이유는?",
-                          style: FontStyles.Title2_sb.copyWith(
-                              color: AppColors.black)),
-                      Expanded(child: Container()),
+                      Obx(
+                            () => Flexible(
+                          child: Text(
+                            controller.newsLetterModel?.title ?? 'none',
+                            softWrap: true,
+                            style: FontStyles.Title2_sb.copyWith(
+                                color: AppColors.black),
+                          ),
+                        ),
+                      ),
+                      //Expanded(child: Container()),
                       IconButton(
                         icon: SvgPicture.asset(
                             'assets/icons/bookmark_unfill.svg'),
@@ -81,59 +88,82 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             borderRadius: BorderRadius.circular(4),
                             color: AppColors.g1),
                         child: Center(
-                          child: Text(
-                            '미국경제',
-                            style: FontStyles.Caption2_m.copyWith(
-                                color: AppColors.g6),
+                          child: Obx(()=>
+                              Text(
+                                controller.splitKeywords(controller.homeModel!.realtimeTrendNewsLetters[0].keywords, 0),
+                                style: FontStyles.Caption2_m.copyWith(
+                                    color: AppColors.g6),
+                              ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 4.0),
-                        child: Container(
-                          width: 36,
-                          height: 22,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: AppColors.g1),
-                          child: Center(
-                            child: Text(
-                              '금리',
-                              style: FontStyles.Caption2_m.copyWith(
-                                  color: AppColors.g6),
+                        child: Expanded(
+                          child: Container(
+                            /*width: 36,*/
+                            height: 22,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: AppColors.g1),
+                            child: Center(
+                              child: Obx(()=>
+                                  Text(
+                                    controller.splitKeywords(controller.homeModel!.realtimeTrendNewsLetters[0].keywords, 1),
+                                    style: FontStyles.Caption2_m.copyWith(
+                                        color: AppColors.g6),
+                                  ),
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                          child: Text("2024.04.25",
+                          child: Obx(() => Text(controller.dateParsing(controller.homeModel!.todayNewsLetter.createdAt),
                               style: FontStyles.Ln1_r.copyWith(
-                                  color: Colors.grey))),
+                                  color: Colors.grey)))),
                       Expanded(child: Container()),
-                      Padding(
+                      /*Padding(
                         padding: const EdgeInsets.fromLTRB(0, 0, 4, 0),
                         // 오른쪽에 여백 추가
-                        child: Image.asset(
-                          'assets/icons/newsletter_editorprofile.png',
-                          width: 20,
-                          height: 20,
+                        child: Obx(
+                              () => Image.network(
+                            width: 20,
+                            height: 20,
+                            controller.newsLetterModel!.editor!.profileUrl!,
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                return child;
+                              } else {
+                                return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                              }
+                            },
+                            errorBuilder: (BuildContext context, Object error,
+                                StackTrace? stackTrace) {
+                              return Text(
+                                  'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                            },
+                          ),
                         ),
-                      ),
-                      RichText(
-                        text: TextSpan(
-                          text: 'Edit By. ',
-                          style: FontStyles.Caption1_r.copyWith(
-                              color: AppColors.g3), //기본style을 지정해줘야함
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: 'Amy',
-                              style: FontStyles.Caption1_m.copyWith(
-                                  color: AppColors.g3), //기본style을 지정해줘야함
-                            ),
-                          ],
+                      ),*/
+                      Obx(
+                            () => RichText(
+                          text: TextSpan(
+                            text: 'Edit By. ',
+                            style: FontStyles.Caption1_r.copyWith(
+                                color: AppColors.g3), //기본style을 지정해줘야함
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: controller.newsLetterModel?.editor?.nickname,
+                                style: FontStyles.Caption1_m.copyWith(
+                                    color: AppColors.g3), //기본style을 지정해줘야함
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),

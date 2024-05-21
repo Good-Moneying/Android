@@ -83,37 +83,41 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Row(
                     children: [
-                      Container(
-                        width: 56,
-                        height: 22,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(4),
-                            color: AppColors.g1),
-                        child: Center(
-                          child: Obx(()=>
-                            Text(
-                              controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 0),
-                              style: FontStyles.Caption2_m.copyWith(
-                                  color: AppColors.g6),
+                      Expanded(
+                        child: Container(
+                          //width: 56,
+                          height: 22,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(4),
+                              color: AppColors.g1),
+                          child: Center(
+                            child: Obx(()=>
+                              Text(
+                                controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 0),
+                                style: FontStyles.Caption2_m.copyWith(
+                                    color: AppColors.g6),
+                              ),
                             ),
                           ),
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 4.0),
-                        child: Container(
-                          width: 36,
-                          height: 22,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: AppColors.g1),
-                          child: Center(
-                            child : Obx(()=>
-                                Text(
-                                  controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 1),
-                                  style: FontStyles.Caption2_m.copyWith(
-                                      color: AppColors.g6),
-                                ),
+                        child: Expanded(
+                          child: Container(
+                            //width: 36,
+                            height: 22,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(4),
+                                color: AppColors.g1),
+                            child: Center(
+                              child : Obx(()=>
+                                  Text(
+                                    controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 1),
+                                    style: FontStyles.Caption2_m.copyWith(
+                                        color: AppColors.g6),
+                                  ),
+                              ),
                             ),
                           ),
                         ),
