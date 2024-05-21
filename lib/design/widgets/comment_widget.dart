@@ -7,6 +7,8 @@ import '../style/FontStyles.dart';
 
 
 class CommentWidget extends StatelessWidget {
+  final String writer;
+  final String time;
   final String perspective;
   final String content;
   final Widget onFollow;
@@ -16,6 +18,8 @@ class CommentWidget extends StatelessWidget {
 
   const CommentWidget({
     super.key,
+    required this.writer,
+    required this.time,
     required this.content,
     required this.perspective,
     required this.onFollow,
@@ -48,38 +52,24 @@ class CommentWidget extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(right: 8.0),
                           child: Text(
-                            '연디',
+                            writer,
                             style: FontStyles.Caption1_m.copyWith(
                                 color: AppColors.black
                             ),
                           ),
                         ),
-                        // ElevatedButton(
-                        //   onPressed: () {
-                        //
-                        //   },
-                        //   style: ElevatedButton.styleFrom(
-                        //     minimumSize: Size.zero,
-                        //     padding: EdgeInsetsDirectional.symmetric(
-                        //         horizontal: 8, vertical: 2),
-                        //     backgroundColor: AppColors.g6,
-                        //     shape: RoundedRectangleBorder(
-                        //       borderRadius: BorderRadius.circular(4),
-                        //     ),
-                        //   ),
-                        //   child: Text(
-                        //     '팔로우',
-                        //     style: FontStyles.Caption2_m.copyWith(
-                        //         color: AppColors.white),
-                        //   ),
-                        // ),
                         onFollow,
                       ],
                     ),
                     Row(
                       children: [
                         Text(
-                          'Level 5 • 5분 전',
+                          'Level 5 • ',
+                          style: FontStyles.Caption2_r.copyWith(
+                              color: AppColors.g4),
+                        ),
+                        Text(
+                          time,
                           style: FontStyles.Caption2_r.copyWith(
                               color: AppColors.g4),
                         ),
@@ -112,7 +102,7 @@ class CommentWidget extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
             ),
             child: Padding(
-              padding: const EdgeInsets.fromLTRB(16, 20, 16, 16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
