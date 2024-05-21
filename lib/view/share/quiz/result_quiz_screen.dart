@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
 
 import '../../../design/style/ColorStyles.dart';
 import '../../../design/style/FontStyles.dart';
@@ -134,7 +135,7 @@ _partCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '퀴즈 종료',
             onPressed: () {
-              Get.toNamed(Routes.SHARE);
+              Get.offAll(BottomNavigationView());
             },
           ),
         ],
@@ -196,7 +197,7 @@ _allCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '퀴즈 종료',
             onPressed: () {
-              Get.toNamed(Routes.SHARE);
+              Get.offAll(BottomNavigationView());
             },
           ),
         ],
