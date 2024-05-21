@@ -165,7 +165,7 @@ newsSlider() {
     options: CarouselOptions(
       height: Get.height * 0.18,
       autoPlay: true,
-      viewportFraction: 0.7,
+      viewportFraction: 0.63,
       onPageChanged: (index, reason) {
         newsController.indicatorIndex.value = index;
       },

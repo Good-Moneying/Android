@@ -111,7 +111,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                   ),
                   //실시간 트렌드 뉴스
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 10),
+                    padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
                     child: Row(
                       children: [
                         RichText(
@@ -306,7 +306,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                   Obx(
                     () => Padding(
                       //padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
                       child: TodayWord(
                         title: controller.homeModel?.todayTerm.koreanName ??
                             'no data',
