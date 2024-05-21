@@ -320,20 +320,9 @@ class ShareScreen extends GetView<ShareViewModel> {
               onTap: () {
                 Get.toNamed(Routes.FIRSTQUIZ);
               },
-              child: Stack(
-                children: [
-                  SvgPicture.asset(
-                    'assets/icons/quiz_banner.svg',
-                    width: Get.width,
-                  ),
-                  Positioned(
-                    //right: 30,
-                      child: Image.asset('assets/icons/quiz_banner_cloud.png',
-                      width: Get.width*0.25,
-                        height: Get.height*0.25,
-                      )
-                  ),
-                ],
+              child: SvgPicture.asset(
+                'assets/icons/quiz_banner.png',
+                width: Get.width,
               ),
             ),
           ],
