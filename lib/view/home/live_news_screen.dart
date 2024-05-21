@@ -789,6 +789,8 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                       padding: const EdgeInsets.only(top: 16.0),
                       child: controller.isPostLiveNews.value
                     ? CommentWidget(
+                        writer: '연디',
+                        time: '5분 전',
                           content: controller.liveController.value.text,
                           perspective: controller.setPerspective(controller.isDialogAgreeList.value),
                         onFollow: ElevatedButton(

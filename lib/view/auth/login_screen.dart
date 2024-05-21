@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Image.asset('assets/images/bg_logo.png'),
               const Spacer(),
               AnimatedBuilder(
                 animation: _animationOffset,

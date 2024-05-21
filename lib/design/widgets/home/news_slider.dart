@@ -49,7 +49,7 @@ newsSlider() {
                       Color(0xFF212121).withOpacity(0.1),
                     ])),
                 child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
+                    padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
                   child: Text(
                     newsController.homeModel!.realtimeTrendNewsLetters[0].title,
                     style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -97,7 +97,7 @@ newsSlider() {
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
+                padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
                 child: Text(
                   newsController.homeModel!.realtimeTrendNewsLetters[1].title,
                   style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -144,7 +144,7 @@ newsSlider() {
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12, 70, 12, 12),
+                padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
                 child: Text(
                   newsController.homeModel!.realtimeTrendNewsLetters[2].title,
                   style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -165,7 +165,7 @@ newsSlider() {
     options: CarouselOptions(
       height: Get.height * 0.18,
       autoPlay: true,
-      viewportFraction: 0.7,
+      viewportFraction: 0.63,
       onPageChanged: (index, reason) {
         newsController.indicatorIndex.value = index;
       },

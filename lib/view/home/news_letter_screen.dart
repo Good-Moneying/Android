@@ -793,6 +793,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                     String content = controller.comments[index].content;
             
                                     return CommentWidget(
+                                      writer: '연디',
+                                      time: '5분 전',
                                         content: content,
                                         perspective: perspective,
                                       onFollow: ElevatedButton(
