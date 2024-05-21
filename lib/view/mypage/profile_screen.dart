@@ -214,7 +214,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 350,
+                          width: 378,
                           height: 150,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -346,7 +346,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   children: [
                     Image.asset(
                       'assets/icons/mypage_banner.png',
-                      width: 350,
+                      width: 378,
                       height: 110,
                     ),
                   ],
@@ -358,7 +358,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 170,
+                      width: 180,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -400,7 +400,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 170,
+                        width: 180,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -451,7 +451,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 170,
+                      width: 180,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -495,7 +495,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 170,
+                        width: 180,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -505,7 +505,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                           children: [
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
-                              child: Column(children: [
+                              child: Column(
+                                  children: [
                                 Text(
                                   '부동산',
                                   style: FontStyles.Bn2_sb.copyWith(
@@ -547,7 +548,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 350,
+                        width: 378,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
@@ -583,7 +584,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 350,
+                        width: 378,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
@@ -619,7 +620,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 350,
+                        width: 378,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,

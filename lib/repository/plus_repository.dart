@@ -17,18 +17,17 @@ class PlusRepository {
   }
 
   Future<CloudHomeModel> getCloudHome() async {
-    //final prefs = await SharedPreferences.getInstance();
+    final prefs = await SharedPreferences.getInstance();
     try {
       print('getCloudHome() 호출');
       final response = await _dio.get("/api/thinkings/home",
           options: Options(headers: {
-            //"Authorization": "Bearer ${prefs.getString('accessToken')}",
-            "Authorization":
-                "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTYyMDk5NTUsImV4cCI6MTcxNjIxMzU1NSwic3ViIjoic3VoeXVuMTAyMDFAbmF2ZXIuY29tIiwiaXNzIjoiZHVkdWsuc2hvcCJ9.Y-uW3x7YmgcuvQmQu8rXLriaCMUNKwkuhL5dsqwC9lE'}"
-          }));
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+            }));
 
       if (response.statusCode == 200) {
         print('성공티비');
+        print('구름홈 : ${response.data}');
         return CloudHomeModel.fromJson(response.data);
       } else {
         throw Exception(
@@ -69,10 +68,8 @@ class PlusRepository {
             "sentences": sentenceStrings, // 문자열 리스트 전달
           },
           options: Options(headers: {
-            //"Authorization": "Bearer ${prefs.getString('accessToken')}",
-            "Authorization":
-            "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE3MTYyMDk5NTUsImV4cCI6MTcxNjIxMzU1NSwic3ViIjoic3VoeXVuMTAyMDFAbmF2ZXIuY29tIiwiaXNzIjoiZHVkdWsuc2hvcCJ9.Y-uW3x7YmgcuvQmQu8rXLriaCMUNKwkuhL5dsqwC9lE'}"
-          }));
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
+            }));
 
       if (response.statusCode != 201) {
         throw Exception(
@@ -94,7 +91,7 @@ class PlusRepository {
         data: dataModel.toJson(),
         options: Options(
           headers: {
-            "Authorization": "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWh5dW4xMDIwMUBuYXZlci5jb20iLCJpc3MiOiJkdWR1ay5zaG9wIiwiZXhwIjoxNzE2MjE4NTI1LCJpYXQiOjE3MTYyMTQ5MjV9.2stKXh7wYegZ8qgLpSwz5RF2OCIyPYrI7mB1vS9vxSQ'}",
+            "Authorization": "Bearer ${prefs.getString('accessToken')}",
           },
         ),
       );
