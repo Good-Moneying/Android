@@ -37,8 +37,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
               children: [
                 Obx(
                 () => Image.network(
-            width: double.infinity,
-            height: 142,
+            width: Get.width,
+            height: 230,
+            fit: BoxFit.fitWidth,
             controller.homeModel!.todayNewsLetter.thumbnail,
             loadingBuilder: (BuildContext context, Widget child,
                 ImageChunkEvent? loadingProgress) {
@@ -83,9 +84,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Row(
                     children: [
-                      Expanded(
+                      Flexible(
                         child: Container(
-                          //width: 56,
+                          width: 30,
                           height: 22,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(4),
@@ -339,7 +340,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               },
                             ),
                           )),
-                      Padding(
+                      /*Padding(
                           padding:
                               const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
                           child: Text(
@@ -348,7 +349,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                           )),
                       Text(
                           "왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",
-                          style: FontStyles.Ln1_r),
+                          style: FontStyles.Ln1_r),*/
                       Padding(
                           padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
                           child: Container(

@@ -75,7 +75,7 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
                     child: Stack(
                       children: [
                         Container(
-                          width: 340, height: 268,
+                          width: 360, height: 268,
                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
                         ),
                         Padding(
@@ -112,7 +112,7 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
                               Padding(
                                 padding: const EdgeInsets.only(top: 16.0),
                                 child: Container(
-                                  width: 306, height: 104,
+                                  width: 326, height: 104,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10), color: AppColors.g1
                                   ),
@@ -160,7 +160,7 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
                 Stack(
                     children: [
                       Container(
-                        width: 340, height: 268,
+                        width: 360, height: 268,
                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
                       ),
                       Padding(
@@ -197,7 +197,7 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
                               child: Container(
-                                width: 306, height: 104,
+                                width: 326, height: 104,
                                 decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10), color: AppColors.g1
                                 ),
