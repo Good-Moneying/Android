@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:meetup/design/widgets/history_widget.dart';
+import 'package:meetup/design/widgets/home/archive_dialog.dart';
 import 'package:meetup/design/widgets/home/editor_card.dart';
 import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
@@ -15,6 +16,7 @@ import 'package:meetup/viewModel/user_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/chip_editor.dart';
+import '../../design/widgets/home/term_dialog.dart';
 import '../../design/widgets/tooltip_balloon.dart';
 import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
@@ -25,6 +27,7 @@ class HomeScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(HomeViewModel());
+    Get.put(UserViewModel());
     controller.getHomeModel();
 
     return Obx(
@@ -104,6 +107,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isEditorBookMark.value
                               ? controller.isEditorBookMark.value = false
                               : controller.isEditorBookMark.value = true;
+
+                          if (controller.isEditorBookMark.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.todayNewsLetter.id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),
@@ -151,12 +172,6 @@ class HomeScreen extends GetView<HomeViewModel> {
                         Spacer(),
                         GestureDetector(
                           onTap: () {
-                            final format = DateTime.parse(controller
-                                .homeModel!.todayNewsLetter.createdAt);
-                            print('formatdate 테스트');
-                            print(format);
-                            print(controller.formatDate(format));
-
                             Get.toNamed(Routes.ALLLIVE);
                           },
                           child: Row(
@@ -355,6 +370,19 @@ class HomeScreen extends GetView<HomeViewModel> {
                           if (controller.isWordBookMark.value) {
                             controller.archives(
                                 'TERM', controller.homeModel!.todayTerm.termId);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return TermDialog();
+                                  },
+                                );
+                              },
+                            );
                           }
                         },
                       ),

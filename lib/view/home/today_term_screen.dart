@@ -17,12 +17,13 @@ import '../../design/widgets/history_widget.dart';
 import '../../design/widgets/home/archive_dialog.dart';
 import '../../routes/get_pages.dart';
 
-class TodayTermScreen extends StatelessWidget {
+class TodayTermScreen extends GetView<HomeViewModel> {
   const TodayTermScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var termController = Get.put(HomeViewModel());
+    Get.put(HomeViewModel());
+    Get.put(UserViewModel());
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -56,14 +57,21 @@ class TodayTermScreen extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    termController.homeModel?.todayTerm.koreanName ??
-                        'no data',
+                    controller.homeModel?.todayTerm.koreanName ?? 'no data',
                     style:
                         FontStyles.Title2_sb.copyWith(color: AppColors.black),
                   ),
                   Spacer(),
                   GestureDetector(
-                      onTap: () {
+                    onTap: () {
+                      controller.isWordBookMark.value
+                          ? controller.isWordBookMark.value = false
+                          : controller.isWordBookMark.value = true;
+
+                      if (controller.isWordBookMark.value) {
+                        controller.archives(
+                            'TERM', controller.homeModel!.todayTerm.termId);
+
                         showDialog(
                           barrierDismissible: false,
                           context: context,
@@ -71,20 +79,25 @@ class TodayTermScreen extends StatelessWidget {
                             return StatefulBuilder(
                               builder:
                                   (BuildContext context, StateSetter setState) {
-                                return ArchiveDialog();
+                                return TermDialog();
                               },
                             );
                           },
                         );
-                      },
-                      child: SvgPicture.asset('assets/icons/bookmark_unfill.svg')),
+                      }
+                    },
+                    child: Obx(
+                      () => SvgPicture.asset(controller.isWordBookMark.value
+                          ? 'assets/icons/bookmark_fill.svg'
+                          : 'assets/icons/bookmark_unfill.svg'),
+                    ),
+                  ),
                 ],
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 24.0),
                 child: Text(
-                  termController.homeModel?.todayTerm.englishName ??
-                      'no data',
+                  controller.homeModel?.todayTerm.englishName ?? 'no data',
                   style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                 ),
               ),
@@ -110,7 +123,7 @@ class TodayTermScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 24.0, bottom: 8.0),
                 child: RichText(
                   text: TextSpan(
-                    text: termController.homeModel!.todayTerm.koreanName,
+                    text: controller.homeModel!.todayTerm.koreanName,
                     style: FontStyles.Headline1_b.copyWith(color: AppColors.v6),
                     children: <TextSpan>[
                       TextSpan(
@@ -133,7 +146,7 @@ class TodayTermScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        termController.homeModel!.todayTerm.description,
+                        controller.homeModel!.todayTerm.description,
                         style: FontStyles.Ln1_r.copyWith(
                           color: AppColors.black,
                         ),
@@ -260,77 +273,28 @@ class TodayTermScreen extends StatelessWidget {
                       FontStyles.Headline1_b.copyWith(color: AppColors.black),
                 ),
               ),
-              Stack(
-                children: [
-                  Card(
-                    color: AppColors.white,
-                    surfaceTintColor: Colors.transparent,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14)),
-                    child: Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.network(
-                              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                              height: Get.height * 0.13,
-                              width: Get.width * 0.3,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width * 0.03,
-                          ),
-                          Expanded(
-                            child: Text(
-                              '“코인 급등 랠리?” 도지코인 거래 급감',
-                              style: FontStyles.Ln1_m.copyWith(
-                                  color: AppColors.black),
-                              softWrap: true,
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width * 0.03,
-                          ),
-                          Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Container(
-                                width: 34,
-                                height: 34,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(6)),
-                                  border: Border.all(
-                                    color: AppColors.g2.withOpacity(0.3),
-                                  ),
-                                ),
-                              ),
-                              SvgPicture.asset(
-                                  'assets/icons/bookmark_unfill.svg'),
-                            ],
-                          ),
-                        ],
-                      ),
+              Obx(
+                () => RecommendU(
+                  image:
+                      controller.homeModel?.customizeNewsLetters[0].thumbnail ??
+                          'no data',
+                  title: controller.homeModel!.customizeNewsLetters[0].title,
+                  isRecommend: controller.isRecommendFirst.value,
+                  onRecommend: () {
+                    controller.isRecommendFirst.value
+                        ? controller.isRecommendFirst.value = false
+                        : controller.isRecommendFirst.value = true;
+                  },
+                  tag: CustomChip(
+                    label: controller.parseCustom1()[0],
+                  ),
+                  history: History(
+                    diff: controller.formatDate(
+                      DateTime.parse(controller
+                          .homeModel!.customizeNewsLetters[0].createdAt),
                     ),
                   ),
-                  Positioned(
-                    left: 125,
-                    bottom: 10,
-                    child: Row(
-                      children: [
-                        CustomChip(label: '코인'),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10),
-                          child: History(diff: '',),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
+                ),
               ),
             ],
           ),
@@ -339,3 +303,5 @@ class TodayTermScreen extends StatelessWidget {
     );
   }
 }
+
+

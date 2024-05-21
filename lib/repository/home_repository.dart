@@ -156,7 +156,7 @@ class HomeRepository {
           )
       );
 
-      print('archives 오류 확인');
+      print('archives 상태코드');
       print(response.statusCode);
 
       if (response.statusCode == 200) {
