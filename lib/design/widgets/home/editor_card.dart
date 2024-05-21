@@ -67,7 +67,7 @@ class EditorCard extends StatelessWidget {
                             width: 34,
                             height: 34,
                             decoration: BoxDecoration(
-                              color: AppColors.white.withOpacity(0.5),
+                              color: AppColors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6)),
                             ),
@@ -78,7 +78,7 @@ class EditorCard extends StatelessWidget {
                                 : 'assets/icons/bookmark_unfill.svg',
                             colorFilter: isBookMark
                                 ? null
-                                : ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                                : ColorFilter.mode(AppColors.g3, BlendMode.srcIn),
                           ),
                         ],
                       ),

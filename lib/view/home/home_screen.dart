@@ -341,7 +341,6 @@ class HomeScreen extends GetView<HomeViewModel> {
                           if(controller.isWordBookMark.value) {
                             controller.archives('TERM', controller.homeModel!.todayTerm.termId);
                           }
-
                         },
                       ),
                     ),

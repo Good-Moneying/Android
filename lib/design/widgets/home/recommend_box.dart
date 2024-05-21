@@ -37,6 +37,7 @@ class RecommendU extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.fromLTRB(6, 6, 12, 6),
             child: Row(
+              mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
@@ -53,16 +54,13 @@ class RecommendU extends StatelessWidget {
                 ),
                 Expanded(
                   child: Padding(
-                    padding: const EdgeInsets.only(top: 10.0),
+                    padding: const EdgeInsets.only(top: 10.0, right: 11),
                     child: Text(
                       title,
                       style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                       softWrap: true,
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: Get.width * 0.03,
                 ),
                 GestureDetector(
                   onTap: onRecommend,
@@ -90,6 +88,7 @@ class RecommendU extends StatelessWidget {
                     ),
                   ),
                 ),
+
               ],
             ),
           ),
@@ -98,6 +97,7 @@ class RecommendU extends StatelessWidget {
           left: 140,
           bottom: 10,
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               tag,
               Padding(
