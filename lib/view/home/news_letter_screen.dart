@@ -90,10 +90,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                             borderRadius: BorderRadius.circular(4),
                             color: AppColors.g1),
                         child: Center(
-                          child: Text(
-                            '미국경제',
-                            style: FontStyles.Caption2_m.copyWith(
-                                color: AppColors.g6),
+                          child: Obx(()=>
+                            Text(
+                              controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 0),
+                              style: FontStyles.Caption2_m.copyWith(
+                                  color: AppColors.g6),
+                            ),
                           ),
                         ),
                       ),
@@ -106,10 +108,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                               borderRadius: BorderRadius.circular(4),
                               color: AppColors.g1),
                           child: Center(
-                            child: Text(
-                              '금리',
-                              style: FontStyles.Caption2_m.copyWith(
-                                  color: AppColors.g6),
+                            child : Obx(()=>
+                                Text(
+                                  controller.splitKeywords(controller.homeModel!.todayNewsLetter.keywords, 1),
+                                  style: FontStyles.Caption2_m.copyWith(
+                                      color: AppColors.g6),
+                                ),
                             ),
                           ),
                         ),

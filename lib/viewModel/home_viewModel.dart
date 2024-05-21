@@ -154,4 +154,9 @@ class HomeViewModel extends GetxController {
     List<String> parts = date.split(".");
     return parts[0];
   }
+
+  String splitKeywords(String text, int i) {
+    List<String> parts = text.split(",");
+    return parts[i];
+  }
 }
