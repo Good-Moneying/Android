@@ -150,4 +150,8 @@ class HomeViewModel extends GetxController {
   void selectLook() {
     isLookAlone.value = !isLookAlone.value;
   }
+  String dateParsing(String date) {
+    List<String> parts = date.split(".");
+    return parts[0];
+  }
 }

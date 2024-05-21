@@ -35,11 +35,26 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  'assets/images/news_letter_preview.png',
-                  width: double.infinity,
-                  height: 142,
-                ),
+                Obx(
+                () => Image.network(
+            width: double.infinity,
+            height: 142,
+            controller.homeModel!.todayNewsLetter.thumbnail,
+            loadingBuilder: (BuildContext context, Widget child,
+                ImageChunkEvent? loadingProgress) {
+              if (loadingProgress == null) {
+                return child;
+              } else {
+                return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+              }
+            },
+            errorBuilder: (BuildContext context, Object error,
+                StackTrace? stackTrace) {
+              return Text(
+                  'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+            },
+          ),
+        ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
@@ -101,7 +116,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                       ),
                       Padding(
                           padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
-                          child: Obx(() => Text(controller.newsLetterModel?.publishedAt??'null',
+                          child: Obx(() => Text(controller.dateParsing(controller.homeModel!.todayNewsLetter.createdAt),
                               style: FontStyles.Ln1_r.copyWith(
                                   color: Colors.grey)))),
                       Expanded(child: Container()),
