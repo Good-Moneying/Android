@@ -92,6 +92,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                         alignment: Alignment.center,
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Flexible(
                                 flex: 1,

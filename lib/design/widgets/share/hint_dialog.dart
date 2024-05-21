@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
@@ -26,7 +27,7 @@ class HintDialog extends StatelessWidget {
             height: 31,
           ),
           Text(
-            "3 토큰",
+            "3 방알",
             style: FontStyles.Headline2_b.copyWith(
                 color: AppColors.v6),
           ),
@@ -39,7 +40,7 @@ class HintDialog extends StatelessWidget {
             padding:
             const EdgeInsets.only(top: 19.0, bottom: 8.0),
             child: Text(
-              '토큰을 사용해서 힌트를 보시겠어요?',
+              '방울을 사용해서 힌트를 보시겠어요?',
               style:
               FontStyles.Headline2_b.copyWith(
                   color: AppColors.black),
@@ -49,7 +50,7 @@ class HintDialog extends StatelessWidget {
             padding:
             const EdgeInsets.only(bottom: 17.0),
             child: Text(
-              '3 토큰을 사용하시면 힌트를 볼 수 있어요!',
+              '3 방울을 사용하시면 힌트를 볼 수 있어요!',
               style: FontStyles.Caption1_m.copyWith(
                   color: AppColors.g4),
             ),
@@ -103,7 +104,9 @@ class HintDialog extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   style: OutlinedButton.styleFrom(
                     minimumSize:
                     const Size.fromHeight(50),
@@ -132,7 +135,9 @@ class HintDialog extends StatelessWidget {
               Flexible(
                 flex: 1,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.back();
+                  },
                   style: ElevatedButton.styleFrom(
                       minimumSize:
                       const Size.fromHeight(50),

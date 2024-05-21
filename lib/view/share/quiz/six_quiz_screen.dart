@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../design/style/ColorStyles.dart';
 import '../../../design/style/FontStyles.dart';
-import '../../../design/widgets/appBar/back_appBar.dart';
 import '../../../design/widgets/appBar/quiz_appBar.dart';
 import '../../../design/widgets/custom_button.dart';
 import '../../../design/widgets/home/news_slider.dart';
@@ -16,8 +14,8 @@ import '../../../viewModel/quiz_viewModel.dart';
 
 final quizController = Get.find<QuizViewModel>();
 
-class TwoQuizScreen extends GetView<QuizViewModel> {
-  const TwoQuizScreen({super.key});
+class SixthQuizScreen extends GetView<QuizViewModel> {
+  const SixthQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +23,14 @@ class TwoQuizScreen extends GetView<QuizViewModel> {
     return Scaffold(
       appBar: QuizAppBar(
         onPressed: () {
-          controller.init2(true);
+          controller.init6(true);
           Get.back();
         },
       ),
       body: Obx(() {
-        if (controller.init2.value) {
+        if (controller.init6.value) {
           return _quiz(context);
-        } else if (controller.firstQ2.value) {
+        } else if (controller.firstQ6.value) {
           return _quizCorrect();
         } else {
           return _quizFalse();
@@ -50,14 +48,14 @@ _quiz(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.3,
+            percent: 0.82,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 48, bottom: 4.0),
             child: Text(
-              'Quiz 2',
+              'Quiz 6',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
             ),
           ),
@@ -70,28 +68,28 @@ _quiz(BuildContext context) {
           ),
           GestureDetector(
               onTap: () {
-                quizController.init2(false);
-                quizController.firstQ2(true);
+                quizController.init6(false);
+                quizController.firstQ6(true);
               },
               child: ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다')),
           GestureDetector(
               onTap: () {
-                quizController.init2(false);
-                quizController.secondQ2(true);
+                quizController.init6(false);
+                quizController.secondQ6(true);
               },
               child: ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다')
           ),
           GestureDetector(
               onTap: () {
-                quizController.init2(false);
-                quizController.thirdQ2(true);
+                quizController.init6(false);
+                quizController.thirdQ6(true);
               },
               child: ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다')
           ),
           GestureDetector(
               onTap: () {
-                quizController.init2(false);
-                quizController.fourthQ2(true);
+                quizController.init6(false);
+                quizController.fourthQ6(true);
               },
               child: ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다')
           ),
@@ -227,7 +225,7 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
-              Get.toNamed(Routes.THIRDQUIZ);
+              Get.toNamed(Routes.SEVENTHQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
           ),
@@ -385,7 +383,7 @@ _quizFalse() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
-              Get.toNamed(Routes.THIRDQUIZ);
+              Get.toNamed(Routes.SEVENTHQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
           ),

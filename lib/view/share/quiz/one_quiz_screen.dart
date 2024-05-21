@@ -6,23 +6,41 @@ import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
+import 'package:meetup/design/widgets/appBar/quiz_appBar.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/design/widgets/progress_bar.dart';
 import 'package:meetup/design/widgets/share/choice_quiz.dart';
 import 'package:meetup/design/widgets/share/hint_dialog.dart';
+import 'package:meetup/viewModel/quiz_viewModel.dart';
 
 import '../../../design/widgets/home/news_slider.dart';
 import '../../../design/widgets/home/recommend_box.dart';
 import '../../../routes/get_pages.dart';
 
-class OneQuizScreen extends StatelessWidget {
+final quizController = Get.find<QuizViewModel>();
+
+class OneQuizScreen extends GetView<QuizViewModel> {
   const OneQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(QuizViewModel());
     return Scaffold(
-      appBar: BackAppBar(iconColor: AppColors.black, title: null,),
-      body: _quizFalse(),
+      appBar: QuizAppBar(
+        onPressed: () {
+          controller.init(true);
+          Get.back();
+        },
+      ),
+      body: Obx(() {
+        if (controller.init.value) {
+          return _quiz(context);
+        } else if (controller.firstQ.value) {
+          return _quizCorrect();
+        } else {
+          return _quizFalse();
+        }
+      }),
     );
   }
 }
@@ -53,10 +71,33 @@ _quiz(BuildContext context) {
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
-          ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다'),
-          ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다'),
-          ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다'),
-          ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다'),
+          GestureDetector(
+              onTap: () {
+                quizController.init(false);
+                quizController.firstQ(true);
+              },
+              child: ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다')),
+          GestureDetector(
+            onTap: () {
+              quizController.init(false);
+              quizController.secondQ(true);
+            },
+              child: ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다')
+          ),
+          GestureDetector(
+            onTap: () {
+              quizController.init(false);
+              quizController.thirdQ(true);
+            },
+              child: ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다')
+          ),
+          GestureDetector(
+              onTap: () {
+                quizController.init(false);
+                quizController.fourthQ(true);
+              },
+              child: ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다')
+          ),
           Spacer(),
           Row(
             children: [
@@ -131,8 +172,7 @@ _quizCorrect() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                  'assets/icons/agreement.png'),
+              Image.asset('assets/icons/agreement.png'),
             ],
           ),
           Padding(
@@ -140,7 +180,8 @@ _quizCorrect() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('정답이에요!',
+                Text(
+                  '정답이에요!',
                   style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                 ),
               ],
@@ -155,8 +196,7 @@ _quizCorrect() {
                   border: Border.all(
                     color: AppColors.v6,
                     width: 1,
-                  )
-              ),
+                  )),
               child: Row(
                 children: [
                   Padding(
@@ -171,7 +211,7 @@ _quizCorrect() {
                         child: Text(
                           'A',
                           style:
-                          FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
+                              FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
                         ),
                       ),
                     ),
@@ -190,7 +230,7 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
-              //Get.toNamed(Routes.SHARE);
+              Get.toNamed(Routes.SECONDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
           ),
@@ -230,8 +270,7 @@ _quizFalse() {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset(
-                  'assets/icons/quiz_falseCloud.png'),
+              Image.asset('assets/icons/quiz_falseCloud.png'),
             ],
           ),
           Padding(
@@ -239,7 +278,8 @@ _quizFalse() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('아쉽지만 정답이 아니에요!',
+                Text(
+                  '아쉽지만 정답이 아니에요!',
                   style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                 ),
               ],
@@ -255,8 +295,7 @@ _quizFalse() {
                   border: Border.all(
                     color: Color(0xFFFA5862),
                     width: 1,
-                  )
-              ),
+                  )),
               child: Row(
                 children: [
                   Padding(
@@ -270,8 +309,8 @@ _quizFalse() {
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
                           'A',
-                          style:
-                          FontStyles.Ln1_sb.copyWith(color: Color(0xFFFA5862)),
+                          style: FontStyles.Ln1_sb.copyWith(
+                              color: Color(0xFFFA5862)),
                         ),
                       ),
                     ),
@@ -294,8 +333,7 @@ _quizFalse() {
                   border: Border.all(
                     color: AppColors.v6,
                     width: 1,
-                  )
-              ),
+                  )),
               child: Row(
                 children: [
                   Padding(
@@ -310,7 +348,7 @@ _quizFalse() {
                         child: Text(
                           'A',
                           style:
-                          FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
+                              FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
                         ),
                       ),
                     ),
@@ -325,7 +363,8 @@ _quizFalse() {
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
-            child: Text('관련 뉴스',
+            child: Text(
+              '관련 뉴스',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.black),
             ),
           ),
@@ -333,7 +372,7 @@ _quizFalse() {
             padding: const EdgeInsets.only(bottom: 15.0),
             child: RecommendU(
               image:
-              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                  'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
               title: newsController.homeModel!.customizeNewsLetters[0].title,
               tag: '코인',
               isRecommend: newsController.isRecommendFirst.value,
@@ -349,7 +388,7 @@ _quizFalse() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
-              //Get.toNamed(Routes.SHARE);
+              Get.toNamed(Routes.SECONDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
           ),

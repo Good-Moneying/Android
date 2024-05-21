@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:meetup/binding/quiz_binding.dart';
 import 'package:meetup/binding/share_binding.dart';
 
 import 'package:meetup/view/auth/frequency_screen.dart';
@@ -18,8 +19,14 @@ import 'package:meetup/view/mypage/profile_screen.dart';
 import 'package:meetup/view/plus/plus_step1_screen.dart';
 import 'package:meetup/view/plus/plus_think_storage.dart';
 import 'package:meetup/view/share/add_survey_screen.dart';
+import 'package:meetup/view/share/quiz/eight_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/five_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/four_quiz_screen.dart';
 import 'package:meetup/view/share/quiz/one_quiz_screen.dart';
 import 'package:meetup/view/share/quiz/result_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/seven_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/six_quiz_screen.dart';
+import 'package:meetup/view/share/quiz/three_quiz_screen.dart';
 import 'package:meetup/view/share/quiz/two_quiz_screen.dart';
 import 'package:meetup/view/share/share_screen.dart';
 import 'package:meetup/view/share/survey_screen.dart';
@@ -121,10 +128,47 @@ class Pages {
     GetPage(
       name: Routes.FIRSTQUIZ,
       page: () => OneQuizScreen(),
+      binding: QuizBinding(),
     ),
     GetPage(
       name: Routes.SECONDQUIZ,
       page: () => TwoQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.THIRDQUIZ,
+      page: () => ThirdQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.FOURTHQUIZ,
+      page: () => FourthQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.FIFTHQUIZ,
+      page: () => FifthQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.SIXTHQUIZ,
+      page: () => SixthQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.SEVENTHQUIZ,
+      page: () => SeventhQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.EIGHTHQUIZ,
+      page: () => EightQuizScreen(),
+      binding: QuizBinding(),
+    ),
+    GetPage(
+      name: Routes.RESULTQUIZ,
+      page: () => ResultQuizScreen(),
+      binding: QuizBinding(),
     ),
     GetPage(
       name: Routes.PLUSONBOARDING,

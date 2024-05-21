@@ -11,8 +11,14 @@ abstract class Routes {
   static const PLUS = '/plus';
   static const SHARE = '/share';
   static const ADDSURVEY = '/share/add';
-  static const FIRSTQUIZ = '/share/quiz/one';
-  static const SECONDQUIZ = '/share/quiz/two';
+  static const FIRSTQUIZ = '/share/quiz/1';
+  static const SECONDQUIZ = '/share/quiz/2';
+  static const THIRDQUIZ = '/share/quiz/3';
+  static const FOURTHQUIZ = '/share/quiz/4';
+  static const FIFTHQUIZ = '/share/quiz/5';
+  static const SIXTHQUIZ = '/share/quiz/6';
+  static const SEVENTHQUIZ = '/share/quiz/7';
+  static const EIGHTHQUIZ = '/share/quiz/8';
   static const RESULTQUIZ = '/share/quiz/result';
   static const SURVEY = '/share/survey';
   static const PROFILE = '/profile';
