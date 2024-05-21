@@ -45,7 +45,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Padding(
-                      padding: const EdgeInsets.only(left: 16),
+                      padding: const EdgeInsets.only(left: 16, right: 16),
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         backgroundImage:
@@ -214,8 +214,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       width: 16,
                     ),
                     Container(
-                      width: 328,
-                      height: 137,
+                      width: 350,
+                      height: 150,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white),
@@ -326,7 +326,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(45, 43, 0, 0),
+                padding: const EdgeInsets.fromLTRB(45, 20, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -338,14 +338,14 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 12.0, 0, 0),
+                padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
                       'assets/icons/mypage_banner2.png',
-                      width: 328,
-                      height: 97,
+                      width: 350,
+                      height: 110,
                     ),
                   ],
                 ),
@@ -356,7 +356,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 158,
+                      width: 170,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -398,7 +398,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 158,
+                        width: 170,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
