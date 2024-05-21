@@ -2,12 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/viewModel/home_viewModel.dart';
 
 import '../../../routes/get_pages.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 import '../chip_editor.dart';
 import '../history_widget.dart';
+
+final editorController = Get.find<HomeViewModel>();
 
 class EditorCard extends StatelessWidget {
   final String title;
@@ -64,7 +67,7 @@ class EditorCard extends StatelessWidget {
                             width: 34,
                             height: 34,
                             decoration: BoxDecoration(
-                              color: AppColors.white.withOpacity(0.5),
+                              color: AppColors.white,
                               borderRadius:
                                   BorderRadius.all(Radius.circular(6)),
                             ),
@@ -75,7 +78,7 @@ class EditorCard extends StatelessWidget {
                                 : 'assets/icons/bookmark_unfill.svg',
                             colorFilter: isBookMark
                                 ? null
-                                : ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+                                : ColorFilter.mode(AppColors.g3, BlendMode.srcIn),
                           ),
                         ],
                       ),
@@ -97,9 +100,12 @@ class EditorCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // CustomChip(label: '미국경제'),
-                  // CustomChip(label: '금리'),
-
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: editorController.parseToday().map((keyword) {
+                      return CustomChip(label: keyword);
+                    }).toList(),
+                  ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 10),
                     child: History(),

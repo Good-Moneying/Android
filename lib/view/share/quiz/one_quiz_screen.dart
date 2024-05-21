@@ -13,11 +13,15 @@ import 'package:meetup/design/widgets/share/choice_quiz.dart';
 import 'package:meetup/design/widgets/share/hint_dialog.dart';
 import 'package:meetup/viewModel/quiz_viewModel.dart';
 
+import '../../../design/widgets/chip_editor.dart';
 import '../../../design/widgets/home/news_slider.dart';
 import '../../../design/widgets/home/recommend_box.dart';
 import '../../../routes/get_pages.dart';
+import '../../../viewModel/home_viewModel.dart';
 
 final quizController = Get.find<QuizViewModel>();
+final homeController = Get.find<HomeViewModel>();
+
 
 class OneQuizScreen extends GetView<QuizViewModel> {
   const OneQuizScreen({super.key});
@@ -372,16 +376,22 @@ _quizFalse() {
             padding: const EdgeInsets.only(bottom: 15.0),
             child: RecommendU(
               image:
-                  'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-              title: newsController.homeModel!.customizeNewsLetters[0].title,
-              tag: '코인',
-              isRecommend: newsController.isRecommendFirst.value,
+              homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
+              title:
+              homeController.homeModel!.customizeNewsLetters[2].title,
+              tag: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: homeController.parseCustom1().map((keyword) {
+                  return CustomChip(label: keyword);
+                }).toList(),
+              ),
+              isRecommend: homeController.isRecommendThird.value,
               onRecommend: () {
-                newsController.isRecommendFirst.value
-                    ? newsController.isRecommendFirst.value = false
-                    : newsController.isRecommendFirst.value = true;
+                homeController.isRecommendThird.value
+                    ? homeController.isRecommendThird.value = false
+                    : homeController.isRecommendThird.value = true;
               },
-            ),
+            )
           ),
           CustomButton(
             backgroundColor: AppColors.v6,

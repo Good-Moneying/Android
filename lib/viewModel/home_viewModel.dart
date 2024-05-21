@@ -153,9 +153,54 @@ class HomeViewModel extends GetxController {
   }
 
 
+  //에디터 뉴스 태그
   List<String> parseToday() {
     // 쉼표로 구분된 키워드들을 리스트로 분할
-    List<String> keywordList = homeModel!.todayNewsLetter.keywords.split(', ');
+    List<String> keywordList = homeModel!.todayNewsLetter.keywords.split(',');
+
+    return keywordList;
+  }
+
+  //실시간 트렌드 뉴스 태그
+  List<String> parseReal1() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.realtimeTrendNewsLetters[0].keywords.split(',');
+
+    return keywordList;
+  }
+
+  List<String> parseReal2() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.realtimeTrendNewsLetters[1].keywords.split(',');
+
+    return keywordList;
+  }
+
+  List<String> parseReal3() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.realtimeTrendNewsLetters[2].keywords.split(',');
+
+    return keywordList;
+  }
+
+  //추천 뉴스 태그
+  List<String> parseCustom1() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.customizeNewsLetters[0].keywords.split(',');
+
+    return keywordList;
+  }
+
+  List<String> parseCustom2() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.customizeNewsLetters[1].keywords.split(',');
+
+    return keywordList;
+  }
+
+  List<String> parseCustom3() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.customizeNewsLetters[2].keywords.split(',');
 
     return keywordList;
   }

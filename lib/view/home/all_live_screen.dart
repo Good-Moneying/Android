@@ -5,6 +5,7 @@ import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/viewModel/home_viewModel.dart';
 
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/home/recommend_box.dart';
 
 class AllLiveScreen extends GetView<HomeViewModel> {
@@ -47,45 +48,63 @@ class AllLiveScreen extends GetView<HomeViewModel> {
               ),
               Obx(
                     () => RecommendU(
-                  image:
-                  'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: controller.homeModel!.customizeNewsLetters[0].title,
-                  tag: '코인',
-                  isRecommend: controller.isRecommendFirst.value,
-                  onRecommend: () {
-                    controller.isRecommendFirst.value
-                        ? controller.isRecommendFirst.value = false
-                        : controller.isRecommendFirst.value = true;
-                  },
-                ),
+                      image:
+                      controller.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
+                      title:
+                      controller.homeModel!.customizeNewsLetters[0].title,
+                      isRecommend: controller.isRecommendFirst.value,
+                      onRecommend: () {
+                        controller.isRecommendFirst.value
+                            ? controller.isRecommendFirst.value = false
+                            : controller.isRecommendFirst.value = true;
+                      },
+                      tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom1().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
+                    ),
               ),
               Obx(
                     () => RecommendU(
-                  image:
-                  'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: controller.homeModel!.customizeNewsLetters[1].title,
-                  tag: '주식',
-                  isRecommend: controller.isRecommendSecond.value,
-                  onRecommend: () {
-                    controller.isRecommendSecond.value
-                        ? controller.isRecommendSecond.value = false
-                        : controller.isRecommendSecond.value = true;
-                  },
-                ),
+                      image:
+                      controller.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
+                      title:
+                      controller.homeModel!.customizeNewsLetters[1].title,
+                      tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom2().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
+                      isRecommend: controller.isRecommendSecond.value,
+                      onRecommend: () {
+                        controller.isRecommendSecond.value
+                            ? controller.isRecommendSecond.value = false
+                            : controller.isRecommendSecond.value = true;
+                      },
+                    ),
               ),
               Obx(
                     () => RecommendU(
-                  image:
-                  'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                  title: controller.homeModel!.customizeNewsLetters[2].title,
-                  tag: '금리',
-                  isRecommend: controller.isRecommendThird.value,
-                  onRecommend: () {
-                    controller.isRecommendThird.value
-                        ? controller.isRecommendThird.value = false
-                        : controller.isRecommendThird.value = true;
-                  },
-                ),
+                      image:
+                      controller.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
+                      title:
+                      controller.homeModel!.customizeNewsLetters[2].title,
+                      tag: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: controller.parseCustom3().map((keyword) {
+                          return CustomChip(label: keyword);
+                        }).toList(),
+                      ),
+                      isRecommend: controller.isRecommendThird.value,
+                      onRecommend: () {
+                        controller.isRecommendThird.value
+                            ? controller.isRecommendThird.value = false
+                            : controller.isRecommendThird.value = true;
+                      },
+                    ),
               ),
             ],
           ),
