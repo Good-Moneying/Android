@@ -309,7 +309,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                     color: AppColors.g4),
                               ),
                             ),
-                            SvgPicture.asset('assets/icons/view_more.svg'),
+                            SvgPicture.asset('assets/icons/view_bottom.svg'),
                           ],
                         ),
                       ),
