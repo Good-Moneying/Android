@@ -148,14 +148,14 @@ _quizCorrect() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.15,
+            percent: 0.3,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 48, bottom: 4.0),
             child: Text(
-              'Quiz 1',
+              'Quiz 2',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
             ),
           ),
@@ -246,14 +246,14 @@ _quizFalse() {
         mainAxisSize: MainAxisSize.min,
         children: [
           MyProgressBar(
-            percent: 0.15,
+            percent: 0.3,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 48, bottom: 4.0),
             child: Text(
-              'Quiz 1',
+              'Quiz 2',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
             ),
           ),
