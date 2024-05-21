@@ -219,6 +219,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             child: Card(
                               color: AppColors.v6,
                               surfaceTintColor: Colors.transparent,
+                              elevation: 0,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
@@ -237,6 +238,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             child: Card(
                               color: AppColors.g1,
                               surfaceTintColor: Colors.transparent,
+                              elevation: 0,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
@@ -255,6 +257,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             child: Card(
                               color: AppColors.g1,
                               surfaceTintColor: Colors.transparent,
+                              elevation: 0,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(15)),
                               child: Padding(
@@ -300,6 +303,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   minimumSize: Size.zero,
                                   padding: EdgeInsetsDirectional.symmetric(
                                       horizontal: 8, vertical: 2),
@@ -356,17 +360,18 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                               perspective: '반대',
                               onFollow: ElevatedButton(
                                 onPressed: () {
-                                  if (controller.isFollow.value == false) {
-                                    controller.isFollow(true);
+                                  if (controller.isFollow2.value == false) {
+                                    controller.isFollow2(true);
                                   } else {
-                                    controller.isFollow(false);
+                                    controller.isFollow2(false);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   minimumSize: Size.zero,
                                   padding: EdgeInsetsDirectional.symmetric(
                                       horizontal: 8, vertical: 2),
-                                  backgroundColor: controller.isFollow.value
+                                  backgroundColor: controller.isFollow2.value
                                       ? AppColors.g2
                                       : AppColors.g6,
                                   shape: RoundedRectangleBorder(
@@ -374,19 +379,19 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                   ),
                                 ),
                                 child: Text(
-                                  controller.isFollow.value ? '팔로잉' : '팔로우',
+                                  controller.isFollow2.value ? '팔로잉' : '팔로우',
                                   style: FontStyles.Caption2_m.copyWith(
-                                      color: controller.isFollow.value
+                                      color: controller.isFollow2.value
                                           ? AppColors.g5
                                           : AppColors.white),
                                 ),
                               ),
                               onLike: GestureDetector(
                                 onTap: () {
-                                  if (controller.isLike.value == false) {
-                                    controller.isLike(true);
+                                  if (controller.isLike2.value == false) {
+                                    controller.isLike2(true);
                                   } else {
-                                    controller.isLike(false);
+                                    controller.isLike2(false);
                                   }
                                 },
                                 child: Row(
@@ -396,12 +401,12 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                           const EdgeInsets.only(right: 4.0),
                                       //라이크 코멘트 색 채워졌을 때 필요함
                                       child: SvgPicture.asset(controller
-                                              .isLike.value
+                                              .isLike2.value
                                           ? 'assets/icons/like_comment.svg'
                                           : 'assets/icons/unlike_comment.svg'),
                                     ),
                                     Text(
-                                      controller.isLike.value ? '28' : '27',
+                                      controller.isLike2.value ? '21' : '20',
                                       style: FontStyles.Caption2_m.copyWith(
                                           color: AppColors.g3),
                                     ),
@@ -419,17 +424,18 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                               perspective: '반대',
                               onFollow: ElevatedButton(
                                 onPressed: () {
-                                  if (controller.isFollow.value == false) {
-                                    controller.isFollow(true);
+                                  if (controller.isFollow3.value == false) {
+                                    controller.isFollow3(true);
                                   } else {
-                                    controller.isFollow(false);
+                                    controller.isFollow3(false);
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
+                                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                   minimumSize: Size.zero,
                                   padding: EdgeInsetsDirectional.symmetric(
                                       horizontal: 8, vertical: 2),
-                                  backgroundColor: controller.isFollow.value
+                                  backgroundColor: controller.isFollow3.value
                                       ? AppColors.g2
                                       : AppColors.g6,
                                   shape: RoundedRectangleBorder(
@@ -437,19 +443,19 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                   ),
                                 ),
                                 child: Text(
-                                  controller.isFollow.value ? '팔로잉' : '팔로우',
+                                  controller.isFollow3.value ? '팔로잉' : '팔로우',
                                   style: FontStyles.Caption2_m.copyWith(
-                                      color: controller.isFollow.value
+                                      color: controller.isFollow3.value
                                           ? AppColors.g5
                                           : AppColors.white),
                                 ),
                               ),
                               onLike: GestureDetector(
                                 onTap: () {
-                                  if (controller.isLike.value == false) {
-                                    controller.isLike(true);
+                                  if (controller.isLike3.value == false) {
+                                    controller.isLike3(true);
                                   } else {
-                                    controller.isLike(false);
+                                    controller.isLike3(false);
                                   }
                                 },
                                 child: Row(
@@ -459,12 +465,12 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                       const EdgeInsets.only(right: 4.0),
                                       //라이크 코멘트 색 채워졌을 때 필요함
                                       child: SvgPicture.asset(controller
-                                          .isLike.value
+                                          .isLike3.value
                                           ? 'assets/icons/like_comment.svg'
                                           : 'assets/icons/unlike_comment.svg'),
                                     ),
                                     Text(
-                                      controller.isLike.value ? '28' : '27',
+                                      controller.isLike3.value ? '11' : '10',
                                       style: FontStyles.Caption2_m.copyWith(
                                           color: AppColors.g3),
                                     ),

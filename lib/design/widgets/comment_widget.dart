@@ -47,19 +47,22 @@ class CommentWidget extends StatelessWidget {
                 ),
                 Column(
                   children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: Text(
-                            writer,
-                            style: FontStyles.Caption1_m.copyWith(
-                                color: AppColors.black
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 3.0),
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(right: 8.0),
+                            child: Text(
+                              writer,
+                              style: FontStyles.Caption1_m.copyWith(
+                                  color: AppColors.black
+                              ),
                             ),
                           ),
-                        ),
-                        onFollow,
-                      ],
+                          onFollow,
+                        ],
+                      ),
                     ),
                     Row(
                       children: [
