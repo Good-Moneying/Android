@@ -85,7 +85,7 @@ class PlusMainContainer extends StatelessWidget {
                             padding: const EdgeInsets.only(top: 8.0),
                             child: badges.Badge(
                               badgeContent: Text(
-                                tag ?? 'null',
+                                '글로벌',
                                 style: FontStyles.Caption2_m.copyWith(color: AppColors.v5),
                               ),
                               badgeStyle: badges.BadgeStyle(
