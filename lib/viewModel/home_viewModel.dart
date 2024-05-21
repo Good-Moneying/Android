@@ -150,6 +150,15 @@ class HomeViewModel extends GetxController {
   void selectLook() {
     isLookAlone.value = !isLookAlone.value;
   }
+
+
+  List<String> parseToday() {
+    // 쉼표로 구분된 키워드들을 리스트로 분할
+    List<String> keywordList = homeModel!.todayNewsLetter.keywords.split(', ');
+
+    return keywordList;
+  }
+
   String dateParsing(String date) {
     List<String> parts = date.split("T");
     return parts[0];

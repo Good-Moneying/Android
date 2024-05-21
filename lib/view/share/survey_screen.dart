@@ -142,28 +142,56 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                               ),
                               Flexible(
                                 flex: 1,
-                                child: Container(
+                                child:
+                                // Container(
+                                //   decoration: BoxDecoration(
+                                //     color: AppColors.white,
+                                //     border: Border.all(
+                                //       color: AppColors.v2,
+                                //       width: 1,
+                                //     ),
+                                //     borderRadius: BorderRadius.circular(10),
+                                //   ),
+                                //   child: Padding(
+                                //     padding:
+                                //         const EdgeInsets.fromLTRB(14, 1, 14, 8),
+                                //     child: Column(
+                                //       mainAxisAlignment:
+                                //           MainAxisAlignment.center,
+                                //       children: [
+                                //         Image.asset(
+                                //             'assets/icons/disagreement.png'),
+                                //         Text(
+                                //           '반대',
+                                //           style: FontStyles.Caption1_m.copyWith(
+                                //               color: AppColors.black),
+                                //         ),
+                                //       ],
+                                //     ),
+                                //   ),
+                                // ),
+                                Container(
                                   decoration: BoxDecoration(
                                     color: AppColors.white,
                                     border: Border.all(
-                                      color: AppColors.v2,
+                                      color: AppColors.v3,
                                       width: 1,
                                     ),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
                                   child: Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(14, 1, 14, 8),
+                                    const EdgeInsets.fromLTRB(14, 1, 14, 8),
                                     child: Column(
                                       mainAxisAlignment:
-                                          MainAxisAlignment.center,
+                                      MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
                                             'assets/icons/disagreement.png'),
                                         Text(
                                           '반대',
                                           style: FontStyles.Caption1_m.copyWith(
-                                              color: AppColors.black),
+                                              color: AppColors.v5),
                                         ),
                                       ],
                                     ),
@@ -199,7 +227,6 @@ class SurveyScreen extends GetView<SurveyViewModel> {
               child: Container(
                 color: AppColors.white,
                 width: Get.width,
-                height: Get.height * 0.9,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: Column(
@@ -547,8 +574,7 @@ _agreeComment() {
         () => CommentWidget(
           writer: '연디',
           time: '5분 전',
-          content:
-              '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
+          content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
           onFollow: ElevatedButton(
             onPressed: () {

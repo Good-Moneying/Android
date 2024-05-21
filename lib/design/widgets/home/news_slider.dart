@@ -49,7 +49,7 @@ newsSlider() {
                       Color(0xFF212121).withOpacity(0.1),
                     ])),
                 child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 85, 12, 6),
+                    padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
                   child: Text(
                     newsController.homeModel!.realtimeTrendNewsLetters[0].title,
                     style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -97,7 +97,7 @@ newsSlider() {
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12, 85, 12, 6),
+                padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
                 child: Text(
                   newsController.homeModel!.realtimeTrendNewsLetters[1].title,
                   style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -144,7 +144,7 @@ newsSlider() {
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12, 85, 12, 6),
+                padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
                 child: Text(
                   newsController.homeModel!.realtimeTrendNewsLetters[2].title,
                   style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),

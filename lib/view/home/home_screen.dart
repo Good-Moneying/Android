@@ -272,7 +272,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                   ),
                   //오늘의 단어
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 10),
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                     child: Row(
                       children: [
                         Text(
@@ -306,7 +306,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                   Obx(
                     () => Padding(
                       //padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
-                      padding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
+                      padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                       child: TodayWord(
                         title: controller.homeModel?.todayTerm.koreanName ??
                             'no data',

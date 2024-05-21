@@ -19,7 +19,7 @@ class History extends StatelessWidget {
         Text(
           '5분전',
           style: FontStyles.Caption2_r.copyWith(
-              color: AppColors.v5),
+              color: AppColors.g5),
         ),
       ],
     );

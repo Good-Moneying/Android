@@ -97,8 +97,9 @@ class EditorCard extends StatelessWidget {
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CustomChip(label: '미국경제'),
-                  CustomChip(label: '금리'),
+                  // CustomChip(label: '미국경제'),
+                  // CustomChip(label: '금리'),
+
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 10),
                     child: History(),
