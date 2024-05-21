@@ -143,7 +143,7 @@ class HomeViewModel extends GetxController {
   }
 
   String splitParagraph(String text, int i) {
-    List<String> parts = text.split("\n");
+    List<String> parts = text.split(".");
     return parts[i];
   }
 
