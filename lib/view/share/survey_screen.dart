@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
+import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/viewModel/survey_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -19,9 +20,18 @@ class SurveyScreen extends GetView<SurveyViewModel> {
 
     return Scaffold(
       backgroundColor: AppColors.g6,
-      appBar: BackAppBar(
-        iconColor: AppColors.white,
-        title: null,
+      appBar: AppBar(
+        scrolledUnderElevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Get.offAll(BottomNavigationView());
+          },
+          icon: SvgPicture.asset(
+            'assets/icons/back_left.svg',
+            colorFilter: ColorFilter.mode(AppColors.white, BlendMode.srcIn),
+          ),
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -348,8 +358,7 @@ _allComment() {
         () => CommentWidget(
           writer: '연디',
           time: '5분 전',
-          content:
-              '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
+          content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
           onFollow: ElevatedButton(
             onPressed: () {
