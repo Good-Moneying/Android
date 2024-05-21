@@ -20,6 +20,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(PlusViewModel());
+    controller.postSummaryRequired('1');
     final PageController pageController =
         PageController(initialPage: 0, viewportFraction: 0.7);
 
@@ -374,30 +375,37 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                 child: GestureDetector(
                                   onTap: () {
                                     controller.isSummary.value = true;
-                                    print('페이지${controller.currentPageIndex.value}');
-                                    controller.addSentence(controller.plusComment.value.text,controller.currentPageIndex.value);
+                                    print(
+                                        '페이지${controller.currentPageIndex.value}');
+                                    controller.addSentence(
+                                        controller.plusComment.value.text,
+                                        controller.currentPageIndex.value);
+                                    controller.postSummaryRequired(
+                                        controller.plusComment.value.text);
+                                    controller
+                                        .setEditText(controller.summary.value);
                                   },
-                                    child: Container(
-                                      width: 79,
-                                      height: 33,
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(7),
-                                          color: AppColors.g5),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            '요약하기',
-                                            style:
-                                                FontStyles.Caption2_sb.copyWith(
-                                                    color: AppColors.white),
-                                          ),
-                                          SvgPicture.asset(
-                                              'assets/icons/plus_summary.svg')
-                                        ],
-                                      ),
+                                  child: Container(
+                                    width: 79,
+                                    height: 33,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(7),
+                                        color: AppColors.g5),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          '요약하기',
+                                          style:
+                                              FontStyles.Caption2_sb.copyWith(
+                                                  color: AppColors.white),
+                                        ),
+                                        SvgPicture.asset(
+                                            'assets/icons/plus_summary.svg')
+                                      ],
                                     ),
+                                  ),
                                 ),
                               )
                             ],
@@ -432,8 +440,8 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                           ),
                         ),
                         Spacer(),
-                        Obx(()
-                          => GestureDetector(
+                        Obx(
+                          () => GestureDetector(
                             onTap: () {
                               if (controller.isSummary.value) {
                                 controller.nextPage(); // 뷰 모델의 nextPage 메서드 호출
@@ -441,7 +449,9 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.ease,
                                 );
-                                controller.isSummary.value = false;// 페이지 컨트롤러를 통해 페이지 변경
+                                controller.isSummary.value = false;
+                                controller.plusComment
+                                    .clear(); // 페이지 컨트롤러를 통해 페이지 변경
                               }
                             },
                             child: Padding(
@@ -451,13 +461,17 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                 height: 48,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color: controller.isSummary.value ? AppColors.v6 : AppColors.g2,
+                                  color: controller.isSummary.value
+                                      ? AppColors.v6
+                                      : AppColors.g2,
                                 ),
                                 child: Center(
                                   child: Text(
                                     '등록하기',
                                     style: FontStyles.Ln1_sb.copyWith(
-                                      color: controller.isSummary.value ? AppColors.white : AppColors.g4,
+                                      color: controller.isSummary.value
+                                          ? AppColors.white
+                                          : AppColors.g4,
                                     ),
                                   ),
                                 ),

@@ -19,7 +19,7 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(PlusViewModel());
-    controller.postAllSentences(0);
+    controller.postAllSentences(1);
     return Scaffold(
         backgroundColor: AppColors.g1,
         appBar: PlusCompleteAppBar(iconColor: AppColors.black, title: null,),
@@ -131,9 +131,9 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                   ),
                 ),
                 SizedBox(height: 12,),
-                //SvgPicture.asset('assets/icons/plus_arrow.svg'),
+                SvgPicture.asset('assets/icons/plus_arrow.svg'),
                 SizedBox(height: 12,),
-                /*Container(
+                Container(
                   width: 300, height: 53,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
@@ -145,7 +145,7 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                     ),
                     ),
                   ),
-                ),*/
+                ),
                 Spacer()
                 ,GestureDetector(
                   onTap: (){

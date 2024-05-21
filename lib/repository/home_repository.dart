@@ -28,6 +28,7 @@ class HomeRepository {
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
+                //"Authorization": "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWh5dW4xMDIwMUBuYXZlci5jb20iLCJpc3MiOiJkdWR1ay5zaG9wIiwiZXhwIjoxNzE2MjE4NTI1LCJpYXQiOjE3MTYyMTQ5MjV9.2stKXh7wYegZ8qgLpSwz5RF2OCIyPYrI7mB1vS9vxSQ'}",
               }
           )
       );
@@ -36,6 +37,8 @@ class HomeRepository {
       print(response.statusCode);
 
       if (response.statusCode == 200) {
+        print("뉴스레터 성공");
+        print('뉴스레터 : ${response.data}');
         return NewsLetterModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
@@ -66,6 +69,7 @@ class HomeRepository {
       if (response.statusCode == 200) {
         // print('홈모델 응답 성공');
         // print(HomeModel.fromJson(response.data));
+        print('투데이뉴스 : ${response.data}');
         return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리

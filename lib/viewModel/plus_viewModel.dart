@@ -20,7 +20,8 @@ class PlusViewModel extends GetxController {
   TextEditingController plusComment = TextEditingController();
   PageController pageControllerOnBoarding = PageController(initialPage: 0);
   final RxInt currentPageIndex = 0.obs;
-  RxList<CloudSentenceModel> sentencesList = List.generate(4, (_) => CloudSentenceModel(''), growable: true).obs;
+  RxList<CloudSentenceModel> sentencesList = List.generate(5, (_) => CloudSentenceModel('ㅂ'), growable: true).obs;
+  Rx<String> summary = ''.obs;
 
 
   String updatePage(int index){
@@ -87,9 +88,15 @@ class PlusViewModel extends GetxController {
   Future<void> postSummaryRequired(String comment) async {
     try {
       PlusCommentModel dataModel = PlusCommentModel(comment);
-      await _repository.postSummaryRequired(dataModel);
+      summary.value = await _repository.postSummaryRequired(dataModel);
+      print('서버 응답: $summary');
+      // 여기서 서버 응답 데이터를 사용하여 필요한 추가 작업을 수행합니다.
     } catch (e) {
       print('Error: $e');
     }
+  }
+
+  void setEditText(String summary){
+    plusComment.text = summary;
   }
 }
