@@ -164,38 +164,41 @@ class ShareScreen extends GetView<ShareViewModel> {
                         alignment: Alignment.center,
                         children: [
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Flexible(
                                 flex: 1,
                                 child: InkWell(
                                   onTap: () {
-                                    Get.bottomSheet(
-                                      ThinkContainer(
-                                        textField: TextField(
-                                          controller: Get.find<ShareViewModel>().thinkController,
-                                          maxLength: 300,
-                                          maxLines: null,
-                                          textInputAction: TextInputAction.done,
-                                          keyboardType: TextInputType.text,
-                                          style: FontStyles.Caption1_r.copyWith(
-                                              color: AppColors.black),
-                                          decoration: InputDecoration(
-                                              counterText: '',
-                                              hintText:
-                                              '여러분의 생각을 남겨보세요. (최대 300자)',
-                                              hintStyle: FontStyles.Caption1_r
-                                                  .copyWith(
-                                                  color: AppColors.g5),
-                                              border: InputBorder.none),
-                                        ),
-                                        onPressed: Get.find<ShareViewModel>().thinkController
-                                            .value.text.isEmpty
-                                            ? null
-                                            : () {
-                                          Get.toNamed(Routes.SURVEY);
-                                        },
-                                      )
-                                    );
+                                    Get.bottomSheet(ThinkContainer(
+                                      textField: TextField(
+                                        controller: Get.find<ShareViewModel>()
+                                            .thinkController,
+                                        maxLength: 300,
+                                        maxLines: null,
+                                        textInputAction: TextInputAction.done,
+                                        keyboardType: TextInputType.text,
+                                        style: FontStyles.Caption1_r.copyWith(
+                                            color: AppColors.black),
+                                        decoration: InputDecoration(
+                                            counterText: '',
+                                            hintText:
+                                                '여러분의 생각을 남겨보세요. (최대 300자)',
+                                            hintStyle:
+                                                FontStyles.Caption1_r.copyWith(
+                                                    color: AppColors.g5),
+                                            border: InputBorder.none),
+                                      ),
+                                      onPressed: Get.find<ShareViewModel>()
+                                              .thinkController
+                                              .value
+                                              .text
+                                              .isEmpty
+                                          ? null
+                                          : () {
+                                              Get.toNamed(Routes.SURVEY);
+                                            },
+                                    ));
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -234,34 +237,31 @@ class ShareScreen extends GetView<ShareViewModel> {
                                 flex: 1,
                                 child: InkWell(
                                   onTap: () {
-                                    Get.bottomSheet(
-                                      ThinkContainer(
-                                        textField: TextField(
-                                          controller:
-                                              controller.thinkController,
-                                          maxLength: 300,
-                                          maxLines: null,
-                                          textInputAction: TextInputAction.done,
-                                          keyboardType: TextInputType.text,
-                                          style: FontStyles.Caption1_r.copyWith(
-                                              color: AppColors.black),
-                                          decoration: InputDecoration(
-                                              counterText: '',
-                                              hintText:
-                                                  '여러분의 생각을 남겨보세요. (최대 300자)',
-                                              hintStyle: FontStyles.Caption1_r
-                                                  .copyWith(
-                                                      color: AppColors.g5),
-                                              border: InputBorder.none),
-                                        ),
-                                        onPressed: controller.thinkController
-                                                .value.text.isEmpty
-                                            ? null
-                                            : () {
-                                                Get.toNamed(Routes.SURVEY);
-                                              },
-                                      )
-                                    );
+                                    Get.bottomSheet(ThinkContainer(
+                                      textField: TextField(
+                                        controller: controller.thinkController,
+                                        maxLength: 300,
+                                        maxLines: null,
+                                        textInputAction: TextInputAction.done,
+                                        keyboardType: TextInputType.text,
+                                        style: FontStyles.Caption1_r.copyWith(
+                                            color: AppColors.black),
+                                        decoration: InputDecoration(
+                                            counterText: '',
+                                            hintText:
+                                                '여러분의 생각을 남겨보세요. (최대 300자)',
+                                            hintStyle:
+                                                FontStyles.Caption1_r.copyWith(
+                                                    color: AppColors.g5),
+                                            border: InputBorder.none),
+                                      ),
+                                      onPressed: controller.thinkController
+                                              .value.text.isEmpty
+                                          ? null
+                                          : () {
+                                              Get.toNamed(Routes.SURVEY);
+                                            },
+                                    ));
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -321,7 +321,10 @@ class ShareScreen extends GetView<ShareViewModel> {
               onTap: () {
                 Get.toNamed(Routes.FIRSTQUIZ);
               },
-              child: Image.asset('assets/images/quiz_banner.png'),
+              child: Image.asset(
+                'assets/icons/quiz_banner.png',
+                width: Get.width,
+              ),
             ),
           ],
         ),

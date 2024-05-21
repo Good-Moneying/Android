@@ -143,11 +143,20 @@ class HomeViewModel extends GetxController {
   }
 
   String splitParagraph(String text, int i) {
-    List<String> parts = text.split("\n");
+    List<String> parts = text.split(".");
     return parts[i];
   }
 
   void selectLook() {
     isLookAlone.value = !isLookAlone.value;
+  }
+  String dateParsing(String date) {
+    List<String> parts = date.split("T");
+    return parts[0];
+  }
+
+  String splitKeywords(String text, int i) {
+    List<String> parts = text.split(",");
+    return parts[i];
   }
 }
