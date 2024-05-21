@@ -41,9 +41,12 @@ class TodayWord extends StatelessWidget {
           children: [
             Row(
               children: [
-                Text(
-                  title,
-                  style: FontStyles.Bn1_b.copyWith(color: AppColors.v6),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8.0),
+                  child: Text(
+                    title,
+                    style: FontStyles.Bn1_b.copyWith(color: AppColors.v6),
+                  ),
                 ),
                 CustomChip(label: category),
                 Spacer(),
