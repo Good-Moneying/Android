@@ -196,7 +196,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 32.0, left: 45),
+                    padding: const EdgeInsets.only(top: 32.0, left: 40),
                     child: Text(
                       '목표 달성률',
                       style:
@@ -214,7 +214,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: 332,
+                          width: 350,
                           height: 150,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
@@ -328,7 +328,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(45, 20, 0, 0),
+                padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -345,7 +345,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/icons/mypage_banner2.png',
+                      'assets/icons/mypage_banner.png',
                       width: 350,
                       height: 110,
                     ),
@@ -358,7 +358,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 160,
+                      width: 170,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -400,7 +400,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 160,
+                        width: 170,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -451,7 +451,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      width: 160,
+                      width: 170,
                       height: 72,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -495,7 +495,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     Padding(
                       padding: const EdgeInsets.only(left: 12.0),
                       child: Container(
-                        width: 160,
+                        width: 170,
                         height: 72,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -547,7 +547,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 332,
+                        width: 350,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
@@ -578,12 +578,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               ),
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 332,
+                        width: 350,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
@@ -614,12 +614,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
               ),
               GestureDetector(
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(16.0, 12, 16, 0),
+                  padding: const EdgeInsets.fromLTRB(0, 12, 0, 0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Container(
-                        width: 332,
+                        width: 350,
                         height: 55,
                         decoration: BoxDecoration(
                             color: AppColors.white,
