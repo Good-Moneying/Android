@@ -5,6 +5,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
+import 'package:meetup/design/widgets/plus/plus_main_container.dart';
+import 'package:meetup/viewModel/home_viewModel.dart';
 import 'package:meetup/viewModel/plus_home_viewModel.dart';
 
 import '../../design/style/FontStyles.dart';
@@ -16,7 +18,11 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(PlusHomeViewModel());
+    final plusHomeController = Get.put(PlusHomeViewModel());
+    final newsController = Get.put(HomeViewModel());
     controller.getCloudHome();
+    newsController.getEditorNews(0);
+
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
@@ -63,7 +69,7 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
                     padding: const EdgeInsets.only(right: 5.0),
                     child: Text('최근 등록순', style: FontStyles.Caption1_m.copyWith(color: AppColors.g4),),
                   ),
-                SvgPicture.asset('assets/icons/plus_downarrow.svg')
+                  SvgPicture.asset('assets/icons/plus_downarrow.svg')
                 ],
               ),
             ),
@@ -72,183 +78,31 @@ class PlusScreen extends GetView<PlusHomeViewModel> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 378, height: 268,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
+                  child: Obx(() {
+                    if (plusHomeController.cloudHomeModel == null || plusHomeController.cloudHomeModel!.thinkingDetails == null) {
+                      return CircularProgressIndicator();
+                    }
+
+                    List<Widget> thinkingDetailsWidgets = [];
+                    for (int i = 0; i < plusHomeController.cloudHomeModel!.thinkingDetails!.length; i++) {
+                      newsController.getEditorNews(plusHomeController.cloudHomeModel?.thinkingDetails?[i].newsLetterId ?? 0);
+                      thinkingDetailsWidgets.add(
+                        PlusMainContainer(
+                          comment: newsController.newsLetterModel?.title,
+                          thumbnailUrl: plusHomeController.cloudHomeModel!.thinkingDetails![i].thumbnailUrl,
+                          summarizedComment: plusHomeController.cloudHomeModel!.thinkingDetails![i].summarizedComment,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Image.asset('assets/icons/plus_te.png', width: 70, height: 70,),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 16.0),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(controller.cloudHomeModel?.thinkingDetails?[0]?.comment?? 'null', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
-                                        Padding(
-                                          padding: const EdgeInsets.only(top: 8.0),
-                                          child: badges.Badge(
-                                            badgeContent: Text('글로벌', style: FontStyles.Caption2_m.copyWith(color: AppColors.v5)),
-                                            badgeStyle: BadgeStyle(
-                                              shape: BadgeShape.square,
-                                              borderRadius: BorderRadius.circular(5), // 둥근 모서리 설정
-                                              padding: EdgeInsets.fromLTRB(8,4,8,4), // 배지 내부 여백 설정
-                                              badgeColor: AppColors.v1, // 배지 배경색 설정
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  )
-                                ],
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
-                                child: Container(
-                                  width: 350, height: 104,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10), color: AppColors.g1
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 16.0),
-                                child: Row(
-                                  children: [
-                                    SvgPicture.asset('assets/icons/plus_time.svg'),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 4.0),
-                                      child: Text('1분 전',style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 150.0),
-                                      child: GestureDetector(
-                                        onTap: (){
-                                          Get.toNamed(Routes.PLUSONBOARDING);
-                                        },
-                                        child: Container(
-                                          width: 104, height: 30,
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(29),color: AppColors.v6
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                            children: [
-                                              Text('생각더하기',style: FontStyles.Label2_sb.copyWith(color: AppColors.white),),
-                                              SvgPicture.asset('assets/icons/plus_arrow2.svg')
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                      );
+                    }
+
+                    return Column(
+                      children: thinkingDetailsWidgets,
+                    );
+                  }),
                 ),
               ],
             ),
             SizedBox(height: 12,)
-            ,Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Stack(
-                    children: [
-                      Container(
-                        width: 378, height: 268,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: AppColors.white),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 17.0, top: 16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              children: [
-                                Image.asset('assets/icons/plus_te.png', width: 70, height: 70,),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 16.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text('테슬라 주가 갑자기 오른 이유는?', style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),),
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 8.0),
-                                        child: badges.Badge(
-                                          badgeContent: Text('글로벌', style: FontStyles.Caption2_m.copyWith(color: AppColors.v5)),
-                                          badgeStyle: BadgeStyle(
-                                            shape: BadgeShape.square,
-                                            borderRadius: BorderRadius.circular(5), // 둥근 모서리 설정
-                                            padding: EdgeInsets.fromLTRB(8,4,8,4), // 배지 내부 여백 설정
-                                            badgeColor: AppColors.v1, // 배지 배경색 설정
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Container(
-                                width: 350, height: 104,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10), color: AppColors.g1
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Row(
-                                children: [
-                                  SvgPicture.asset('assets/icons/plus_time.svg'),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 4.0),
-                                    child: Text('1분 전',style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 150.0),
-                                    child: GestureDetector(
-                                      onTap: (){
-                                        Get.toNamed(Routes.PLUSONBOARDING);
-                                      },
-                                      child: Container(
-                                        width: 104, height: 30,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(29),color: AppColors.v6
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            Text('생각더하기',style: FontStyles.Label2_sb.copyWith(color: AppColors.white),),
-                                            SvgPicture.asset('assets/icons/plus_arrow2.svg')
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-              ],
-            ),
           ],
         ),
       ),

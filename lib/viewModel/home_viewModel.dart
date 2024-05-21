@@ -69,7 +69,7 @@ class HomeViewModel extends GetxController {
     }
   }
 
-  void getEditorNews(int id) async {
+  Future getEditorNews(int id) async {
     try {
       print("getEditorNews() start!");
       _newsLetterModel.value = await _repository.getEditorNews(id);
@@ -78,6 +78,7 @@ class HomeViewModel extends GetxController {
       print('$e');
     }
   }
+
 
   //코멘트 작성
   Future<void> postComment(
