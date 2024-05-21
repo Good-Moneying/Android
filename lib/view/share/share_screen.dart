@@ -321,7 +321,7 @@ class ShareScreen extends GetView<ShareViewModel> {
               onTap: () {
                 Get.toNamed(Routes.FIRSTQUIZ);
               },
-              child: SvgPicture.asset(
+              child: Image.asset(
                 'assets/icons/quiz_banner.png',
                 width: Get.width,
               ),

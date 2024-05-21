@@ -343,7 +343,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/icons/mypage_banner2.png',
+                      'assets/icons/mypage_banner.png',
                       width: 328,
                       height: 97,
                     ),
