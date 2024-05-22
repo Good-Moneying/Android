@@ -11,16 +11,18 @@ import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 
 class PlusMainContainer extends StatelessWidget {
+  final int index;
   final String? comment;
   final String? thumbnailUrl;
   final String? summarizedComment;
 
   const PlusMainContainer({
-    super.key,
+    Key? key,
+    required this.index,
     this.comment,
     this.thumbnailUrl,
     this.summarizedComment,
-  });
+  }): super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -131,7 +133,7 @@ class PlusMainContainer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 20.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.PLUSONBOARDING);
+                          Get.toNamed(Routes.PLUSONBOARDING, arguments: {'index': index});
                         },
                         child: Container(
                           width: 104,

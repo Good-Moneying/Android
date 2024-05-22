@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/state_manager.dart';
 import 'package:meetup/design/widgets/appBar/dialog_appBar.dart';
 import 'package:meetup/design/widgets/plus/stop_dialog.dart';
 import 'package:meetup/design/widgets/plus/summary_dialog.dart';
@@ -15,11 +16,17 @@ import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/appBar/back_appBar.dart';
 import '../../design/widgets/plus_tooltip.dart';
+import '../../viewModel/plus_home_viewModel.dart';
 
 class PlusStep1Screen extends GetView<PlusViewModel> {
   @override
   Widget build(BuildContext context) {
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final int index = arguments['index'];
+
     Get.put(PlusViewModel());
+    final plusHomeController = Get.put(PlusHomeViewModel());
+    controller.addSentence(plusHomeController.cloudHomeModel?.thinkingDetails?[index].summarizedComment ?? '요약된 생각이 없습니다.', 0);
     controller.postSummaryRequired('1');
     final PageController pageController =
         PageController(initialPage: 0, viewportFraction: 0.7);
@@ -115,10 +122,13 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              '테슬라의 기술 혁신',
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Padding(
+                                              padding: const EdgeInsets.only(left: 8.0, right: 8),
+                                              child: Text(
+                                                controller.sentencesList[0].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -179,10 +189,12 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              '테슬라의 기술 혁신',
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Obx(()
+                                              => Text(
+                                                controller.sentencesList[1].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -242,10 +254,12 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              '테슬라의 기술 혁신',
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Obx(()
+                                              => Text(
+                                                controller.sentencesList[2].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -305,10 +319,12 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              '테슬라의 기술 혁신',
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Obx(()
+                                              => Text(
+                                                controller.sentencesList[3].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -378,12 +394,15 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                     print(
                                         '페이지${controller.currentPageIndex.value}');
                                     controller.addSentence(
-                                        controller.plusComment.value.text,
-                                        controller.currentPageIndex.value);
+                                        controller.summary.value,
+                                        controller.currentPageIndex.value+1);
+                                    print('뷰모델2 : ${controller.summary.value}');
                                     controller.postSummaryRequired(
                                         controller.plusComment.value.text);
                                     controller
                                         .setEditText(controller.summary.value);
+                                    print(
+                                        '뷰모델1${controller.sentencesList[1].sentence}');
                                   },
                                   child: Container(
                                     width: 79,
@@ -444,7 +463,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                           () => GestureDetector(
                             onTap: () {
                               if (controller.isSummary.value) {
-                                controller.nextPage(); // 뷰 모델의 nextPage 메서드 호출
+                                controller.nextPage(index); // 뷰 모델의 nextPage 메서드 호출
                                 pageController.nextPage(
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.ease,

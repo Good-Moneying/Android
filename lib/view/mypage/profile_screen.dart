@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/viewModel/profile_viewModel.dart';
@@ -49,7 +51,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         backgroundImage:
-                            AssetImage('assets/icons/mypage_profile.png'),
+                            AssetImage('assets/icons/mypage_lv1.png'),
                       ),
                     ),
                     Padding(
@@ -80,10 +82,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                   padding: const EdgeInsets.only(top: 4.0),
                                   child: Obx(
                                     () => Text(
-                                      controller.profileModel?.attendances
-                                              ?.data?[0]?.dayOfWeek ??
-                                          'No data',
-                                      style: FontStyles.Bn1_b,
+                                      controller.profileModel?.nickname ?? ' '
+                                      ,style: FontStyles.Bn1_b,
                                     ),
                                   ),
                                 ),
@@ -98,7 +98,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     ),
                     Spacer(),
                     Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0, right: 16.0),
+                      padding: const EdgeInsets.only(bottom: 10.0, right: 20.0),
                       child: SizedBox(
                         child: Container(
                           width: 83,
@@ -122,9 +122,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                                 Obx(
                                       () => Text(
-                                      controller.profileModel?.reward
-                                          ?.toString() ??
-                                          'N/A',
+                                          controller.profileModel?.reward?.toString() ?? '0',
                                       style: FontStyles.Br1_sb.copyWith(
                                           color: AppColors.g6)),
                                 ),
@@ -227,96 +225,93 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 Padding(
                                   padding:
                                       const EdgeInsets.only(top: 20,left: 15),
-                                  child: RichText(
-                                      text: TextSpan(
-                                    text: '일주일 중에 ',
-                                    style: FontStyles.Lr1_m.copyWith(
-                                        color: AppColors.g5),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: '3',
-                                        style: FontStyles.Br1_sb.copyWith(
-                                            color: AppColors.v5), //기본style을 지정해줘야함
-                                      ),
-                                      TextSpan(
-                                          text: '일동안 뉴스를 읽었어요!',
-                                          style: FontStyles.Lr1_m.copyWith(
-                                              color: AppColors.g5))
-                                    ],
-                                  )),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 20.0),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: [
-                                      Text(
-                                        '일',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                      SizedBox(width: 2), // 간격 추가
-                                      Text(
-                                        '월',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                      SizedBox(width: 2), // 간격 추가
-                                      Text(
-                                        '화',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                      SizedBox(width: 2),
-                                      Text(
-                                        '수',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                      SizedBox(width: 2),
-                                      Text(
-                                        '목',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                      SizedBox(width: 2),
-                                      Text(
-                                        '금',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                      SizedBox(width: 2),
-                                      Text(
-                                        '토',
-                                        style: FontStyles.Ln1_m.copyWith(
-                                            color: AppColors.g4),
-                                      ),
-                                    ],
+                                  child: Obx(()
+                                    => RichText(
+                                        text: TextSpan(
+                                      text: '일주일 중에 ',
+                                      style: FontStyles.Lr1_m.copyWith(
+                                          color: AppColors.g5),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: controller.getAttendedDays().toString(),
+                                          style: FontStyles.Br1_sb.copyWith(
+                                              color: AppColors.v5), //기본style을 지정해줘야함
+                                        ),
+                                        TextSpan(
+                                            text: '일동안 뉴스를 읽었어요!',
+                                            style: FontStyles.Lr1_m.copyWith(
+                                                color: AppColors.g5))
+                                      ],
+                                    )),
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 13.0, ),
-                                  child: Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
+                                  padding: const EdgeInsets.only(top: 20.0, left: 5, right: 5),
+                                  child: Column(
                                     children: [
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_fill.svg'),
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_fill.svg'),
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_fill.svg'),
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_unfill.svg'),
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_unfill.svg'),
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_unfill.svg'),
-                                      SvgPicture.asset(
-                                          'assets/icons/mypage_cloud_unfill.svg'),
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          Text(
+                                            '일',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                          Text(
+                                            '월',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                          Text(
+                                            '화',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                          Text(
+                                            '수',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                          Text(
+                                            '목',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                          Text(
+                                            '금',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                          Text(
+                                            '토',
+                                            style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(height: 13.0), // 텍스트와 아이콘 사이에 간격 추가
+                                      Row(
+                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                        children: [
+                                          controller.profileModel?.attendances?.data?[0].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                          controller.profileModel?.attendances?.data?[1].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                          controller.profileModel?.attendances?.data?[2].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                          controller.profileModel?.attendances?.data?[3].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                          controller.profileModel?.attendances?.data?[4].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                          controller.profileModel?.attendances?.data?[5].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                          controller.profileModel?.attendances?.data?[6].attendant == true
+                                              ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
+                                              : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
+                                        ],
+                                      ),
                                     ],
-                                  ),
+                                  )
+
                                 )
                               ],
                             ),
@@ -371,23 +366,25 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             child: Column(children:
                             [
                               Text(
-                                '주식',
+                                '글로벌',
                                 style: FontStyles.Bn2_sb.copyWith(
                                     color: AppColors.black),
                               ),
-                              RichText(
-                                text: TextSpan(
-                                  text: '10',
-                                  style: FontStyles.Caption2_m.copyWith(
-                                      color: AppColors.v6),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: '개',
-                                      style: FontStyles.Caption2_m.copyWith(
-                                          color:
-                                              AppColors.g5), //기본style을 지정해줘야함
-                                    ),
-                                  ],
+                              Obx(()
+                                => RichText(
+                                  text: TextSpan(
+                                    text: controller.profileModel?.counts?[0].count.toString(),
+                                    style: FontStyles.Caption2_m.copyWith(
+                                        color: AppColors.v6),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: '개',
+                                        style: FontStyles.Caption2_m.copyWith(
+                                            color:
+                                                AppColors.g5), //기본style을 지정해줘야함
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ]),
@@ -416,19 +413,21 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                   style: FontStyles.Bn2_sb.copyWith(
                                       color: AppColors.black),
                                 ),
-                                RichText(
-                                  text: TextSpan(
-                                    text: '6',
-                                    style: FontStyles.Caption2_m.copyWith(
-                                        color: AppColors.v6),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: '개',
-                                        style: FontStyles.Caption2_m.copyWith(
-                                            color:
-                                                AppColors.g5), //기본style을 지정해줘야함
-                                      ),
-                                    ],
+                                Obx(()
+                                  => RichText(
+                                    text: TextSpan(
+                                      text: controller.profileModel?.counts?[1].count.toString(),
+                                      style: FontStyles.Caption2_m.copyWith(
+                                          color: AppColors.v6),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: '개',
+                                          style: FontStyles.Caption2_m.copyWith(
+                                              color:
+                                                  AppColors.g5), //기본style을 지정해줘야함
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ]),
@@ -467,19 +466,21 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 style: FontStyles.Bn2_sb.copyWith(
                                     color: AppColors.black),
                               ),
-                              RichText(
-                                text: TextSpan(
-                                  text: '3',
-                                  style: FontStyles.Caption2_m.copyWith(
-                                      color: AppColors.v6),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: '개',
-                                      style: FontStyles.Caption2_m.copyWith(
-                                          color:
-                                              AppColors.g5), //기본style을 지정해줘야함
-                                    ),
-                                  ],
+                              Obx(()
+                                => RichText(
+                                  text: TextSpan(
+                                    text: controller.profileModel?.counts?[2].count.toString(),
+                                    style: FontStyles.Caption2_m.copyWith(
+                                        color: AppColors.v6),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: '개',
+                                        style: FontStyles.Caption2_m.copyWith(
+                                            color:
+                                                AppColors.g5), //기본style을 지정해줘야함
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ]),
@@ -512,19 +513,21 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                   style: FontStyles.Bn2_sb.copyWith(
                                       color: AppColors.black),
                                 ),
-                                RichText(
-                                  text: TextSpan(
-                                    text: '1',
-                                    style: FontStyles.Caption2_m.copyWith(
-                                        color: AppColors.v6),
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: '개',
-                                        style: FontStyles.Caption2_m.copyWith(
-                                            color:
-                                                AppColors.g5), //기본style을 지정해줘야함
-                                      ),
-                                    ],
+                                Obx(()
+                                  => RichText(
+                                    text: TextSpan(
+                                      text: controller.profileModel?.counts?[3].count.toString(),
+                                      style: FontStyles.Caption2_m.copyWith(
+                                          color: AppColors.v6),
+                                      children: <TextSpan>[
+                                        TextSpan(
+                                          text: '개',
+                                          style: FontStyles.Caption2_m.copyWith(
+                                              color:
+                                                  AppColors.g5), //기본style을 지정해줘야함
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ]),
