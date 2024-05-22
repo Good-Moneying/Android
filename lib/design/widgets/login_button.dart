@@ -37,8 +37,8 @@ class LoginButton extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 icon,
-                height: 30,
-                width: 30,
+                width: 31,
+                fit: BoxFit.fitWidth,
               ),
               SizedBox(
                 width: 65,

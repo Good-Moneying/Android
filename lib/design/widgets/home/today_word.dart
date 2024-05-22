@@ -31,6 +31,7 @@ class TodayWord extends StatelessWidget {
     return Card(
       color: AppColors.white,
       surfaceTintColor: Colors.transparent,
+      elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
@@ -73,12 +74,12 @@ class TodayWord extends StatelessWidget {
                 ),
               ],
             ),
-            Text(
-              engTitle,
-              style: FontStyles.Ln1_m.copyWith(color: AppColors.g3),
-            ),
-            SizedBox(
-              height: Get.height * 0.01,
+            Padding(
+              padding: const EdgeInsets.only(top: 1, bottom: 6.0),
+              child: Text(
+                engTitle,
+                style: FontStyles.Ln1_m.copyWith(color: AppColors.g3),
+              ),
             ),
             //뜻
             RichText(

@@ -60,6 +60,8 @@ class RecommendU extends StatelessWidget {
                       title,
                       style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                       softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
@@ -94,7 +96,7 @@ class RecommendU extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 140,
+          left: 145,
           bottom: 10,
           child: Row(
             mainAxisSize: MainAxisSize.min,

@@ -36,8 +36,7 @@ class EditorCard extends StatelessWidget {
         color: AppColors.white,
         surfaceTintColor: Colors.transparent,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        elevation: 7,
-        shadowColor: Color(0xFF464656).withOpacity(0.18),
+        elevation: 0,
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
