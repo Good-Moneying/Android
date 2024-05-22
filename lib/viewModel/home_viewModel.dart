@@ -12,6 +12,7 @@ import '../model/home/news_letter_model.dart';
 class HomeViewModel extends GetxController {
   Rx<bool> isLoading = true.obs;
   Rx<bool> isLoadingEditor = true.obs;
+  Rx<bool> isLoadingReal = true.obs;
 
   Rx<bool> isEditorBookMark = false.obs;
   Rx<bool> isLiveBookMark = false.obs;
@@ -96,11 +97,13 @@ class HomeViewModel extends GetxController {
         if (_newsLetterCache.containsKey(id)) {
           _newsLetterModel.value = _newsLetterCache[id];
           isLoadingEditor.value =false;
+          isLoadingReal.value =false;
         } else {
           final newsLetter = await _repository.getEditorNews(id);
           _newsLetterCache[id] = newsLetter;
           _newsLetterModel.value = newsLetter;
           isLoadingEditor.value =false;
+          isLoadingReal.value =false;
         }
 
       } catch (e) {
