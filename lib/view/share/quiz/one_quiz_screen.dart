@@ -243,9 +243,15 @@ _quizCorrect() {
                       ),
                     ),
                   ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Text(
+                        '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에',
+                        style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                      softWrap: true,
+                      ),
+                    ),
                   ),
                 ],
               ),

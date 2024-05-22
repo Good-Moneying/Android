@@ -239,9 +239,15 @@ _quizCorrect() {
                       ),
                     ),
                   ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Text(
+                        '예상보다 좋은 경제 호황',
+                        style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                        softWrap: true,
+                      ),
+                    ),
                   ),
                 ],
               ),

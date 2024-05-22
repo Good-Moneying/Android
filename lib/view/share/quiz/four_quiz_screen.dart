@@ -36,7 +36,7 @@ class FourthQuizScreen extends GetView<QuizViewModel> {
       body: Obx(() {
         if (controller.init4.value) {
           return _quiz(context);
-        } else if (controller.fourthQ.value) {
+        } else if (controller.fourthQ4.value) {
           return _quizCorrect();
         } else {
           return _quizFalse();
@@ -239,9 +239,15 @@ _quizCorrect() {
                       ),
                     ),
                   ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Text(
+                        '의류',
+                        style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                        softWrap: true,
+                      ),
+                    ),
                   ),
                 ],
               ),

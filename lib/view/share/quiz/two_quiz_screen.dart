@@ -241,9 +241,15 @@ _quizCorrect() {
                       ),
                     ),
                   ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Text(
+                        '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에',
+                        style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                        softWrap: true,
+                      ),
+                    ),
                   ),
                 ],
               ),
