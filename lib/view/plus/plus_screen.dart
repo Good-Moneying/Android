@@ -120,7 +120,7 @@ class PlusScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 15),
                     Column(
-                      children: thinkingDetailsWidgets,
+                      children: thinkingDetailsWidgets, // Widgets가 여기에 추가됩니다.
                     ),
                     SizedBox(height: 12),
                   ],
@@ -133,6 +133,7 @@ class PlusScreen extends StatelessWidget {
     );
   }
 }
+
 
 
 

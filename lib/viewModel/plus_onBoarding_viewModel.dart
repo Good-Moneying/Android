@@ -7,6 +7,7 @@ import '../routes/get_pages.dart';
 class PlusOnBoardingViewModel extends GetxController {
   final RxInt currentPageIndex = 0.obs;
 
+
   void nextPage() {
     if (currentPageIndex.value < 4) {
       currentPageIndex.value++;
@@ -14,4 +15,6 @@ class PlusOnBoardingViewModel extends GetxController {
       Get.toNamed(Routes.PLUSSTEP);
     }
   }
+
+
 }

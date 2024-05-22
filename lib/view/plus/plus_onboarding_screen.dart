@@ -18,6 +18,7 @@ class PlusOnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final plusOnBoarding = Get.put(PlusOnBoardingViewModel());
     final plusHomeController = Get.put(PlusHomeViewModel());
+    plusHomeController.getCloudSpecific(13);
     final PageController pageControllerOnBoarding =
         PageController(initialPage: 0);
 
