@@ -1,14 +1,27 @@
 class ProfileModel {
+  String? profileUrl;
   String? nickname;
   int? reward;
+  int? follower;
+  int? followee;
   Attendances? attendances;
   List<Counts>? counts;
 
-  ProfileModel({this.nickname, this.reward, this.attendances, this.counts});
+  ProfileModel(
+      {this.profileUrl,
+        this.nickname,
+        this.reward,
+        this.follower,
+        this.followee,
+        this.attendances,
+        this.counts});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
+    profileUrl = json['profileUrl'];
     nickname = json['nickname'];
     reward = json['reward'];
+    follower = json['follower'];
+    followee = json['followee'];
     attendances = json['attendances'] != null
         ? new Attendances.fromJson(json['attendances'])
         : null;
@@ -22,8 +35,11 @@ class ProfileModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['profileUrl'] = this.profileUrl;
     data['nickname'] = this.nickname;
     data['reward'] = this.reward;
+    data['follower'] = this.follower;
+    data['followee'] = this.followee;
     if (this.attendances != null) {
       data['attendances'] = this.attendances!.toJson();
     }
@@ -58,21 +74,21 @@ class Attendances {
 }
 
 class Data {
-  String? dayOfWeek;
+  int? dayOfWeekValue;
   bool? isAttendant;
   bool? attendant;
 
-  Data({this.dayOfWeek, this.isAttendant, this.attendant});
+  Data({this.dayOfWeekValue, this.isAttendant, this.attendant});
 
   Data.fromJson(Map<String, dynamic> json) {
-    dayOfWeek = json['dayOfWeek'];
+    dayOfWeekValue = json['dayOfWeekValue'];
     isAttendant = json['isAttendant'];
     attendant = json['attendant'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['dayOfWeek'] = this.dayOfWeek;
+    data['dayOfWeekValue'] = this.dayOfWeekValue;
     data['isAttendant'] = this.isAttendant;
     data['attendant'] = this.attendant;
     return data;
@@ -80,19 +96,19 @@ class Data {
 }
 
 class Counts {
-  String? category;
+  String? categoryName;
   int? count;
 
-  Counts({this.category, this.count});
+  Counts({this.categoryName, this.count});
 
   Counts.fromJson(Map<String, dynamic> json) {
-    category = json['category'];
+    categoryName = json['categoryName'];
     count = json['count'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['category'] = this.category;
+    data['categoryName'] = this.categoryName;
     data['count'] = this.count;
     return data;
   }
