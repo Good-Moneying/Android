@@ -29,6 +29,7 @@ class SurveyBox extends StatelessWidget {
         Card(
           color: AppColors.white,
           surfaceTintColor: Colors.transparent,
+          elevation: 0,
           shape:
           RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
           child: Padding(
@@ -42,7 +43,7 @@ class SurveyBox extends StatelessWidget {
                   child: Image.network(
                     image,
                     height: Get.height * 0.13,
-                    width: Get.width * 0.3,
+                    width: Get.width * 0.25,
                     fit: BoxFit.fill,
                   ),
                 ),
@@ -56,6 +57,8 @@ class SurveyBox extends StatelessWidget {
                       title,
                       style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
                       softWrap: true,
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ),
