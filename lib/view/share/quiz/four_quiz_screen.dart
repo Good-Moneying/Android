@@ -231,7 +231,7 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
-              Get.toNamed(Routes.FIFTHQUIZ);
+              Get.toNamed(Routes.RESULTQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
           ),
@@ -401,7 +401,7 @@ _quizFalse() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
-              Get.toNamed(Routes.FIFTHQUIZ);
+              Get.toNamed(Routes.RESULTQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
           ),
