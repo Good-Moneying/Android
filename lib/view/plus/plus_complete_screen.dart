@@ -14,6 +14,8 @@ class PlusCompleteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final int index = arguments['index'];
     return Scaffold(
         backgroundColor: AppColors.v1,
         appBar: BackAppBar(iconColor: AppColors.black, title: null),
@@ -60,7 +62,7 @@ class PlusCompleteScreen extends StatelessWidget {
           Image.asset('assets/icons/plus_complete.png'),
           GestureDetector(
             onTap: (){
-              Get.toNamed(Routes.PLUSSTORAGE);
+              Get.toNamed(Routes.PLUSSTORAGE, arguments: {'index': index});
             },
             child: Container(
               width: 290,

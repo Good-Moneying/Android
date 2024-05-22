@@ -274,7 +274,7 @@ class PlusOnboardingScreen extends StatelessWidget {
                                             ),
                                             child: IntrinsicHeight(
                                               child: Center(
-                                                child: Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.'),
+                                                child: Obx(()=> Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.')),
                                               ),
                                             ),
                                           ),
@@ -305,10 +305,12 @@ class PlusOnboardingScreen extends StatelessWidget {
                                           child: Center(
                                             child: Padding(
                                               padding: const EdgeInsets.only(left: 10.0, right: 10),
-                                              child: Text(
-                                                plusHomeController.cloudSpecificModel?.summarizedComment ?? '요약할 생각이 없습니다.',
-                                                style: FontStyles.Ln1_sb.copyWith(
-                                                    color: AppColors.v6),
+                                              child: Obx(()=>
+                                                Text(
+                                                  plusHomeController.cloudSpecificModel?.summarizedComment ?? '요약할 생각이 없습니다.',
+                                                  style: FontStyles.Ln1_sb.copyWith(
+                                                      color: AppColors.v6),
+                                                ),
                                               ),
                                             ),
                                           ),

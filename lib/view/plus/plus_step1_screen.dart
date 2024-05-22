@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/state_manager.dart';
 import 'package:meetup/design/widgets/appBar/dialog_appBar.dart';
 import 'package:meetup/design/widgets/plus/stop_dialog.dart';
 import 'package:meetup/design/widgets/plus/summary_dialog.dart';
@@ -188,10 +189,12 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              controller.sentencesList[1].sentence,
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Obx(()
+                                              => Text(
+                                                controller.sentencesList[1].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -251,10 +254,12 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              controller.sentencesList[2].sentence,
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Obx(()
+                                              => Text(
+                                                controller.sentencesList[2].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -314,10 +319,12 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              controller.sentencesList[3].sentence,
-                                              style: FontStyles.Ln1_sb.copyWith(
-                                                  color: AppColors.black),
+                                            Obx(()
+                                              => Text(
+                                                controller.sentencesList[3].sentence,
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.black),
+                                              ),
                                             ),
                                           ],
                                         ),
