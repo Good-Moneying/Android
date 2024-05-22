@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/share/answer_quiz.dart';
+import 'package:meetup/design/widgets/share/wrong_quiz.dart';
 
 import '../../../design/style/ColorStyles.dart';
 import '../../../design/style/FontStyles.dart';
@@ -42,7 +43,7 @@ class TwoQuizScreen extends GetView<QuizViewModel> {
         } else if (controller.secondQ2.value) {
           return _quizCorrect();
         } else {
-          return _quizFalse();
+          return _quizFalse(controller.wrongQ2.value, controller.wrongDetail2.value);
         }
       }),
     );
@@ -90,6 +91,9 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init2(false);
                 quizController.firstQ2(true);
+
+                quizController.wrongQ2('A');
+                quizController.wrongDetail2('해외 제품의 가격이 비싸기 때문에');
               },
               child: ChoiceQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에')),
           GestureDetector(
@@ -103,6 +107,9 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init2(false);
                 quizController.thirdQ2(true);
+
+                quizController.wrongQ2('C');
+                quizController.wrongDetail2('국내 소비를 촉진하기 위해서');
               },
               child: ChoiceQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서')
           ),
@@ -110,6 +117,9 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init2(false);
                 quizController.fourthQ2(true);
+
+                quizController.wrongQ2('D');
+                quizController.wrongDetail2('해외 직구의 인기가 너무 높아서');
               },
               child: ChoiceQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서')
           ),
@@ -272,7 +282,7 @@ _quizCorrect() {
   );
 }
 
-_quizFalse() {
+_quizFalse(String q, String detail) {
   return SingleChildScrollView(
     child: Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
@@ -329,43 +339,7 @@ _quizFalse() {
             ),
           ),
           //사용자가 고른 틀린 답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xFFFFEEF0),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Color(0xFFFA5862),
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style: FontStyles.Ln1_sb.copyWith(
-                              color: Color(0xFFFA5862)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: Color(0xFFFA5862)),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          WrongQuiz(number: q, detail: detail),
           //퀴즈의 원래 정답
           AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에'),
           Padding(

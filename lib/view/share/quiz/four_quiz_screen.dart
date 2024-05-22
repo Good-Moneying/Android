@@ -11,6 +11,7 @@ import '../../../design/widgets/home/recommend_box.dart';
 import '../../../design/widgets/progress_bar.dart';
 import '../../../design/widgets/share/choice_quiz.dart';
 import '../../../design/widgets/share/hint_dialog.dart';
+import '../../../design/widgets/share/wrong_quiz.dart';
 import '../../../routes/get_pages.dart';
 import '../../../viewModel/home_viewModel.dart';
 import '../../../viewModel/quiz_viewModel.dart';
@@ -40,7 +41,7 @@ class FourthQuizScreen extends GetView<QuizViewModel> {
         } else if (controller.fourthQ4.value) {
           return _quizCorrect();
         } else {
-          return _quizFalse();
+          return _quizFalse(controller.wrongQ4.value, controller.wrongDetail4.value);
         }
       }),
     );
@@ -88,12 +89,18 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init4(false);
                 quizController.firstQ4(true);
+
+                quizController.wrongQ4('A');
+                quizController.wrongDetail4('전기차');
               },
               child: ChoiceQuiz(number: 'A', detail: '전기차')),
           GestureDetector(
               onTap: () {
                 quizController.init4(false);
                 quizController.secondQ4(true);
+
+                quizController.wrongQ4('B');
+                quizController.wrongDetail4('전기자전거');
               },
               child: ChoiceQuiz(number: 'B', detail: '전기자전거')
           ),
@@ -101,6 +108,9 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init4(false);
                 quizController.thirdQ4(true);
+
+                quizController.wrongQ4('C');
+                quizController.wrongDetail4('풍력발전 터빈');
               },
               child: ChoiceQuiz(number: 'C', detail: '풍력발전 터빈')
           ),
@@ -270,7 +280,7 @@ _quizCorrect() {
   );
 }
 
-_quizFalse() {
+_quizFalse(String q, String detail) {
   return SingleChildScrollView(
     child: Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
@@ -327,43 +337,7 @@ _quizFalse() {
             ),
           ),
           //사용자가 고른 틀린 답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xFFFFEEF0),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Color(0xFFFA5862),
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style: FontStyles.Ln1_sb.copyWith(
-                              color: Color(0xFFFA5862)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: Color(0xFFFA5862)),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          WrongQuiz(number: q, detail: detail),
           //퀴즈의 원래 정답
           AnswerQuiz(number: 'D', detail: '의류'),
           Padding(

@@ -12,6 +12,7 @@ import 'package:meetup/design/widgets/progress_bar.dart';
 import 'package:meetup/design/widgets/share/answer_quiz.dart';
 import 'package:meetup/design/widgets/share/choice_quiz.dart';
 import 'package:meetup/design/widgets/share/hint_dialog.dart';
+import 'package:meetup/design/widgets/share/wrong_quiz.dart';
 import 'package:meetup/viewModel/quiz_viewModel.dart';
 import '../../../design/widgets/history_widget.dart';
 
@@ -44,7 +45,7 @@ class OneQuizScreen extends GetView<QuizViewModel> {
         } else if (controller.secondQ.value) {
           return _quizCorrect();
         } else {
-          return _quizFalse();
+          return _quizFalse(controller.wrongQ.value, controller.wrongDetail.value);
         }
       }),
     );
@@ -92,6 +93,9 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init(false);
                 quizController.firstQ(true);
+
+                quizController.wrongQ('A');
+                quizController.wrongDetail('이용자 수가 증가했기 때문에');
               },
               child: ChoiceQuiz(number: 'A', detail: '이용자 수가 증가했기 때문에')),
           GestureDetector(
@@ -105,6 +109,9 @@ _quiz(BuildContext context) {
             onTap: () {
               quizController.init(false);
               quizController.thirdQ(true);
+
+              quizController.wrongQ('C');
+              quizController.wrongDetail('중고거래 플랫폼을 홍보하기 위해서');
             },
               child: ChoiceQuiz(number: 'C', detail: '중고거래 플랫폼을 홍보하기 위해서')
           ),
@@ -112,6 +119,9 @@ _quiz(BuildContext context) {
               onTap: () {
                 quizController.init(false);
                 quizController.fourthQ(true);
+
+                quizController.wrongQ('D');
+                quizController.wrongDetail('중고 제품의 품질을 검사하기 위해서');
               },
               child: ChoiceQuiz(number: 'D', detail: '중고 제품의 품질을 검사하기 위해서')
           ),
@@ -274,7 +284,7 @@ _quizCorrect() {
   );
 }
 
-_quizFalse() {
+_quizFalse(String q, String detail) {
   return SingleChildScrollView(
     child: Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
@@ -332,43 +342,7 @@ _quizFalse() {
             ),
           ),
           //사용자가 고른 틀린 답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xFFFFEEF0),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Color(0xFFFA5862),
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style: FontStyles.Ln1_sb.copyWith(
-                              color: Color(0xFFFA5862)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: Color(0xFFFA5862)),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          WrongQuiz(number: q, detail: detail),
           //퀴즈의 원래 정답
           AnswerQuiz(number: 'B', detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에'),
           Padding(
