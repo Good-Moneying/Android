@@ -66,7 +66,7 @@ class PlusScreen extends StatelessWidget {
                     PlusMainContainer(
                       comment: newsLetter.title,
                       thumbnailUrl: detail.thumbnailUrl,
-                      summarizedComment: detail.summarizedComment,
+                      summarizedComment: detail.comment,
                     ),
                   );
                 }
