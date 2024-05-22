@@ -105,7 +105,7 @@ class PlusScreen extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(right: 16.0),
+                      padding: const EdgeInsets.only(right: 16.0, ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -120,7 +120,7 @@ class PlusScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 15),
+                    SizedBox(height: 5),
                     Column(
                       children: thinkingDetailsWidgets, // Widgets가 여기에 추가됩니다.
                     ),

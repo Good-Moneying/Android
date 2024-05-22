@@ -29,7 +29,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
     controller.addSentence(plusHomeController.cloudHomeModel?.thinkingDetails?[index].summarizedComment ?? '요약된 생각이 없습니다.', 0);
     controller.postSummaryRequired('1');
     final PageController pageController =
-        PageController(initialPage: 0, viewportFraction: 0.7);
+        PageController(initialPage: 0, viewportFraction: 0.75);
 
     return Scaffold(
         backgroundColor: AppColors.g1,
@@ -46,9 +46,10 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                 Stack(
                   alignment: Alignment.center,
                   children: [
-                    SvgPicture.asset('assets/icons/plus_say.svg'),
+                    Image.asset('assets/icons/plus_say3.png',),
                     Obx(
                       () => Positioned(
+                        top: 37,
                           child: Text(
                         controller.updatePage(controller.currentPage.value),
                         style: FontStyles.Caption1_sb.copyWith(
@@ -70,70 +71,70 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                           },
                           children: [
                             // 첫 번째 페이지
-                            Container(
-                              width: 270,
-                              height: 230,
-                              child: Stack(
-                                children: [
-                                  Positioned(
-                                      child: Container(
-                                    width: 270,
-                                    height: 150,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.only(
-                                            topLeft: Radius.circular(17),
-                                            topRight: Radius.circular(17)),
-                                        color: AppColors.v2,
-                                        border:
-                                            Border.all(color: AppColors.v1)),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                          'assets/icons/plus_cloud1.png',
-                                          width: 163,
-                                          height: 98,
-                                        ),
-                                        Text(
-                                          'Lv.1',
-                                          style: FontStyles.Label2_sb.copyWith(
-                                              color: AppColors.white),
-                                        )
-                                      ],
-                                    ),
-                                  )),
-                                  Positioned(
-                                      top: 150,
-                                      child: Container(
-                                        width: 270,
-                                        height: 80,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                                bottomLeft: Radius.circular(17),
-                                                bottomRight:
-                                                    Radius.circular(17)),
-                                            color: AppColors.white,
-                                            border: Border.all(
-                                                color: AppColors.v1)),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(left: 8.0, right: 8),
-                                              child: Text(
-                                                controller.sentencesList[0].sentence,
-                                                style: FontStyles.Ln1_sb.copyWith(
-                                                    color: AppColors.black),
+                            Center(
+                              child: Container(
+                                width: 290,
+                                height: 262,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                        child: Container(
+                                      width: 290,
+                                      height: 182,
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(17),
+                                              topRight: Radius.circular(17)),
+                                          color: AppColors.v2,
+                                          border:
+                                              Border.all(color: AppColors.v1)),
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        children: [
+                                          Image.asset(
+                                            'assets/icons/plus_1.png',
+                                            width: 180,height: 180,
+                                          ),
+                                          Text(
+                                            'Lv.1',
+                                            style: FontStyles.Label2_sb.copyWith(
+                                                color: AppColors.white),
+                                          )
+                                        ],
+                                      ),
+                                    )),
+                                    Positioned(
+                                        top: 150,
+                                        child: Container(
+                                          width: 290,
+                                          height: 80,
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.only(
+                                                  bottomLeft: Radius.circular(17),
+                                                  bottomRight:
+                                                      Radius.circular(17)),
+                                              color: AppColors.white,
+                                              border: Border.all(
+                                                  color: AppColors.v1)),
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.only(left: 16.0, right: 16),
+                                                child: Text(
+                                                  controller.sentencesList[0].sentence,
+                                                  style: FontStyles.Ln1_sb.copyWith(
+                                                      color: AppColors.black),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      )),
-                                ],
+                                            ],
+                                          ),
+                                        )),
+                                  ],
+                                ),
                               ),
                             ),
                             // 두 번째 페이지
@@ -347,10 +348,11 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                     ),
                   ),
                 ),
+                //Spacer(),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(top: 60.0),
                   child: Container(
-                    width: 328,
+                    width: 378,
                     height: 300,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -433,8 +435,8 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: SizedBox(
-                            width: 296,
-                            height: 150,
+                            width: 340,
+                            height: 170,
                             child: TextFormField(
                               controller: controller.plusComment,
                               keyboardType: TextInputType.multiline,
@@ -476,7 +478,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                             child: Padding(
                               padding: const EdgeInsets.only(bottom: 10.0),
                               child: Container(
-                                width: 290,
+                                width: 340,
                                 height: 48,
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),

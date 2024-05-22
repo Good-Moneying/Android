@@ -50,8 +50,9 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
+                        radius: 30.0,
                         backgroundImage:
-                            AssetImage('assets/icons/mypage_lv1.png'),
+                            AssetImage('assets/icons/mypage_lv1.png', ),
                       ),
                     ),
                     Padding(
@@ -64,8 +65,8 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             Column(
                               children: [
                                 Container(
-                                  width: 40,
-                                  height: 18,
+                                  width: 52,
+                                  height: 25,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(54),
                                     color: AppColors.v1,
@@ -89,9 +90,6 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ],
                             ),
-                            // SizedBox(
-                            //   width: 130,
-                            // ),
                           ],
                         ),
                       ),
@@ -102,7 +100,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       child: SizedBox(
                         child: Container(
                           width: 83,
-                          height: 47,
+                          height: 48,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(32),
                               color: Colors.white,
@@ -136,6 +134,11 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Container(
+                height: 1,
+                width: double.infinity,
+                decoration: BoxDecoration(color: AppColors.g1),
+              )
+              ,Container(
                   width: double.infinity,
                   height: 54,
                   color: AppColors.white,
@@ -198,7 +201,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     child: Text(
                       '목표 달성률',
                       style:
-                          FontStyles.Headline2_b.copyWith(color: Colors.black),
+                          FontStyles.Headline2_b.copyWith(color: AppColors.g6),
                     ),
                   ),
                 ],
@@ -323,7 +326,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                padding: const EdgeInsets.fromLTRB(20, 44, 0, 0),
                 child: Row(
                   children: [
                     Text(
