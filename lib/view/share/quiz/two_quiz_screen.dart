@@ -15,6 +15,8 @@ import '../../../design/widgets/share/hint_dialog.dart';
 import '../../../routes/get_pages.dart';
 import '../../../viewModel/home_viewModel.dart';
 import '../../../viewModel/quiz_viewModel.dart';
+import '../../../design/widgets/history_widget.dart';
+
 
 final quizController = Get.find<QuizViewModel>();
 final homeController = Get.find<HomeViewModel>();
@@ -376,18 +378,19 @@ _quizFalse() {
               homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
               title:
               homeController.homeModel!.customizeNewsLetters[2].title,
-              tag: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: homeController.parseCustom1().map((keyword) {
-                  return CustomChip(label: keyword);
-                }).toList(),
-              ),
+              tag: CustomChip(label: homeController.parseCustom3()[0],),
               isRecommend: homeController.isRecommendThird.value,
               onRecommend: () {
                 homeController.isRecommendThird.value
                     ? homeController.isRecommendThird.value = false
                     : homeController.isRecommendThird.value = true;
               },
+              history: History(
+                diff: homeController.formatDate(
+                  DateTime.parse(homeController
+                      .homeModel!.customizeNewsLetters[2].createdAt),
+                ),
+              ),
             )
           ),
           CustomButton(

@@ -78,7 +78,8 @@ class EditorCard extends StatelessWidget {
                                 : 'assets/icons/bookmark_unfill.svg',
                             colorFilter: isBookMark
                                 ? null
-                                : ColorFilter.mode(AppColors.g3, BlendMode.srcIn),
+                                : ColorFilter.mode(
+                                    AppColors.g3, BlendMode.srcIn),
                           ),
                         ],
                       ),
@@ -108,7 +109,12 @@ class EditorCard extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 8.0, left: 10),
-                    child: History(),
+                    child: History(
+                      diff: editorController.formatDate(
+                        DateTime.parse(editorController
+                            .homeModel!.todayNewsLetter.createdAt),
+                      ),
+                    ),
                   ),
                 ],
               ),

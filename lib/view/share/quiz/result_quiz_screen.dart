@@ -12,6 +12,8 @@ import '../../../design/widgets/home/recommend_box.dart';
 import '../../../design/widgets/progress_bar.dart';
 import '../../../routes/get_pages.dart';
 import '../../../viewModel/home_viewModel.dart';
+import '../../../design/widgets/history_widget.dart';
+
 
 final homeController = Get.find<HomeViewModel>();
 
@@ -112,6 +114,12 @@ _partCorrect() {
                         ? homeController.isRecommendThird.value = false
                         : homeController.isRecommendThird.value = true;
                   },
+                  history: History(
+                    diff: homeController.formatDate(
+                      DateTime.parse(homeController
+                          .homeModel!.customizeNewsLetters[0].createdAt),
+                    ),
+                  ),
                 ),
                 RecommendU(
                   image:
@@ -130,6 +138,12 @@ _partCorrect() {
                         ? homeController.isRecommendThird.value = false
                         : homeController.isRecommendThird.value = true;
                   },
+                  history: History(
+                    diff: homeController.formatDate(
+                      DateTime.parse(homeController
+                          .homeModel!.customizeNewsLetters[1].createdAt),
+                    ),
+                  ),
                 ),
                 RecommendU(
                   image:
@@ -148,6 +162,12 @@ _partCorrect() {
                         ? homeController.isRecommendThird.value = false
                         : homeController.isRecommendThird.value = true;
                   },
+                  history: History(
+                    diff: homeController.formatDate(
+                      DateTime.parse(homeController
+                          .homeModel!.customizeNewsLetters[2].createdAt),
+                    ),
+                  ),
                 ),
               ],
             ),

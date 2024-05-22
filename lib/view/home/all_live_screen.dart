@@ -6,6 +6,7 @@ import 'package:meetup/viewModel/home_viewModel.dart';
 
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/chip_editor.dart';
+import '../../design/widgets/history_widget.dart';
 import '../../design/widgets/home/recommend_box.dart';
 
 class AllLiveScreen extends GetView<HomeViewModel> {
@@ -48,8 +49,9 @@ class AllLiveScreen extends GetView<HomeViewModel> {
               ),
               Obx(
                     () => RecommendU(
-                      image:
-                      controller.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
+                      image: controller
+                          .homeModel?.customizeNewsLetters[0].thumbnail ??
+                          'no data',
                       title:
                       controller.homeModel!.customizeNewsLetters[0].title,
                       isRecommend: controller.isRecommendFirst.value,
@@ -58,52 +60,57 @@ class AllLiveScreen extends GetView<HomeViewModel> {
                             ? controller.isRecommendFirst.value = false
                             : controller.isRecommendFirst.value = true;
                       },
-                      tag: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: controller.parseCustom1().map((keyword) {
-                          return CustomChip(label: keyword);
-                        }).toList(),
+                      tag: CustomChip(label: controller.parseCustom1()[0],),
+                      history: History(
+                        diff: controller.formatDate(
+                          DateTime.parse(controller
+                              .homeModel!.customizeNewsLetters[0].createdAt),
+                        ),
                       ),
                     ),
               ),
               Obx(
                     () => RecommendU(
-                      image:
-                      controller.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
+                      image: controller
+                          .homeModel?.customizeNewsLetters[1].thumbnail ??
+                          'no data',
                       title:
                       controller.homeModel!.customizeNewsLetters[1].title,
-                      tag: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: controller.parseCustom2().map((keyword) {
-                          return CustomChip(label: keyword);
-                        }).toList(),
-                      ),
+                      tag: CustomChip(label: controller.parseCustom1()[1],),
                       isRecommend: controller.isRecommendSecond.value,
                       onRecommend: () {
                         controller.isRecommendSecond.value
                             ? controller.isRecommendSecond.value = false
                             : controller.isRecommendSecond.value = true;
                       },
+                      history: History(
+                        diff: controller.formatDate(
+                          DateTime.parse(controller
+                              .homeModel!.customizeNewsLetters[1].createdAt),
+                        ),
+                      ),
                     ),
               ),
               Obx(
                     () => RecommendU(
-                      image:
-                      controller.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
+                      image: controller
+                          .homeModel?.customizeNewsLetters[2].thumbnail ??
+                          'no data',
                       title:
                       controller.homeModel!.customizeNewsLetters[2].title,
-                      tag: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: controller.parseCustom3().map((keyword) {
-                          return CustomChip(label: keyword);
-                        }).toList(),
-                      ),
+                      tag: CustomChip(label: controller.parseCustom1()[2],),
                       isRecommend: controller.isRecommendThird.value,
                       onRecommend: () {
                         controller.isRecommendThird.value
                             ? controller.isRecommendThird.value = false
                             : controller.isRecommendThird.value = true;
                       },
+                      history: History(
+                        diff: controller.formatDate(
+                          DateTime.parse(controller
+                              .homeModel!.customizeNewsLetters[2].createdAt),
+                        ),
+                      ),
                     ),
               ),
             ],

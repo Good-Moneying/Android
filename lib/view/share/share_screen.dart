@@ -6,6 +6,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/widgets/share/survey_box.dart';
 import 'package:meetup/design/widgets/share/think_bottomSheet.dart';
 import 'package:meetup/viewModel/home_viewModel.dart';
 import 'package:meetup/viewModel/share_viewModel.dart';
@@ -14,6 +15,8 @@ import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/home/news_slider.dart';
 import '../../design/widgets/home/recommend_box.dart';
 import '../../routes/get_pages.dart';
+import '../../../design/widgets/history_widget.dart';
+
 
 class ShareScreen extends GetView<ShareViewModel> {
   const ShareScreen({super.key});
@@ -69,24 +72,17 @@ class ShareScreen extends GetView<ShareViewModel> {
                     //Get.toNamed(Routes.SURVEY);
                     //기사 url로 넘어가도록 해야함
                   },
-                  child: RecommendU(
-                    image:
-                        'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                    title:
-                        newsController.homeModel!.customizeNewsLetters[0].title,
-                    tag: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: homeController.parseCustom1().map((keyword) {
-                        return CustomChip(label: keyword);
-                      }).toList(),
-                    ),
-                    isRecommend: newsController.isRecommendFirst.value,
-                    onRecommend: () {
-                      newsController.isRecommendFirst.value
-                          ? newsController.isRecommendFirst.value = false
-                          : newsController.isRecommendFirst.value = true;
-                    },
-                  ),
+                  child: SurveyBox(
+                      image: newsController.homeModel?.customizeNewsLetters[0].thumbnail ?? 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                      title: newsController.homeModel?.customizeNewsLetters[0].title ?? 'no data',
+                      tag: CustomChip(label: newsController.parseCustom1()[0],),
+                      history: History(
+                            diff: newsController.formatDate(
+                              DateTime.parse(newsController
+                                  .homeModel!.customizeNewsLetters[0].createdAt),
+                            ),
+                          ),
+                  )
                 ),
               ),
             ),

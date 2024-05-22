@@ -5,24 +5,30 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:intl/intl.dart';
+import 'package:meetup/design/widgets/history_widget.dart';
+import 'package:meetup/design/widgets/home/archive_dialog.dart';
 import 'package:meetup/design/widgets/home/editor_card.dart';
 import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
 import 'package:meetup/design/widgets/home/today_word.dart';
+import 'package:meetup/viewModel/nickname_viewModel.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/chip_editor.dart';
+import '../../design/widgets/home/term_dialog.dart';
 import '../../design/widgets/tooltip_balloon.dart';
 import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
-  // final userController = Get.find<UserViewModel>();
+  final userNickname= Get.find<NicknameViewModel>().nickname;
 
   @override
   Widget build(BuildContext context) {
     Get.put(HomeViewModel());
+    Get.put(UserViewModel());
     controller.getHomeModel();
 
     return Obx(
@@ -102,6 +108,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isEditorBookMark.value
                               ? controller.isEditorBookMark.value = false
                               : controller.isEditorBookMark.value = true;
+
+                          if (controller.isEditorBookMark.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.todayNewsLetter.id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
                       ),
                     ),
@@ -183,11 +207,11 @@ class HomeScreen extends GetView<HomeViewModel> {
                           text: TextSpan(
                             children: [
                               //닉네임 들어갈 부분
-                              /*TextSpan(
-                              text: userController.nicknameController.value.text,
+                              TextSpan(
+                              text: userNickname,
                               style: FontStyles.Headline2_b.copyWith(
                                   color: AppColors.v6),
-                            ),*/
+                            ),
                               TextSpan(
                                 text: '님에게 추천해요!',
                                 style: FontStyles.Headline2_b.copyWith(
@@ -218,8 +242,9 @@ class HomeScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RecommendU(
-                        image:
-                            controller.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
+                        image: controller
+                                .homeModel?.customizeNewsLetters[0].thumbnail ??
+                            'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[0].title,
                         isRecommend: controller.isRecommendFirst.value,
@@ -227,13 +252,32 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isRecommendFirst.value
                               ? controller.isRecommendFirst.value = false
                               : controller.isRecommendFirst.value = true;
+
+                          if (controller.isRecommendFirst.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.customizeNewsLetters[0].id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
-                        tag: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: controller.parseCustom1().map((keyword) {
-                          return CustomChip(label: keyword);
-                        }).toList(),
-                      ),
+                        tag: CustomChip(label: controller.parseCustom1()[0],),
+                        history: History(
+                          diff: controller.formatDate(
+                            DateTime.parse(controller
+                                .homeModel!.customizeNewsLetters[0].createdAt),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -241,22 +285,42 @@ class HomeScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RecommendU(
-                        image:
-                        controller.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
+                        image: controller
+                                .homeModel?.customizeNewsLetters[1].thumbnail ??
+                            'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[1].title,
-                        tag: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: controller.parseCustom2().map((keyword) {
-                            return CustomChip(label: keyword);
-                          }).toList(),
-                        ),
+                        tag: CustomChip(label: controller.parseCustom1()[1],),
                         isRecommend: controller.isRecommendSecond.value,
                         onRecommend: () {
                           controller.isRecommendSecond.value
                               ? controller.isRecommendSecond.value = false
                               : controller.isRecommendSecond.value = true;
+
+                          if (controller.isRecommendSecond.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.customizeNewsLetters[1].id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
+                        history: History(
+                          diff: controller.formatDate(
+                            DateTime.parse(controller
+                                .homeModel!.customizeNewsLetters[1].createdAt),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -264,22 +328,42 @@ class HomeScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
                       child: RecommendU(
-                        image:
-                        controller.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
+                        image: controller
+                                .homeModel?.customizeNewsLetters[2].thumbnail ??
+                            'no data',
                         title:
                             controller.homeModel!.customizeNewsLetters[2].title,
-                        tag: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: controller.parseCustom3().map((keyword) {
-                            return CustomChip(label: keyword);
-                          }).toList(),
-                        ),
+                        tag: CustomChip(label: controller.parseCustom1()[2],),
                         isRecommend: controller.isRecommendThird.value,
                         onRecommend: () {
                           controller.isRecommendThird.value
                               ? controller.isRecommendThird.value = false
                               : controller.isRecommendThird.value = true;
+
+                          if (controller.isRecommendThird.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.customizeNewsLetters[2].id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
+                        history: History(
+                          diff: controller.formatDate(
+                            DateTime.parse(controller
+                                .homeModel!.customizeNewsLetters[2].createdAt),
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -330,16 +414,30 @@ class HomeScreen extends GetView<HomeViewModel> {
                             'no data',
                         meaning: controller.homeModel?.todayTerm.description ??
                             'no data',
-                        category:
-                            controller.homeModel?.todayTerm.category ?? 'no data',
+                        category: controller.homeModel?.todayTerm.category ??
+                            'no data',
                         isBookMark: controller.isWordBookMark.value,
                         onBookMark: () {
                           controller.isWordBookMark.value
                               ? controller.isWordBookMark.value = false
                               : controller.isWordBookMark.value = true;
 
-                          if(controller.isWordBookMark.value) {
-                            controller.archives('TERM', controller.homeModel!.todayTerm.termId);
+                          if (controller.isWordBookMark.value) {
+                            controller.archives(
+                                'TERM', controller.homeModel!.todayTerm.termId);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return TermDialog();
+                                  },
+                                );
+                              },
+                            );
                           }
                         },
                       ),
