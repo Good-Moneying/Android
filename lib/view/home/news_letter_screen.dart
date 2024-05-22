@@ -42,166 +42,167 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                   backgroundColor: AppColors.white,
                   appBar: BackAppBar(iconColor: AppColors.black, title: null),
                   body: SingleChildScrollView(
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-                      child: Flexible(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Obx(
-                                  () =>
-                                  Image.network(
-                                    width: Get.width,
-                                    height: 230,
-                                    fit: BoxFit.fitWidth,
-                                    controller.homeModel!.todayNewsLetter
-                                        .thumbnail,
-                                    loadingBuilder: (BuildContext context,
-                                        Widget child,
-                                        ImageChunkEvent? loadingProgress) {
-                                      if (loadingProgress == null) {
-                                        return child;
-                                      } else {
-                                        return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                      }
-                                    },
-                                    errorBuilder: (BuildContext context,
-                                        Object error,
-                                        StackTrace? stackTrace) {
-                                      return Text(
-                                          'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                    },
-                                  ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 20.0),
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Obx(
-                                        () =>
-                                        Flexible(
-                                          child: Text(
-                                            controller.newsLetterModel?.title ??
-                                                'none',
-                                            softWrap: true,
-                                            style: FontStyles.Title2_sb
-                                                .copyWith(
-                                                color: AppColors.black),
-                                          ),
+                    child: Flexible(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Obx(
+                                () =>
+                                Image.network(
+                                  width: Get.width,
+                                  height: 142,
+                                  fit: BoxFit.fitWidth,
+                                  controller.homeModel!.todayNewsLetter
+                                      .thumbnail,
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    } else {
+                                      return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                    }
+                                  },
+                                  errorBuilder: (BuildContext context,
+                                      Object error,
+                                      StackTrace? stackTrace) {
+                                    return Text(
+                                        'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                  },
+                                ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Obx(
+                                      () =>
+                                      Flexible(
+                                        child: Text(
+                                          controller.newsLetterModel?.title ??
+                                              'none',
+                                          softWrap: true,
+                                          style: FontStyles.Title2_sb
+                                              .copyWith(
+                                              color: AppColors.black),
                                         ),
-                                  ),
-                                  //Expanded(child: Container()),
-                                  IconButton(
-                                    icon: SvgPicture.asset(
-                                        controller.isEditorBookMark.value
-                                          ? 'assets/icons/bookmark_fill.svg'
-                                          : 'assets/icons/bookmark_unfill.svg'),
-                                    onPressed: () {
+                                      ),
+                                ),
+                                //Expanded(child: Container()),
+                                IconButton(
+                                  icon: SvgPicture.asset(
                                       controller.isEditorBookMark.value
-                                          ? controller.isEditorBookMark.value = false
-                                          : controller.isEditorBookMark.value = true;
+                                        ? 'assets/icons/bookmark_fill.svg'
+                                        : 'assets/icons/bookmark_unfill.svg'),
+                                  onPressed: () {
+                                    controller.isEditorBookMark.value
+                                        ? controller.isEditorBookMark.value = false
+                                        : controller.isEditorBookMark.value = true;
 
-                                      if (controller.isEditorBookMark.value) {
-                                        controller.archives(
-                                            'NEWS', controller.homeModel!.todayNewsLetter.id);
+                                    if (controller.isEditorBookMark.value) {
+                                      controller.archives(
+                                          'NEWS', controller.homeModel!.todayNewsLetter.id);
 
-                                        showDialog(
-                                          barrierDismissible: false,
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return StatefulBuilder(
-                                              builder:
-                                                  (BuildContext context, StateSetter setState) {
-                                                return ArchiveDialog();
-                                              },
-                                            );
-                                          },
-                                        );
-                                      }
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 16.0),
-                              child: Row(
-                                children: [
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment
-                                        .start,
-                                    children: controller.parseToday().map((
-                                        keyword) {
-                                      return CustomChip(label: keyword);
-                                    }).toList(),
-                                  ),
-                                  Padding(
-                                      padding: const EdgeInsets.only(left: 12),
-                                      child: Obx(() =>
-                                          Text(controller.dateParsing(
-                                              controller.homeModel!
-                                                  .todayNewsLetter
-                                                  .createdAt),
-                                              style: FontStyles.Ln1_r.copyWith(
-                                                  color: AppColors.g4)))),
-                                  //Expanded(child: Container()),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(
-                                        0, 0, 4, 0),
-                                    // 오른쪽에 여백 추가
-                                    child: Obx(
-                                          () =>
-                                          Image.network(
-                                            width: 20,
-                                            height: 20,
-                                            controller.newsLetterModel!.editor!
-                                                .profileUrl!,
-                                            loadingBuilder: (
-                                                BuildContext context,
-                                                Widget child,
-                                                ImageChunkEvent? loadingProgress) {
-                                              if (loadingProgress == null) {
-                                                return child;
-                                              } else {
-                                                return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                              }
+                                      showDialog(
+                                        barrierDismissible: false,
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return StatefulBuilder(
+                                            builder:
+                                                (BuildContext context, StateSetter setState) {
+                                              return ArchiveDialog();
                                             },
-                                            errorBuilder: (BuildContext context,
-                                                Object error,
-                                                StackTrace? stackTrace) {
-                                              return Text(
-                                                  'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                            },
-                                          ),
-                                    ),
-                                  ),
-                                  Obx(
-                                        () =>
-                                        RichText(
-                                          text: TextSpan(
-                                            text: 'Edit By. ',
-                                            style: FontStyles.Caption1_r
-                                                .copyWith(
-                                                color: AppColors.g3),
-                                            //기본style을 지정해줘야함
-                                            children: <TextSpan>[
-                                              TextSpan(
-                                                text: controller.newsLetterModel
-                                                    ?.editor?.nickname,
-                                                style: FontStyles.Caption1_m
-                                                    .copyWith(
-                                                    color: AppColors
-                                                        .g3), //기본style을 지정해줘야함
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                  )
-                                ],
-                              ),
+                                          );
+                                        },
+                                      );
+                                    }
+                                  },
+                                ),
+                              ],
                             ),
-                            Container(
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 16.0),
+                            child: Row(
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment
+                                      .start,
+                                  children: controller.parseToday().map((
+                                      keyword) {
+                                    return CustomChip(label: keyword);
+                                  }).toList(),
+                                ),
+                                Padding(
+                                    padding: const EdgeInsets.only(left: 12),
+                                    child: Obx(() =>
+                                        Text(controller.dateParsing(
+                                            controller.homeModel!
+                                                .todayNewsLetter
+                                                .createdAt),
+                                            style: FontStyles.Ln1_r.copyWith(
+                                                color: AppColors.g4)))),
+                                //Expanded(child: Container()),
+                                //에디터 부분
+                                // Padding(
+                                //   padding: const EdgeInsets.fromLTRB(
+                                //       0, 0, 4, 0),
+                                //   // 오른쪽에 여백 추가
+                                //   child: Obx(
+                                //         () =>
+                                //         Image.network(
+                                //           width: 20,
+                                //           height: 20,
+                                //           controller.newsLetterModel!.editor!
+                                //               .profileUrl!,
+                                //           loadingBuilder: (
+                                //               BuildContext context,
+                                //               Widget child,
+                                //               ImageChunkEvent? loadingProgress) {
+                                //             if (loadingProgress == null) {
+                                //               return child;
+                                //             } else {
+                                //               return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                //             }
+                                //           },
+                                //           errorBuilder: (BuildContext context,
+                                //               Object error,
+                                //               StackTrace? stackTrace) {
+                                //             return Text(
+                                //                 'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                //           },
+                                //         ),
+                                //   ),
+                                // ),
+                                // Obx(
+                                //       () =>
+                                //       RichText(
+                                //         text: TextSpan(
+                                //           text: 'Edit By. ',
+                                //           style: FontStyles.Caption1_r
+                                //               .copyWith(
+                                //               color: AppColors.g3),
+                                //           //기본style을 지정해줘야함
+                                //           children: <TextSpan>[
+                                //             TextSpan(
+                                //               text: controller.newsLetterModel
+                                //                   ?.editor?.nickname,
+                                //               style: FontStyles.Caption1_m
+                                //                   .copyWith(
+                                //                   color: AppColors
+                                //                       .g3), //기본style을 지정해줘야함
+                                //             ),
+                                //           ],
+                                //         ),
+                                //       ),
+                                // )
+                              ],
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Container(
                               width: 380,
                                 //constraints: BoxConstraints(minHeight: 300, maxHeight: 400)
                               margin: EdgeInsets.only(top: 16),
@@ -215,7 +216,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              18.0, 20.0, 0.0, 0.0),
+                                              24.0, 20.0, 0.0, 0.0),
                                           // 상단에 20.0만큼의 패딩을 추가합니다.
                                           child: Align(
                                             alignment: Alignment.topCenter,
@@ -236,7 +237,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              18.0, 20.0, 0.0, 0.0),
+                                              24.0, 16.0, 0.0, 0.0),
                                           // 상단에 20.0만큼의 패딩을 추가합니다.
                                           child: Align(
                                               alignment: Alignment.topCenter,
@@ -249,7 +250,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                         Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                14.0, 20.0, 18.0, 0.0),
+                                                11.0, 16.0, 24.0, 0.0),
                                             // 상단에 20.0만큼의 패딩을 추가합니다.
                                             child: Align(
                                                 alignment: Alignment.topCenter,
@@ -279,7 +280,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              18.0, 20.0, 0.0, 0.0),
+                                              24.0, 16.0, 0.0, 0.0),
                                           // 상단에 20.0만큼의 패딩을 추가합니다.
                                           child: Align(
                                               alignment: Alignment.topCenter,
@@ -292,7 +293,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                         Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                14.0, 20.0, 18.0, 0.0),
+                                                11.0, 16.0, 24.0, 0.0),
                                             // 상단에 20.0만큼의 패딩을 추가합니다.
                                             child: Align(
                                                 alignment: Alignment.topCenter,
@@ -322,7 +323,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                       children: [
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              18.0, 20.0, 0.0, 0.0),
+                                              24.0, 16.0, 0.0, 0.0),
                                           // 상단에 20.0만큼의 패딩을 추가합니다.
                                           child: Align(
                                               alignment: Alignment.topCenter,
@@ -335,7 +336,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                         Expanded(
                                           child: Padding(
                                             padding: const EdgeInsets.fromLTRB(
-                                                14.0, 20.0, 18.0, 0.0),
+                                                11.0, 16.0, 24.0, 0.0),
                                             // 상단에 20.0만큼의 패딩을 추가합니다.
                                             child: Align(
                                                 alignment: Alignment.topCenter,
@@ -364,7 +365,10 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                 ),
                               ),
                             ),
-                            Container(
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Container(
                               width: double.infinity,
                               alignment: Alignment.center,
                               margin: EdgeInsets.only(top: 16),
@@ -416,15 +420,15 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                             ),
                                       )),
                                   /*Padding(
-                          padding:
+                                                      padding:
                               const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
-                          child: Text(
+                                                      child: Text(
                             "이제 미국의 기준금리 인하는 9월 이후에 가능하다는 전망\n이 우세하고, 인하 시점을 내년으로 보는 사람도 꽤 많아졌\n어요. 오히려 기준금리를 지금보다 조금 더 올릴 수 있다는\n전망까지 나오고 있어요.\n",
                             style: FontStyles.Ln1_r,
-                          )),
-                      Text(
-                          "왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",
-                          style: FontStyles.Ln1_r),*/
+                                                      )),
+                                                  Text(
+                                                      "왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",
+                                                      style: FontStyles.Ln1_r),*/
                                   Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           0.0, 24.0, 0.0, 0.0),
@@ -456,7 +460,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                     height: 143,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 40.0),
+                                    padding: const EdgeInsets.only(top: 6.0),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment
                                           .center,
@@ -1081,8 +1085,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                 ],
                               ),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

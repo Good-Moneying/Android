@@ -45,11 +45,11 @@ newsSlider() {
                         begin: FractionalOffset.bottomCenter,
                         end: FractionalOffset.topCenter,
                         colors: [
-                      Color(0xFF212121),
+                      Color(0xFF212121).withOpacity(0.8),
                       Color(0xFF212121).withOpacity(0.1),
                     ])),
                 child: Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
+                    padding: const EdgeInsets.fromLTRB(12, 64, 12, 12),
                   child: Text(
                     newsController.homeModel!.realtimeTrendNewsLetters[0].title,
                     style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -93,11 +93,11 @@ newsSlider() {
                       begin: FractionalOffset.bottomCenter,
                       end: FractionalOffset.topCenter,
                       colors: [
-                    Color(0xFF212121),
+                        Color(0xFF212121).withOpacity(0.8),
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
+                padding: const EdgeInsets.fromLTRB(12, 64, 12, 12),
                 child: Text(
                   newsController.homeModel!.realtimeTrendNewsLetters[1].title,
                   style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),
@@ -140,11 +140,11 @@ newsSlider() {
                       begin: FractionalOffset.bottomCenter,
                       end: FractionalOffset.topCenter,
                       colors: [
-                    Color(0xFF212121),
+                        Color(0xFF212121).withOpacity(0.8),
                     Color(0xFF212121).withOpacity(0.1),
                   ])),
               child: Padding(
-                padding: const EdgeInsets.fromLTRB(12, 56, 12, 12),
+                padding: const EdgeInsets.fromLTRB(12, 64, 12, 12),
                 child: Text(
                   newsController.homeModel!.realtimeTrendNewsLetters[2].title,
                   style: FontStyles.Lr1_sb.copyWith(color: AppColors.white),

@@ -100,36 +100,49 @@ class HomeScreen extends GetView<HomeViewModel> {
                   Obx(
                     () => Padding(
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 0),
-                      child: EditorCard(
-                        title: controller.homeModel?.todayNewsLetter.title ??
-                            '비어있음',
-                        image: controller
-                                .homeModel?.todayNewsLetter.thumbnail ??
-                            'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                        isBookMark: controller.isEditorBookMark.value,
-                        onEditor: () {
-                          controller.isEditorBookMark.value
-                              ? controller.isEditorBookMark.value = false
-                              : controller.isEditorBookMark.value = true;
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0xFF464656).withOpacity(0.05),
+                              spreadRadius: 5,
+                              blurRadius: 10,
+                              offset: Offset(3, 3),
+                            )
+                          ]
+                        ),
+                        child: EditorCard(
+                          title: controller.homeModel?.todayNewsLetter.title ??
+                              '비어있음',
+                          image: controller
+                                  .homeModel?.todayNewsLetter.thumbnail ??
+                              'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                          isBookMark: controller.isEditorBookMark.value,
+                          onEditor: () {
+                            controller.isEditorBookMark.value
+                                ? controller.isEditorBookMark.value = false
+                                : controller.isEditorBookMark.value = true;
 
-                          if (controller.isEditorBookMark.value) {
-                            controller.archives(
-                                'NEWS', controller.homeModel!.todayNewsLetter.id);
+                            if (controller.isEditorBookMark.value) {
+                              controller.archives(
+                                  'NEWS', controller.homeModel!.todayNewsLetter.id);
 
-                            showDialog(
-                              barrierDismissible: false,
-                              context: context,
-                              builder: (BuildContext context) {
-                                return StatefulBuilder(
-                                  builder:
-                                      (BuildContext context, StateSetter setState) {
-                                    return ArchiveDialog();
-                                  },
-                                );
-                              },
-                            );
-                          }
-                        },
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return StatefulBuilder(
+                                    builder:
+                                        (BuildContext context, StateSetter setState) {
+                                      return ArchiveDialog();
+                                    },
+                                  );
+                                },
+                              );
+                            }
+                          },
+                        ),
                       ),
                     ),
                   ),
