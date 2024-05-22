@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../viewModel/profile_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
+
+final profileController = Get.find<ProfileViewModel>();
 
 class HintDialog extends StatelessWidget {
   const HintDialog({super.key});
@@ -15,7 +18,7 @@ class HintDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      //insetPadding: EdgeInsets.zero,
+      insetPadding: EdgeInsets.zero,
       contentPadding: const EdgeInsets.only(
           left: 16.0, right: 16.0, bottom: 32),
       title: Row(
@@ -27,7 +30,7 @@ class HintDialog extends StatelessWidget {
             height: 31,
           ),
           Text(
-            "3 방알",
+            "3방울",
             style: FontStyles.Headline2_b.copyWith(
                 color: AppColors.v6),
           ),
@@ -71,7 +74,7 @@ class HintDialog extends StatelessWidget {
                     const EdgeInsets.fromLTRB(
                         24, 14, 13, 14),
                     child: Text(
-                      '현재 보유 토큰',
+                      '현재 보유 방울',
                       style:
                       FontStyles.Ln1_m.copyWith(
                           color:
@@ -86,9 +89,9 @@ class HintDialog extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(
-                        right: 13.0),
+                        right: 24.0),
                     child: Text(
-                      '20',
+                      profileController.profileModel?.reward?.toString() ?? '6',
                       style:
                       FontStyles.Ln1_m.copyWith(
                           color:
