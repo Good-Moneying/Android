@@ -50,7 +50,10 @@ class HomeScreen extends GetView<HomeViewModel> {
               backgroundColor: Colors.white,
               title: Row(
                 children: [
-                  SvgPicture.asset('assets/icons/home_appBar.svg'),
+                  SvgPicture.asset('assets/icons/home_appBar.svg',
+                    width: 74,
+                    fit: BoxFit.fitWidth,
+                  ),
                   Spacer(),
                   SvgPicture.asset('assets/icons/notification.svg')
                 ],
