@@ -6,6 +6,7 @@ import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
+import 'package:meetup/viewModel/nickname_viewModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import '../routes/get_pages.dart';
@@ -101,6 +102,8 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
           bool isRegistered = response.data['isRegistered'];
 
           //유저 닉네임도 받아와야함
+          NicknameViewModel nicknameViewModel = Get.find<NicknameViewModel>();
+          nicknameViewModel.nickname = 'test';
 
           if (isRegistered == true) {
             //홈 화면 고고

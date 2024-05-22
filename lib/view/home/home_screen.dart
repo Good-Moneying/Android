@@ -12,6 +12,7 @@ import 'package:meetup/design/widgets/home/editor_card.dart';
 import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/design/widgets/home/recommend_box.dart';
 import 'package:meetup/design/widgets/home/today_word.dart';
+import 'package:meetup/viewModel/nickname_viewModel.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
@@ -22,7 +23,7 @@ import '../../routes/get_pages.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class HomeScreen extends GetView<HomeViewModel> {
-  // final userController = Get.find<UserViewModel>();
+  final userNickname= Get.find<NicknameViewModel>().nickname;
 
   @override
   Widget build(BuildContext context) {
@@ -206,11 +207,11 @@ class HomeScreen extends GetView<HomeViewModel> {
                           text: TextSpan(
                             children: [
                               //닉네임 들어갈 부분
-                              /*TextSpan(
-                              text: userController.nicknameController.value.text,
+                              TextSpan(
+                              text: userNickname,
                               style: FontStyles.Headline2_b.copyWith(
                                   color: AppColors.v6),
-                            ),*/
+                            ),
                               TextSpan(
                                 text: '님에게 추천해요!',
                                 style: FontStyles.Headline2_b.copyWith(
