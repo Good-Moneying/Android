@@ -27,7 +27,15 @@ class ResultQuizScreen extends GetView<QuizViewModel> {
     Get.put(QuizViewModel());
     return Scaffold(
       appBar: BackAppBar(iconColor: AppColors.black, title: null,),
-      body: _partCorrect(),
+      body: Obx(
+          () {
+            if(controller.quizResult==4) {
+              return _allCorrect();
+            } else {
+              return _partCorrect();
+            }
+          }
+      ),
     );
   }
 }
