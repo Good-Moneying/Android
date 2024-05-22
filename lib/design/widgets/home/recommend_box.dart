@@ -30,6 +30,7 @@ class RecommendU extends StatelessWidget {
     return Stack(
       children: [
         Card(
+          elevation: 0,
           color: AppColors.white,
           surfaceTintColor: Colors.transparent,
           shape:
@@ -45,7 +46,7 @@ class RecommendU extends StatelessWidget {
                   child: Image.network(
                     image,
                     height: Get.height * 0.13,
-                    width: Get.width * 0.3,
+                    width: Get.width * 0.25,
                     fit: BoxFit.fill,
                   ),
                 ),

@@ -11,6 +11,7 @@ import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../routes/get_pages.dart';
 import '../../service/auth_service.dart';
+import '../../viewModel/nickname_viewModel.dart';
 import '../../viewModel/user_viewModel.dart';
 
 class WelcomeScreen extends GetView<UserViewModel> {
@@ -100,6 +101,9 @@ class WelcomeScreen extends GetView<UserViewModel> {
                         //controller.userCategory.value,
                         "goal": controller.userGoal.value,
                       };
+
+                      NicknameViewModel nicknameViewModel = Get.find<NicknameViewModel>();
+                      nicknameViewModel.nickname = controller.nicknameController.value.text;
 
                       //서버에 데이터 전송
                       await onboarding(formData);

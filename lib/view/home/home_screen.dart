@@ -166,7 +166,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                           textStyle: FontStyles.Caption2_r.copyWith(
                               color: AppColors.v6),
                           decoration: ShapeDecoration(
-                            // borderRadius: BorderRadius.circular(8.0),
+                            //borderRadius: BorderRadius.circular(8.0),
                             color: AppColors.v1.withOpacity(0.95),
                             shape: ToolTipBalloon(),
                           ),
@@ -408,7 +408,6 @@ class HomeScreen extends GetView<HomeViewModel> {
                   ),
                   Obx(
                     () => Padding(
-                      //padding: const EdgeInsets.fromLTRB(24, 24, 24, 8),
                       padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
                       child: TodayWord(
                         title: controller.homeModel?.todayTerm.koreanName ??

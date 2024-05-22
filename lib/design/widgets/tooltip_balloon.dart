@@ -20,7 +20,7 @@ class ToolTipBalloon extends ShapeBorder {
     //화살표 모양 및 위치 조정
     return Path()
       ..addRRect(
-          RRect.fromRectAndRadius(rect, Radius.circular(rect.height / 3)))
+          RRect.fromRectAndRadius(rect, Radius.circular(8)))
       ..moveTo(rect.topCenter.dx - 3, rect.topCenter.dy)
       ..relativeLineTo(4, -8)
       ..relativeLineTo(4, 8)
