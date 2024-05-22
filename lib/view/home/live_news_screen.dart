@@ -27,32 +27,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Container(
-                    width: 77,
-                    height: 22,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: AppColors.g2)),
-                    child: Center(
-                      child: RichText(
-                        text: TextSpan(
-                          text: '실시간 ',
-                          style: FontStyles.Caption2_sb.copyWith(
-                              color: AppColors.g5), //기본style을 지정해줘야함
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: ' TOP1',
-                              style: FontStyles.Caption2_sb.copyWith(
-                                  color: AppColors.v5), //기본style을 지정해줘야함
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Row(
@@ -169,130 +144,133 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                 ),
                 Container(
                   width: 380,
-                  height: 300,
+                  //height: 300,
                   margin: EdgeInsets.only(top: 16),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10.0),
                       color: AppColors.g1),
-                  child: Column(
-                    children: [
-                      Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
-                              alignment: Alignment.topCenter,
-                              // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                              child: Text(
-                                "3줄 요약",
-                                style: FontStyles.Heading1_b.copyWith(
-                                    color: AppColors.v5),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
+                  child: IntrinsicHeight(
+                    child: Column(
+                      children: [
+                        Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
+                                  18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                              child: Align(
                                 alignment: Alignment.topCenter,
                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: Image.asset(
-                                  'assets/icons/news_cloud.png', width: 25, height: 25,)
+                                child: Text(
+                                  "3줄 요약",
+                                  style: FontStyles.Heading1_b.copyWith(
+                                      color: AppColors.v5),
+                                ),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
                               padding: const EdgeInsets.fromLTRB(
                                   18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
                               child: Align(
                                   alignment: Alignment.topCenter,
                                   // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                  child: Obx(() => Text(
-                                    controller.splitParagraph(
-                                      controller.newsLetterModel?.summary ?? 'a',
-                                      0,
-                                    ),
-                                    softWrap: true,
-                                    overflow: TextOverflow.visible, // 필요에 따라 변경
-                                    style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
-                                  ))),
+                                  child: Image.asset(
+                                    'assets/icons/news_cloud.png', width: 25, height: 25,)
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: Image.asset(
-                                  'assets/icons/news_cloud.png', width: 25, height: 25,)
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    14.0, 20.0, 18.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                                child: Align(
+                                    alignment: Alignment.topCenter,
+                                    // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                                    child: Obx(() => Text(
+                                      controller.splitParagraph(
+                                        controller.newsLetterModel?.summary ?? 'a',
+                                        0,
+                                      ),
+                                      softWrap: true,
+                                      overflow: TextOverflow.visible, // 필요에 따라 변경
+                                      style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                    ))),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
                               padding: const EdgeInsets.fromLTRB(
-                                  18.0, 0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                                  18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
                               child: Align(
                                   alignment: Alignment.topCenter,
                                   // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                  child: Obx(() => Text(
-                                    controller.splitParagraph(
-                                      controller.newsLetterModel?.summary ?? 'a',
-                                      1,
-                                    ),
-                                    softWrap: true,
-                                    overflow: TextOverflow.visible, // 필요에 따라 변경
-                                    style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
-                                  ))),
+                                  child: Image.asset(
+                                    'assets/icons/news_cloud.png', width: 25, height: 25,)
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.fromLTRB(
-                                18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
-                            child: Align(
-                                alignment: Alignment.topCenter,
-                                // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                child: Image.asset(
-                                  'assets/icons/news_cloud.png', width: 25, height: 25,)
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    14.0, 20.0, 18.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                                child: Align(
+                                    alignment: Alignment.topCenter,
+                                    // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                                    child: Obx(() => Text(
+                                      controller.splitParagraph(
+                                        controller.newsLetterModel?.summary ?? 'a',
+                                        1,
+                                      ),
+                                      softWrap: true,
+                                      overflow: TextOverflow.visible, // 필요에 따라 변경
+                                      style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                    ))),
+                              ),
                             ),
-                          ),
-                          Expanded(
-                            child: Padding(
+                          ],
+                        ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
                               padding: const EdgeInsets.fromLTRB(
-                                  18.0, 0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                                  18.0, 20.0, 0.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
                               child: Align(
                                   alignment: Alignment.topCenter,
                                   // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
-                                  child: Obx(() => Text(
-                                    controller.splitParagraph(
-                                      controller.newsLetterModel?.summary ?? 'a',
-                                      2,
-                                    ),
-                                    softWrap: true,
-                                    overflow: TextOverflow.visible, // 필요에 따라 변경
-                                    style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
-                                  ))),
+                                  child: Image.asset(
+                                    'assets/icons/news_cloud.png', width: 25, height: 25,)
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.fromLTRB(
+                                    14.0, 20.0, 18.0, 0.0), // 상단에 20.0만큼의 패딩을 추가합니다.
+                                child: Align(
+                                    alignment: Alignment.topCenter,
+                                    // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
+                                    child: Obx(() => Text(
+                                      controller.splitParagraph(
+                                        controller.newsLetterModel?.summary ?? 'a',
+                                        2,
+                                      ),
+                                      softWrap: true,
+                                      overflow: TextOverflow.visible, // 필요에 따라 변경
+                                      style: FontStyles.Ln1_m.copyWith(color: AppColors.g6),
+                                    ))),
+                              ),
+                            ),
+                          ],
+                        )
+                        ,SizedBox(height: 20,)
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -320,58 +298,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     style: FontStyles.Ln1_r,
                   )),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 60.0),
-                  child: Text(
-                    'AI 추천 정보',
-                    style: FontStyles.Headline1_b.copyWith(color: AppColors.g6),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8.0),
-                  child: Container(
-                    width: 370,
-                    height: 83,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: AppColors.g1,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Image.asset(
-                          'assets/images/live_news_company.png',
-                          width: 150,
-                          height: 40,
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              '+5.74%',
-                              style: FontStyles.Headline1_m.copyWith(
-                                  color: Colors.red),
-                            ),
-                            Text(
-                              '173,300원',
-                              style: FontStyles.Label2_r.copyWith(
-                                  color: AppColors.g6),
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
-                    child: Container(
-                      width: 370,
-                      height: 164,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: AppColors.g1),
-                    )),
+
                 Padding(
                   padding: const EdgeInsets.only(top: 50.0),
                   child: Row(
