@@ -196,7 +196,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 32.0, left: 40),
+                    padding: const EdgeInsets.only(top: 32.0, left: 20),
                     child: Text(
                       '목표 달성률',
                       style:
@@ -209,7 +209,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 12.0),
+                    padding: const EdgeInsets.only(top: 20.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -220,13 +220,13 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.white),
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 16.0),
+                            padding: const EdgeInsets.only(left: 0.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding:
-                                      const EdgeInsets.only(top: 20.0, left: 10),
+                                      const EdgeInsets.only(top: 20,left: 15),
                                   child: RichText(
                                       text: TextSpan(
                                     text: '일주일 중에 ',
@@ -296,7 +296,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(top: 13.0),
+                                  padding: const EdgeInsets.only(top: 13.0, ),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -328,7 +328,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(40, 20, 0, 0),
+                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -340,7 +340,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(16, 5, 16, 0),
+                padding: const EdgeInsets.fromLTRB(10, 20, 16, 0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

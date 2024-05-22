@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,11 +11,14 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../viewModel/plus_home_viewModel.dart';
 
-class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
+class PlusOnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Get.put(PlusOnBoardingViewModel());
+    final plusOnBoarding = Get.put(PlusOnBoardingViewModel());
+    final plusHomeController = Get.put(PlusHomeViewModel());
+    plusHomeController.getCloudSpecific(13);
     final PageController pageControllerOnBoarding =
         PageController(initialPage: 0);
 
@@ -37,7 +41,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
                   child: PageView(
                     controller: pageControllerOnBoarding,
                     onPageChanged: (index) {
-                      controller.currentPageIndex.value = index; // 페이지 인덱스 업데이트
+                      plusOnBoarding.currentPageIndex.value = index; // 페이지 인덱스 업데이트
                     },
                     children: [
                       // 첫 번째 페이지
@@ -436,7 +440,7 @@ class PlusOnboardingScreen extends GetView<PlusOnBoardingViewModel> {
             Spacer(),
             GestureDetector(
               onTap: () {
-                controller.nextPage(); // 뷰 모델의 nextPage 메서드 호출
+                plusOnBoarding.nextPage(); // 뷰 모델의 nextPage 메서드 호출
                 pageControllerOnBoarding.nextPage(
                   duration: Duration(milliseconds: 300),
                   curve: Curves.ease,
