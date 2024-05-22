@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/viewModel/plus_onBoarding_viewModel.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -16,9 +17,14 @@ import '../../viewModel/plus_home_viewModel.dart';
 class PlusOnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final int index = arguments['index'];
+
     final plusOnBoarding = Get.put(PlusOnBoardingViewModel());
     final plusHomeController = Get.put(PlusHomeViewModel());
-    plusHomeController.getCloudSpecific(13);
+    plusHomeController.getCloudSpecific(plusHomeController.cloudHomeModel?.thinkingDetails?[index].thinkingId ?? 0);
+
     final PageController pageControllerOnBoarding =
         PageController(initialPage: 0);
 
@@ -257,22 +263,24 @@ class PlusOnboardingScreen extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(top: 50.0),
                                           child: Container(
-                                            width: 261,
-                                            height: 101,
+                                            width: 300,
+                                            height: 130,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(12),
                                               border: Border.all(
                                                   color: AppColors.v2),
                                             ),
-                                            child: Center(
-                                              child: Text('테슬라'),
+                                            child: IntrinsicHeight(
+                                              child: Center(
+                                                child: Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.'),
+                                              ),
                                             ),
                                           ),
                                         ),
                                         Positioned(
                                           top: 35,
-                                          left: 114,
+                                          left: 140,
                                           child: Image.asset(
                                             'assets/icons/plus_icon1.png',
                                             width: 32,
@@ -282,21 +290,26 @@ class PlusOnboardingScreen extends StatelessWidget {
                                       ],
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.only(top: 40),
+                                      padding: const EdgeInsets.only(top: 30),
                                       child: Container(
-                                        width: 261,
-                                        height: 47,
+                                        width: 300,
+                                        height: 80,
                                         decoration: BoxDecoration(
                                           borderRadius:
                                               BorderRadius.circular(12),
                                           border:
                                               Border.all(color: AppColors.v5),
                                         ),
-                                        child: Center(
-                                          child: Text(
-                                            '테슬라의 기술 혁신',
-                                            style: FontStyles.Ln1_sb.copyWith(
-                                                color: AppColors.v6),
+                                        child: IntrinsicHeight(
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(left: 10.0, right: 10),
+                                              child: Text(
+                                                plusHomeController.cloudSpecificModel?.summarizedComment ?? '요약할 생각이 없습니다.',
+                                                style: FontStyles.Ln1_sb.copyWith(
+                                                    color: AppColors.v6),
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
