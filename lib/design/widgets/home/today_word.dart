@@ -42,7 +42,7 @@ class TodayWord extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(right: 8.0),
+                  padding: const EdgeInsets.only(right: 12.0),
                   child: Text(
                     title,
                     style: FontStyles.Bn1_b.copyWith(color: AppColors.v6),
