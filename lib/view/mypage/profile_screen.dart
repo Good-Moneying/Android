@@ -154,7 +154,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     color: AppColors.g4),
                               ),
                               Text(
-                                '0',
+                                controller.profileModel!.follower.toString(),
                                 style: FontStyles.Ln1_m.copyWith(
                                     color: AppColors.g6),
                               )
@@ -180,7 +180,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     color: AppColors.g4),
                               ),
                               Text(
-                                '0',
+                                controller.profileModel!.followee.toString(),
                                 style: FontStyles.Ln1_m.copyWith(
                                     color: AppColors.g6),
                               )
@@ -365,10 +365,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             padding: const EdgeInsets.only(top: 16.0),
                             child: Column(children:
                             [
-                              Text(
-                                '글로벌',
-                                style: FontStyles.Bn2_sb.copyWith(
-                                    color: AppColors.black),
+                              Obx(()=>
+                                Text(
+                                  controller.profileModel?.counts?[0].categoryName ?? ' ',
+                                  style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.black),
+                                ),
                               ),
                               Obx(()
                                 => RichText(
@@ -408,10 +410,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
                               child: Column(children: [
-                                Text(
-                                  '코인',
-                                  style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.black),
+                                Obx(()=>
+                                  Text(
+                                    controller.profileModel?.counts?[1].categoryName ?? ' ',
+                                    style: FontStyles.Bn2_sb.copyWith(
+                                        color: AppColors.black),
+                                  ),
                                 ),
                                 Obx(()
                                   => RichText(
@@ -461,10 +465,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                           Padding(
                             padding: const EdgeInsets.only(top: 16.0),
                             child: Column(children: [
-                              Text(
-                                '금리',
-                                style: FontStyles.Bn2_sb.copyWith(
-                                    color: AppColors.black),
+                              Obx(()=>
+                                Text(
+                                  controller.profileModel?.counts?[2].categoryName ?? ' ',
+                                  style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.black),
+                                ),
                               ),
                               Obx(()
                                 => RichText(
@@ -508,10 +514,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               padding: const EdgeInsets.only(top: 16.0),
                               child: Column(
                                   children: [
-                                Text(
-                                  '부동산',
-                                  style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.black),
+                                Obx(()
+                                  =>Text(
+                                    controller.profileModel?.counts?[3].categoryName ?? ' ',
+                                    style: FontStyles.Bn2_sb.copyWith(
+                                        color: AppColors.black),
+                                  ),
                                 ),
                                 Obx(()
                                   => RichText(
