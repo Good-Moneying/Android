@@ -413,7 +413,7 @@ _quizFalse() {
               image:
               homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
               title:
-              homeController.homeModel!.customizeNewsLetters[2].title,
+              '당근마켓서 물건 팔았는데 세금 내야 할까... 국세청 기준은?',
               tag: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: homeController.parseCustom1().map((keyword) {

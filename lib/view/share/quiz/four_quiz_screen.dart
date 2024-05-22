@@ -36,7 +36,7 @@ class FourthQuizScreen extends GetView<QuizViewModel> {
       body: Obx(() {
         if (controller.init4.value) {
           return _quiz(context);
-        } else if (controller.firstQ4.value) {
+        } else if (controller.fourthQ.value) {
           return _quizCorrect();
         } else {
           return _quizFalse();
@@ -54,12 +54,23 @@ _quiz(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.55,
+            percent: 1,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('4/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 4',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -68,7 +79,7 @@ _quiz(BuildContext context) {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '유럽연합(EU)이 중국산 제품에 추가 관세를 부과할 계획인 품목이 아닌 것은 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -77,27 +88,27 @@ _quiz(BuildContext context) {
                 quizController.init4(false);
                 quizController.firstQ4(true);
               },
-              child: ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다')),
+              child: ChoiceQuiz(number: 'A', detail: '전기차')),
           GestureDetector(
               onTap: () {
                 quizController.init4(false);
                 quizController.secondQ4(true);
               },
-              child: ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다')
+              child: ChoiceQuiz(number: 'B', detail: '전기자전거')
           ),
           GestureDetector(
               onTap: () {
                 quizController.init4(false);
                 quizController.thirdQ4(true);
               },
-              child: ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다')
+              child: ChoiceQuiz(number: 'C', detail: '풍력발전 터빈')
           ),
           GestureDetector(
               onTap: () {
                 quizController.init4(false);
                 quizController.fourthQ4(true);
               },
-              child: ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다')
+              child: ChoiceQuiz(number: 'D', detail: '의류')
           ),
           Spacer(),
           Row(
@@ -152,12 +163,23 @@ _quizCorrect() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.55,
+            percent: 1,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('4/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 4',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -166,7 +188,7 @@ _quizCorrect() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '유럽연합(EU)이 중국산 제품에 추가 관세를 부과할 계획인 품목이 아닌 것은 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -250,12 +272,23 @@ _quizFalse() {
         mainAxisSize: MainAxisSize.min,
         children: [
           MyProgressBar(
-            percent: 0.55,
+            percent: 1,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('4/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 4',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -264,7 +297,7 @@ _quizFalse() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '유럽연합(EU)이 중국산 제품에 추가 관세를 부과할 계획인 품목이 아닌 것은 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -375,7 +408,7 @@ _quizFalse() {
               image:
               homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
               title:
-              homeController.homeModel!.customizeNewsLetters[2].title,
+              '너무 싸게 팔아도 문제다?',
               tag: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: homeController.parseCustom1().map((keyword) {
