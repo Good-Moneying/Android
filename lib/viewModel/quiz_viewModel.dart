@@ -38,5 +38,6 @@ class QuizViewModel extends GetxController {
   Rx<String> wrongQ4 = 'init'.obs;
   Rx<String> wrongDetail4 = 'init'.obs;
 
+  Rx<int> quizResult = 0.obs;
 
 }

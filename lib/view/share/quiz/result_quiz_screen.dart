@@ -13,19 +13,21 @@ import '../../../design/widgets/progress_bar.dart';
 import '../../../routes/get_pages.dart';
 import '../../../viewModel/home_viewModel.dart';
 import '../../../design/widgets/history_widget.dart';
+import '../../../viewModel/quiz_viewModel.dart';
 
-
+final quizController = Get.find<QuizViewModel>();
 final homeController = Get.find<HomeViewModel>();
 
 
-class ResultQuizScreen extends StatelessWidget {
+class ResultQuizScreen extends GetView<QuizViewModel> {
   const ResultQuizScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    Get.put(QuizViewModel());
     return Scaffold(
       appBar: BackAppBar(iconColor: AppColors.black, title: null,),
-      body: _allCorrect(),
+      body: _partCorrect(),
     );
   }
 }
@@ -56,12 +58,12 @@ _partCorrect() {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '8개 중 ',
+                    text: '4개 중 ',
                     style: FontStyles.Headline2_b.copyWith(
                         color: AppColors.black),
                   ),
                   TextSpan(
-                    text: '3개',
+                    text: '${quizController.quizResult}개',
                     style: FontStyles.Headline2_b.copyWith(
                         color: AppColors.v5),
                   ),
@@ -102,12 +104,7 @@ _partCorrect() {
                   homeController.homeModel?.customizeNewsLetters[0].thumbnail ?? 'no data',
                   title:
                   homeController.homeModel!.customizeNewsLetters[0].title,
-                  tag: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: homeController.parseCustom1().map((keyword) {
-                      return CustomChip(label: keyword);
-                    }).toList(),
-                  ),
+                  tag: CustomChip(label: homeController.parseCustom1()[0],),
                   isRecommend: homeController.isRecommendThird.value,
                   onRecommend: () {
                     homeController.isRecommendThird.value
@@ -126,12 +123,7 @@ _partCorrect() {
                   homeController.homeModel?.customizeNewsLetters[1].thumbnail ?? 'no data',
                   title:
                   homeController.homeModel!.customizeNewsLetters[1].title,
-                  tag: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: homeController.parseCustom2().map((keyword) {
-                      return CustomChip(label: keyword);
-                    }).toList(),
-                  ),
+                  tag: CustomChip(label: homeController.parseCustom1()[0],),
                   isRecommend: homeController.isRecommendThird.value,
                   onRecommend: () {
                     homeController.isRecommendThird.value
@@ -150,12 +142,7 @@ _partCorrect() {
                   homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
                   title:
                   homeController.homeModel!.customizeNewsLetters[2].title,
-                  tag: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: homeController.parseCustom3().map((keyword) {
-                      return CustomChip(label: keyword);
-                    }).toList(),
-                  ),
+                  tag: CustomChip(label: homeController.parseCustom1()[0],),
                   isRecommend: homeController.isRecommendThird.value,
                   onRecommend: () {
                     homeController.isRecommendThird.value
@@ -213,12 +200,12 @@ _allCorrect() {
               text: TextSpan(
                 children: [
                   TextSpan(
-                    text: '8개 중 ',
+                    text: '4개 중 ',
                     style:
                         FontStyles.Headline2_b.copyWith(color: AppColors.black),
                   ),
                   TextSpan(
-                    text: '8개 ',
+                    text: '4개 ',
                     style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
                   ),
                   TextSpan(

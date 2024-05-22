@@ -2,8 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../viewModel/quiz_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
+
+
 
 class AnswerQuiz extends StatelessWidget {
   final String number;
@@ -17,6 +20,7 @@ class AnswerQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Container(
