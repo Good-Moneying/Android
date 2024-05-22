@@ -103,7 +103,7 @@ Future<bool> isSignup(LoginPlatform loginPlatform, String accessToken) async {
 
           //유저 닉네임도 받아와야함
           NicknameViewModel nicknameViewModel = Get.find<NicknameViewModel>();
-          nicknameViewModel.nickname = 'test';
+          nicknameViewModel.nickname = response.data['nickname'];
 
           if (isRegistered == true) {
             //홈 화면 고고
