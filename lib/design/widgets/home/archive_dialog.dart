@@ -23,7 +23,7 @@ class ArchiveDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       insetPadding: EdgeInsets.only(left: 8.0, right: 8.0),
-      titlePadding: EdgeInsets.only(right: 16.0),
+      titlePadding: EdgeInsets.zero,
       contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 32),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.end,

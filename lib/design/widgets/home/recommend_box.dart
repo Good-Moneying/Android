@@ -96,7 +96,7 @@ class RecommendU extends StatelessWidget {
           ),
         ),
         Positioned(
-          left: 145,
+          left: 140,
           bottom: 10,
           child: Row(
             mainAxisSize: MainAxisSize.min,
