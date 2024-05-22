@@ -456,7 +456,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                           () => GestureDetector(
                             onTap: () {
                               if (controller.isSummary.value) {
-                                controller.nextPage(); // 뷰 모델의 nextPage 메서드 호출
+                                controller.nextPage(index); // 뷰 모델의 nextPage 메서드 호출
                                 pageController.nextPage(
                                   duration: Duration(milliseconds: 300),
                                   curve: Curves.ease,

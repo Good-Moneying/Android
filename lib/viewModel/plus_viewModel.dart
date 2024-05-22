@@ -38,11 +38,11 @@ class PlusViewModel extends GetxController {
   }
 
 
-  void nextPage() {
+  void nextPage(int index) {
     if (currentPageIndex.value < 3) {
       currentPageIndex.value++;
     } else{
-      Get.toNamed(Routes.PLUSCOMPLETE);
+      Get.toNamed(Routes.PLUSCOMPLETE, arguments: {'index': index});
     }
   }
 
