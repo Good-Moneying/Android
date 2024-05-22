@@ -64,11 +64,11 @@ class WelcomeScreen extends GetView<UserViewModel> {
                     ],
                   ),
                 ),
-                Lottie.asset(
-                  width: 80,
-                  height: 84,
-                  'assets/lottie/grumi_onboarding.json',
-                  //repeat: false,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/gurumi_welcome.png'),
+                  ],
                 ),
                 Spacer(),
                 SizedBox(
