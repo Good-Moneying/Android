@@ -18,8 +18,12 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
 
   @override
   Widget build(BuildContext context) {
+    final arguments = Get.arguments as Map<String, dynamic>;
+    final int index = arguments['index'];
+
     Get.put(PlusViewModel());
-    controller.postAllSentences(1);
+    final plusHomeController = Get.put(PlusHomeViewModel());
+    controller.postAllSentences(plusHomeController.cloudHomeModel?.thinkingDetails?[index].thinkingId ?? 0);
     return Scaffold(
         backgroundColor: AppColors.g1,
         appBar: PlusCompleteAppBar(iconColor: AppColors.black, title: null,),

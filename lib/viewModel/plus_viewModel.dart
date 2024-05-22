@@ -20,7 +20,7 @@ class PlusViewModel extends GetxController {
   TextEditingController plusComment = TextEditingController();
   PageController pageControllerOnBoarding = PageController(initialPage: 0);
   final RxInt currentPageIndex = 0.obs;
-  RxList<CloudSentenceModel> sentencesList = List.generate(5, (_) => CloudSentenceModel('ㅂ'), growable: true).obs;
+  RxList<CloudSentenceModel> sentencesList = List.generate(5, (_) => CloudSentenceModel(' '), growable: true).obs;
   Rx<String> summary = ''.obs;
 
 
@@ -38,11 +38,11 @@ class PlusViewModel extends GetxController {
   }
 
 
-  void nextPage() {
+  void nextPage(int index) {
     if (currentPageIndex.value < 3) {
       currentPageIndex.value++;
     } else{
-      Get.toNamed(Routes.PLUSCOMPLETE);
+      Get.toNamed(Routes.PLUSCOMPLETE, arguments: {'index': index});
     }
   }
 

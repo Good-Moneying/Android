@@ -34,6 +34,7 @@ class ProfileRepository{
       print('마이페이지 테스트');
       print(response.statusCode);
       if (response.statusCode == 200) {
+        print('마이페이지1 : ${response.data}');
         return ProfileModel.fromJson(response.data);
       } else {
         throw Exception('마이페이지 실패! : ${response.statusCode} - ${response.statusMessage}');
@@ -60,6 +61,7 @@ class ProfileRepository{
       print('아카이브 단어 테스트');
       print(response.statusCode);
       if (response.statusCode == 200) {
+        print('마이페이지2 : ${response.data}');
         return ArchivesTermModel.fromJson(response.data);
       } else {
         throw Exception('failed!! : ${response.statusCode} - ${response.statusMessage}');
@@ -95,6 +97,7 @@ class ProfileRepository{
       print('아카이브 뉴스 테스트');
       print(response.statusCode);
       if (response.statusCode == 200) {
+        print('마이페이지3 : ${response.data}');
         return ArchivesNewsLetterModel.fromJson(response.data);
       } else {
         throw Exception('마이페이지 실패!!! : ${response.statusCode} - ${response.statusMessage}');

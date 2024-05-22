@@ -59,11 +59,13 @@ class PlusScreen extends StatelessWidget {
               }
 
               List<Widget> thinkingDetailsWidgets = [];
-              for (var detail in plusHomeController.cloudHomeModel!.thinkingDetails!) {
+              for (var i = 0; i < plusHomeController.cloudHomeModel!.thinkingDetails!.length; i++) {
+                var detail = plusHomeController.cloudHomeModel!.thinkingDetails![i];
                 var newsLetter = newsController.getNewsLetterFromCache(detail.newsLetterId ?? 0);
                 if (newsLetter != null) {
                   thinkingDetailsWidgets.add(
                     PlusMainContainer(
+                      index: i, // 인덱스를 전달
                       comment: newsLetter.title,
                       thumbnailUrl: detail.thumbnailUrl,
                       summarizedComment: detail.comment,
@@ -133,94 +135,3 @@ class PlusScreen extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-    /*Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Center(
-                        child: Obx(() {
-                          if (plusHomeController.cloudHomeModel == null ||
-                              plusHomeController
-                                      .cloudHomeModel!.thinkingDetails ==
-                                  null) {
-                            return CircularProgressIndicator();
-                          }
-
-                          List<Widget> thinkingDetailsWidgets = [];
-                          for (int i = 0;
-                              i <
-                                  plusHomeController
-                                      .cloudHomeModel!.thinkingDetails!.length;
-                              i++) {
-                            newsController.getEditorNews(plusHomeController
-                                    .cloudHomeModel
-                                    ?.thinkingDetails?[i]
-                                    .newsLetterId ??
-                                0);
-                            thinkingDetailsWidgets.add(
-                              PlusMainContainer(
-                                comment: newsController.newsLetterModel?.title,
-                                thumbnailUrl: plusHomeController.cloudHomeModel!
-                                    .thinkingDetails![i].thumbnailUrl,
-                                summarizedComment: plusHomeController
-                                    .cloudHomeModel!
-                                    .thinkingDetails![i]
-                                    .summarizedComment,
-                              ),
-                            );
-                          }
-
-                          return Column(
-                            children: thinkingDetailsWidgets,
-                          );
-                        }),
-                      ),
-                    ],
-                  ),*//*
-                  SizedBox(height: 12),
-                ],
-              ),
-            );
-          }
-        },
-      ),
-    );
-  }
-}*/
-          /*else {
-            return SingleChildScrollView(
-              child: Obx(() {
-                if (plusHomeController.cloudHomeModel == null ||
-                    plusHomeController.cloudHomeModel!.thinkingDetails == null) {
-                  return Center(child: CircularProgressIndicator());
-                }
-
-                List<Widget> thinkingDetailsWidgets = [];
-                for (var detail in plusHomeController.cloudHomeModel!.thinkingDetails!) {
-                  var newsLetter = newsController.getNewsLetterFromCache(detail.newsLetterId ?? 0);
-                  if (newsLetter != null) {
-                    thinkingDetailsWidgets.add(
-                      PlusMainContainer(
-                        comment: newsLetter.title,
-                        thumbnailUrl: detail.thumbnailUrl,
-                        summarizedComment: detail.summarizedComment,
-                      ),
-                    );
-                  }
-                }
-
-                return Column(
-                  children: thinkingDetailsWidgets,
-                );
-              }),
-            );
-          }
-        },
-      ),
-    );
-  }
-}*/

@@ -403,7 +403,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             ],
                           ),
                         ),
-                      ),
+       ),
                       Padding(
                           padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
                           child: Container(
