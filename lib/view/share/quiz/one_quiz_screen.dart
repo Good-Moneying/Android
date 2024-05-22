@@ -385,12 +385,7 @@ _quizFalse() {
               homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
               title:
               '당근마켓서 물건 팔았는데 세금 내야 할까... 국세청 기준은?',
-              tag: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: homeController.parseCustom1().map((keyword) {
-                  return CustomChip(label: keyword);
-                }).toList(),
-              ),
+              tag: CustomChip(label: homeController.parseCustom1()[0],),
               isRecommend: homeController.isRecommendThird.value,
               onRecommend: () {
                 homeController.isRecommendThird.value

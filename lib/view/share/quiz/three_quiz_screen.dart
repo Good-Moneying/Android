@@ -380,12 +380,7 @@ _quizFalse() {
               homeController.homeModel?.todayNewsLetter.thumbnail ?? 'no data',
               title:
               homeController.homeModel!.todayNewsLetter.title,
-              tag: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: homeController.parseCustom1().map((keyword) {
-                  return CustomChip(label: keyword);
-                }).toList(),
-              ),
+              tag: CustomChip(label: homeController.parseCustom1()[0],),
               isRecommend: homeController.isRecommendThird.value,
               onRecommend: () {
                 homeController.isRecommendThird.value

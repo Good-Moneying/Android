@@ -380,12 +380,7 @@ _quizFalse() {
               homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
               title:
               '너무 싸게 팔아도 문제다?',
-              tag: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: homeController.parseCustom1().map((keyword) {
-                  return CustomChip(label: keyword);
-                }).toList(),
-              ),
+              tag: CustomChip(label: homeController.parseCustom1()[0],),
               isRecommend: homeController.isRecommendThird.value,
               onRecommend: () {
                 homeController.isRecommendThird.value
