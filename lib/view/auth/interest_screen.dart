@@ -30,7 +30,7 @@ class InterestScreen extends GetView<UserViewModel> {
       ),
       body: SafeArea(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(16, 10, 16, 16),
+        padding: EdgeInsets.fromLTRB(16, 10, 16, 24),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -64,12 +64,12 @@ class InterestScreen extends GetView<UserViewModel> {
             SizedBox(
               height: Get.height * 0.02,
             ),
-            Text(
-              '관심사와 관련된 뉴스레터를 받아보세요!',
-              style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
-            ),
-            SizedBox(
-              height: Get.height * 0.06,
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40.0),
+              child: Text(
+                '관심사와 관련된 뉴스레터를 받아보세요!',
+                style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
+              ),
             ),
             //1열
             Row(
@@ -91,8 +91,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '글로벌',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -116,8 +116,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '금융',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -127,7 +127,7 @@ class InterestScreen extends GetView<UserViewModel> {
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
-                        () => InkWell(
+                    () => InkWell(
                       onTap: () {
                         controller.selectInterest(2);
                       },
@@ -141,8 +141,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '증권',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -174,8 +174,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '부동산',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -185,7 +185,7 @@ class InterestScreen extends GetView<UserViewModel> {
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
-                        () => InkWell(
+                    () => InkWell(
                       onTap: () {
                         controller.selectInterest(4);
                       },
@@ -199,8 +199,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '기업',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -210,7 +210,7 @@ class InterestScreen extends GetView<UserViewModel> {
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
-                        () => InkWell(
+                    () => InkWell(
                       onTap: () {
                         controller.selectInterest(5);
                       },
@@ -224,8 +224,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '테크',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -243,7 +243,7 @@ class InterestScreen extends GetView<UserViewModel> {
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
-                        () => InkWell(
+                    () => InkWell(
                       onTap: () {
                         controller.selectInterest(6);
                       },
@@ -257,8 +257,8 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '라이프',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
@@ -268,7 +268,7 @@ class InterestScreen extends GetView<UserViewModel> {
                 Flexible(
                   fit: FlexFit.tight,
                   child: Obx(
-                        () => InkWell(
+                    () => InkWell(
                       onTap: () {
                         controller.selectInterest(7);
                       },
@@ -282,12 +282,23 @@ class InterestScreen extends GetView<UserViewModel> {
                           ),
                           Text(
                             '정책',
-                            style: FontStyles.Br1_sb.copyWith(
-                                color: AppColors.g4),
+                            style:
+                                FontStyles.Br1_sb.copyWith(color: AppColors.g4),
                           ),
                         ],
                       ),
                     ),
+                  ),
+                ),
+                Flexible(
+                  fit: FlexFit.tight,
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        'assets/icons/policy_unfill.png',
+                        color: AppColors.white,
+                      ),
+                    ],
                   ),
                 ),
               ],
