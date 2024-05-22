@@ -59,19 +59,6 @@ class PlusScreen extends StatelessWidget {
               }
 
               List<Widget> thinkingDetailsWidgets = [];
-              /*for (var detail in plusHomeController.cloudHomeModel!.thinkingDetails!) {
-                var newsLetter = newsController.getNewsLetterFromCache(detail.newsLetterId ?? 0);
-                if (newsLetter != null) {
-                  thinkingDetailsWidgets.add(
-                    PlusMainContainer(
-                      index: i,
-                      comment: newsLetter.title,
-                      thumbnailUrl: detail.thumbnailUrl,
-                      summarizedComment: detail.comment,
-                    ),
-                  );
-                }
-              }*/
               for (var i = 0; i < plusHomeController.cloudHomeModel!.thinkingDetails!.length; i++) {
                 var detail = plusHomeController.cloudHomeModel!.thinkingDetails![i];
                 var newsLetter = newsController.getNewsLetterFromCache(detail.newsLetterId ?? 0);

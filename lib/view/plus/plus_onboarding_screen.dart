@@ -8,6 +8,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:meetup/design/widgets/home/news_slider.dart';
 import 'package:meetup/viewModel/plus_onBoarding_viewModel.dart';
+import 'package:meetup/viewModel/plus_viewModel.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -453,7 +454,7 @@ class PlusOnboardingScreen extends StatelessWidget {
             Spacer(),
             GestureDetector(
               onTap: () {
-                plusOnBoarding.nextPage(); // 뷰 모델의 nextPage 메서드 호출
+                plusOnBoarding.nextPage(index); // 뷰 모델의 nextPage 메서드 호출
                 pageControllerOnBoarding.nextPage(
                   duration: Duration(milliseconds: 300),
                   curve: Curves.ease,

@@ -8,11 +8,11 @@ class PlusOnBoardingViewModel extends GetxController {
   final RxInt currentPageIndex = 0.obs;
 
 
-  void nextPage() {
+  void nextPage(int index) {
     if (currentPageIndex.value < 4) {
       currentPageIndex.value++;
     } else{
-      Get.toNamed(Routes.PLUSSTEP);
+      Get.toNamed(Routes.PLUSSTEP, arguments: {'index': index});
     }
   }
 
