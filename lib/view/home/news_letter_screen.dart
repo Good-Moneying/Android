@@ -15,6 +15,7 @@ import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/comment_widget.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import '../../design/widgets/chip_editor.dart';
+import '../../design/widgets/home/archive_dialog.dart';
 import '../../viewModel/home_viewModel.dart';
 import '../../model/comment_model.dart';
 
@@ -93,8 +94,32 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                   //Expanded(child: Container()),
                                   IconButton(
                                     icon: SvgPicture.asset(
-                                        'assets/icons/bookmark_unfill.svg'),
-                                    onPressed: () {},
+                                        controller.isEditorBookMark.value
+                                          ? 'assets/icons/bookmark_fill.svg'
+                                          : 'assets/icons/bookmark_unfill.svg'),
+                                    onPressed: () {
+                                      controller.isEditorBookMark.value
+                                          ? controller.isEditorBookMark.value = false
+                                          : controller.isEditorBookMark.value = true;
+
+                                      if (controller.isEditorBookMark.value) {
+                                        controller.archives(
+                                            'NEWS', controller.homeModel!.todayNewsLetter.id);
+
+                                        showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return StatefulBuilder(
+                                              builder:
+                                                  (BuildContext context, StateSetter setState) {
+                                                return ArchiveDialog();
+                                              },
+                                            );
+                                          },
+                                        );
+                                      }
+                                    },
                                   ),
                                 ],
                               ),
@@ -841,26 +866,14 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                           child: ElevatedButton(
                                                             onPressed: () async {
                                                               //댓글 작성하기
-                                                              await controller
-                                                                  .postComment(
+                                                              await controller.postComment(
                                                                 'EDITOR',
-                                                                controller
-                                                                    .homeModel!
-                                                                    .todayNewsLetter
-                                                                    .id,
-                                                                controller
-                                                                    .editorController
-                                                                    .value.text,
-                                                                controller
-                                                                    .setPerspective(
-                                                                    controller
-                                                                        .isDialogAgreeList
-                                                                        .value),
+                                                                controller.homeModel!.todayNewsLetter.id,
+                                                                controller.editorController.value.text,
+                                                                controller.setPerspective(controller.isDialogAgreeList.value),
                                                               );
 
-                                                              controller
-                                                                  .editorController
-                                                                  .clear();
+                                                              controller.editorController.clear();
                                                               Get.back();
                                                             },
                                                             style: ElevatedButton
@@ -939,69 +952,126 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                               top: 16.0),
                                           child: controller.isPostEditorNews
                                               .value
-                                              ? ListView.builder(
+                                              ? ListView(
                                               shrinkWrap: true,
                                               physics: NeverScrollableScrollPhysics(),
-                                              itemCount: controller.comments
-                                                  .length,
-                                              itemBuilder: (context, index) {
-                                                String perspective = controller
-                                                    .comments[index]
-                                                    .perspective;
-                                                String content = controller
-                                                    .comments[index].content;
-
-                                                return CommentWidget(
+                                              children: [
+                                                CommentWidget(
                                                   writer: '연디',
-                                                  time: '5분 전',
-                                                  content: content,
-                                                  perspective: perspective,
+                                                  time: '1분 전',
+                                                  content: controller.editorController.value.text,
+                                                  perspective: controller.setPerspective(controller.isDialogAgreeList.value),
                                                   onFollow: ElevatedButton(
-                                                    onPressed: () {},
-                                                    style: ElevatedButton
-                                                        .styleFrom(
+                                                    onPressed: () {
+                                                      if (controller.isFollowE.value == false) {
+                                                        controller.isFollowE(true);
+                                                      } else {
+                                                        controller.isFollowE(false);
+                                                      }
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                                       minimumSize: Size.zero,
-                                                      padding: EdgeInsetsDirectional
-                                                          .symmetric(
-                                                          horizontal: 8,
-                                                          vertical: 2),
-                                                      backgroundColor: AppColors
-                                                          .g6,
+                                                      padding:
+                                                      EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                                      backgroundColor:
+                                                      controller.isFollowE.value ? AppColors.g2 : AppColors.g6,
                                                       shape: RoundedRectangleBorder(
-                                                        borderRadius: BorderRadius
-                                                            .circular(4),
+                                                        borderRadius: BorderRadius.circular(4),
                                                       ),
                                                     ),
                                                     child: Text(
-                                                      '팔로우',
-                                                      style: FontStyles
-                                                          .Caption2_m
-                                                          .copyWith(
-                                                          color: AppColors
-                                                              .white),
+                                                      controller.isFollowE.value ? '팔로잉' : '팔로우',
+                                                      style: FontStyles.Caption2_m.copyWith(
+                                                          color: controller.isFollowE.value
+                                                              ? AppColors.g5
+                                                              : AppColors.white),
                                                     ),
                                                   ),
-                                                  onLike: Row(
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets
-                                                            .only(right: 4.0),
-                                                        child:
-                                                        SvgPicture.asset(
-                                                            'assets/icons/unlike_comment.svg'),
-                                                      ),
-                                                      Text(
-                                                        '27',
-                                                        style: FontStyles
-                                                            .Caption2_m
-                                                            .copyWith(
-                                                            color: AppColors
-                                                                .g3),
-                                                      ),
-                                                    ],
+                                                  onLike: GestureDetector(
+                                                    onTap: () {
+                                                      if (controller.isLikeE.value == false) {
+                                                        controller.isLikeE(true);
+                                                      } else {
+                                                        controller.isLikeE(false);
+                                                      }
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(right: 4.0),
+                                                          //라이크 코멘트 색 채워졌을 때 필요함
+                                                          child: SvgPicture.asset(controller.isLikeE.value
+                                                              ? 'assets/icons/like_comment.svg'
+                                                              : 'assets/icons/unlike_comment.svg'),
+                                                        ),
+                                                        Text(
+                                                          controller.isLikeE.value ? '28' : '27',
+                                                          style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
-                                                );
-                                              })
+                                                ),
+                                                CommentWidget(
+                                                  writer: '데헌',
+                                                  time: '1시간 전',
+                                                  content: '원격 근무가 생산성도 높이고 국가 경제에도 긍정적인 영향을 미칠 것이라 예상되는데, 한국에는 아직 제대로 자리잡히지 않은 것 같아요.',
+                                                  perspective: '잘 모르겠어요',
+                                                  onFollow: ElevatedButton(
+                                                    onPressed: () {
+                                                      if (controller.isFollowE2.value == false) {
+                                                        controller.isFollowE2(true);
+                                                      } else {
+                                                        controller.isFollowE2(false);
+                                                      }
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                                      minimumSize: Size.zero,
+                                                      padding:
+                                                      EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                                      backgroundColor:
+                                                      controller.isFollowE2.value ? AppColors.g2 : AppColors.g6,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(4),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      controller.isFollowE2.value ? '팔로잉' : '팔로우',
+                                                      style: FontStyles.Caption2_m.copyWith(
+                                                          color: controller.isFollowE2.value
+                                                              ? AppColors.g5
+                                                              : AppColors.white),
+                                                    ),
+                                                  ),
+                                                  onLike: GestureDetector(
+                                                    onTap: () {
+                                                      if (controller.isLikeE2.value == false) {
+                                                        controller.isLikeE2(true);
+                                                      } else {
+                                                        controller.isLikeE2(false);
+                                                      }
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(right: 4.0),
+                                                          //라이크 코멘트 색 채워졌을 때 필요함
+                                                          child: SvgPicture.asset(controller.isLikeE2.value
+                                                              ? 'assets/icons/like_comment.svg'
+                                                              : 'assets/icons/unlike_comment.svg'),
+                                                        ),
+                                                        Text(
+                                                          controller.isLikeE2.value ? '28' : '27',
+                                                          style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                              )
                                               : Image.asset(
                                             'assets/images/newsletter_blurcomment.png',
                                             width: double.infinity,
