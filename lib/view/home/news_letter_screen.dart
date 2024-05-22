@@ -28,7 +28,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
     //List<CommentModel> comments = [];
     return Obx(
             () {
-              if (controller.isLoading.value) {
+              if (controller.isLoadingEditor.value) {
                 return Scaffold(
                   backgroundColor: AppColors.g1,
                   body: Center(
