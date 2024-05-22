@@ -40,7 +40,7 @@ class OneQuizScreen extends GetView<QuizViewModel> {
       body: Obx(() {
         if (controller.init.value) {
           return _quiz(context);
-        } else if (controller.firstQ.value) {
+        } else if (controller.secondQ.value) {
           return _quizCorrect();
         } else {
           return _quizFalse();
@@ -58,12 +58,23 @@ _quiz(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.15,
+            percent: 0.25,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('1/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 1',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -72,7 +83,7 @@ _quiz(BuildContext context) {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '국세청이 중고거래 플랫폼 이용자들에게 종합소득세 신고·납부 안내문을 발송한 이유는 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -81,27 +92,27 @@ _quiz(BuildContext context) {
                 quizController.init(false);
                 quizController.firstQ(true);
               },
-              child: ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다')),
+              child: ChoiceQuiz(number: 'A', detail: '이용자 수가 증가했기 때문에')),
           GestureDetector(
             onTap: () {
               quizController.init(false);
               quizController.secondQ(true);
             },
-              child: ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다')
+              child: ChoiceQuiz(number: 'B', detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에')
           ),
           GestureDetector(
             onTap: () {
               quizController.init(false);
               quizController.thirdQ(true);
             },
-              child: ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다')
+              child: ChoiceQuiz(number: 'C', detail: '중고거래 플랫폼을 홍보하기 위해서')
           ),
           GestureDetector(
               onTap: () {
                 quizController.init(false);
                 quizController.fourthQ(true);
               },
-              child: ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다')
+              child: ChoiceQuiz(number: 'D', detail: '중고 제품의 품질을 검사하기 위해서')
           ),
           Spacer(),
           Row(
@@ -156,12 +167,23 @@ _quizCorrect() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.15,
+            percent: 0.25,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('1/4',
+                style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 1',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -170,7 +192,7 @@ _quizCorrect() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '국세청이 중고거래 플랫폼 이용자들에게 종합소득세 신고·납부 안내문을 발송한 이유는 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -254,12 +276,23 @@ _quizFalse() {
         mainAxisSize: MainAxisSize.min,
         children: [
           MyProgressBar(
-            percent: 0.15,
+            percent: 0.25,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('1/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 1',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -268,8 +301,9 @@ _quizFalse() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '국세청이 중고거래 플랫폼 이용자들에게 종합소득세 신고·납부 안내문을 발송한 이유는 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
+              softWrap: true,
             ),
           ),
           Row(

@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
@@ -25,7 +27,7 @@ class ChoiceQuiz extends StatelessWidget {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
+              padding: const EdgeInsets.all(12),
               child: Container(
                 decoration: BoxDecoration(
                   color: AppColors.white,
@@ -41,9 +43,15 @@ class ChoiceQuiz extends StatelessWidget {
                 ),
               ),
             ),
-            Text(
-              detail,
-              style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 12.0),
+                child: Text(
+                  detail,
+                  style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                  softWrap: true,
+                ),
+              ),
             ),
           ],
         ),
