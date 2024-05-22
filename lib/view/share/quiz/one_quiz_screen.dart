@@ -9,6 +9,7 @@ import 'package:meetup/design/widgets/appBar/back_appBar.dart';
 import 'package:meetup/design/widgets/appBar/quiz_appBar.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/design/widgets/progress_bar.dart';
+import 'package:meetup/design/widgets/share/answer_quiz.dart';
 import 'package:meetup/design/widgets/share/choice_quiz.dart';
 import 'package:meetup/design/widgets/share/hint_dialog.dart';
 import 'package:meetup/viewModel/quiz_viewModel.dart';
@@ -369,43 +370,7 @@ _quizFalse() {
             ),
           ),
           //퀴즈의 원래 정답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.v1,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: AppColors.v6,
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style:
-                              FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          AnswerQuiz(number: 'B', detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에'),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Text(

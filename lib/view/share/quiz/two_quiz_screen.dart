@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/widgets/share/answer_quiz.dart';
 
 import '../../../design/style/ColorStyles.dart';
 import '../../../design/style/FontStyles.dart';
@@ -366,43 +367,7 @@ _quizFalse() {
             ),
           ),
           //퀴즈의 원래 정답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.v1,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: AppColors.v6,
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style:
-                          FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에'),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Text(
