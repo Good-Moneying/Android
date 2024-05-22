@@ -13,6 +13,7 @@ class HomeViewModel extends GetxController {
   Rx<bool> isLoading = true.obs;
 
   Rx<bool> isEditorBookMark = false.obs;
+  Rx<bool> isLiveBookMark = false.obs;
   Rx<bool> isRecommendFirst = false.obs;
   Rx<bool> isRecommendSecond = false.obs;
   Rx<bool> isRecommendThird = false.obs;
@@ -28,6 +29,19 @@ class HomeViewModel extends GetxController {
   Rx<bool> isPostEditorNews = false.obs;
   Rx<bool> isPostLiveNews = false.obs;
   final RxMap<int, NewsLetterModel> _newsLetterCache = <int, NewsLetterModel>{}.obs;
+
+
+
+  Rx<bool> isFollowE = false.obs;
+  Rx<bool> isLikeE = false.obs;
+  Rx<bool> isFollowE2 = false.obs;
+  Rx<bool> isLikeE2 = false.obs;
+
+  Rx<bool> isFollowReal = false.obs;
+  Rx<bool> isLikeReal = false.obs;
+  Rx<bool> isFollowReal2 = false.obs;
+  Rx<bool> isLikeReal2 = false.obs;
+
 
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입

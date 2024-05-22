@@ -274,27 +274,44 @@ class TodayTermScreen extends GetView<HomeViewModel> {
                 ),
               ),
               Obx(
-                () => RecommendU(
-                  image:
-                      controller.homeModel?.customizeNewsLetters[0].thumbnail ??
+                    () => RecommendU(
+                      image: controller
+                          .homeModel?.customizeNewsLetters[0].thumbnail ??
                           'no data',
-                  title: controller.homeModel!.customizeNewsLetters[0].title,
-                  isRecommend: controller.isRecommendFirst.value,
-                  onRecommend: () {
-                    controller.isRecommendFirst.value
-                        ? controller.isRecommendFirst.value = false
-                        : controller.isRecommendFirst.value = true;
-                  },
-                  tag: CustomChip(
-                    label: controller.parseCustom1()[0],
-                  ),
-                  history: History(
-                    diff: controller.formatDate(
-                      DateTime.parse(controller
-                          .homeModel!.customizeNewsLetters[0].createdAt),
+                      title:
+                      controller.homeModel!.customizeNewsLetters[0].title,
+                      isRecommend: controller.isRecommendFirst.value,
+                      onRecommend: () {
+                        controller.isRecommendFirst.value
+                            ? controller.isRecommendFirst.value = false
+                            : controller.isRecommendFirst.value = true;
+
+                        if (controller.isRecommendFirst.value) {
+                          controller.archives(
+                              'NEWS', controller.homeModel!.customizeNewsLetters[0].id);
+
+                          showDialog(
+                            barrierDismissible: false,
+                            context: context,
+                            builder: (BuildContext context) {
+                              return StatefulBuilder(
+                                builder:
+                                    (BuildContext context, StateSetter setState) {
+                                  return ArchiveDialog();
+                                },
+                              );
+                            },
+                          );
+                        }
+                      },
+                      tag: CustomChip(label: controller.parseCustom1()[0],),
+                      history: History(
+                        diff: controller.formatDate(
+                          DateTime.parse(controller
+                              .homeModel!.customizeNewsLetters[0].createdAt),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
               ),
             ],
           ),

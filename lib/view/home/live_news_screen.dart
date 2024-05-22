@@ -7,10 +7,12 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
+import 'package:meetup/viewModel/plus_home_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
 import '../../design/widgets/comment_widget.dart';
+import '../../design/widgets/home/archive_dialog.dart';
 import '../../viewModel/home_viewModel.dart';
 
 class LiveNewsScreen extends GetView<HomeViewModel> {
@@ -18,6 +20,8 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     controller.getEditorNews(controller.homeModel!.realtimeTrendNewsLetters[0].id);
+
+    final commentConroller = Get.find<PlusHomeViewModel>();
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: BackAppBar(iconColor: AppColors.black, title: null),
@@ -44,10 +48,37 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                         ),
                       ),
                       //Expanded(child: Container()),
-                      IconButton(
-                        icon: SvgPicture.asset(
-                            'assets/icons/bookmark_unfill.svg'),
-                        onPressed: () {},
+                      Obx(
+                      ()=> IconButton(
+                          icon: SvgPicture.asset(
+                              controller.isLiveBookMark.value
+                                  ? 'assets/icons/bookmark_fill.svg'
+                                  : 'assets/icons/bookmark_unfill.svg'),
+                          onPressed: () {
+                            controller.isLiveBookMark.value
+                                ? controller.isLiveBookMark.value = false
+                                : controller.isLiveBookMark.value = true;
+
+                            if (controller.isLiveBookMark.value) {
+                              controller.archives(
+                                  'NEWS', controller.homeModel!.realtimeTrendNewsLetters[0].id);
+
+                              showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return StatefulBuilder(
+                                    builder:
+                                        (BuildContext context, StateSetter setState) {
+                                      return ArchiveDialog();
+                                    },
+                                  );
+                                },
+                              );
+                            }
+
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -715,42 +746,125 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     () => Padding(
                       padding: const EdgeInsets.only(top: 16.0),
                       child: controller.isPostLiveNews.value
-                    ? CommentWidget(
-                        writer: '연디',
-                        time: '5분 전',
-                          content: controller.liveController.value.text,
-                          perspective: controller.setPerspective(controller.isDialogAgreeList.value),
-                        onFollow: ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                            minimumSize: Size.zero,
-                            padding: EdgeInsetsDirectional.symmetric(
-                                horizontal: 8, vertical: 2),
-                            backgroundColor: AppColors.g6,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                    ? ListView(
+                        shrinkWrap: true,
+                          physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          CommentWidget(
+                            writer: '연디',
+                            time: '1분 전',
+                            content: controller.liveController.value.text,
+                            perspective: controller.setPerspective(controller.isDialogAgreeList.value),
+                            onFollow: ElevatedButton(
+                              onPressed: () {
+                                if (controller.isFollowReal.value == false) {
+                                  controller.isFollowReal(true);
+                                } else {
+                                  controller.isFollowReal(false);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                minimumSize: Size.zero,
+                                padding:
+                                EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                backgroundColor:
+                                controller.isFollowReal.value ? AppColors.g2 : AppColors.g6,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              child: Text(
+                                controller.isFollowReal.value ? '팔로잉' : '팔로우',
+                                style: FontStyles.Caption2_m.copyWith(
+                                    color: controller.isFollowReal.value
+                                        ? AppColors.g5
+                                        : AppColors.white),
+                              ),
+                            ),
+                            onLike: GestureDetector(
+                              onTap: () {
+                                if (controller.isLikeReal.value == false) {
+                                  controller.isLikeReal(true);
+                                } else {
+                                  controller.isLikeReal(false);
+                                }
+                              },
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 4.0),
+                                    //라이크 코멘트 색 채워졌을 때 필요함
+                                    child: SvgPicture.asset(controller.isLikeReal.value
+                                        ? 'assets/icons/like_comment.svg'
+                                        : 'assets/icons/unlike_comment.svg'),
+                                  ),
+                                  Text(
+                                    controller.isLikeReal.value ? '28' : '27',
+                                    style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
-                          child: Text(
-                            '팔로우',
-                            style: FontStyles.Caption2_m.copyWith(
-                                color: AppColors.white),
+                          CommentWidget(
+                            writer: '데헌',
+                            time: '1시간 전',
+                            content: '원격 근무가 생산성도 높이고 국가 경제에도 긍정적인 영향을 미칠 것이라 예상되는데, 한국에는 아직 제대로 자리잡히지 않은 것 같아요.',
+                            perspective: '잘 모르겠어요',
+                            onFollow: ElevatedButton(
+                              onPressed: () {
+                                if (controller.isFollowReal2.value == false) {
+                                  controller.isFollowReal2(true);
+                                } else {
+                                  controller.isFollowReal2(false);
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                minimumSize: Size.zero,
+                                padding:
+                                EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                backgroundColor:
+                                controller.isFollowReal2.value ? AppColors.g2 : AppColors.g6,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                              ),
+                              child: Text(
+                                controller.isFollowReal2.value ? '팔로잉' : '팔로우',
+                                style: FontStyles.Caption2_m.copyWith(
+                                    color: controller.isFollowReal2.value
+                                        ? AppColors.g5
+                                        : AppColors.white),
+                              ),
+                            ),
+                            onLike: GestureDetector(
+                              onTap: () {
+                                if (controller.isLikeReal2.value == false) {
+                                  controller.isLikeReal2(true);
+                                } else {
+                                  controller.isLikeReal2(false);
+                                }
+                              },
+                              child: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 4.0),
+                                    //라이크 코멘트 색 채워졌을 때 필요함
+                                    child: SvgPicture.asset(controller.isLikeReal2.value
+                                        ? 'assets/icons/like_comment.svg'
+                                        : 'assets/icons/unlike_comment.svg'),
+                                  ),
+                                  Text(
+                                    controller.isLikeReal2.value ? '28' : '27',
+                                    style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
-                        ),
-                        onLike: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(right: 4.0),
-                              child:
-                              SvgPicture.asset('assets/icons/unlike_comment.svg'),
-                            ),
-                            Text(
-                              '27',
-                              style: FontStyles.Caption2_m.copyWith(
-                                  color: AppColors.g3),
-                            ),
-                          ],
-                        ),
+                        ]
                     )
                           : Image.asset(
                         'assets/images/newsletter_blurcomment.png',
