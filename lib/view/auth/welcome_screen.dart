@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart' hide FormData;
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/services.dart';
@@ -27,7 +28,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
         ),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: EdgeInsets.fromLTRB(16, 16, 16, 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -50,7 +51,7 @@ class WelcomeScreen extends GetView<UserViewModel> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 9.0),
+                  padding: const EdgeInsets.only(left: 9.0, bottom: 38),
                   child: Row(
                     children: [
                       SvgPicture.asset('assets/icons/logo_newthing.svg'),
@@ -62,6 +63,12 @@ class WelcomeScreen extends GetView<UserViewModel> {
                       ),
                     ],
                   ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/images/gurumi_welcome.png'),
+                  ],
                 ),
                 Spacer(),
                 SizedBox(
@@ -94,8 +101,6 @@ class WelcomeScreen extends GetView<UserViewModel> {
                         "goal": controller.userGoal.value,
                       };
 
-                      //출력테스트
-                      print(formData);
                       //서버에 데이터 전송
                       await onboarding(formData);
 

@@ -1,14 +1,9 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:meetup/view/home/home_screen.dart';
 import '../../design/widgets/login_button.dart';
 import '../../service/auth_service.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -57,7 +52,13 @@ class _LoginScreenState extends State<LoginScreen>
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/bg_logo.png'),
+              Padding(
+                padding: const EdgeInsets.only(top: 250.0),
+                child: SvgPicture.asset('assets/images/bg_logo.svg',
+                  width: 226,
+                  height: 128,
+                ),
+              ),
               const Spacer(),
               AnimatedBuilder(
                 animation: _animationOffset,

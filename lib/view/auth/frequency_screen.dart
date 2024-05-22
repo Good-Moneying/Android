@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/view/auth/welcome_screen.dart';
 import 'package:meetup/viewModel/user_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -30,7 +31,7 @@ class FrequencyScreen extends GetView<UserViewModel> {
       ),
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.fromLTRB(16, 10, 16, 16),
+          padding: EdgeInsets.fromLTRB(16, 10, 16, 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -75,7 +76,10 @@ class FrequencyScreen extends GetView<UserViewModel> {
                 child: Obx(
                   () => OutlinedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.WELCOME);
+                      Get.to(
+                          WelcomeScreen(),
+                      duration: Duration(milliseconds: 1500),
+                      );
                       controller.selectFrequency(0);
                     },
                     style: OutlinedButton.styleFrom(
@@ -106,7 +110,10 @@ class FrequencyScreen extends GetView<UserViewModel> {
                 child: Obx(
                   () => OutlinedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.WELCOME);
+                      Get.to(
+                        WelcomeScreen(),
+                        duration: Duration(milliseconds: 1500),
+                      );
                       controller.selectFrequency(1);
                     },
                     style: OutlinedButton.styleFrom(
@@ -137,7 +144,10 @@ class FrequencyScreen extends GetView<UserViewModel> {
                 child: Obx(
                   () => OutlinedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.WELCOME);
+                      Get.to(
+                        WelcomeScreen(),
+                        duration: Duration(milliseconds: 1500),
+                      );
                       controller.selectFrequency(2);
                     },
                     style: OutlinedButton.styleFrom(
@@ -168,7 +178,10 @@ class FrequencyScreen extends GetView<UserViewModel> {
                 child: Obx(
                   () => OutlinedButton(
                     onPressed: () {
-                      Get.toNamed(Routes.WELCOME);
+                      Get.to(
+                        WelcomeScreen(),
+                        duration: Duration(milliseconds: 1500),
+                      );
                       controller.selectFrequency(3);
                     },
                     style: OutlinedButton.styleFrom(
@@ -199,7 +212,10 @@ class FrequencyScreen extends GetView<UserViewModel> {
                 alignment: Alignment.center,
                 child: TextButton(
                   onPressed: () {
-                    Get.toNamed(Routes.WELCOME);
+                    Get.to(
+                      WelcomeScreen(),
+                      duration: Duration(milliseconds: 1500),
+                    );
                     controller.resetFrequency();
                   },
                   child: Text(
