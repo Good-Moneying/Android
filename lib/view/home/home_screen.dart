@@ -251,6 +251,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isRecommendFirst.value
                               ? controller.isRecommendFirst.value = false
                               : controller.isRecommendFirst.value = true;
+
+                          if (controller.isRecommendFirst.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.customizeNewsLetters[0].id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
                         tag: CustomChip(label: controller.parseCustom1()[0],),
                         history: History(
@@ -277,6 +295,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isRecommendSecond.value
                               ? controller.isRecommendSecond.value = false
                               : controller.isRecommendSecond.value = true;
+
+                          if (controller.isRecommendSecond.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.customizeNewsLetters[1].id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
                         history: History(
                           diff: controller.formatDate(
@@ -302,6 +338,24 @@ class HomeScreen extends GetView<HomeViewModel> {
                           controller.isRecommendThird.value
                               ? controller.isRecommendThird.value = false
                               : controller.isRecommendThird.value = true;
+
+                          if (controller.isRecommendThird.value) {
+                            controller.archives(
+                                'NEWS', controller.homeModel!.customizeNewsLetters[2].id);
+
+                            showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (BuildContext context) {
+                                return StatefulBuilder(
+                                  builder:
+                                      (BuildContext context, StateSetter setState) {
+                                    return ArchiveDialog();
+                                  },
+                                );
+                              },
+                            );
+                          }
                         },
                         history: History(
                           diff: controller.formatDate(
