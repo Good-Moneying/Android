@@ -7,6 +7,7 @@ class NewsLetterModel {
   List<Comments>? comments;
   bool? isCommented;
 
+
   NewsLetterModel(
       {this.title,
         this.editor,

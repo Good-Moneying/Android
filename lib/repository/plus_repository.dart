@@ -98,6 +98,7 @@ class PlusRepository {
 
       if (response.statusCode == 200) {
         print('post 성공!!!!');
+        print('post!! ${response.data}');
         return response.data; // 응답 데이터를 반환
       } else {
         throw Exception('postSummaryRequired 실패! : ${response.statusCode} - ${response.statusMessage}');

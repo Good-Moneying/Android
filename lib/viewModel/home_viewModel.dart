@@ -27,6 +27,8 @@ class HomeViewModel extends GetxController {
   TextEditingController liveController = TextEditingController();
   Rx<bool> isPostEditorNews = false.obs;
   Rx<bool> isPostLiveNews = false.obs;
+  final RxMap<int, NewsLetterModel> _newsLetterCache = <int, NewsLetterModel>{}.obs;
+
 
   final HomeRepository _repository = HomeRepository(); // 의존성 주입
   late final Rxn<HomeModel> _homeModel;
@@ -69,7 +71,30 @@ class HomeViewModel extends GetxController {
     }
   }
 
-  Future getEditorNews(int id) async {
+  NewsLetterModel? getNewsLetterFromCache(int id) {
+    return _newsLetterCache[id];
+  }
+
+  Future<void> getEditorNews(int id) async {
+    if (_newsLetterModel.value == null) {
+      try {
+        if (_newsLetterCache.containsKey(id)) {
+          _newsLetterModel.value = _newsLetterCache[id];
+        } else {
+          final newsLetter = await _repository.getEditorNews(id);
+          _newsLetterCache[id] = newsLetter;
+          _newsLetterModel.value = newsLetter;
+        }
+      } catch (e) {
+        print('$e');
+      }
+    }
+  }
+
+
+
+
+/*Future getEditorNews(int id) async {
     try {
       print("getEditorNews() start!");
       _newsLetterModel.value = await _repository.getEditorNews(id);
@@ -77,7 +102,7 @@ class HomeViewModel extends GetxController {
     } catch (e) {
       print('$e');
     }
-  }
+  }*/
 
 
   //코멘트 작성
