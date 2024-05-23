@@ -384,8 +384,8 @@ _allComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '연디',
-          time: '5분 전',
+          writer: '수현',
+          time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
           onFollow: ElevatedButton(
@@ -433,7 +433,7 @@ _allComment() {
                       : 'assets/icons/unlike_comment.svg'),
                 ),
                 Text(
-                  surveyController.isLike.value ? '28' : '27',
+                  surveyController.isLike.value ? '1' : '0',
                   style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
                 ),
               ],
@@ -573,8 +573,8 @@ _agreeComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '연디',
-          time: '5분 전',
+          writer: '수현',
+          time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
           onFollow: ElevatedButton(
@@ -622,7 +622,7 @@ _agreeComment() {
                       : 'assets/icons/unlike_comment.svg'),
                 ),
                 Text(
-                  surveyController.isLike.value ? '28' : '27',
+                  surveyController.isLike.value ? '1' : '0',
                   style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
                 ),
               ],
