@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../routes/get_pages.dart';
+import '../../../viewModel/share_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
+
+final sheetController = Get.find<ShareViewModel>();
 
 class ThinkContainer extends StatelessWidget {
   final Widget textField;
@@ -88,7 +91,12 @@ class ThinkContainer extends StatelessWidget {
                   '등록하기',
                   style: FontStyles.Bn1_b
                       .copyWith(
-                      color: AppColors
+                      color: sheetController
+                          .thinkController
+                          .value
+                          .text
+                          .isEmpty
+                          ? Color(0xFFAAAAB9) : AppColors
                           .white),
                 ),
               ),

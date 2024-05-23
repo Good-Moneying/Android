@@ -27,6 +27,7 @@ class ThinkingDetails {
   int? userId;
   int? newsLetterId;
   String? thumbnailUrl;
+  String? keywords;
   String? comment;
   String? summarizedComment;
   bool? isCloudExist;
@@ -37,6 +38,7 @@ class ThinkingDetails {
         this.userId,
         this.newsLetterId,
         this.thumbnailUrl,
+        this.keywords,
         this.comment,
         this.summarizedComment,
         this.isCloudExist,
@@ -47,6 +49,7 @@ class ThinkingDetails {
     userId = json['userId'];
     newsLetterId = json['newsLetterId'];
     thumbnailUrl = json['thumbnailUrl'];
+    keywords = json['keywords'];
     comment = json['comment'];
     summarizedComment = json['summarizedComment'];
     isCloudExist = json['isCloudExist'];
@@ -59,6 +62,7 @@ class ThinkingDetails {
     data['userId'] = this.userId;
     data['newsLetterId'] = this.newsLetterId;
     data['thumbnailUrl'] = this.thumbnailUrl;
+    data['keywords'] = this.keywords;
     data['comment'] = this.comment;
     data['summarizedComment'] = this.summarizedComment;
     data['isCloudExist'] = this.isCloudExist;

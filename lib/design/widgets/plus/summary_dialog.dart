@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../style/ColorStyles.dart';
@@ -50,13 +51,16 @@ class SummaryDialog extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            "다 쓰고 요약만 하면 바로 등록할 수 있어요.",
-            style:
-            FontStyles.Caption1_m.copyWith(
-                color: AppColors.g4),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: Text(
+              "다 쓰고 요약만 하면 바로 등록할 수 있어요.",
+              style:
+              FontStyles.Caption1_m.copyWith(
+                  color: AppColors.g4),
+            ),
           ),
-          Image.asset('assets/icons/plus_cloud.png'),
+          Image.asset('assets/icons/plus_cloud5.png', width: 270, height: 270,),
         ],
       ),
     );

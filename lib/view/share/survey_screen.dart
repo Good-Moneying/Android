@@ -8,6 +8,7 @@ import 'package:meetup/viewModel/survey_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/home/news_slider.dart';
 
 final surveyController = Get.find<SurveyViewModel>();
 
@@ -55,9 +56,9 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(6.0),
                       child: Image.network(
-                        'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                        newsController.homeModel?.customizeNewsLetters[0].thumbnail ?? 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
                         height: Get.height * 0.08,
-                        width: Get.width * 0.19,
+                        width: Get.width * 0.17,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -271,7 +272,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 8, horizontal: 12),
+                                        vertical: 5, horizontal: 15),
                                     child: Text(
                                       '전체',
                                       style: FontStyles.Caption1_m.copyWith(
@@ -299,7 +300,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 8, horizontal: 12),
+                                        vertical: 5, horizontal: 15),
                                     child: Text(
                                       '찬성',
                                       style: FontStyles.Caption1_m.copyWith(
@@ -326,7 +327,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                                       borderRadius: BorderRadius.circular(15)),
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(
-                                        vertical: 8, horizontal: 12),
+                                        vertical: 5, horizontal: 15),
                                     child: Text(
                                       '반대',
                                       style: FontStyles.Caption1_m.copyWith(

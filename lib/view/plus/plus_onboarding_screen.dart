@@ -40,7 +40,7 @@ class PlusOnboardingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 40.0),
+              padding: const EdgeInsets.only(top: 20.0),
               child: Stack(children: [
                 Container(
                   height: 550,
@@ -105,7 +105,11 @@ class PlusOnboardingScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Image.asset(
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
+                              )
+                              ,Image.asset(
                                 'assets/icons/plus_cloudfun.png',
                                 width: 330,
                                 height: 230,
@@ -166,6 +170,10 @@ class PlusOnboardingScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
                               ),
                               Image.asset(
                                 'assets/icons/plus_cloudfun2.png',
@@ -274,18 +282,21 @@ class PlusOnboardingScreen extends StatelessWidget {
                                             ),
                                             child: IntrinsicHeight(
                                               child: Center(
-                                                child: Obx(()=> Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.')),
+                                                child: Obx(()=> Padding(
+                                                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                                                  child: Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.'),
+                                                )),
                                               ),
                                             ),
                                           ),
                                         ),
                                         Positioned(
                                           top: 35,
-                                          left: 140,
-                                          child: Image.asset(
-                                            'assets/icons/plus_icon1.png',
-                                            width: 32,
-                                            height: 32,
+                                          left: 130,
+                                          child: SvgPicture.asset(
+                                            'assets/icons/plus_icon.svg',
+                                            width: 36,
+                                            height: 36,
                                           ),
                                         ),
                                       ],
@@ -336,7 +347,7 @@ class PlusOnboardingScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 72.0),
                                 child: Container(
-                                  width: 220,
+                                  width: 240,
                                   height: 100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -372,11 +383,15 @@ class PlusOnboardingScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
+                              ),
                               Image.asset(
                                 'assets/icons/plus_cloud.png',
                                 width: 350,
                                 height: 250,
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -391,7 +406,7 @@ class PlusOnboardingScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(top: 72.0),
                                 child: Container(
-                                  width: 220,
+                                  width: 240,
                                   height: 100,
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(12),
@@ -426,6 +441,10 @@ class PlusOnboardingScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
                               ),
                               Image.asset(
                                 'assets/icons/plus_cloudfun3.png',
@@ -463,8 +482,8 @@ class PlusOnboardingScreen extends StatelessWidget {
                 ); // 페이지 컨트롤러를 통해 페이지 변경
               },
               child: Container(
-                width: 290,
-                height: 48,
+                width: 370,
+                height: 58,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: AppColors.v6),

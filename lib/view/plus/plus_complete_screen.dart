@@ -23,7 +23,7 @@ class PlusCompleteScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 63.0),
             child: Container(
-              width: 253,
+              width: 290,
               height: 133,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(30),
@@ -38,11 +38,11 @@ class PlusCompleteScreen extends StatelessWidget {
                     text: TextSpan(
                       text: '생각구름',
                       style:
-                          FontStyles.Headline1_b.copyWith(color: AppColors.v6),
+                          FontStyles.Title3_b.copyWith(color: AppColors.v6),
                       children: <TextSpan>[
                         TextSpan(
                           text: '을 완성했어요',
-                          style: FontStyles.Headline1_b.copyWith(
+                          style: FontStyles.Title3_b.copyWith(
                               color: AppColors.black),
                         ),
                       ],
@@ -65,8 +65,8 @@ class PlusCompleteScreen extends StatelessWidget {
               Get.toNamed(Routes.PLUSSTORAGE, arguments: {'index': index});
             },
             child: Container(
-              width: 290,
-              height: 48,
+              width: 370,
+              height: 58,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50), color: AppColors.v6),
               child: Center(

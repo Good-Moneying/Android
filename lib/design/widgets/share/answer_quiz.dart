@@ -2,14 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../viewModel/quiz_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 
-class ChoiceQuiz extends StatelessWidget {
+
+
+class AnswerQuiz extends StatelessWidget {
   final String number;
   final String detail;
 
-  const ChoiceQuiz({
+  const AnswerQuiz({
     super.key,
     required this.number,
     required this.detail,
@@ -17,12 +20,17 @@ class ChoiceQuiz extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: Container(
         decoration: BoxDecoration(
-          color: AppColors.g1,
+          color: AppColors.v1,
           borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+              color: AppColors.v6,
+              width: 1,
+            )
         ),
         child: Row(
           children: [
@@ -38,7 +46,7 @@ class ChoiceQuiz extends StatelessWidget {
                   child: Text(
                     number,
                     style:
-                    FontStyles.Ln1_sb.copyWith(color: AppColors.g6),
+                    FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
                   ),
                 ),
               ),
