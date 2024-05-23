@@ -51,7 +51,12 @@ class HomeViewModel extends GetxController {
   late final Rxn<NewsLetterModel> _newsLetterModel;
   //late final RxList<CommentModel> _commentModel;
 
-  RxList<CommentModel> comments = <CommentModel>[].obs;
+  //댓글
+  final comments = <String>[].obs;
+
+  void addComment(String comment) {
+    comments.add(comment);
+  }
 
   HomeModel? get homeModel => _homeModel.value;
   NewsLetterModel? get newsLetterModel => _newsLetterModel.value;
@@ -73,7 +78,18 @@ class HomeViewModel extends GetxController {
     } else if (selectPerspective[1]) {
       return agreeCategory('NEGATIVE');
     } else if (selectPerspective[2]) {
-      return agreeCategory('NOTHING');
+      return agreeCategory('UNCERTAIN');
+    }
+    return 'unknown';
+  }
+
+  String perspecComment(String setPerspective) {
+    if (setPerspective== 'POSITIVE') {
+      return agreeCategory('긍정적이에요');
+    } else if (setPerspective== 'NEGATIVE') {
+      return agreeCategory('부정적이에요');
+    } else if (setPerspective== 'UNCERTAIN') {
+      return agreeCategory('잘 모르겠어요');
     }
     return 'unknown';
   }
@@ -128,18 +144,18 @@ class HomeViewModel extends GetxController {
 
   //코멘트 작성
   Future<void> postComment(
-      String type, int newsId, String content, String perspective) async {
+      String type, int newsId, String content, String perspective, bool isPrivate) async {
     try {
       if (type == 'EDITOR') {
         isPostEditorNews(true);
-        await _repository.postComment(newsId, content, perspective);
+        await _repository.postComment(newsId, content, perspective, isPrivate);
 
-        comments.add(CommentModel(perspective: perspective, content: content));
+       // comments.add(CommentModel(perspective: perspective, content: content));
         //_commentModel.value?.content = content;
 
       } else {
         isPostLiveNews(true);
-        await _repository.postComment(newsId, content, perspective);
+        await _repository.postComment(newsId, content, perspective, isPrivate);
       }
     } catch (e) {
       print('$e');
