@@ -9,7 +9,6 @@ import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 import '../custom_button.dart';
 
-final homeController = Get.find<HomeViewModel>();
 
 class ArchiveDialog extends StatelessWidget {
   const ArchiveDialog({super.key});
@@ -325,7 +324,6 @@ class ArchiveDialog extends StatelessWidget {
                 Get.back();
                 //아카이브
                 //카테고리 아카이브
-                homeController.archivesNewsCategory(homeController.homeModel!.todayNewsLetter.id, userController.userCategory.value);
 
               },
             ),
