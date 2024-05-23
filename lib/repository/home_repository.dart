@@ -171,4 +171,33 @@ class HomeRepository {
       throw Exception('Error occurred: $e');
     }
   }
+
+  Future<void> archivesNewsCategory(int newsId, String category) async {
+    final prefs = await SharedPreferences.getInstance();
+
+    try {
+      final response = await _dio.post(
+          "/api/archives/newsletters/$newsId/$category",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
+
+      print('뉴스레터 카테고리 상태코드');
+      print(response.statusCode);
+
+      if (response.statusCode == 200) {
+        //return HomeModel.fromJson(response.data);
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
 }

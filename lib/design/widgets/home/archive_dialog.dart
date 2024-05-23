@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:meetup/viewModel/home_viewModel.dart';
 
 import '../../../viewModel/user_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 import '../custom_button.dart';
+
+final homeController = Get.find<HomeViewModel>();
 
 class ArchiveDialog extends StatelessWidget {
   const ArchiveDialog({super.key});
@@ -315,6 +318,10 @@ class ArchiveDialog extends StatelessWidget {
                   : () {
                 //네비바
                 Get.back();
+                //아카이브
+                //카테고리 아카이브
+                homeController.archivesNewsCategory(homeController.homeModel!.todayNewsLetter.id, userController.userCategory.value);
+
               },
             ),
           ),

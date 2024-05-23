@@ -128,6 +128,7 @@ class HomeScreen extends GetView<HomeViewModel> {
                               controller.archives(
                                   'NEWS', controller.homeModel!.todayNewsLetter.id);
 
+
                               showDialog(
                                 barrierDismissible: false,
                                 context: context,
