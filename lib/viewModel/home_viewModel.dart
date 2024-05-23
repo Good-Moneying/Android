@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -125,6 +127,7 @@ class HomeViewModel extends GetxController {
       } catch (e) {
         print('$e');
       }
+      log('뉴스레터2 : ${newsLetterModel?.title}');
     }
   }
 
@@ -216,7 +219,7 @@ class HomeViewModel extends GetxController {
   }
 
   String splitParagraph(String text, int i) {
-    List<String> parts = text.split(".");
+    List<String> parts = text.split(",");
     return parts[i];
   }
 

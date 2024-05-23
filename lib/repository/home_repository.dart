@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -38,7 +39,8 @@ class HomeRepository {
 
       if (response.statusCode == 200) {
         print("뉴스레터 성공");
-        print('뉴스레터 : ${response.data}');
+        //print('뉴스레터 : ${response.data}');
+        log('뉴스레터 : ${response.data}');
         return NewsLetterModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
