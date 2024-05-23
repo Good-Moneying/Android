@@ -42,32 +42,6 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 5.0),
-                        child: Container(
-                          width: 77,
-                          height: 22,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              border: Border.all(color: AppColors.g2)),
-                          child: Center(
-                            child: RichText(
-                              text: TextSpan(
-                                text: '실시간 ',
-                                style: FontStyles.Caption2_sb.copyWith(
-                                    color: AppColors.g5), //기본style을 지정해줘야함
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: ' TOP1',
-                                    style: FontStyles.Caption2_sb.copyWith(
-                                        color: AppColors.v5), //기본style을 지정해줘야함
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
                         padding: const EdgeInsets.only(top: 20.0),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -139,27 +113,6 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 4.0),
-                              child: Expanded(
-                                child: Container(
-                                  /*width: 36,*/
-                                  height: 22,
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(4),
-                                      color: AppColors.g1),
-                                  child: Center(
-                                    child: Obx(()=>
-                                        Text(
-                                          controller.splitKeywords(controller.homeModel!.realtimeTrendNewsLetters[0].keywords, 1),
-                                          style: FontStyles.Caption2_m.copyWith(
-                                              color: AppColors.g6),
-                                        ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Padding(
                                 padding: const EdgeInsets.fromLTRB(16, 0, 0, 0),
                                 child: Obx(() => Text(controller.dateParsing(controller.homeModel!.todayNewsLetter.createdAt),
                                     style: FontStyles.Ln1_r.copyWith(
@@ -189,22 +142,6 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                               ),
                             ),
                           ),*/
-                            Obx(
-                                  () => RichText(
-                                text: TextSpan(
-                                  text: 'Edit By. ',
-                                  style: FontStyles.Caption1_r.copyWith(
-                                      color: AppColors.g3), //기본style을 지정해줘야함
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                      text: controller.newsLetterModel?.editor?.nickname,
-                                      style: FontStyles.Caption1_m.copyWith(
-                                          color: AppColors.g3), //기본style을 지정해줘야함
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            )
                           ],
                         ),
                       ),
@@ -354,20 +291,10 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 40.0),
-                        child: Obx(() => Text(
-                          controller.newsLetterModel?.body?[0].content?? 'null',
-                          softWrap: true,
-                          style: FontStyles.Ln1_r,
-                        )),
-                      ),
-
-                      Padding(
                         padding: const EdgeInsets.only(top: 50.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('이 ', style: FontStyles.Br2_sb),
                             SvgPicture.asset('assets/icons/editor_live.svg'),
                             SvgPicture.asset('assets/icons/editor_newthink.svg'),
                             Text(' 에 대한 생각 듣고싶어요!', style: FontStyles.Br2_sb),

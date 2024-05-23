@@ -51,8 +51,30 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
                         radius: 30.0,
-                        backgroundImage:
-                            AssetImage('assets/icons/mypage_lv1.png', ),
+                        child: Obx(
+                              () => ClipOval(
+                            child: Image.network(
+                              controller.profileModel?.profileUrl ?? '프로필이 없습니다',
+                              width: 60, // CircleAvatar의 radius에 맞게 설정
+                              height: 60, // CircleAvatar의 radius에 맞게 설정
+                              fit: BoxFit.cover,
+                              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                } else {
+                                  return Center(
+                                    child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                  );
+                                }
+                              },
+                              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                return Center(
+                                  child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     Padding(
@@ -72,10 +94,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     color: AppColors.v1,
                                   ),
                                   child: Center(
-                                    child: Text(
-                                      'LV. 1',
-                                      style: FontStyles.Caption1_sb.copyWith(
-                                          color: AppColors.v6),
+                                    child: Obx(()
+                                      => Text(
+                                        'LV.${controller.splitKeywords(controller?.profileModel?.level ?? '1', 1)}',
+                                        style: FontStyles.Caption1_sb.copyWith(
+                                            color: AppColors.v6),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -394,29 +418,37 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             ]),
                           ),
                           Obx(
-                                () =>
-                                Image.network(
-                                  width: Get.width,
-                                  height: 142,
-                                  fit: BoxFit.fitWidth,
-                                  controller.profileModel?.counts?[0].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/finance.png',
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    } else {
-                                      return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                    }
-                                  },
-                                  errorBuilder: (BuildContext context,
-                                      Object error,
-                                      StackTrace? stackTrace) {
-                                    return Text(
-                                        'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                  },
+                                () => Container(
+                              width: 40,
+                              height: 40,
+                              child: ClipRect(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  widthFactor: 1,
+                                  heightFactor: 1,
+                                  child: Image.network(
+                                    controller.profileModel?.counts?[0].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                    fit: BoxFit.cover,
+                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return Center(
+                                          child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                        );
+                                      }
+                                    },
+                                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                      return Center(
+                                        child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                      );
+                                    },
+                                  ),
                                 ),
+                              ),
+                            ),
                           ),
+
                         ],
                       ),
                     ),
@@ -461,29 +493,37 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ]),
                             ),
                             Obx(
-                                  () =>
-                                  Image.network(
-                                    width: Get.width,
-                                    height: 142,
-                                    fit: BoxFit.fitWidth,
-                                    controller.profileModel?.counts?[1].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/policy.png',
-                                    loadingBuilder: (BuildContext context,
-                                        Widget child,
-                                        ImageChunkEvent? loadingProgress) {
-                                      if (loadingProgress == null) {
-                                        return child;
-                                      } else {
-                                        return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                      }
-                                    },
-                                    errorBuilder: (BuildContext context,
-                                        Object error,
-                                        StackTrace? stackTrace) {
-                                      return Text(
-                                          'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                    },
+                                  () => Container(
+                                width: 40,
+                                height: 40,
+                                child: ClipRect(
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    widthFactor: 1,
+                                    heightFactor: 1,
+                                    child: Image.network(
+                                      controller.profileModel?.counts?[1].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                          );
+                                        }
+                                      },
+                                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                        return Center(
+                                          child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                        );
+                                      },
+                                    ),
                                   ),
+                                ),
+                              ),
                             ),
+
                           ],
                         ),
                       ),
@@ -535,29 +575,37 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             ]),
                           ),
                           Obx(
-                                () =>
-                                Image.network(
-                                  width: Get.width,
-                                  height: 142,
-                                  fit: BoxFit.fitWidth,
-                                  controller.profileModel?.counts?[2].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/global.png',
-                                  loadingBuilder: (BuildContext context,
-                                      Widget child,
-                                      ImageChunkEvent? loadingProgress) {
-                                    if (loadingProgress == null) {
-                                      return child;
-                                    } else {
-                                      return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                    }
-                                  },
-                                  errorBuilder: (BuildContext context,
-                                      Object error,
-                                      StackTrace? stackTrace) {
-                                    return Text(
-                                        'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                  },
+                                () => Container(
+                              width: 40,
+                              height: 40,
+                              child: ClipRect(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  widthFactor: 1,
+                                  heightFactor: 1,
+                                  child: Image.network(
+                                    controller.profileModel?.counts?[2].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                    fit: BoxFit.cover,
+                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return Center(
+                                          child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                        );
+                                      }
+                                    },
+                                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                      return Center(
+                                        child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                      );
+                                    },
+                                  ),
                                 ),
+                              ),
+                            ),
                           ),
+
                         ],
                       ),
                     ),
@@ -603,29 +651,37 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ]),
                             ),
                             Obx(
-                                  () =>
-                                  Image.network(
-                                    width: Get.width,
-                                    height: 142,
-                                    fit: BoxFit.fitWidth,
-                                    controller.profileModel?.counts?[3].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
-                                    loadingBuilder: (BuildContext context,
-                                        Widget child,
-                                        ImageChunkEvent? loadingProgress) {
-                                      if (loadingProgress == null) {
-                                        return child;
-                                      } else {
-                                        return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                      }
-                                    },
-                                    errorBuilder: (BuildContext context,
-                                        Object error,
-                                        StackTrace? stackTrace) {
-                                      return Text(
-                                          'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                    },
+                                  () => Container(
+                                width: 40,
+                                height: 40,
+                                child: ClipRect(
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    widthFactor: 1,
+                                    heightFactor: 1,
+                                    child: Image.network(
+                                      controller.profileModel?.counts?[3].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                          );
+                                        }
+                                      },
+                                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                        return Center(
+                                          child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                        );
+                                      },
+                                    ),
                                   ),
+                                ),
+                              ),
                             ),
+
                           ],
                         ),
                       ),

@@ -116,4 +116,8 @@ class ProfileViewModel extends GetxController {
     return count.value;
   }
 
+  String splitKeywords(String text, int i) {
+    List<String> parts = text.split("V");
+    return parts[i];
+  }
 }
