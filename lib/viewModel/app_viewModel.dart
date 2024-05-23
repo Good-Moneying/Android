@@ -16,6 +16,10 @@ class AppViewModel extends GetxService {
     currentIndex(index);
   }
 
+  void setCurrentIndex(int index) {
+    currentIndex.value = index;
+  }
+
 
 }
 
