@@ -223,7 +223,7 @@ class HomeViewModel extends GetxController {
     }
   }
 
-  String splitParagraph(String text, int i) {
+  String splitSummary(String text, int i) {
     List<String> parts = text.split(",");
     return parts[i];
   }
@@ -295,6 +295,11 @@ class HomeViewModel extends GetxController {
     return parts[i];
   }
 
+  /*String splitSummary(String text, int i) {
+    List<String> parts = text.split("\n");
+    return parts[i];
+  }*/
+
   String formatDate(DateTime date) {
     final now = DateTime.now();
     final difference = now.difference(date);
@@ -308,4 +313,6 @@ class HomeViewModel extends GetxController {
       return '${difference.inDays}일 전';
     }
   }
+
+
 }

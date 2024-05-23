@@ -18,6 +18,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     controller.getEditorNews(controller.homeModel!.realtimeTrendNewsLetters[0].id);
+    print('아이디 : ${controller.homeModel!.realtimeTrendNewsLetters[0].id}');
     return Obx(
             () { if (controller.isLoadingReal.value) {
           return Scaffold(
@@ -186,7 +187,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         alignment: Alignment.topCenter,
                                         // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                         child: Obx(() => Text(
-                                          controller.splitParagraph(
+                                          controller.splitSummary(
                                             controller.newsLetterModel?.summary ?? 'a',
                                             0,
                                           ),
@@ -219,7 +220,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         alignment: Alignment.topCenter,
                                         // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                         child: Obx(() => Text(
-                                          controller.splitParagraph(
+                                          controller.splitSummary(
                                             controller.newsLetterModel?.summary ?? 'a',
                                             1,
                                           ),
@@ -252,7 +253,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         alignment: Alignment.topCenter,
                                         // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                         child: Obx(() => Text(
-                                          controller.splitParagraph(
+                                          controller.splitSummary(
                                             controller.newsLetterModel?.summary ?? 'a',
                                             2,
                                           ),

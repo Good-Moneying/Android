@@ -31,7 +31,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
   @override
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
-    controller.getEditorNews(controller.homeModel!.todayNewsLetter.id); // 뉴스 데이터 가져오기
+    controller.getEditorNews(controller.homeModel!.todayNewsLetter.id);
+    print('아이디 : ${controller.homeModel!.todayNewsLetter.id}');// 뉴스 데이터 가져오기
     List<Widget> commentList = [];
 
     //List<CommentModel> comments = [];
@@ -212,7 +213,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                                 child: Obx(() =>
                                                     Text(
-                                                      controller.splitParagraph(
+                                                      controller.splitSummary(
                                                         controller
                                                             .newsLetterModel
                                                             ?.summary ?? 'a',
@@ -255,7 +256,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                                 child: Obx(() =>
                                                     Text(
-                                                      controller.splitParagraph(
+                                                      controller.splitSummary(
                                                         controller
                                                             .newsLetterModel
                                                             ?.summary ?? 'a',
@@ -298,7 +299,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                                 child: Obx(() =>
                                                     Text(
-                                                      controller.splitParagraph(
+                                                      controller.splitSummary(
                                                         controller
                                                             .newsLetterModel
                                                             ?.summary ?? 'a',
