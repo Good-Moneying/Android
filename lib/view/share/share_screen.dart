@@ -170,83 +170,86 @@ class ShareScreen extends GetView<ShareViewModel> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Flexible(
-                                flex: 1,
-                                child: InkWell(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      builder: (context) {
-                                        return StatefulBuilder(
-                                          builder: (BuildContext context,
-                                              StateSetter setState) {
-                                            return ThinkContainer(
-                                              textField: TextField(
-                                                controller:
-                                                    controller.thinkController,
-                                                maxLength: 300,
-                                                maxLines: null,
-                                                textInputAction:
-                                                    TextInputAction.done,
-                                                keyboardType:
-                                                    TextInputType.text,
-                                                style: FontStyles.Caption1_r
-                                                    .copyWith(
-                                                        color: AppColors.black),
-                                                decoration: InputDecoration(
-                                                    counterText: '',
-                                                    hintText:
-                                                        '여러분의 생각을 남겨보세요. (최대 300자)',
-                                                    hintStyle: FontStyles
-                                                            .Caption1_r
-                                                        .copyWith(
-                                                            color:
-                                                                AppColors.g5),
-                                                    border: InputBorder.none),
-                                              ),
-                                              onPressed:
-                                                  controller
-                                                          .thinkController
-                                                          .value
-                                                          .text
-                                                          .isEmpty
-                                                      ? null
-                                                      : () {
-                                                    Get.offNamed(Routes.SURVEY, arguments: controller.thinkController.text,);
-                                                    controller.thinkController.clear();
+                              Obx(
+                          () => Flexible(
+                                  flex: 1,
+                                  child: InkWell(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return StatefulBuilder(
+                                            builder: (BuildContext context,
+                                                StateSetter setState) {
+                                              return ThinkContainer(
+                                                textField: TextField(
+                                                  controller:
+                                                      controller.thinkController,
+                                                  maxLength: 300,
+                                                  maxLines: null,
+                                                  textInputAction:
+                                                      TextInputAction.done,
+                                                  keyboardType:
+                                                      TextInputType.text,
+                                                  style: FontStyles.Caption1_r
+                                                      .copyWith(
+                                                          color: AppColors.black),
+                                                  decoration: InputDecoration(
+                                                      counterText: '',
+                                                      hintText:
+                                                          '여러분의 생각을 남겨보세요. (최대 300자)',
+                                                      hintStyle: FontStyles
+                                                              .Caption1_r
+                                                          .copyWith(
+                                                              color:
+                                                                  AppColors.g5),
+                                                      border: InputBorder.none),
+                                                ),
+                                                onPressed:
+                                                    controller
+                                                            .thinkController
+                                                            .value
+                                                            .text
+                                                            .isEmpty
+                                                        ? null
+                                                        : () {
+                                                  controller.isSubmit(true);
+                                                      Get.offNamed(Routes.SURVEY, arguments: controller.thinkController.text,);
+                                                      controller.thinkController.clear();
 
-                                                    },
-                                            );
-                                          },
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColors.white,
-                                      border: Border.all(
-                                        color: AppColors.v2,
-                                        width: 1,
+                                                      },
+                                              );
+                                            },
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: controller.isSubmit.value ? SvgPicture.asset('assets/images/agree7box.svg') : Container(
+                                      decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        border: Border.all(
+                                          color: AppColors.v2,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          14, 1, 14, 8),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                              'assets/icons/agreement.png'),
-                                          Text(
-                                            '찬성',
-                                            style:
-                                                FontStyles.Caption1_m.copyWith(
-                                                    color: AppColors.black),
-                                          ),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            14, 1, 14, 8),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                                'assets/icons/agreement.png'),
+                                            Text(
+                                              '찬성',
+                                              style:
+                                                  FontStyles.Caption1_m.copyWith(
+                                                      color: AppColors.black),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -255,83 +258,85 @@ class ShareScreen extends GetView<ShareViewModel> {
                               SizedBox(
                                 width: 16,
                               ),
-                              Flexible(
-                                flex: 1,
-                                child: InkWell(
-                                  onTap: () {
-                                    showModalBottomSheet(
-                                      context: context,
-                                      builder: (context) {
-                                        return StatefulBuilder(
-                                          builder: (BuildContext context,
-                                              StateSetter setState) {
-                                            return ThinkContainer(
-                                              textField: TextField(
-                                                controller:
-                                                controller.thinkController,
-                                                maxLength: 300,
-                                                maxLines: null,
-                                                textInputAction:
-                                                TextInputAction.done,
-                                                keyboardType:
-                                                TextInputType.text,
-                                                style: FontStyles.Caption1_r
-                                                    .copyWith(
-                                                    color: AppColors.black),
-                                                decoration: InputDecoration(
-                                                    counterText: '',
-                                                    hintText:
-                                                    '여러분의 생각을 남겨보세요. (최대 300자)',
-                                                    hintStyle: FontStyles
-                                                        .Caption1_r
-                                                        .copyWith(
-                                                        color:
-                                                        AppColors.g5),
-                                                    border: InputBorder.none),
-                                              ),
-                                              onPressed:
-                                              controller
-                                                  .thinkController
-                                                  .value
-                                                  .text
-                                                  .isEmpty
-                                                  ? null
-                                                  : () {
-                                                Get.offNamed(Routes.SURVEY, arguments: controller.thinkController.text,);
-                                                controller.thinkController.clear();
-                                              },
-                                            );
-                                            ();
-                                          },
-                                        );
-                                      },
-                                    );
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      color: AppColors.white,
-                                      border: Border.all(
-                                        color: AppColors.v2,
-                                        width: 1,
+                              Obx(
+                                () => Flexible(
+                                  flex: 1,
+                                  child: InkWell(
+                                    onTap: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (context) {
+                                          return StatefulBuilder(
+                                            builder: (BuildContext context,
+                                                StateSetter setState) {
+                                              return ThinkContainer(
+                                                textField: TextField(
+                                                  controller:
+                                                  controller.thinkController,
+                                                  maxLength: 300,
+                                                  maxLines: null,
+                                                  textInputAction:
+                                                  TextInputAction.done,
+                                                  keyboardType:
+                                                  TextInputType.text,
+                                                  style: FontStyles.Caption1_r
+                                                      .copyWith(
+                                                      color: AppColors.black),
+                                                  decoration: InputDecoration(
+                                                      counterText: '',
+                                                      hintText:
+                                                      '여러분의 생각을 남겨보세요. (최대 300자)',
+                                                      hintStyle: FontStyles
+                                                          .Caption1_r
+                                                          .copyWith(
+                                                          color:
+                                                          AppColors.g5),
+                                                      border: InputBorder.none),
+                                                ),
+                                                onPressed:
+                                                controller
+                                                    .thinkController
+                                                    .value
+                                                    .text
+                                                    .isEmpty
+                                                    ? null
+                                                    : () {
+                                                  Get.offNamed(Routes.SURVEY, arguments: controller.thinkController.text,);
+                                                  controller.thinkController.clear();
+                                                },
+                                              );
+                                              ();
+                                            },
+                                          );
+                                        },
+                                      );
+                                    },
+                                    child: controller.isSubmit.value ? SvgPicture.asset('assets/images/disagree3box.svg') : Container(
+                                      decoration: BoxDecoration(
+                                        color: AppColors.white,
+                                        border: Border.all(
+                                          color: AppColors.v2,
+                                          width: 1,
+                                        ),
+                                        borderRadius: BorderRadius.circular(10),
                                       ),
-                                      borderRadius: BorderRadius.circular(10),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.fromLTRB(
-                                          14, 1, 14, 8),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Image.asset(
-                                              'assets/icons/disagreement.png'),
-                                          Text(
-                                            '반대',
-                                            style:
-                                                FontStyles.Caption1_m.copyWith(
-                                                    color: AppColors.black),
-                                          ),
-                                        ],
+                                      child: Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            14, 1, 14, 8),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Image.asset(
+                                                'assets/icons/disagreement.png'),
+                                            Text(
+                                              '반대',
+                                              style:
+                                                  FontStyles.Caption1_m.copyWith(
+                                                      color: AppColors.black),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

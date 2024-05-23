@@ -5,4 +5,6 @@ class ShareViewModel extends GetxController {
 
   TextEditingController thinkController = TextEditingController();
 
+  Rx<bool> isSubmit = false.obs;
+
 }
