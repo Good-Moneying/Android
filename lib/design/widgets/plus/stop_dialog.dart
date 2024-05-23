@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 
 import '../../../routes/get_pages.dart';
+import '../../../viewModel/app_viewModel.dart';
 import '../../style/ColorStyles.dart';
 import '../../style/FontStyles.dart';
 
@@ -50,7 +51,9 @@ class StopDialong extends StatelessWidget {
               //mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 GestureDetector(
-                  onTap: (){
+                  onTap: () {
+                    final appViewModel = Get.find<AppViewModel>();
+                    appViewModel.setCurrentIndex(1); // 두번째 탭 인덱스로 설정
                     Get.offAll(BottomNavigationView());
                   },
                   child: Padding(
