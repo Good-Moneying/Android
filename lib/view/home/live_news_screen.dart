@@ -729,199 +729,271 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                           ),
                         ],
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 40.0),
-                      child: Container(
-                        width: double.infinity,
-                        height: 8,
-                        decoration: BoxDecoration(color: AppColors.g1),
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding:
-                              const EdgeInsets.fromLTRB(16.0, 32.0, 0.0, 12.0),
-                          // 좌측으로부터 일정한 간격을 주기 위한 패딩
-                          child: Text(
-                            "다른 사람들의 생각은?",
-                            style: FontStyles.Heading2_b.copyWith(
-                                color: AppColors.g6),
+                      Obx(
+                            () => Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: controller.isPostLiveNews.value
+                              ? ListView.builder(
+                            itemCount: controller.liveComments.length,
+                            reverse: true,
+                            shrinkWrap: true,
+                            physics: NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) {
+                              return CommentWidget(
+                                writer: '연디',
+                                time: '방금전',
+                                content: controller.liveComments[index],
+                                perspective: controller.livePerspecs[index],
+                                onFollow: Obx(
+                                    ()=> ElevatedButton(
+                                    onPressed: () {
+                                      if (controller.isFollowReal.value == false) {
+                                        controller.isFollowReal(true);
+                                      } else {
+                                        controller.isFollowReal(false);
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      minimumSize: Size.zero,
+                                      padding:
+                                      EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                      backgroundColor:
+                                      controller.isFollowReal.value ? AppColors.g2 : AppColors.g6,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
+                                    ),
+                                    child: Text(
+                                      controller.isFollowReal.value ? '팔로잉' : '팔로우',
+                                      style: FontStyles.Caption2_m.copyWith(
+                                          color: controller.isFollowReal.value
+                                              ? AppColors.g5
+                                              : AppColors.white),
+                                    ),
+                                  ),
+                                ),
+                                onLike: GestureDetector(
+                                  onTap: () {
+                                    if (controller.isLikeReal.value == false) {
+                                      controller.isLikeReal(true);
+                                    } else {
+                                      controller.isLikeReal(false);
+                                    }
+                                  },
+                                  child: Row(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 4.0),
+                                        //라이크 코멘트 색 채워졌을 때 필요함
+                                        child: Obx(
+                                            ()=> SvgPicture.asset(controller.isLikeReal.value
+                                              ? 'assets/icons/like_comment.svg'
+                                              : 'assets/icons/unlike_comment.svg'),
+                                        ),
+                                      ),
+                                      Obx(
+                                        ()=> Text(
+                                          controller.isLikeReal.value ? '1' : '0',
+                                          style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            },
+                            // children: [
+                            //   // CommentWidget(
+                            //   //   writer: '연디',
+                            //   //   time: '방금 전',
+                            //   //   content: controller.editorController.value.text,
+                            //   //   perspective: controller.setPerspective(controller.isDialogAgreeList.value),
+                            //   //   onFollow: ElevatedButton(
+                            //   //     onPressed: () {
+                            //   //       if (controller.isFollowE.value == false) {
+                            //   //         controller.isFollowE(true);
+                            //   //       } else {
+                            //   //         controller.isFollowE(false);
+                            //   //       }
+                            //   //     },
+                            //   //     style: ElevatedButton.styleFrom(
+                            //   //       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            //   //       minimumSize: Size.zero,
+                            //   //       padding:
+                            //   //       EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                            //   //       backgroundColor:
+                            //   //       controller.isFollowE.value ? AppColors.g2 : AppColors.g6,
+                            //   //       shape: RoundedRectangleBorder(
+                            //   //         borderRadius: BorderRadius.circular(4),
+                            //   //       ),
+                            //   //     ),
+                            //   //     child: Text(
+                            //   //       controller.isFollowE.value ? '팔로잉' : '팔로우',
+                            //   //       style: FontStyles.Caption2_m.copyWith(
+                            //   //           color: controller.isFollowE.value
+                            //   //               ? AppColors.g5
+                            //   //               : AppColors.white),
+                            //   //     ),
+                            //   //   ),
+                            //   //   onLike: GestureDetector(
+                            //   //     onTap: () {
+                            //   //       if (controller.isLikeE.value == false) {
+                            //   //         controller.isLikeE(true);
+                            //   //       } else {
+                            //   //         controller.isLikeE(false);
+                            //   //       }
+                            //   //     },
+                            //   //     child: Row(
+                            //   //       children: [
+                            //   //         Padding(
+                            //   //           padding: const EdgeInsets.only(right: 4.0),
+                            //   //           //라이크 코멘트 색 채워졌을 때 필요함
+                            //   //           child: SvgPicture.asset(controller.isLikeE.value
+                            //   //               ? 'assets/icons/like_comment.svg'
+                            //   //               : 'assets/icons/unlike_comment.svg'),
+                            //   //         ),
+                            //   //         Text(
+                            //   //           controller.isLikeE.value ? '28' : '27',
+                            //   //           style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                            //   //         ),
+                            //   //       ],
+                            //   //     ),
+                            //   //   ),
+                            //   //   index: null,
+                            //   // ),
+                            //   // CommentWidget(
+                            //   //   writer: '데헌',
+                            //   //   time: '1시간 전',
+                            //   //   content: '원격 근무가 생산성도 높이고 국가 경제에도 긍정적인 영향을 미칠 것이라 예상되는데, 한국에는 아직 제대로 자리잡히지 않은 것 같아요.',
+                            //   //   perspective: '잘 모르겠어요',
+                            //   //   onFollow: ElevatedButton(
+                            //   //     onPressed: () {
+                            //   //       if (controller.isFollowE2.value == false) {
+                            //   //         controller.isFollowE2(true);
+                            //   //       } else {
+                            //   //         controller.isFollowE2(false);
+                            //   //       }
+                            //   //     },
+                            //   //     style: ElevatedButton.styleFrom(
+                            //   //       tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            //   //       minimumSize: Size.zero,
+                            //   //       padding:
+                            //   //       EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                            //   //       backgroundColor:
+                            //   //       controller.isFollowE2.value ? AppColors.g2 : AppColors.g6,
+                            //   //       shape: RoundedRectangleBorder(
+                            //   //         borderRadius: BorderRadius.circular(4),
+                            //   //       ),
+                            //   //     ),
+                            //   //     child: Text(
+                            //   //       controller.isFollowE2.value ? '팔로잉' : '팔로우',
+                            //   //       style: FontStyles.Caption2_m.copyWith(
+                            //   //           color: controller.isFollowE2.value
+                            //   //               ? AppColors.g5
+                            //   //               : AppColors.white),
+                            //   //     ),
+                            //   //   ),
+                            //   //   onLike: GestureDetector(
+                            //   //     onTap: () {
+                            //   //       if (controller.isLikeE2.value == false) {
+                            //   //         controller.isLikeE2(true);
+                            //   //       } else {
+                            //   //         controller.isLikeE2(false);
+                            //   //       }
+                            //   //     },
+                            //   //     child: Row(
+                            //   //       children: [
+                            //   //         Padding(
+                            //   //           padding: const EdgeInsets.only(right: 4.0),
+                            //   //           //라이크 코멘트 색 채워졌을 때 필요함
+                            //   //           child: SvgPicture.asset(controller.isLikeE2.value
+                            //   //               ? 'assets/icons/like_comment.svg'
+                            //   //               : 'assets/icons/unlike_comment.svg'),
+                            //   //         ),
+                            //   //         Text(
+                            //   //           controller.isLikeE2.value ? '28' : '27',
+                            //   //           style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                            //   //         ),
+                            //   //       ],
+                            //   //     ),
+                            //   //   ), index: null,
+                            //   // ),
+                            //
+                            //   commentList.add(
+                            //       CommentWidget(
+                            //           writer: '연디',
+                            //           time: '방금전',
+                            //           content: commentController?.title ?? 'no data',
+                            //           perspective: controller.setPerspective(controller.isDialogAgreeList.value),,
+                            //         onFollow: ElevatedButton(
+                            //           onPressed: () {
+                            //             if (controller.isFollowE.value == false) {
+                            //               controller.isFollowE(true);
+                            //             } else {
+                            //               controller.isFollowE(false);
+                            //             }
+                            //           },
+                            //           style: ElevatedButton.styleFrom(
+                            //             tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            //             minimumSize: Size.zero,
+                            //             padding:
+                            //             EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                            //             backgroundColor:
+                            //             controller.isFollowE.value ? AppColors.g2 : AppColors.g6,
+                            //             shape: RoundedRectangleBorder(
+                            //               borderRadius: BorderRadius.circular(4),
+                            //             ),
+                            //           ),
+                            //           child: Text(
+                            //             controller.isFollowE.value ? '팔로잉' : '팔로우',
+                            //             style: FontStyles.Caption2_m.copyWith(
+                            //                 color: controller.isFollowE.value
+                            //                     ? AppColors.g5
+                            //                     : AppColors.white),
+                            //           ),
+                            //         ),
+                            //         onLike: GestureDetector(
+                            //           onTap: () {
+                            //             if (controller.isLikeE.value == false) {
+                            //               controller.isLikeE(true);
+                            //             } else {
+                            //               controller.isLikeE(false);
+                            //             }
+                            //           },
+                            //           child: Row(
+                            //             children: [
+                            //               Padding(
+                            //                 padding: const EdgeInsets.only(right: 4.0),
+                            //                 //라이크 코멘트 색 채워졌을 때 필요함
+                            //                 child: SvgPicture.asset(controller.isLikeE.value
+                            //                     ? 'assets/icons/like_comment.svg'
+                            //                     : 'assets/icons/unlike_comment.svg'),
+                            //               ),
+                            //               Text(
+                            //                 controller.isLikeE.value ? '28' : '27',
+                            //                 style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                            //               ),
+                            //             ],
+                            //           ),
+                            //         ),
+                            //       ),
+                            //   );
+                            // ],
+                          )
+                              : Image.asset(
+                            'assets/images/newsletter_blurcomment.png',
+                            width: double.infinity,
                           ),
                         ),
-                      ],
-                    ),
-                    Obx(
-                      () => Padding(
-                        padding: const EdgeInsets.only(top: 16.0),
-                        child: controller.isPostLiveNews.value
-                            ? ListView(
-                                shrinkWrap: true,
-                                physics: NeverScrollableScrollPhysics(),
-                                children: [
-                                    CommentWidget(
-                                      writer: '연디',
-                                      time: '1분 전',
-                                      content:
-                                          controller.liveController.value.text,
-                                      perspective: controller.setPerspective(
-                                          controller.isDialogAgreeList.value),
-                                      onFollow: ElevatedButton(
-                                        onPressed: () {
-                                          if (controller.isFollowReal.value ==
-                                              false) {
-                                            controller.isFollowReal(true);
-                                          } else {
-                                            controller.isFollowReal(false);
-                                          }
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          tapTargetSize:
-                                              MaterialTapTargetSize.shrinkWrap,
-                                          minimumSize: Size.zero,
-                                          padding:
-                                              EdgeInsetsDirectional.symmetric(
-                                                  horizontal: 8, vertical: 2),
-                                          backgroundColor:
-                                              controller.isFollowReal.value
-                                                  ? AppColors.g2
-                                                  : AppColors.g6,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          controller.isFollowReal.value
-                                              ? '팔로잉'
-                                              : '팔로우',
-                                          style: FontStyles.Caption2_m.copyWith(
-                                              color:
-                                                  controller.isFollowReal.value
-                                                      ? AppColors.g5
-                                                      : AppColors.white),
-                                        ),
-                                      ),
-                                      onLike: GestureDetector(
-                                        onTap: () {
-                                          if (controller.isLikeReal.value ==
-                                              false) {
-                                            controller.isLikeReal(true);
-                                          } else {
-                                            controller.isLikeReal(false);
-                                          }
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 4.0),
-                                              //라이크 코멘트 색 채워졌을 때 필요함
-                                              child: SvgPicture.asset(controller
-                                                      .isLikeReal.value
-                                                  ? 'assets/icons/like_comment.svg'
-                                                  : 'assets/icons/unlike_comment.svg'),
-                                            ),
-                                            Text(
-                                              controller.isLikeReal.value
-                                                  ? '28'
-                                                  : '27',
-                                              style: FontStyles.Caption2_m
-                                                  .copyWith(
-                                                      color: AppColors.g3),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    CommentWidget(
-                                      writer: '데헌',
-                                      time: '1시간 전',
-                                      content:
-                                          '원격 근무가 생산성도 높이고 국가 경제에도 긍정적인 영향을 미칠 것이라 예상되는데, 한국에는 아직 제대로 자리잡히지 않은 것 같아요.',
-                                      perspective: '잘 모르겠어요',
-                                      onFollow: ElevatedButton(
-                                        onPressed: () {
-                                          if (controller.isFollowReal2.value ==
-                                              false) {
-                                            controller.isFollowReal2(true);
-                                          } else {
-                                            controller.isFollowReal2(false);
-                                          }
-                                        },
-                                        style: ElevatedButton.styleFrom(
-                                          tapTargetSize:
-                                              MaterialTapTargetSize.shrinkWrap,
-                                          minimumSize: Size.zero,
-                                          padding:
-                                              EdgeInsetsDirectional.symmetric(
-                                                  horizontal: 8, vertical: 2),
-                                          backgroundColor:
-                                              controller.isFollowReal2.value
-                                                  ? AppColors.g2
-                                                  : AppColors.g6,
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(4),
-                                          ),
-                                        ),
-                                        child: Text(
-                                          controller.isFollowReal2.value
-                                              ? '팔로잉'
-                                              : '팔로우',
-                                          style: FontStyles.Caption2_m.copyWith(
-                                              color:
-                                                  controller.isFollowReal2.value
-                                                      ? AppColors.g5
-                                                      : AppColors.white),
-                                        ),
-                                      ),
-                                      onLike: GestureDetector(
-                                        onTap: () {
-                                          if (controller.isLikeReal2.value ==
-                                              false) {
-                                            controller.isLikeReal2(true);
-                                          } else {
-                                            controller.isLikeReal2(false);
-                                          }
-                                        },
-                                        child: Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  right: 4.0),
-                                              //라이크 코멘트 색 채워졌을 때 필요함
-                                              child: SvgPicture.asset(controller
-                                                      .isLikeReal2.value
-                                                  ? 'assets/icons/like_comment.svg'
-                                                  : 'assets/icons/unlike_comment.svg'),
-                                            ),
-                                            Text(
-                                              controller.isLikeReal2.value
-                                                  ? '28'
-                                                  : '27',
-                                              style: FontStyles.Caption2_m
-                                                  .copyWith(
-                                                      color: AppColors.g3),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ])
-                            : Image.asset(
-                                'assets/images/newsletter_blurcomment.png',
-                                width: double.infinity,
-                              ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ));
+              ));
+        }
       }
-    });
+    );
   }
 }
+
