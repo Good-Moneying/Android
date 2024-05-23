@@ -393,8 +393,30 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ),
                             ]),
                           ),
-                          SvgPicture.asset(
-                              'assets/images/mypage_transaction 17.svg')
+                          Obx(
+                                () =>
+                                Image.network(
+                                  width: Get.width,
+                                  height: 142,
+                                  fit: BoxFit.fitWidth,
+                                  controller.profileModel?.counts?[0].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/finance.png',
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    } else {
+                                      return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                    }
+                                  },
+                                  errorBuilder: (BuildContext context,
+                                      Object error,
+                                      StackTrace? stackTrace) {
+                                    return Text(
+                                        'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                  },
+                                ),
+                          ),
                         ],
                       ),
                     ),
@@ -438,11 +460,30 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ]),
                             ),
-                            Image.asset(
-                              'assets/images/mypage_coins.png',
-                              width: 40,
-                              height: 40,
-                            )
+                            Obx(
+                                  () =>
+                                  Image.network(
+                                    width: Get.width,
+                                    height: 142,
+                                    fit: BoxFit.fitWidth,
+                                    controller.profileModel?.counts?[1].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/policy.png',
+                                    loadingBuilder: (BuildContext context,
+                                        Widget child,
+                                        ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                      }
+                                    },
+                                    errorBuilder: (BuildContext context,
+                                        Object error,
+                                        StackTrace? stackTrace) {
+                                      return Text(
+                                          'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                    },
+                                  ),
+                            ),
                           ],
                         ),
                       ),
@@ -493,11 +534,30 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ),
                             ]),
                           ),
-                          Image.asset(
-                            'assets/images/mypage_bank.png',
-                            width: 40,
-                            height: 40,
-                          )
+                          Obx(
+                                () =>
+                                Image.network(
+                                  width: Get.width,
+                                  height: 142,
+                                  fit: BoxFit.fitWidth,
+                                  controller.profileModel?.counts?[2].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/global.png',
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) {
+                                      return child;
+                                    } else {
+                                      return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                    }
+                                  },
+                                  errorBuilder: (BuildContext context,
+                                      Object error,
+                                      StackTrace? stackTrace) {
+                                    return Text(
+                                        'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                  },
+                                ),
+                          ),
                         ],
                       ),
                     ),
@@ -542,11 +602,30 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ]),
                             ),
-                            Image.asset(
-                              'assets/images/mypage_bank_statement.png',
-                              width: 40,
-                              height: 40,
-                            )
+                            Obx(
+                                  () =>
+                                  Image.network(
+                                    width: Get.width,
+                                    height: 142,
+                                    fit: BoxFit.fitWidth,
+                                    controller.profileModel?.counts?[3].logoUrl??'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                    loadingBuilder: (BuildContext context,
+                                        Widget child,
+                                        ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                      }
+                                    },
+                                    errorBuilder: (BuildContext context,
+                                        Object error,
+                                        StackTrace? stackTrace) {
+                                      return Text(
+                                          'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                    },
+                                  ),
+                            ),
                           ],
                         ),
                       ),
