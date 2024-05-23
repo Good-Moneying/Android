@@ -719,31 +719,33 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                 time: '방금전',
                                 content: controller.liveComments[index],
                                 perspective: controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)),
-                                onFollow: ElevatedButton(
-                                  onPressed: () {
-                                    if (controller.isFollowReal.value == false) {
-                                      controller.isFollowReal(true);
-                                    } else {
-                                      controller.isFollowReal(false);
-                                    }
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                    minimumSize: Size.zero,
-                                    padding:
-                                    EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
-                                    backgroundColor:
-                                    controller.isFollowReal.value ? AppColors.g2 : AppColors.g6,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4),
+                                onFollow: Obx(
+                                    ()=> ElevatedButton(
+                                    onPressed: () {
+                                      if (controller.isFollowReal.value == false) {
+                                        controller.isFollowReal(true);
+                                      } else {
+                                        controller.isFollowReal(false);
+                                      }
+                                    },
+                                    style: ElevatedButton.styleFrom(
+                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      minimumSize: Size.zero,
+                                      padding:
+                                      EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                      backgroundColor:
+                                      controller.isFollowReal.value ? AppColors.g2 : AppColors.g6,
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(4),
+                                      ),
                                     ),
-                                  ),
-                                  child: Text(
-                                    controller.isFollowReal.value ? '팔로잉' : '팔로우',
-                                    style: FontStyles.Caption2_m.copyWith(
-                                        color: controller.isFollowReal.value
-                                            ? AppColors.g5
-                                            : AppColors.white),
+                                    child: Text(
+                                      controller.isFollowReal.value ? '팔로잉' : '팔로우',
+                                      style: FontStyles.Caption2_m.copyWith(
+                                          color: controller.isFollowReal.value
+                                              ? AppColors.g5
+                                              : AppColors.white),
+                                    ),
                                   ),
                                 ),
                                 onLike: GestureDetector(
@@ -759,13 +761,17 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                       Padding(
                                         padding: const EdgeInsets.only(right: 4.0),
                                         //라이크 코멘트 색 채워졌을 때 필요함
-                                        child: SvgPicture.asset(controller.isLikeE.value
-                                            ? 'assets/icons/like_comment.svg'
-                                            : 'assets/icons/unlike_comment.svg'),
+                                        child: Obx(
+                                            ()=> SvgPicture.asset(controller.isLikeReal.value
+                                              ? 'assets/icons/like_comment.svg'
+                                              : 'assets/icons/unlike_comment.svg'),
+                                        ),
                                       ),
-                                      Text(
-                                        controller.isLikeE.value ? '1' : '0',
-                                        style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                      Obx(
+                                        ()=> Text(
+                                          controller.isLikeReal.value ? '1' : '0',
+                                          style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                        ),
                                       ),
                                     ],
                                   ),
