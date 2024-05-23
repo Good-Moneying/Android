@@ -475,7 +475,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                               Get.bottomSheet(
                                                 SingleChildScrollView(
                                                   child: Container(
-                                                    height: Get.height * 0.57,
+                                                    height: Get.height * 0.53,
                                                     decoration: BoxDecoration(
                                                       color: AppColors.white,
                                                       borderRadius: BorderRadius

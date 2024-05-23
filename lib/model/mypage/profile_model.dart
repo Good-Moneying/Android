@@ -1,4 +1,5 @@
 class ProfileModel {
+  String? level;
   String? profileUrl;
   String? nickname;
   int? reward;
@@ -8,7 +9,8 @@ class ProfileModel {
   List<Counts>? counts;
 
   ProfileModel(
-      {this.profileUrl,
+      {this.level,
+        this.profileUrl,
         this.nickname,
         this.reward,
         this.follower,
@@ -17,6 +19,7 @@ class ProfileModel {
         this.counts});
 
   ProfileModel.fromJson(Map<String, dynamic> json) {
+    level = json['level'];
     profileUrl = json['profileUrl'];
     nickname = json['nickname'];
     reward = json['reward'];
@@ -35,6 +38,7 @@ class ProfileModel {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['level'] = this.level;
     data['profileUrl'] = this.profileUrl;
     data['nickname'] = this.nickname;
     data['reward'] = this.reward;
@@ -97,18 +101,21 @@ class Data {
 
 class Counts {
   String? categoryName;
+  String? logoUrl;
   int? count;
 
-  Counts({this.categoryName, this.count});
+  Counts({this.categoryName, this.logoUrl, this.count});
 
   Counts.fromJson(Map<String, dynamic> json) {
     categoryName = json['categoryName'];
+    logoUrl = json['logoUrl'];
     count = json['count'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['categoryName'] = this.categoryName;
+    data['logoUrl'] = this.logoUrl;
     data['count'] = this.count;
     return data;
   }

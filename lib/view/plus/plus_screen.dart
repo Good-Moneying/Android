@@ -69,6 +69,7 @@ class PlusScreen extends StatelessWidget {
                       comment: newsLetter.title,
                       thumbnailUrl: detail.thumbnailUrl,
                       summarizedComment: detail.comment,
+                      date: '2024-05-23T03:31:24.112Z', //임의로
                     ),
                   );
                 }

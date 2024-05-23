@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:meetup/viewModel/home_viewModel.dart';
 import 'package:meetup/viewModel/plus_home_viewModel.dart';
 
 import '../../../routes/get_pages.dart';
@@ -15,6 +16,7 @@ class PlusMainContainer extends StatelessWidget {
   final String? comment;
   final String? thumbnailUrl;
   final String? summarizedComment;
+  final String? date;
 
   const PlusMainContainer({
     Key? key,
@@ -22,17 +24,19 @@ class PlusMainContainer extends StatelessWidget {
     this.comment,
     this.thumbnailUrl,
     this.summarizedComment,
-  }): super(key: key);
+    this.date,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final newsController = Get.put(PlusHomeViewModel());
+    final homeController = Get.put(HomeViewModel());
 
     return Center(
       child: Container(
         width: 378,
         height: 300,
-        margin: EdgeInsets.symmetric(vertical: 8.0), // Add margin between items
+        margin: EdgeInsets.symmetric(vertical: 8.0),
+        // Add margin between items
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: Colors.white, // AppColors.white를 Colors.white로 대체
@@ -62,7 +66,8 @@ class PlusMainContainer extends StatelessWidget {
                         },
                         errorBuilder: (BuildContext context, Object error,
                             StackTrace? stackTrace) {
-                          return Text('Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                          return Text(
+                              'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
                         },
                       ),
                     )
@@ -79,19 +84,23 @@ class PlusMainContainer extends StatelessWidget {
                       children: [
                         Text(
                           comment ?? 'null',
-                          style: FontStyles.Ln1_sb.copyWith(color: AppColors.black),
+                          style: FontStyles.Ln1_sb.copyWith(
+                              color: AppColors.black),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 16.0),
                           child: badges.Badge(
                             badgeContent: Text(
                               '글로벌',
-                              style: FontStyles.Caption2_m.copyWith(color: AppColors.v5),
+                              style: FontStyles.Caption2_m.copyWith(
+                                  color: AppColors.v5),
                             ),
                             badgeStyle: badges.BadgeStyle(
                               shape: badges.BadgeShape.square,
-                              borderRadius: BorderRadius.circular(5), // 둥근 모서리 설정
-                              padding: EdgeInsets.fromLTRB(8, 4, 8, 4), // 배지 내부 여백 설정
+                              borderRadius: BorderRadius.circular(5),
+                              // 둥근 모서리 설정
+                              padding: EdgeInsets.fromLTRB(8, 4, 8, 4),
+                              // 배지 내부 여백 설정
                               badgeColor: AppColors.v1, // 배지 배경색 설정
                             ),
                           ),
@@ -114,7 +123,8 @@ class PlusMainContainer extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
                       summarizedComment ?? '코멘트 없음',
-                      style: FontStyles.Caption2_r.copyWith(color: AppColors.black),
+                      style: FontStyles.Caption2_r.copyWith(
+                          color: AppColors.black),
                     ),
                   ),
                 ),
@@ -130,8 +140,11 @@ class PlusMainContainer extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0, top: 17),
                       child: Text(
-                        '1분 전',
-                        style: FontStyles.Caption2_r.copyWith(color: AppColors.g4),
+                        homeController.formatDate(
+                          DateTime.parse(date!),
+                        ),
+                        style:
+                            FontStyles.Caption2_r.copyWith(color: AppColors.g4),
                       ),
                     ),
                     Spacer(),
@@ -139,7 +152,8 @@ class PlusMainContainer extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 16.0),
                       child: GestureDetector(
                         onTap: () {
-                          Get.toNamed(Routes.PLUSONBOARDING, arguments: {'index': index});
+                          Get.toNamed(Routes.PLUSONBOARDING,
+                              arguments: {'index': index});
                         },
                         child: Container(
                           width: 116,
@@ -156,12 +170,14 @@ class PlusMainContainer extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 15.0),
                                   child: Text(
                                     '생각더하기',
-                                    style: FontStyles.Label2_sb.copyWith(color: AppColors.white),
+                                    style: FontStyles.Label2_sb.copyWith(
+                                        color: AppColors.white),
                                   ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsets.only(right: 8.0),
-                                  child: SvgPicture.asset('assets/icons/plus_arrow2.svg'),
+                                  child: SvgPicture.asset(
+                                      'assets/icons/plus_arrow2.svg'),
                                 )
                               ],
                             ),

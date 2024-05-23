@@ -171,6 +171,10 @@ class PlusOnboardingScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
+                              ),
                               Image.asset(
                                 'assets/icons/plus_cloudfun2.png',
                                 width: 330,
@@ -278,7 +282,10 @@ class PlusOnboardingScreen extends StatelessWidget {
                                             ),
                                             child: IntrinsicHeight(
                                               child: Center(
-                                                child: Obx(()=> Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.')),
+                                                child: Obx(()=> Padding(
+                                                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                                                  child: Text(plusHomeController.cloudSpecificModel?.comment?? '생각 더하기할 생각이 없습니다.'),
+                                                )),
                                               ),
                                             ),
                                           ),
@@ -376,11 +383,15 @@ class PlusOnboardingScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
+                              ),
                               Image.asset(
                                 'assets/icons/plus_cloud.png',
                                 width: 350,
                                 height: 250,
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -430,6 +441,10 @@ class PlusOnboardingScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
                               ),
                               Image.asset(
                                 'assets/icons/plus_cloudfun3.png',
