@@ -123,7 +123,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                                 CrossAxisAlignment.center,
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.only(left: 16.0, right: 16),
+                                                padding: const EdgeInsets.only(left: 8.0, right: 8),
                                                 child: Text(
                                                   controller.sentencesList[0].sentence,
                                                   style: FontStyles.Ln1_sb.copyWith(
@@ -139,14 +139,14 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                             ),
                             // 두 번째 페이지
                             Container(
-                              width: 270,
-                              height: 230,
+                              width: 290,
+                              height: 262,
                               child: Stack(
                                 children: [
                                   Positioned(
                                       child: Container(
-                                    width: 270,
-                                    height: 150,
+                                    width: 290,
+                                    height: 182,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(17),
@@ -174,7 +174,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                   Positioned(
                                       top: 150,
                                       child: Container(
-                                        width: 270,
+                                        width: 290,
                                         height: 80,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.only(
@@ -191,10 +191,13 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Obx(()
-                                              => Text(
-                                                controller.sentencesList[1].sentence,
-                                                style: FontStyles.Ln1_sb.copyWith(
-                                                    color: AppColors.black),
+                                              => Padding(
+                                                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                                                child: Text(
+                                                  controller.sentencesList[1].sentence,
+                                                  style: FontStyles.Ln1_sb.copyWith(
+                                                      color: AppColors.black),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -204,14 +207,14 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                               ),
                             ),
                             Container(
-                              width: 270,
-                              height: 230,
+                              width: 290,
+                              height: 262,
                               child: Stack(
                                 children: [
                                   Positioned(
                                       child: Container(
-                                    width: 270,
-                                    height: 150,
+                                    width: 290,
+                                    height: 182,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(17),
@@ -239,7 +242,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                   Positioned(
                                       top: 150,
                                       child: Container(
-                                        width: 270,
+                                        width: 290,
                                         height: 80,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.only(
@@ -256,10 +259,13 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Obx(()
-                                              => Text(
-                                                controller.sentencesList[2].sentence,
-                                                style: FontStyles.Ln1_sb.copyWith(
-                                                    color: AppColors.black),
+                                              => Padding(
+                                                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                                                child: Text(
+                                                  controller.sentencesList[2].sentence,
+                                                  style: FontStyles.Ln1_sb.copyWith(
+                                                      color: AppColors.black),
+                                                ),
                                               ),
                                             ),
                                           ],
@@ -269,14 +275,14 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                               ),
                             ),
                             Container(
-                              width: 270,
-                              height: 230,
+                              width: 290,
+                              height: 262,
                               child: Stack(
                                 children: [
                                   Positioned(
                                       child: Container(
-                                    width: 270,
-                                    height: 150,
+                                    width: 290,
+                                    height: 180,
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.only(
                                             topLeft: Radius.circular(17),
@@ -304,7 +310,7 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                   Positioned(
                                       top: 150,
                                       child: Container(
-                                        width: 270,
+                                        width: 290,
                                         height: 80,
                                         decoration: BoxDecoration(
                                             borderRadius: BorderRadius.only(
@@ -321,10 +327,13 @@ class PlusStep1Screen extends GetView<PlusViewModel> {
                                               CrossAxisAlignment.center,
                                           children: [
                                             Obx(()
-                                              => Text(
-                                                controller.sentencesList[3].sentence,
-                                                style: FontStyles.Ln1_sb.copyWith(
-                                                    color: AppColors.black),
+                                              => Padding(
+                                                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                                                child: Text(
+                                                  controller.sentencesList[3].sentence,
+                                                  style: FontStyles.Ln1_sb.copyWith(
+                                                      color: AppColors.black),
+                                                ),
                                               ),
                                             ),
                                           ],

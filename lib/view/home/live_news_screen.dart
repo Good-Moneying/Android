@@ -361,58 +361,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                           style: FontStyles.Ln1_r,
                         )),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 60.0),
-                        child: Text(
-                          'AI 추천 정보',
-                          style: FontStyles.Headline1_b.copyWith(color: AppColors.g6),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: Container(
-                          width: 370,
-                          height: 83,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.g1,
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Image.asset(
-                                'assets/images/live_news_company.png',
-                                width: 150,
-                                height: 40,
-                              ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    '+5.74%',
-                                    style: FontStyles.Headline1_m.copyWith(
-                                        color: Colors.red),
-                                  ),
-                                  Text(
-                                    '173,300원',
-                                    style: FontStyles.Label2_r.copyWith(
-                                        color: AppColors.g6),
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                        ),
-       ),
-                      Padding(
-                          padding: const EdgeInsets.fromLTRB(0.0, 24.0, 0.0, 0.0),
-                          child: Container(
-                            width: 370,
-                            height: 164,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: AppColors.g1),
-                          )),
+
                       Padding(
                         padding: const EdgeInsets.only(top: 50.0),
                         child: Row(
