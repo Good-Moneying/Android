@@ -152,60 +152,6 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 .createdAt),
                                             style: FontStyles.Ln1_r.copyWith(
                                                 color: AppColors.g4)))),
-                                //Expanded(child: Container()),
-                                //에디터 부분
-                                // Padding(
-                                //   padding: const EdgeInsets.fromLTRB(
-                                //       0, 0, 4, 0),
-                                //   // 오른쪽에 여백 추가
-                                //   child: Obx(
-                                //         () =>
-                                //         Image.network(
-                                //           width: 20,
-                                //           height: 20,
-                                //           controller.newsLetterModel!.editor!
-                                //               .profileUrl!,
-                                //           loadingBuilder: (
-                                //               BuildContext context,
-                                //               Widget child,
-                                //               ImageChunkEvent? loadingProgress) {
-                                //             if (loadingProgress == null) {
-                                //               return child;
-                                //             } else {
-                                //               return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
-                                //             }
-                                //           },
-                                //           errorBuilder: (BuildContext context,
-                                //               Object error,
-                                //               StackTrace? stackTrace) {
-                                //             return Text(
-                                //                 'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
-                                //           },
-                                //         ),
-                                //   ),
-                                // ),
-                                // Obx(
-                                //       () =>
-                                //       RichText(
-                                //         text: TextSpan(
-                                //           text: 'Edit By. ',
-                                //           style: FontStyles.Caption1_r
-                                //               .copyWith(
-                                //               color: AppColors.g3),
-                                //           //기본style을 지정해줘야함
-                                //           children: <TextSpan>[
-                                //             TextSpan(
-                                //               text: controller.newsLetterModel
-                                //                   ?.editor?.nickname,
-                                //               style: FontStyles.Caption1_m
-                                //                   .copyWith(
-                                //                   color: AppColors
-                                //                       .g3), //기본style을 지정해줘야함
-                                //             ),
-                                //           ],
-                                //         ),
-                                //       ),
-                                // )
                               ],
                             ),
                           ),
@@ -398,6 +344,13 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                           softWrap: true,
                                           style: FontStyles.Ln1_r.copyWith(
                                               color: Colors.black))),
+                                  Obx(() =>
+                                      Text(
+                                          controller.newsLetterModel?.body?[2]
+                                              .content ?? 'null',
+                                          softWrap: true,
+                                          style: FontStyles.Ln1_r.copyWith(
+                                              color: Colors.black))),
                                   Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           0.0, 24.0, 0.0, 0.0),
@@ -406,9 +359,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                             Image.network(
                                               width: 328,
                                               height: 164,
-                                              controller.newsLetterModel
-                                                  ?.summary ??
-                                                  'a',
+                                              controller.newsLetterModel?.body?[3].content ?? '널',
                                               loadingBuilder: (
                                                   BuildContext context,
                                                   Widget child,
@@ -428,27 +379,70 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                               },
                                             ),
                                       )),
-                                  /*Padding(
-                                                      padding:
-                              const EdgeInsets.fromLTRB(17.0, 20.0, 0.0, 0.0),
-                                                      child: Text(
-                            "이제 미국의 기준금리 인하는 9월 이후에 가능하다는 전망\n이 우세하고, 인하 시점을 내년으로 보는 사람도 꽤 많아졌\n어요. 오히려 기준금리를 지금보다 조금 더 올릴 수 있다는\n전망까지 나오고 있어요.\n",
-                            style: FontStyles.Ln1_r,
-                                                      )),
-                                                  Text(
-                                                      "왜 갑자기 분위기가 바뀐 걸까요? 경제 전문가들이 대부분\n이런 변화를 예상하지 못했던 이유는 뭘까요?",
-                                                      style: FontStyles.Ln1_r),*/
+                                  Obx(() =>
+                                      Text(
+                                          controller.newsLetterModel?.body?[4]
+                                              .content ?? ' ',
+                                          softWrap: true,
+                                          style: FontStyles.Ln1_r.copyWith(
+                                              color: Colors.black))),
+                                  Obx(() =>
+                                      Text(
+                                          controller.newsLetterModel?.body?[4]
+                                              .content ?? ' ',
+                                          softWrap: true,
+                                          style: FontStyles.Ln1_r.copyWith(
+                                              color: Colors.black))),
+                                  Obx(() =>
+                                      Text(
+                                          controller.newsLetterModel?.body?[5]
+                                              .content ?? ' ',
+                                          softWrap: true,
+                                          style: FontStyles.Ln1_r.copyWith(
+                                              color: Colors.black))),
+                                  Obx(() =>
+                                      Text(
+                                          controller.newsLetterModel?.body?[6]
+                                              .content ?? ' ',
+                                          softWrap: true,
+                                          style: FontStyles.Ln1_r.copyWith(
+                                              color: Colors.black))),
                                   Padding(
                                       padding: const EdgeInsets.fromLTRB(
                                           0.0, 24.0, 0.0, 0.0),
-                                      child: Container(
-                                        width: 328,
-                                        height: 164,
-                                        decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(
-                                                16),
-                                            color: AppColors.g1),
+                                      child: Obx(
+                                            () =>
+                                            Image.network(
+                                              width: 328,
+                                              height: 164,
+                                              controller.newsLetterModel?.body?[7].content ?? '널',
+                                              loadingBuilder: (
+                                                  BuildContext context,
+                                                  Widget child,
+                                                  ImageChunkEvent? loadingProgress) {
+                                                if (loadingProgress == null) {
+                                                  return child;
+                                                } else {
+                                                  return CircularProgressIndicator(); // 이미지 로딩 중이면 로딩 스피너 표시
+                                                }
+                                              },
+                                              errorBuilder: (
+                                                  BuildContext context,
+                                                  Object error,
+                                                  StackTrace? stackTrace) {
+                                                return Text(
+                                                    'Failed to load image'); // 이미지 로딩에 실패하면 에러 메시지 표시
+                                              },
+                                            ),
                                       )),
+                                  Obx(() =>
+                                      Text(
+                                          controller.newsLetterModel?.body?[8]
+                                              .content ?? ' ',
+                                          softWrap: true,
+                                          style: FontStyles.Ln1_r.copyWith(
+                                              color: Colors.black))),
+
                                   Padding(
                                     padding: const EdgeInsets.only(top: 50.0),
                                     child: Row(
