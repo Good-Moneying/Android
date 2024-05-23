@@ -762,6 +762,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                                     controller.homeModel!.realtimeTrendNewsLetters[0].id,
                                                     controller.liveController.value.text,
                                                     controller.setPerspective(controller.isDialogAgreeList.value),
+                                                      controller.isLookAlone.value
                                                   );
 
                                                   controller.liveController.clear();

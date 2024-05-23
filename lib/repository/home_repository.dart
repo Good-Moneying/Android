@@ -82,7 +82,7 @@ class HomeRepository {
     }
   }
 
-  Future<void> postComment(int newsId, String content, String perspective) async {
+  Future<void> postComment(int newsId, String content, String perspective, bool isPrivate) async {
     final prefs = await SharedPreferences.getInstance();
 
     try {
@@ -91,7 +91,7 @@ class HomeRepository {
         data: {
           "content": content,
           "perspective": perspective,
-          "isPrivate": false
+          "isPrivate": isPrivate,
         },
         options: Options(
           headers: {
@@ -100,10 +100,13 @@ class HomeRepository {
         ),
       );
 
-      print('post 오류 확인');
+
+      print('postComment 상태 확인');
       print(response.statusCode);
 
       if (response.statusCode == 200) {
+        print('postComment 오류 확인');
+        print(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception(
@@ -113,6 +116,8 @@ class HomeRepository {
       // 네트워크 오류 또는 기타 오류 처리
       throw Exception('Error occurred: $e');
     }
+
+
   }
 
   Future<void> archivesTerm(int termId) async {
