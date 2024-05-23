@@ -37,16 +37,16 @@ class TwoQuizScreen extends GetView<QuizViewModel> {
           Get.back();
         },
       ),
-      body: _quiz(context)
-      // Obx(() {
-      //   if (controller.init2.value) {
-      //     return _quiz(context);
-      //   } else if (controller.secondQ2.value) {
-      //     return _quizCorrect();
-      //   } else {
-      //     return _quizFalse(controller.wrongQ2.value, controller.wrongDetail2.value);
-      //   }
-      // }),
+      body:
+      Obx(() {
+        if (controller.correctSubmitQ2.value) {
+          return _quizCorrect();
+        } else if (controller.wrongSubmitQ2.value) {
+          return _quizFalse(controller.wrongQ2.value, controller.wrongDetail2.value);
+        } else {
+          return _quiz(context);
+        }
+      }),
     );
   }
 }
@@ -187,7 +187,15 @@ _quiz(BuildContext context) {
                       : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
                   onPressed: quizController.q2List.contains(true)
-                      ?  () {} : null,
+                      ?  () {
+                    if(quizController.q2List[1]) {
+                      //정답인 경우
+                      quizController.correctSubmitQ2(true);
+                    } else {
+                      quizController.wrongSubmitQ2(true);
+                    }
+
+                  } : null,
                 ),
               ),
             ],
@@ -302,6 +310,8 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ2(false);
+              quizController.correctSubmitQ2(false);
               quizController.quizResult.value++;
               Get.toNamed(Routes.THIRDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
@@ -407,6 +417,8 @@ _quizFalse(String q, String detail) {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ2(false);
+              quizController.correctSubmitQ2(false);
               Get.toNamed(Routes.THIRDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },

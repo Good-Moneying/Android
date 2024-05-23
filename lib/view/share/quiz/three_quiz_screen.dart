@@ -35,13 +35,14 @@ class ThirdQuizScreen extends GetView<QuizViewModel> {
           Get.back();
         },
       ),
-      body: Obx(() {
-        if (controller.init3.value) {
-          return _quiz(context);
-        } else if (controller.thirdQ3.value) {
+      body:
+      Obx(() {
+        if (controller.correctSubmitQ3.value) {
           return _quizCorrect();
-        } else {
+        } else if (controller.wrongSubmitQ3.value) {
           return _quizFalse(controller.wrongQ3.value, controller.wrongDetail3.value);
+        } else {
+          return _quiz(context);
         }
       }),
     );
@@ -185,7 +186,16 @@ _quiz(BuildContext context) {
                       : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
                   onPressed: quizController.q3List.contains(true)
-                      ?  () {} : null,
+                      ?  () {
+                    if(quizController.q3List[2]) {
+                      //정답인 경우
+                      quizController.correctSubmitQ3(true);
+                    } else {
+                      //오답인 경우
+                      quizController.wrongSubmitQ3(true);
+                    }
+
+                  } : null,
                 ),
               ),
             ],
@@ -300,6 +310,8 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ3(false);
+              quizController.correctSubmitQ3(false);
               quizController.quizResult.value++;
               Get.toNamed(Routes.FOURTHQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
@@ -405,6 +417,8 @@ _quizFalse(String q, String detail) {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ3(false);
+              quizController.correctSubmitQ3(false);
               Get.toNamed(Routes.FOURTHQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },

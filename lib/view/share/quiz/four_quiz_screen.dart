@@ -36,12 +36,12 @@ class FourthQuizScreen extends GetView<QuizViewModel> {
         },
       ),
       body: Obx(() {
-        if (controller.init4.value) {
-          return _quiz(context);
-        } else if (controller.fourthQ4.value) {
+        if (controller.correctSubmitQ4.value) {
           return _quizCorrect();
-        } else {
+        } else if (controller.wrongSubmitQ4.value) {
           return _quizFalse(controller.wrongQ4.value, controller.wrongDetail4.value);
+        } else {
+          return _quiz(context);
         }
       }),
     );
@@ -184,7 +184,16 @@ _quiz(BuildContext context) {
                       : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
                   onPressed: quizController.q4List.contains(true)
-                      ?  () {} : null,
+                      ?  () {
+                    if(quizController.q4List[3]) {
+                      //정답인 경우
+                      quizController.correctSubmitQ4(true);
+                    } else {
+                      //오답인 경우
+                      quizController.wrongSubmitQ4(true);
+                    }
+
+                  } : null,
                 ),
               ),
             ],
@@ -299,6 +308,8 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ4(false);
+              quizController.correctSubmitQ4(false);
               quizController.quizResult.value++;
               Get.toNamed(Routes.RESULTQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
@@ -404,6 +415,8 @@ _quizFalse(String q, String detail) {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ4(false);
+              quizController.correctSubmitQ4(false);
               Get.toNamed(Routes.RESULTQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
