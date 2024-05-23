@@ -85,41 +85,66 @@ _quiz(BuildContext context) {
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init4(false);
-                quizController.firstQ4(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init4(false);
+                  //quizController.firstQ4(true);
 
-                quizController.wrongQ4('A');
-                quizController.wrongDetail4('전기차');
-              },
-              child: ChoiceQuiz(number: 'A', detail: '전기차')),
-          GestureDetector(
-              onTap: () {
-                quizController.init4(false);
-                quizController.secondQ4(true);
-
-                quizController.wrongQ4('B');
-                quizController.wrongDetail4('전기자전거');
-              },
-              child: ChoiceQuiz(number: 'B', detail: '전기자전거')
+                  quizController.selectQ4(0);
+                  quizController.wrongQ4('A');
+                  quizController.wrongDetail4('전기차');
+                },
+                child:
+                quizController.q4List[0] ?
+                AnswerQuiz(number: 'A', detail: '전기차') :
+                ChoiceQuiz(number: 'A', detail: '전기차')),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init4(false);
-                quizController.thirdQ4(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init4(false);
+                  //quizController.secondQ4(true);
 
-                quizController.wrongQ4('C');
-                quizController.wrongDetail4('풍력발전 터빈');
-              },
-              child: ChoiceQuiz(number: 'C', detail: '풍력발전 터빈')
+                  quizController.selectQ4(1);
+
+                  quizController.wrongQ4('B');
+                  quizController.wrongDetail4('전기자전거');
+                },
+                child: quizController.q4List[1] ?
+                AnswerQuiz(number: 'B', detail: '전기자전거') :
+                ChoiceQuiz(number: 'B', detail: '전기자전거')
+            ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init4(false);
-                quizController.fourthQ4(true);
-              },
-              child: ChoiceQuiz(number: 'D', detail: '의류')
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init4(false);
+                  //quizController.thirdQ4(true);
+
+                  quizController.selectQ4(2);
+
+                  quizController.wrongQ4('C');
+                  quizController.wrongDetail4('풍력발전 터빈');
+                },
+                child:
+                quizController.q4List[2] ?
+                AnswerQuiz(number: 'C', detail: '풍력발전 터빈') :
+                ChoiceQuiz(number: 'C', detail: '풍력발전 터빈')
+            ),
+          ),
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init4(false);
+                  //quizController.fourthQ4(true);
+
+                  quizController.selectQ4(3);
+                },
+                child: quizController.q4List[3] ?
+                AnswerQuiz(number: 'D', detail: '의류') :
+                ChoiceQuiz(number: 'D', detail: '의류')
+            ),
           ),
           Spacer(),
           Row(
@@ -152,10 +177,14 @@ _quiz(BuildContext context) {
               Flexible(
                 flex: 1,
                 child: CustomButton(
-                  backgroundColor: AppColors.v1,
-                  textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
+                  backgroundColor: AppColors.v6,
+                  textStyle: FontStyles.Bn1_b.copyWith(color:
+                  quizController.q4List.contains(true)
+                      ? AppColors.white
+                      : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
-                  onPressed: null,
+                  onPressed: quizController.q4List.contains(true)
+                      ?  () {} : null,
                 ),
               ),
             ],

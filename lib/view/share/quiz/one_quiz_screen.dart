@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/design/widgets/appBar/back_appBar.dart';
@@ -25,7 +26,6 @@ import '../../../viewModel/home_viewModel.dart';
 final quizController = Get.find<QuizViewModel>();
 final homeController = Get.find<HomeViewModel>();
 
-
 class OneQuizScreen extends GetView<QuizViewModel> {
   const OneQuizScreen({super.key});
 
@@ -33,22 +33,24 @@ class OneQuizScreen extends GetView<QuizViewModel> {
   Widget build(BuildContext context) {
     Get.put(QuizViewModel());
     return Scaffold(
-      appBar: QuizAppBar(
-        onPressed: () {
-          controller.init(true);
-          Get.back();
-        },
-      ),
-      body: Obx(() {
-        if (controller.init.value) {
-          return _quiz(context);
-        } else if (controller.secondQ.value) {
-          return _quizCorrect();
-        } else {
-          return _quizFalse(controller.wrongQ.value, controller.wrongDetail.value);
-        }
-      }),
-    );
+        appBar: QuizAppBar(
+          onPressed: () {
+            controller.init(true);
+            Get.back();
+          },
+        ),
+        body: _quizCorrect()
+        // Obx(() {
+        //   if (controller.init.value) {
+        //     return _quiz(context);
+        //   } else if (controller.secondQ.value) {
+        //     return _quizCorrect();
+        //   } else {
+        //     return _quizFalse(
+        //         controller.wrongQ.value, controller.wrongDetail.value);
+        //   }
+        // }),
+        );
   }
 }
 
@@ -69,7 +71,8 @@ _quiz(BuildContext context) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('1/4',
+                Text(
+                  '1/4',
                   style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
                 ),
               ],
@@ -89,41 +92,60 @@ _quiz(BuildContext context) {
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init(false);
-                quizController.firstQ(true);
+          Obx(
+            () => GestureDetector(
+                onTap: () {
+                  quizController.init(false);
 
-                quizController.wrongQ('A');
-                quizController.wrongDetail('이용자 수가 증가했기 때문에');
-              },
-              child: ChoiceQuiz(number: 'A', detail: '이용자 수가 증가했기 때문에')),
-          GestureDetector(
-            onTap: () {
-              quizController.init(false);
-              quizController.secondQ(true);
-            },
-              child: ChoiceQuiz(number: 'B', detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에')
+                  quizController.selectQ(0);
+
+                  quizController.wrongQ('A');
+                  quizController.wrongDetail('이용자 수가 증가했기 때문에');
+                },
+                child: quizController.q1List[0]
+                    ? AnswerQuiz(number: 'A', detail: '이용자 수가 증가했기 때문에')
+                    : ChoiceQuiz(number: 'A', detail: '이용자 수가 증가했기 때문에')),
           ),
-          GestureDetector(
-            onTap: () {
-              quizController.init(false);
-              quizController.thirdQ(true);
+          Obx(
+            () => GestureDetector(
+                onTap: () {
+                  quizController.init(false);
 
-              quizController.wrongQ('C');
-              quizController.wrongDetail('중고거래 플랫폼을 홍보하기 위해서');
-            },
-              child: ChoiceQuiz(number: 'C', detail: '중고거래 플랫폼을 홍보하기 위해서')
+                  quizController.selectQ(1);
+                },
+                child: quizController.q1List[1]
+                    ? AnswerQuiz(
+                        number: 'B',
+                        detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에')
+                    : ChoiceQuiz(
+                        number: 'B',
+                        detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에')),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init(false);
-                quizController.fourthQ(true);
+          Obx(
+            () => GestureDetector(
+                onTap: () {
+                  quizController.init(false);
+                  quizController.selectQ(2);
 
-                quizController.wrongQ('D');
-                quizController.wrongDetail('중고 제품의 품질을 검사하기 위해서');
-              },
-              child: ChoiceQuiz(number: 'D', detail: '중고 제품의 품질을 검사하기 위해서')
+                  quizController.wrongQ('C');
+                  quizController.wrongDetail('중고거래 플랫폼을 홍보하기 위해서');
+                },
+                child: quizController.q1List[2]
+                    ? AnswerQuiz(number: 'C', detail: '중고거래 플랫폼을 홍보하기 위해서')
+                    : ChoiceQuiz(number: 'C', detail: '중고거래 플랫폼을 홍보하기 위해서')),
+          ),
+          Obx(
+            () => GestureDetector(
+                onTap: () {
+                  quizController.init(false);
+                  quizController.selectQ(3);
+
+                  quizController.wrongQ('D');
+                  quizController.wrongDetail('중고 제품의 품질을 검사하기 위해서');
+                },
+                child: quizController.q1List[3]
+                    ? AnswerQuiz(number: 'D', detail: '중고 제품의 품질을 검사하기 위해서')
+                    : ChoiceQuiz(number: 'D', detail: '중고 제품의 품질을 검사하기 위해서')),
           ),
           Spacer(),
           Row(
@@ -156,10 +178,14 @@ _quiz(BuildContext context) {
               Flexible(
                 flex: 1,
                 child: CustomButton(
-                  backgroundColor: AppColors.v1,
-                  textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
+                  backgroundColor: AppColors.v6,
+                  textStyle: FontStyles.Bn1_b.copyWith(
+                      color: quizController.q1List.contains(true)
+                          ? AppColors.white
+                          : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
-                  onPressed: null,
+                  onPressed:quizController.q1List.contains(true)
+                      ?  () {} : null,
                 ),
               ),
             ],
@@ -187,8 +213,9 @@ _quizCorrect() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('1/4',
-                style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                Text(
+                  '1/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
                 ),
               ],
             ),
@@ -259,8 +286,9 @@ _quizCorrect() {
                       padding: const EdgeInsets.only(right: 12.0),
                       child: Text(
                         '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에',
-                        style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
-                      softWrap: true,
+                        style:
+                            FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                        softWrap: true,
                       ),
                     ),
                   ),
@@ -303,7 +331,8 @@ _quizFalse(String q, String detail) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Text('1/4',
+                Text(
+                  '1/4',
                   style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
                 ),
               ],
@@ -345,7 +374,8 @@ _quizFalse(String q, String detail) {
           //사용자가 고른 틀린 답
           WrongQuiz(number: q, detail: detail),
           //퀴즈의 원래 정답
-          AnswerQuiz(number: 'B', detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에'),
+          AnswerQuiz(
+              number: 'B', detail: '중고거래를 통해 일정 수준 이상의 사업 소득을 벌어들였기 때문에'),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Text(
@@ -354,27 +384,28 @@ _quizFalse(String q, String detail) {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(bottom: 15.0),
-            child: RecommendU(
-              image:
-              homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
-              title:
-              '당근마켓서 물건 팔았는데 세금 내야 할까... 국세청 기준은?',
-              tag: CustomChip(label: homeController.parseCustom1()[0],),
-              isRecommend: homeController.isRecommendThird.value,
-              onRecommend: () {
-                homeController.isRecommendThird.value
-                    ? homeController.isRecommendThird.value = false
-                    : homeController.isRecommendThird.value = true;
-              },
-              history: History(
-                diff: homeController.formatDate(
-                  DateTime.parse(homeController
-                      .homeModel!.customizeNewsLetters[2].createdAt),
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: RecommendU(
+                image: homeController
+                        .homeModel?.customizeNewsLetters[2].thumbnail ??
+                    'no data',
+                title: '당근마켓서 물건 팔았는데 세금 내야 할까... 국세청 기준은?',
+                tag: CustomChip(
+                  label: homeController.parseCustom1()[0],
                 ),
-              ),
-            )
-          ),
+                isRecommend: homeController.isRecommendThird.value,
+                onRecommend: () {
+                  homeController.isRecommendThird.value
+                      ? homeController.isRecommendThird.value = false
+                      : homeController.isRecommendThird.value = true;
+                },
+                history: History(
+                  diff: homeController.formatDate(
+                    DateTime.parse(homeController
+                        .homeModel!.customizeNewsLetters[2].createdAt),
+                  ),
+                ),
+              )),
           CustomButton(
             backgroundColor: AppColors.v6,
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),

@@ -85,41 +85,67 @@ _quiz(BuildContext context) {
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init3(false);
-                quizController.firstQ3(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init3(false);
+                  //quizController.firstQ3(true);
 
-                quizController.wrongQ3('A');
-                quizController.wrongDetail3('경제 침체');
-              },
-              child: ChoiceQuiz(number: 'A', detail: '경제 침체')),
-          GestureDetector(
-              onTap: () {
-                quizController.init3(false);
-                quizController.secondQ3(true);
+                  quizController.selectQ3(0);
 
-                quizController.wrongQ3('B');
-                quizController.wrongDetail3('물가 하락');
-              },
-              child: ChoiceQuiz(number: 'B', detail: '물가 하락')
+                  quizController.wrongQ3('A');
+                  quizController.wrongDetail3('경제 침체');
+                },
+                child: quizController.q3List[0] ?
+                AnswerQuiz(number: 'A', detail: '경제 침체') :
+                ChoiceQuiz(number: 'A', detail: '경제 침체')),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init3(false);
-                quizController.thirdQ3(true);
-              },
-              child: ChoiceQuiz(number: 'C', detail: '예상보다 좋은 경제 호황')
-          ),
-          GestureDetector(
-              onTap: () {
-                quizController.init3(false);
-                quizController.fourthQ3(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init3(false);
+                  //quizController.secondQ3(true);
 
-                quizController.wrongQ3('D');
-                quizController.wrongDetail3('유로존의 경제 상황');
-              },
-              child: ChoiceQuiz(number: 'D', detail: '유로존의 경제 상황')
+                  quizController.selectQ3(1);
+
+                  quizController.wrongQ3('B');
+                  quizController.wrongDetail3('물가 하락');
+                },
+                child: quizController.q3List[1] ?
+                AnswerQuiz(number: 'B', detail: '물가 하락') :
+                ChoiceQuiz(number: 'B', detail: '물가 하락')
+            ),
+          ),
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init3(false);
+                  //quizController.thirdQ3(true);
+
+                  quizController.selectQ3(2);
+                },
+                child:
+                quizController.q3List[2] ?
+                AnswerQuiz(number: 'C', detail: '예상보다 좋은 경제 호황') :
+                ChoiceQuiz(number: 'C', detail: '예상보다 좋은 경제 호황')
+            ),
+          ),
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init3(false);
+                  //quizController.fourthQ3(true);
+
+                  quizController.selectQ3(3);
+
+                  quizController.wrongQ3('D');
+                  quizController.wrongDetail3('유로존의 경제 상황');
+                },
+                child:
+                quizController.q3List[3] ?
+                AnswerQuiz(number: 'D', detail: '유로존의 경제 상황') :
+                ChoiceQuiz(number: 'D', detail: '유로존의 경제 상황')
+            ),
           ),
           Spacer(),
           Row(
@@ -152,10 +178,14 @@ _quiz(BuildContext context) {
               Flexible(
                 flex: 1,
                 child: CustomButton(
-                  backgroundColor: AppColors.v1,
-                  textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
+                  backgroundColor: AppColors.v6,
+                  textStyle: FontStyles.Bn1_b.copyWith(color:
+                  quizController.q3List.contains(true)
+                      ? AppColors.white
+                      : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
-                  onPressed: null,
+                  onPressed: quizController.q3List.contains(true)
+                      ?  () {} : null,
                 ),
               ),
             ],

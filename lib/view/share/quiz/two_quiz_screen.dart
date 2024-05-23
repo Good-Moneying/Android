@@ -37,15 +37,16 @@ class TwoQuizScreen extends GetView<QuizViewModel> {
           Get.back();
         },
       ),
-      body: Obx(() {
-        if (controller.init2.value) {
-          return _quiz(context);
-        } else if (controller.secondQ2.value) {
-          return _quizCorrect();
-        } else {
-          return _quizFalse(controller.wrongQ2.value, controller.wrongDetail2.value);
-        }
-      }),
+      body: _quiz(context)
+      // Obx(() {
+      //   if (controller.init2.value) {
+      //     return _quiz(context);
+      //   } else if (controller.secondQ2.value) {
+      //     return _quizCorrect();
+      //   } else {
+      //     return _quizFalse(controller.wrongQ2.value, controller.wrongDetail2.value);
+      //   }
+      // }),
     );
   }
 }
@@ -87,41 +88,66 @@ _quiz(BuildContext context) {
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.firstQ2(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.firstQ2(true);
 
-                quizController.wrongQ2('A');
-                quizController.wrongDetail2('해외 제품의 가격이 비싸기 때문에');
-              },
-              child: ChoiceQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에')),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.secondQ2(true);
-              },
-              child: ChoiceQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에')
+                  quizController.selectQ2(0);
+
+                  quizController.wrongQ2('A');
+                  quizController.wrongDetail2('해외 제품의 가격이 비싸기 때문에');
+                },
+                child: quizController.q2List[0] ?
+                AnswerQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에') :
+                ChoiceQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에')),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.thirdQ2(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.secondQ2(true);
 
-                quizController.wrongQ2('C');
-                quizController.wrongDetail2('국내 소비를 촉진하기 위해서');
-              },
-              child: ChoiceQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서')
+                  quizController.selectQ2(1);
+                },
+                child: quizController.q2List[1] ?
+                AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에') :
+                ChoiceQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에')
+            ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.fourthQ2(true);
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.thirdQ2(true);
 
-                quizController.wrongQ2('D');
-                quizController.wrongDetail2('해외 직구의 인기가 너무 높아서');
-              },
-              child: ChoiceQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서')
+                  quizController.selectQ2(2);
+
+                  quizController.wrongQ2('C');
+                  quizController.wrongDetail2('국내 소비를 촉진하기 위해서');
+                },
+                child:
+                quizController.q2List[2] ?
+                AnswerQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서') :
+                ChoiceQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서')
+            ),
+          ),
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.fourthQ2(true);
+
+                  quizController.selectQ2(3);
+
+                  quizController.wrongQ2('D');
+                  quizController.wrongDetail2('해외 직구의 인기가 너무 높아서');
+                },
+                child: quizController.q2List[3] ?
+                AnswerQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서') :
+                ChoiceQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서')
+            ),
           ),
           Spacer(),
           Row(
@@ -154,10 +180,14 @@ _quiz(BuildContext context) {
               Flexible(
                 flex: 1,
                 child: CustomButton(
-                  backgroundColor: AppColors.v1,
-                  textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
+                  backgroundColor: AppColors.v6,
+                  textStyle: FontStyles.Bn1_b.copyWith(color:
+                  quizController.q2List.contains(true)
+                      ? AppColors.white
+                      : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
-                  onPressed: null,
+                  onPressed: quizController.q2List.contains(true)
+                      ?  () {} : null,
                 ),
               ),
             ],
