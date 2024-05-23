@@ -347,11 +347,11 @@ class ShareScreen extends GetView<ShareViewModel> {
                           Container(
                             decoration: BoxDecoration(
                               color: AppColors.v6,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(18),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 15.0, vertical: 5),
+                                  horizontal: 14.0, vertical: 8),
                               child: Text(
                                 'VS',
                                 style: FontStyles.Caption1_m.copyWith(

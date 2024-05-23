@@ -123,11 +123,11 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                           Container(
                             decoration: BoxDecoration(
                               color: AppColors.v6,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(18),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0, vertical: 8),
+                                  horizontal: 14.0, vertical: 8),
                               child: Text(
                                 'VS',
                                 style: FontStyles.Caption1_m.copyWith(
@@ -303,7 +303,7 @@ _allComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '수현',
+          writer: '연디',
           time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
@@ -492,7 +492,7 @@ _agreeComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '수현',
+          writer: '연디',
           time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
