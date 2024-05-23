@@ -877,11 +877,21 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                 'EDITOR',
                                                                 controller.homeModel!.todayNewsLetter.id,
                                                                 controller.editorController.value.text,
-                                                                controller.setPerspective(controller.isDialogAgreeList.value),
+                                                                  controller.setPerspective(controller.isDialogAgreeList.value),
                                                                   controller.isLookAlone.value
                                                               );
 
-                                                              controller.addComment(controller.editorController.value.text);
+                                                              if(controller.isLookAlone.value) {
+                                                                controller.addComment('비밀 댓글입니다.');
+                                                              } else {
+                                                                controller.addComment(controller.editorController.value.text);
+                                                              }
+
+                                                              if(controller.isLookAlone.value) {
+                                                                controller.addLivePerspec('비공개');
+                                                              } else {
+                                                                controller.addPerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
+                                                              }
 
                                                               // print('나혼자볼래요 테스트');
                                                               // print(controller.isLookAlone.value);
@@ -974,56 +984,60 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 writer: '연디',
                                                 time: '방금전',
                                                 content: controller.comments[index],
-                                                perspective: controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)),
-                                                onFollow: ElevatedButton(
-                                                  onPressed: () {
-                                                    if (controller.isFollowE.value == false) {
-                                                      controller.isFollowE(true);
-                                                    } else {
-                                                      controller.isFollowE(false);
-                                                    }
-                                                  },
-                                                  style: ElevatedButton.styleFrom(
-                                                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                                    minimumSize: Size.zero,
-                                                    padding:
-                                                    EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
-                                                    backgroundColor:
-                                                    controller.isFollowE.value ? AppColors.g2 : AppColors.g6,
-                                                    shape: RoundedRectangleBorder(
-                                                      borderRadius: BorderRadius.circular(4),
+                                                perspective: controller.perspecs[index],
+                                                onFollow: Obx(
+                                                    () => ElevatedButton(
+                                                    onPressed: () {
+                                                      if (controller.isFollowE.value == false) {
+                                                        controller.isFollowE(true);
+                                                      } else {
+                                                        controller.isFollowE(false);
+                                                      }
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                                      minimumSize: Size.zero,
+                                                      padding:
+                                                      EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+                                                      backgroundColor:
+                                                      controller.isFollowE.value ? AppColors.g2 : AppColors.g6,
+                                                      shape: RoundedRectangleBorder(
+                                                        borderRadius: BorderRadius.circular(4),
+                                                      ),
+                                                    ),
+                                                    child: Text(
+                                                      controller.isFollowE.value ? '팔로잉' : '팔로우',
+                                                      style: FontStyles.Caption2_m.copyWith(
+                                                          color: controller.isFollowE.value
+                                                              ? AppColors.g5
+                                                              : AppColors.white),
                                                     ),
                                                   ),
-                                                  child: Text(
-                                                    controller.isFollowE.value ? '팔로잉' : '팔로우',
-                                                    style: FontStyles.Caption2_m.copyWith(
-                                                        color: controller.isFollowE.value
-                                                            ? AppColors.g5
-                                                            : AppColors.white),
-                                                  ),
                                                 ),
-                                                onLike: GestureDetector(
-                                                  onTap: () {
-                                                    if (controller.isLikeE.value == false) {
-                                                      controller.isLikeE(true);
-                                                    } else {
-                                                      controller.isLikeE(false);
-                                                    }
-                                                  },
-                                                  child: Row(
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.only(right: 4.0),
-                                                        //라이크 코멘트 색 채워졌을 때 필요함
-                                                        child: SvgPicture.asset(controller.isLikeE.value
-                                                            ? 'assets/icons/like_comment.svg'
-                                                            : 'assets/icons/unlike_comment.svg'),
-                                                      ),
-                                                      Text(
-                                                        controller.isLikeE.value ? '1' : '0',
-                                                        style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
-                                                      ),
-                                                    ],
+                                                onLike: Obx(
+                                                    () => GestureDetector(
+                                                    onTap: () {
+                                                      if (controller.isLikeE.value == false) {
+                                                        controller.isLikeE(true);
+                                                      } else {
+                                                        controller.isLikeE(false);
+                                                      }
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: const EdgeInsets.only(right: 4.0),
+                                                          //라이크 코멘트 색 채워졌을 때 필요함
+                                                          child: SvgPicture.asset(controller.isLikeE.value
+                                                              ? 'assets/icons/like_comment.svg'
+                                                              : 'assets/icons/unlike_comment.svg'),
+                                                        ),
+                                                        Text(
+                                                          controller.isLikeE.value ? '1' : '0',
+                                                          style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               );
