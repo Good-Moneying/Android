@@ -641,8 +641,17 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                                       controller.isLookAlone.value
                                                   );
 
-                                                  controller.addLiveComment(controller.liveController.value.text);
-                                                  controller.addLivePerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
+                                                  if(controller.isLookAlone.value) {
+                                                    controller.addLiveComment('비밀 댓글입니다.');
+                                                  } else {
+                                                    controller.addLiveComment(controller.liveController.value.text);
+                                                  }
+
+                                                  if(controller.isLookAlone.value) {
+                                                    controller.addLivePerspec('비공개');
+                                                  } else {
+                                                    controller.addLivePerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
+                                                  }
 
                                                   print(controller.setPerspective(controller.isDialogAgreeList.value));
 
@@ -723,7 +732,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return CommentWidget(
-                                writer: '연디',
+                                writer: controller.isLookAlone.value ? '작성자' : '연디',
                                 time: '방금전',
                                 content: controller.liveComments[index],
                                 perspective: controller.livePerspecs[index],
