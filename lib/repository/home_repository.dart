@@ -66,7 +66,7 @@ class HomeRepository {
 
       );
 
-      if (response.statusCode == 200) {
+    if (response.statusCode == 200) {
         // print('홈모델 응답 성공');
         // print(HomeModel.fromJson(response.data));
         print('투데이뉴스 : ${response.data}');
@@ -103,11 +103,12 @@ class HomeRepository {
       print('post 오류 확인');
       print(response.statusCode);
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
+        print('댓글 : ${response.data}');
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception(
-            'Failed to load editor news: ${response.statusMessage}');
+            'Failed to load comment news: ${response.statusCode}');
       }
     } catch (e) {
       // 네트워크 오류 또는 기타 오류 처리
@@ -161,6 +162,7 @@ class HomeRepository {
 
       if (response.statusCode == 200) {
         //return HomeModel.fromJson(response.data);
+        print('카테고리 : ${response.data}');
       } else {
         // 서버에서 오류 응답을 받은 경우 처리
         throw Exception(

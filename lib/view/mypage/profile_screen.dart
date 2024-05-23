@@ -289,32 +289,31 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
-                                          controller.profileModel?.attendances?.data?[0].attendant == true
+                                          controller.attendedDays[6] == true
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[1].attendant == true
+                                          controller.attendedDays[0]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[2].attendant == true
+                                          controller.attendedDays[1]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[3].attendant == true
+                                          controller.attendedDays[2]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[4].attendant == true
+                                          controller.attendedDays[3]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[5].attendant == true
+                                          controller.attendedDays[4]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[6].attendant == true
+                                          controller.attendedDays[5]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
                                         ],
                                       ),
                                     ],
                                   )
-
                                 )
                               ],
                             ),

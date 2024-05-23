@@ -383,15 +383,15 @@ class PlusOnboardingScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 20.0),
+                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
+                              ),
                               Image.asset(
                                 'assets/icons/plus_cloud.png',
                                 width: 350,
                                 height: 250,
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 20.0),
-                                child: Image.asset('assets/icons/plus_say.png',width: 48, height: 48,),
-                              )
                             ],
                           ),
                         ),
