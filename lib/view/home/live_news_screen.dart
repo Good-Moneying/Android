@@ -642,6 +642,14 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                                   );
 
                                                   controller.addLiveComment(controller.liveController.value.text);
+                                                  controller.addLivePerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
+
+                                                  print(controller.setPerspective(controller.isDialogAgreeList.value));
+
+                                                  print(controller.liveComments);
+                                                  print(controller.livePerspecs);
+                                                  //positive -> 긍정적이에요
+                                                  //controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value))
 
                                                   controller.liveController.clear();
                                                   Get.back();
@@ -718,7 +726,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                 writer: '연디',
                                 time: '방금전',
                                 content: controller.liveComments[index],
-                                perspective: controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)),
+                                perspective: controller.livePerspecs[index],
                                 onFollow: Obx(
                                     ()=> ElevatedButton(
                                     onPressed: () {

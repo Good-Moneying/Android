@@ -51,17 +51,27 @@ class HomeViewModel extends GetxController {
   late final Rxn<NewsLetterModel> _newsLetterModel;
   //late final RxList<CommentModel> _commentModel;
 
-  //에디터 댓글
+  //에디터 댓글&관점
   final comments = <String>[].obs;
-  //실시간 댓글
+  final perspecs = <String>[].obs;
+  //실시간 댓글&관점
   final liveComments = <String>[].obs;
+  final livePerspecs = <String>[].obs;
+
   //에디터 더하기
   void addComment(String comment) {
     comments.add(comment);
   }
+  void addPerspec(String perspec) {
+    perspecs.add(perspec);
+  }
+
   //실시간 댓글 더하기
   void addLiveComment(String comment) {
     liveComments.add(comment);
+  }
+  void addLivePerspec(String perspec) {
+    livePerspecs.add(perspec);
   }
 
   HomeModel? get homeModel => _homeModel.value;
