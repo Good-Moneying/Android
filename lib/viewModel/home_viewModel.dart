@@ -83,6 +83,17 @@ class HomeViewModel extends GetxController {
     return 'unknown';
   }
 
+  String perspecComment(String setPerspective) {
+    if (setPerspective== 'POSITIVE') {
+      return agreeCategory('긍정적이에요');
+    } else if (setPerspective== 'NEGATIVE') {
+      return agreeCategory('부정적이에요');
+    } else if (setPerspective== 'UNCERTAIN') {
+      return agreeCategory('잘 모르겠어요');
+    }
+    return 'unknown';
+  }
+
   Future<void> getHomeModel() async {
     try {
       _homeModel.value = await _repository.getHomeModel();

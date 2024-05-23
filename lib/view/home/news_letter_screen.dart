@@ -980,7 +980,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                 writer: '연디',
                                                 time: '방금전',
                                                 content: controller.comments[index],
-                                                perspective: '긍정적이에요',
+                                                perspective: controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)),
                                                 onFollow: ElevatedButton(
                                                   onPressed: () {
                                                     if (controller.isFollowE.value == false) {
