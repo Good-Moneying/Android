@@ -18,7 +18,6 @@ class SurveyScreen extends GetView<SurveyViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(SurveyViewModel());
-    controller.startAnimation();
     return Scaffold(
       backgroundColor: AppColors.g6,
       appBar: AppBar(
@@ -110,110 +109,25 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             children: [
                               Flexible(
                                 flex: 1,
-                                child: AnimatedBuilder(
-                                  animation: controller.animation,
-                                  builder: (context, child) {
-                                    return Container(
-                                      height: Get.height*controller.animation.value*0.18,
-                                      decoration: BoxDecoration(
-                                        color: AppColors.v5,
-                                        border: Border.all(
-                                          color: AppColors.v2,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding:
-                                            const EdgeInsets.fromLTRB(14, 1, 14, 8),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-
-                                            Text(
-                                              '찬성',
-                                              style: FontStyles.Caption1_m.copyWith(
-                                                  color: AppColors.black),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    );
-                                  }
-                                ),
+                                child: SvgPicture.asset('assets/images/agree7box.svg'),
                               ),
                               SizedBox(
                                 width: 16,
                               ),
                               Flexible(
                                 flex: 1,
-                                child:
-                                // Container(
-                                //   decoration: BoxDecoration(
-                                //     color: AppColors.white,
-                                //     border: Border.all(
-                                //       color: AppColors.v2,
-                                //       width: 1,
-                                //     ),
-                                //     borderRadius: BorderRadius.circular(10),
-                                //   ),
-                                //   child: Padding(
-                                //     padding:
-                                //         const EdgeInsets.fromLTRB(14, 1, 14, 8),
-                                //     child: Column(
-                                //       mainAxisAlignment:
-                                //           MainAxisAlignment.center,
-                                //       children: [
-                                //         Image.asset(
-                                //             'assets/icons/disagreement.png'),
-                                //         Text(
-                                //           '반대',
-                                //           style: FontStyles.Caption1_m.copyWith(
-                                //               color: AppColors.black),
-                                //         ),
-                                //       ],
-                                //     ),
-                                //   ),
-                                // ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    border: Border.all(
-                                      color: AppColors.v3,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                    const EdgeInsets.fromLTRB(14, 1, 14, 8),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                      MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                            'assets/icons/disagreement.png'),
-                                        Text(
-                                          '반대',
-                                          style: FontStyles.Caption1_m.copyWith(
-                                              color: AppColors.v5),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                                child: SvgPicture.asset('assets/images/disagree3box.svg'),
                               ),
                             ],
                           ),
                           Container(
                             decoration: BoxDecoration(
                               color: AppColors.v6,
-                              borderRadius: BorderRadius.circular(15),
+                              borderRadius: BorderRadius.circular(18),
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0, vertical: 8),
+                                  horizontal: 14.0, vertical: 8),
                               child: Text(
                                 'VS',
                                 style: FontStyles.Caption1_m.copyWith(
@@ -389,7 +303,7 @@ _allComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '수현',
+          writer: '연디',
           time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
@@ -578,7 +492,7 @@ _agreeComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '수현',
+          writer: '연디',
           time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',

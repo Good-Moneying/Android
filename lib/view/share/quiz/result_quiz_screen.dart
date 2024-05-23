@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/widgets/custom_button.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
+import 'package:meetup/viewModel/app_viewModel.dart';
 
 import '../../../design/style/ColorStyles.dart';
 import '../../../design/style/FontStyles.dart';
@@ -17,7 +18,7 @@ import '../../../viewModel/quiz_viewModel.dart';
 
 final quizController = Get.find<QuizViewModel>();
 final homeController = Get.find<HomeViewModel>();
-
+final tapController = Get.find<AppViewModel>();
 
 class ResultQuizScreen extends GetView<QuizViewModel> {
   const ResultQuizScreen({super.key});
@@ -25,6 +26,7 @@ class ResultQuizScreen extends GetView<QuizViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(QuizViewModel());
+    Get.find<AppViewModel>().currentIndex(2);
     return Scaffold(
       appBar: BackAppBar(iconColor: AppColors.black, title: null,),
       body: Obx(
@@ -235,6 +237,7 @@ _allCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '퀴즈 종료',
             onPressed: () {
+              tapController.changeCurrentIndex(2);
               Get.offAll(BottomNavigationView());
             },
           ),

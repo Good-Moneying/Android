@@ -15,29 +15,4 @@ class SurveyViewModel extends GetxController with GetSingleTickerProviderStateMi
   Rx<bool> agreeComment = false.obs;
   Rx<bool> disagreeComment = false.obs;
 
-
-  //애니메이션
-  late AnimationController animationController;
-  late Animation<double> animation;
-
-  @override
-  void onInit() {
-    super.onInit();
-    animationController = AnimationController(
-      duration: Duration(seconds: 5),
-      vsync: this,
-    );
-
-    animation = Tween<double>(
-      begin: 0.0,
-      end: 1.0,
-    ).animate(CurvedAnimation(
-      parent: animationController,
-      curve: Curves.easeInOut,
-    ));
-  }
-
-  void startAnimation() {
-    animationController.forward();
-  }
 }

@@ -12,9 +12,12 @@ class ProfileViewModel extends GetxController {
   late final Rxn<ArchivesTermModel> _archivesTermModel;
   late final Rxn<ArchivesNewsLetterModel> _archivesNewsLetterModel;
 
+
   ProfileModel? get profileModel => _profileModel.value;
   ArchivesTermModel? get archivesTermModel => _archivesTermModel.value;
   ArchivesNewsLetterModel? get archivesNewsModel => _archivesNewsLetterModel.value;
+
+  Rx<bool> isLoading = true.obs;
 
   RxList<bool> attendedDays = <bool>[].obs;
   Rx<int> count = 0.obs;
