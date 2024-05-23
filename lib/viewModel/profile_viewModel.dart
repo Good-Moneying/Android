@@ -16,7 +16,7 @@ class ProfileViewModel extends GetxController {
   ArchivesTermModel? get archivesTermModel => _archivesTermModel.value;
   ArchivesNewsLetterModel? get archivesNewsModel => _archivesNewsLetterModel.value;
 
-  RxList<int> attendedDays = <int>[].obs;
+  RxList<bool> attendedDays = <bool>[].obs;
   Rx<int> count = 0.obs;
 
   @override
@@ -59,16 +59,12 @@ class ProfileViewModel extends GetxController {
     }
   }
 
-  void _updateAttendanceData() {
-    attendedDays.clear();
+  /*void _updateAttendanceData() {
     count.value = 0;
     if (profileModel != null && profileModel!.attendances != null) {
       for (var attendance in profileModel!.attendances!.data!) {
         if (attendance.attendant ?? false) {
-          attendedDays.add(1);
           count.value++;
-        } else {
-          attendedDays.add(0);
         }
       }
     }
@@ -79,5 +75,49 @@ class ProfileViewModel extends GetxController {
     return count.value;
   }
 
+  void _updateAttendance() {
+    attendedDays.clear();
+    if (profileModel != null && profileModel!.attendances != null) {
+      var sortedData = List.from(profileModel!.attendances!.data!);
+      sortedData.sort((a, b) => a['dayOfWeekValue'].compareTo(b['dayOfWeekValue']));
 
+      for (var attendance in sortedData) {
+        if (attendance['attendant'] ?? false) {
+          attendedDays.add(attendance['dayOfWeekValue']);
+        } else {
+          attendedDays.add(0);
+        }
+      }
+    }
+    print('리스트 : ${attendedDays}');
+  }
+
+*/
+  void _updateAttendanceData() {
+    attendedDays.clear();
+    count.value = 0;
+    if (profileModel != null && profileModel!.attendances != null) {
+      var sortedData = List.from(profileModel!.attendances!.data!);
+      sortedData.sort((a, b) => a.dayOfWeekValue.compareTo(b.dayOfWeekValue));
+
+      for (var attendance in sortedData) {
+        if (attendance.attendant) {
+          attendedDays.add(true);
+          count.value++;
+        } else{
+          attendedDays.add(false);
+        }
+      }
+    }
+    print('리스트 : ${attendedDays}');
+  }
+
+  int getAttendedDays() {
+    return count.value;
+  }
+
+  String splitKeywords(String text, int i) {
+    List<String> parts = text.split("V");
+    return parts[i];
+  }
 }

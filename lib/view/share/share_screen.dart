@@ -58,7 +58,7 @@ class ShareScreen extends GetView<ShareViewModel> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
+              padding: const EdgeInsets.only(top: 4.0, bottom: 16.0),
               child: Text(
                 '오늘의 설문',
                 style: FontStyles.Headline2_b.copyWith(color: AppColors.black),
@@ -93,7 +93,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                 surfaceTintColor: Colors.transparent,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
-                elevation: 3,
+                elevation: 0,
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(16, 16, 16, 28),
                   child: Column(
@@ -135,7 +135,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                               TextSpan(
                                 text: '전기차의 보급을 확대하기 위해\n정부의 추가적인 지원이 필요하다',
                                 style: FontStyles.Br1_sb.copyWith(
-                                    color: AppColors.black),
+                                    color: AppColors.black, height: 1.6),
                               ),
                             ],
                           ),
@@ -346,7 +346,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0, vertical: 8),
+                                  horizontal: 15.0, vertical: 5),
                               child: Text(
                                 'VS',
                                 style: FontStyles.Caption1_m.copyWith(

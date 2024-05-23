@@ -50,8 +50,31 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       child: CircleAvatar(
                         backgroundColor: Colors.white,
-                        backgroundImage:
-                            AssetImage('assets/icons/mypage_lv1.png'),
+                        radius: 30.0,
+                        child: Obx(
+                              () => ClipOval(
+                            child: Image.network(
+                              controller.profileModel?.profileUrl ?? '프로필이 없습니다',
+                              width: 60, // CircleAvatar의 radius에 맞게 설정
+                              height: 60, // CircleAvatar의 radius에 맞게 설정
+                              fit: BoxFit.cover,
+                              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                if (loadingProgress == null) {
+                                  return child;
+                                } else {
+                                  return Center(
+                                    child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                  );
+                                }
+                              },
+                              errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                return Center(
+                                  child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                );
+                              },
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                     Padding(
@@ -64,17 +87,19 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             Column(
                               children: [
                                 Container(
-                                  width: 40,
-                                  height: 18,
+                                  width: 52,
+                                  height: 25,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(54),
                                     color: AppColors.v1,
                                   ),
                                   child: Center(
-                                    child: Text(
-                                      'LV. 1',
-                                      style: FontStyles.Caption1_sb.copyWith(
-                                          color: AppColors.v6),
+                                    child: Obx(()
+                                      => Text(
+                                        'LV.${controller.splitKeywords(controller?.profileModel?.level ?? '1', 1)}',
+                                        style: FontStyles.Caption1_sb.copyWith(
+                                            color: AppColors.v6),
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -89,9 +114,6 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ],
                             ),
-                            // SizedBox(
-                            //   width: 130,
-                            // ),
                           ],
                         ),
                       ),
@@ -102,7 +124,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                       child: SizedBox(
                         child: Container(
                           width: 83,
-                          height: 47,
+                          height: 48,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(32),
                               color: Colors.white,
@@ -136,6 +158,11 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ),
               ),
               Container(
+                height: 1,
+                width: double.infinity,
+                decoration: BoxDecoration(color: AppColors.g1),
+              )
+              ,Container(
                   width: double.infinity,
                   height: 54,
                   color: AppColors.white,
@@ -154,7 +181,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     color: AppColors.g4),
                               ),
                               Text(
-                                '0',
+                                controller.profileModel!.follower.toString(),
                                 style: FontStyles.Ln1_m.copyWith(
                                     color: AppColors.g6),
                               )
@@ -180,7 +207,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     color: AppColors.g4),
                               ),
                               Text(
-                                '0',
+                                controller.profileModel!.followee.toString(),
                                 style: FontStyles.Ln1_m.copyWith(
                                     color: AppColors.g6),
                               )
@@ -198,7 +225,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                     child: Text(
                       '목표 달성률',
                       style:
-                          FontStyles.Headline2_b.copyWith(color: Colors.black),
+                          FontStyles.Headline2_b.copyWith(color: AppColors.g6),
                     ),
                   ),
                 ],
@@ -286,32 +313,31 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                       Row(
                                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                                         children: [
-                                          controller.profileModel?.attendances?.data?[0].attendant == true
+                                          controller.attendedDays[6] == true
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[1].attendant == true
+                                          controller.attendedDays[0]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[2].attendant == true
+                                          controller.attendedDays[1]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[3].attendant == true
+                                          controller.attendedDays[2]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[4].attendant == true
+                                          controller.attendedDays[3]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[5].attendant == true
+                                          controller.attendedDays[4]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
-                                          controller.profileModel?.attendances?.data?[6].attendant == true
+                                          controller.attendedDays[5]
                                               ? SvgPicture.asset('assets/icons/mypage_cloud_fill.svg')
                                               : SvgPicture.asset('assets/icons/mypage_cloud_unfill.svg'),
                                         ],
                                       ),
                                     ],
                                   )
-
                                 )
                               ],
                             ),
@@ -323,7 +349,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                padding: const EdgeInsets.fromLTRB(20, 44, 0, 0),
                 child: Row(
                   children: [
                     Text(
@@ -365,10 +391,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             padding: const EdgeInsets.only(top: 16.0),
                             child: Column(children:
                             [
-                              Text(
-                                '글로벌',
-                                style: FontStyles.Bn2_sb.copyWith(
-                                    color: AppColors.black),
+                              Obx(()=>
+                                Text(
+                                  controller.profileModel?.counts?[0].categoryName ?? ' ',
+                                  style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.black),
+                                ),
                               ),
                               Obx(()
                                 => RichText(
@@ -389,8 +417,38 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ),
                             ]),
                           ),
-                          SvgPicture.asset(
-                              'assets/images/mypage_transaction 17.svg')
+                          Obx(
+                                () => Container(
+                              width: 40,
+                              height: 40,
+                              child: ClipRect(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  widthFactor: 1,
+                                  heightFactor: 1,
+                                  child: Image.network(
+                                    controller.profileModel?.counts?[0].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                    fit: BoxFit.cover,
+                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return Center(
+                                          child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                        );
+                                      }
+                                    },
+                                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                      return Center(
+                                        child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
                         ],
                       ),
                     ),
@@ -408,10 +466,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(top: 16.0),
                               child: Column(children: [
-                                Text(
-                                  '코인',
-                                  style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.black),
+                                Obx(()=>
+                                  Text(
+                                    controller.profileModel?.counts?[1].categoryName ?? ' ',
+                                    style: FontStyles.Bn2_sb.copyWith(
+                                        color: AppColors.black),
+                                  ),
                                 ),
                                 Obx(()
                                   => RichText(
@@ -432,11 +492,38 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ]),
                             ),
-                            Image.asset(
-                              'assets/images/mypage_coins.png',
-                              width: 40,
-                              height: 40,
-                            )
+                            Obx(
+                                  () => Container(
+                                width: 40,
+                                height: 40,
+                                child: ClipRect(
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    widthFactor: 1,
+                                    heightFactor: 1,
+                                    child: Image.network(
+                                      controller.profileModel?.counts?[1].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                          );
+                                        }
+                                      },
+                                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                        return Center(
+                                          child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
                           ],
                         ),
                       ),
@@ -461,10 +548,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                           Padding(
                             padding: const EdgeInsets.only(top: 16.0),
                             child: Column(children: [
-                              Text(
-                                '금리',
-                                style: FontStyles.Bn2_sb.copyWith(
-                                    color: AppColors.black),
+                              Obx(()=>
+                                Text(
+                                  controller.profileModel?.counts?[2].categoryName ?? ' ',
+                                  style: FontStyles.Bn2_sb.copyWith(
+                                      color: AppColors.black),
+                                ),
                               ),
                               Obx(()
                                 => RichText(
@@ -485,11 +574,38 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               ),
                             ]),
                           ),
-                          Image.asset(
-                            'assets/images/mypage_bank.png',
-                            width: 40,
-                            height: 40,
-                          )
+                          Obx(
+                                () => Container(
+                              width: 40,
+                              height: 40,
+                              child: ClipRect(
+                                child: Align(
+                                  alignment: Alignment.center,
+                                  widthFactor: 1,
+                                  heightFactor: 1,
+                                  child: Image.network(
+                                    controller.profileModel?.counts?[2].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                    fit: BoxFit.cover,
+                                    loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                      if (loadingProgress == null) {
+                                        return child;
+                                      } else {
+                                        return Center(
+                                          child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                        );
+                                      }
+                                    },
+                                    errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                      return Center(
+                                        child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+
                         ],
                       ),
                     ),
@@ -508,10 +624,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                               padding: const EdgeInsets.only(top: 16.0),
                               child: Column(
                                   children: [
-                                Text(
-                                  '부동산',
-                                  style: FontStyles.Bn2_sb.copyWith(
-                                      color: AppColors.black),
+                                Obx(()
+                                  =>Text(
+                                    controller.profileModel?.counts?[3].categoryName ?? ' ',
+                                    style: FontStyles.Bn2_sb.copyWith(
+                                        color: AppColors.black),
+                                  ),
                                 ),
                                 Obx(()
                                   => RichText(
@@ -532,11 +650,38 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                 ),
                               ]),
                             ),
-                            Image.asset(
-                              'assets/images/mypage_bank_statement.png',
-                              width: 40,
-                              height: 40,
-                            )
+                            Obx(
+                                  () => Container(
+                                width: 40,
+                                height: 40,
+                                child: ClipRect(
+                                  child: Align(
+                                    alignment: Alignment.center,
+                                    widthFactor: 1,
+                                    heightFactor: 1,
+                                    child: Image.network(
+                                      controller.profileModel?.counts?[3].logoUrl ?? 'https://goodmoneying.s3.ap-northeast-2.amazonaws.com/category_logo/securities.png',
+                                      fit: BoxFit.cover,
+                                      loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                                        if (loadingProgress == null) {
+                                          return child;
+                                        } else {
+                                          return Center(
+                                            child: CircularProgressIndicator(), // 이미지 로딩 중이면 로딩 스피너 표시
+                                          );
+                                        }
+                                      },
+                                      errorBuilder: (BuildContext context, Object error, StackTrace? stackTrace) {
+                                        return Center(
+                                          child: Text('Failed to load image'), // 이미지 로딩에 실패하면 에러 메시지 표시
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+
                           ],
                         ),
                       ),

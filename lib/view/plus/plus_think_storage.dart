@@ -49,11 +49,11 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                         text: TextSpan(
                           text: '나의 생각',
                           style:
-                          FontStyles.Headline1_b.copyWith(color: AppColors.v6),
+                          FontStyles.Heading1_b.copyWith(color: AppColors.v6),
                           children: <TextSpan>[
                             TextSpan(
                               text: ' 모음',
-                              style: FontStyles.Headline1_b.copyWith(
+                              style: FontStyles.Heading1_b.copyWith(
                                   color: AppColors.black),
                             ),
                           ],
@@ -72,14 +72,17 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                 Padding(
                   padding: const EdgeInsets.only(top:22.0),
                   child: Container(
-                      width: 300, height: 53,
+                      width: 340, height: 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(8), color: AppColors.white
                       ),
                       child: Center(
                         child: Obx(()
-                          =>Text(
-                            controller.sentencesList[0].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                          =>Padding(
+                            padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                            child: Text(
+                              controller.sentencesList[0].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                            ),
                           ),
                         ),
                       ),
@@ -90,14 +93,17 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
               SizedBox(height: 12,)
 
               ,Container(
-                  width: 300, height: 53,
+                  width: 340, height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
                     child: Obx(()
-                    =>Text(
-                      controller.sentencesList[1].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    =>Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Text(
+                        controller.sentencesList[1].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                      ),
                     ),
                     ),
                   ),
@@ -106,14 +112,17 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                 SvgPicture.asset('assets/icons/plus_arrow.svg'),
                 SizedBox(height: 12,),
                 Container(
-                  width: 300, height: 53,
+                  width: 340, height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
                     child: Obx(()
-                    =>Text(
-                      controller.sentencesList[2].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    =>Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Text(
+                        controller.sentencesList[2].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                      ),
                     ),
                     ),
                   ),
@@ -122,14 +131,17 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                 SvgPicture.asset('assets/icons/plus_arrow.svg'),
                 SizedBox(height: 12,),
                 Container(
-                  width: 300, height: 53,
+                  width: 340, height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
                     child: Obx(()
-                    =>Text(
-                      controller.sentencesList[3].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    =>Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Text(
+                        controller.sentencesList[3].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                      ),
                     ),
                     ),
                   ),
@@ -138,14 +150,17 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                 SvgPicture.asset('assets/icons/plus_arrow.svg'),
                 SizedBox(height: 12,),
                 Container(
-                  width: 300, height: 53,
+                  width: 340, height: 60,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8), color: AppColors.white
                   ),
                   child: Center(
                     child: Obx(()
-                    =>Text(
-                      controller.sentencesList[4].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                    =>Padding(
+                      padding: const EdgeInsets.only(left: 16.0, right: 16.0),
+                      child: Text(
+                        controller.sentencesList[4].sentence, style: FontStyles.Lr1_sb.copyWith(color: AppColors.g6),
+                      ),
                     ),
                     ),
                   ),
@@ -157,8 +172,8 @@ class PlusThinkStorage extends GetView<PlusViewModel> {
                     Get.offAll(BottomNavigationView());
                   },
                   child: Container(
-                    width: 290,
-                    height: 48,
+                    width: 370,
+                    height: 58,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
                         color: AppColors.v6),
