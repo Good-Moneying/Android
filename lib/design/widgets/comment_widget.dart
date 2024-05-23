@@ -68,7 +68,7 @@ class CommentWidget extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          'Level 5 • ',
+                          'Level 1 • ',
                           style: FontStyles.Caption2_r.copyWith(
                               color: AppColors.g4),
                         ),
