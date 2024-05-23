@@ -25,18 +25,23 @@ class ArchiveDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12),
       ),
-      insetPadding: EdgeInsets.only(left: 8.0, right: 8.0),
+      insetPadding: EdgeInsets.only(left: 0.0, right: 0.0),
       titlePadding: EdgeInsets.zero,
       contentPadding: EdgeInsets.fromLTRB(16, 0, 16, 32),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+      title: Column(
         children: [
-          IconButton(
-            onPressed: () {
-              Get.back();
-            },
-            icon: SvgPicture.asset(
-                'assets/images/newsletter_close.svg'), // 닫기 아이콘
+          SizedBox(height: 10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              IconButton(
+                onPressed: () {
+                  Get.back();
+                },
+                icon: SvgPicture.asset(
+                    'assets/images/newsletter_close.svg'), // 닫기 아이콘
+              ),
+            ],
           ),
         ],
       ),

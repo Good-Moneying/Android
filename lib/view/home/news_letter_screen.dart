@@ -459,11 +459,11 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                   ),
                                   Image.asset(
                                     'assets/icons/news_letter_think.png',
-                                    width: 143,
-                                    height: 143,
+                                    width: 140,
+                                    height: 140,
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.only(top: 6.0),
+                                    padding: const EdgeInsets.only(top: 0.0),
                                     child: Row(
                                       mainAxisAlignment: MainAxisAlignment
                                           .center,
@@ -501,19 +501,22 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                               .center,
                                                           children: [
                                                             Spacer(),
-                                                            Padding(
-                                                              padding: const EdgeInsets
-                                                                  .only(
-                                                                  left: 25.0),
-                                                              child: Text(
-                                                                '내 생각 작성하기',
-                                                                style:
-                                                                FontStyles.Br2_m
-                                                                    .copyWith(
-                                                                    color: AppColors
-                                                                        .g6),
+                                                              Row(
+                                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                                children: [
+                                                                  Padding(
+                                                                    padding: const EdgeInsets.only(left: 8.0),
+                                                                    child: Text(
+                                                                      '내 생각 작성하기',
+                                                                      style:
+                                                                      FontStyles.Br2_m
+                                                                          .copyWith(
+                                                                          color: AppColors
+                                                                              .g6),
+                                                                    ),
+                                                                  ),
+                                                                ],
                                                               ),
-                                                            ),
                                                             Spacer(),
                                                             IconButton(
                                                               onPressed: () {
@@ -525,10 +528,18 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             ),
                                                           ],
                                                         ),
-                                                        Divider(
-                                                          color: AppColors.g6,
-                                                        ),
-                                                        Padding(
+                                                      Container(
+                                                        decoration: BoxDecoration(border: Border.all(color: AppColors.g2))
+                                                        ,padding: EdgeInsets.zero,
+                                                        width: MediaQuery.of(context).size.width, // 화면의 전체 너비를 가져옴
+                                                        //margin: EdgeInsets.symmetric(horizontal: -16.0), // 패딩 외부로 확장
+                                                        /*child: Divider(
+                                                          color: AppColors.g2,
+                                                          thickness: 1, // Divider의 두께 설정
+                                                        ),*/
+                                                      )
+
+                                                        ,Padding(
                                                           padding: const EdgeInsets
                                                               .all(16),
                                                           child: Text(
@@ -780,7 +791,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                         Padding(
                                                           padding: const EdgeInsets
                                                               .fromLTRB(
-                                                              16, 0, 16, 8),
+                                                              16, 0, 16, 0),
                                                           child: Container(
                                                             height: Get.height *
                                                                 0.17,
@@ -796,8 +807,8 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             child: Padding(
                                                               padding:
                                                               const EdgeInsets
-                                                                  .all(
-                                                                  16.0),
+                                                                  .only(left:
+                                                                  16.0, right: 16),
                                                               child: TextField(
                                                                 controller: controller
                                                                     .editorController,
@@ -816,6 +827,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                     AppColors
                                                                         .black),
                                                                 decoration: InputDecoration(
+                                                                    isDense: true,
                                                                     counterText: '',
                                                                     hintText:
                                                                     '여러분의 생각을 남겨보세요. (최대 200자)',
@@ -865,11 +877,11 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             )
                                                           ],
                                                         ),
-                                                        Spacer(),
+                                                        //Spacer(),
                                                         Padding(
                                                           padding: const EdgeInsets
                                                               .fromLTRB(
-                                                              16, 0, 16, 16),
+                                                              16, 0, 16, 0),
                                                           child: ElevatedButton(
                                                             onPressed: () async {
                                                               //댓글 작성하기
@@ -930,13 +942,18 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                   borderRadius: BorderRadius
                                                       .circular(50),
                                                   color: AppColors.v6),
-                                              child: Center(
-                                                  child: Text(
-                                                    '내 생각 작성하기',
-                                                    style: FontStyles.Bn1_b
-                                                        .copyWith(
-                                                        color: Colors.white),
-                                                  )),
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center
+                                                ,children: [
+                                                  Center(
+                                                      child: Text(
+                                                        '내 생각 작성하기',
+                                                        style: FontStyles.Bn1_b
+                                                            .copyWith(
+                                                            color: Colors.white),
+                                                      )),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
