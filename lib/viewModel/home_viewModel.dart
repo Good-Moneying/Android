@@ -160,6 +160,16 @@ class HomeViewModel extends GetxController {
     }
   }
 
+  //뉴스 카테고리 아카이브
+  Future<void> archivesNewsCategory(int newsId, String category) async {
+    try {
+
+        await _repository.archivesNewsCategory(newsId, category);
+    } catch (e) {
+      print('$e');
+    }
+  }
+
   //단어 아카이브
 
   // Rx<NewsLetterModel> news = Rx<NewsLetterModel>(NewsLetterModel(
