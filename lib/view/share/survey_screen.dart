@@ -18,7 +18,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(SurveyViewModel());
-
+    controller.startAnimation();
     return Scaffold(
       backgroundColor: AppColors.g6,
       appBar: AppBar(
@@ -110,32 +110,37 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             children: [
                               Flexible(
                                 flex: 1,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    border: Border.all(
-                                      color: AppColors.v2,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(14, 1, 14, 8),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                            'assets/icons/agreement.png'),
-                                        Text(
-                                          '찬성',
-                                          style: FontStyles.Caption1_m.copyWith(
-                                              color: AppColors.black),
+                                child: AnimatedBuilder(
+                                  animation: controller.animation,
+                                  builder: (context, child) {
+                                    return Container(
+                                      height: Get.height*controller.animation.value*0.18,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.v5,
+                                        border: Border.all(
+                                          color: AppColors.v2,
+                                          width: 1,
                                         ),
-                                      ],
-                                    ),
-                                  ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.fromLTRB(14, 1, 14, 8),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+
+                                            Text(
+                                              '찬성',
+                                              style: FontStyles.Caption1_m.copyWith(
+                                                  color: AppColors.black),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 ),
                               ),
                               SizedBox(
