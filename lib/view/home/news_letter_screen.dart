@@ -881,8 +881,17 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                   controller.isLookAlone.value
                                                               );
 
-                                                              controller.addComment(controller.editorController.value.text);
-                                                              controller.addPerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
+                                                              if(controller.isLookAlone.value) {
+                                                                controller.addComment('비밀 댓글입니다.');
+                                                              } else {
+                                                                controller.addComment(controller.editorController.value.text);
+                                                              }
+
+                                                              if(controller.isLookAlone.value) {
+                                                                controller.addLivePerspec('비공개');
+                                                              } else {
+                                                                controller.addPerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
+                                                              }
 
                                                               // print('나혼자볼래요 테스트');
                                                               // print(controller.isLookAlone.value);
