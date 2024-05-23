@@ -1,3 +1,4 @@
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,6 +18,7 @@ class PlusMainContainer extends StatelessWidget {
   final String? thumbnailUrl;
   final String? summarizedComment;
   final String? date;
+  final String? tag;
 
   const PlusMainContainer({
     Key? key,
@@ -25,11 +27,11 @@ class PlusMainContainer extends StatelessWidget {
     this.thumbnailUrl,
     this.summarizedComment,
     this.date,
+    this.tag
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final homeController = Get.put(HomeViewModel());
 
     return Center(
       child: Container(
@@ -82,16 +84,19 @@ class PlusMainContainer extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          comment ?? 'null',
-                          style: FontStyles.Ln1_sb.copyWith(
-                              color: AppColors.black),
+                        Container(
+                          width: Get.width * 0.5,
+                          child: Text(
+                            comment ?? 'null',
+                            style: FontStyles.Ln1_sb.copyWith(
+                                color: AppColors.black),
+                          ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(top: 16.0),
+                          padding: const EdgeInsets.only(top: 10.0),
                           child: badges.Badge(
                             badgeContent: Text(
-                              '글로벌',
+                              tag?? '글로벌',
                               style: FontStyles.Caption2_m.copyWith(
                                   color: AppColors.v5),
                             ),
@@ -121,10 +126,13 @@ class PlusMainContainer extends StatelessWidget {
                   ),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      summarizedComment ?? '코멘트 없음',
-                      style: FontStyles.Caption2_r.copyWith(
-                          color: AppColors.black),
+                    child: Container(
+                      width: Get.width * 0.7,
+                      child: Text(
+                        summarizedComment ?? '코멘트 없음',
+                        style: FontStyles.Caption2_r.copyWith(
+                            color: AppColors.black),
+                      ),
                     ),
                   ),
                 ),
@@ -140,9 +148,7 @@ class PlusMainContainer extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(left: 4.0, top: 17),
                       child: Text(
-                        homeController.formatDate(
-                          DateTime.parse(date!),
-                        ),
+                        date?? '방금전',
                         style:
                             FontStyles.Caption2_r.copyWith(color: AppColors.g4),
                       ),

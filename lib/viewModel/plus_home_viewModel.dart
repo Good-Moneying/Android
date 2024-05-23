@@ -42,4 +42,9 @@ class PlusHomeViewModel extends GetxController{
     }
   }
 
+  String splitKeywords(String text, int i) {
+    List<String> parts = text.split(",");
+    return parts[i];
+  }
+
 }
