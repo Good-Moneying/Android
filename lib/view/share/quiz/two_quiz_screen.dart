@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/widgets/share/answer_quiz.dart';
+import 'package:meetup/design/widgets/share/wrong_quiz.dart';
 
 import '../../../design/style/ColorStyles.dart';
 import '../../../design/style/FontStyles.dart';
@@ -35,13 +37,14 @@ class TwoQuizScreen extends GetView<QuizViewModel> {
           Get.back();
         },
       ),
-      body: Obx(() {
-        if (controller.init2.value) {
-          return _quiz(context);
-        } else if (controller.firstQ2.value) {
+      body:
+      Obx(() {
+        if (controller.correctSubmitQ2.value) {
           return _quizCorrect();
+        } else if (controller.wrongSubmitQ2.value) {
+          return _quizFalse(controller.wrongQ2.value, controller.wrongDetail2.value);
         } else {
-          return _quizFalse();
+          return _quiz(context);
         }
       }),
     );
@@ -56,12 +59,23 @@ _quiz(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.3,
+            percent: 0.5,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('2/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 2',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -70,36 +84,70 @@ _quiz(BuildContext context) {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '정부가 다음달부터 해외직구를 금지하는 이유는 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.firstQ2(true);
-              },
-              child: ChoiceQuiz(number: 'A', detail: '보조금 단가는 올리고, 물량도 늘린다')),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.secondQ2(true);
-              },
-              child: ChoiceQuiz(number: 'B', detail: '보조금 단가는 올리고, 물량도 늘린다')
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.firstQ2(true);
+
+                  quizController.selectQ2(0);
+
+                  quizController.wrongQ2('A');
+                  quizController.wrongDetail2('해외 제품의 가격이 비싸기 때문에');
+                },
+                child: quizController.q2List[0] ?
+                AnswerQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에') :
+                ChoiceQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에')),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.thirdQ2(true);
-              },
-              child: ChoiceQuiz(number: 'C', detail: '보조금 단가는 올리고, 물량도 늘린다')
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.secondQ2(true);
+
+                  quizController.selectQ2(1);
+                },
+                child: quizController.q2List[1] ?
+                AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에') :
+                ChoiceQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에')
+            ),
           ),
-          GestureDetector(
-              onTap: () {
-                quizController.init2(false);
-                quizController.fourthQ2(true);
-              },
-              child: ChoiceQuiz(number: 'D', detail: '보조금 단가는 올리고, 물량도 늘린다')
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.thirdQ2(true);
+
+                  quizController.selectQ2(2);
+
+                  quizController.wrongQ2('C');
+                  quizController.wrongDetail2('국내 소비를 촉진하기 위해서');
+                },
+                child:
+                quizController.q2List[2] ?
+                AnswerQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서') :
+                ChoiceQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서')
+            ),
+          ),
+          Obx(
+              () => GestureDetector(
+                onTap: () {
+                  quizController.init2(false);
+                  //quizController.fourthQ2(true);
+
+                  quizController.selectQ2(3);
+
+                  quizController.wrongQ2('D');
+                  quizController.wrongDetail2('해외 직구의 인기가 너무 높아서');
+                },
+                child: quizController.q2List[3] ?
+                AnswerQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서') :
+                ChoiceQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서')
+            ),
           ),
           Spacer(),
           Row(
@@ -132,10 +180,22 @@ _quiz(BuildContext context) {
               Flexible(
                 flex: 1,
                 child: CustomButton(
-                  backgroundColor: AppColors.v1,
-                  textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.v5),
+                  backgroundColor: AppColors.v6,
+                  textStyle: FontStyles.Bn1_b.copyWith(color:
+                  quizController.q2List.contains(true)
+                      ? AppColors.white
+                      : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
-                  onPressed: null,
+                  onPressed: quizController.q2List.contains(true)
+                      ?  () {
+                    if(quizController.q2List[1]) {
+                      //정답인 경우
+                      quizController.correctSubmitQ2(true);
+                    } else {
+                      quizController.wrongSubmitQ2(true);
+                    }
+
+                  } : null,
                 ),
               ),
             ],
@@ -154,12 +214,23 @@ _quizCorrect() {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MyProgressBar(
-            percent: 0.3,
+            percent: 0.5,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('2/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 2',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -168,7 +239,7 @@ _quizCorrect() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '정부가 다음달부터 해외직구를 금지하는 이유는 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -212,16 +283,22 @@ _quizCorrect() {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          'A',
+                          'B',
                           style:
                           FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
                         ),
                       ),
                     ),
                   ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(right: 12.0),
+                      child: Text(
+                        '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에',
+                        style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                        softWrap: true,
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -233,6 +310,9 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ2(false);
+              quizController.correctSubmitQ2(false);
+              quizController.quizResult.value++;
               Get.toNamed(Routes.THIRDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
@@ -243,7 +323,7 @@ _quizCorrect() {
   );
 }
 
-_quizFalse() {
+_quizFalse(String q, String detail) {
   return SingleChildScrollView(
     child: Padding(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
@@ -252,12 +332,23 @@ _quizFalse() {
         mainAxisSize: MainAxisSize.min,
         children: [
           MyProgressBar(
-            percent: 0.3,
+            percent: 0.5,
             backgroundColor: AppColors.g1,
             progressColor: AppColors.v2,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 48, bottom: 4.0),
+            padding: const EdgeInsets.only(top: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text('2/4',
+                  style: FontStyles.Caption1_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 24, bottom: 4.0),
             child: Text(
               'Quiz 2',
               style: FontStyles.Headline2_b.copyWith(color: AppColors.v5),
@@ -266,7 +357,7 @@ _quizFalse() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부는 앞으로 전기차 정책의 방향성은?',
+              '정부가 다음달부터 해외직구를 금지하는 이유는 무엇인가요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -289,81 +380,9 @@ _quizFalse() {
             ),
           ),
           //사용자가 고른 틀린 답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: Color(0xFFFFEEF0),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: Color(0xFFFA5862),
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style: FontStyles.Ln1_sb.copyWith(
-                              color: Color(0xFFFA5862)),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: Color(0xFFFA5862)),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          WrongQuiz(number: q, detail: detail),
           //퀴즈의 원래 정답
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  color: AppColors.v1,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(
-                    color: AppColors.v6,
-                    width: 1,
-                  )),
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(12, 16, 12, 16),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          'A',
-                          style:
-                          FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Text(
-                    '내용',
-                    style: FontStyles.Ln1_m.copyWith(color: AppColors.black),
-                  ),
-                ],
-              ),
-            ),
-          ),
+          AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에'),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Text(
@@ -398,6 +417,8 @@ _quizFalse() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ2(false);
+              quizController.correctSubmitQ2(false);
               Get.toNamed(Routes.THIRDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
