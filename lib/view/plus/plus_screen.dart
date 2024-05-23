@@ -91,15 +91,40 @@ class PlusScreen extends StatelessWidget {
                       final newsLetter = newsController.getNewsLetterFromCache(detail.newsLetterId ?? 0);
                       if (newsLetter != null) {
                         return PlusMainContainer(
-                          index: cloudHomeModel.thinkingDetails!.indexOf(detail),
-                          comment: newsLetter.title,
-                          thumbnailUrl: detail.thumbnailUrl,
-                          summarizedComment: detail.comment,
-                          date: '방금전',
-                          tag: plusHomeController.splitKeywords(detail?.keywords ?? '글로벌', 0)
+                            index: cloudHomeModel.thinkingDetails!.indexOf(detail),
+                            comment: newsLetter.title,
+                            thumbnailUrl: detail.thumbnailUrl,
+                            summarizedComment: detail.comment,
+                            date: '방금전',
+                            tag: plusHomeController.splitKeywords(detail?.keywords ?? '글로벌', 0)
                         );
                       } else {
-                        return SizedBox(); // 없는 경우 빈 컨테이너를 반환하거나 다른 처리를 수행할 수 있습니다.
+                        // 뉴스레터가 캐시에 없으면 비동기적으로 로드
+                        newsController.getEditorNews(detail.newsLetterId ?? 0);
+                        return FutureBuilder(
+                          future: newsController.getEditorNews(detail.newsLetterId ?? 0),
+                          builder: (context, snapshot) {
+                            if (snapshot.connectionState == ConnectionState.waiting) {
+                              return CircularProgressIndicator();
+                            } else if (snapshot.hasError) {
+                              return Text('Error loading newsletter');
+                            } else {
+                              final loadedNewsLetter = newsController.getNewsLetterFromCache(detail.newsLetterId ?? 0);
+                              if (loadedNewsLetter != null) {
+                                return PlusMainContainer(
+                                    index: cloudHomeModel.thinkingDetails!.indexOf(detail),
+                                    comment: loadedNewsLetter.title,
+                                    thumbnailUrl: detail.thumbnailUrl,
+                                    summarizedComment: detail.comment,
+                                    date: '방금전',
+                                    tag: plusHomeController.splitKeywords(detail?.keywords ?? '글로벌', 0)
+                                );
+                              } else {
+                                return SizedBox(); // 없는 경우 빈 컨테이너를 반환하거나 다른 처리를 수행할 수 있습니다.
+                              }
+                            }
+                          },
+                        );
                       }
                     }).toList(),
                   ),

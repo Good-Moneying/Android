@@ -134,17 +134,6 @@ class HomeViewModel extends GetxController {
 
 
 
-/*Future getEditorNews(int id) async {
-    try {
-      print("getEditorNews() start!");
-      _newsLetterModel.value = await _repository.getEditorNews(id);
-      //news.value = data;
-    } catch (e) {
-      print('$e');
-    }
-  }*/
-
-
   //코멘트 작성
   Future<void> postComment(
       String type, int newsId, String content, String perspective, bool isPrivate) async {
