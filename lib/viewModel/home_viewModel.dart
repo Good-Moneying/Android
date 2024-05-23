@@ -51,11 +51,17 @@ class HomeViewModel extends GetxController {
   late final Rxn<NewsLetterModel> _newsLetterModel;
   //late final RxList<CommentModel> _commentModel;
 
-  //댓글
+  //에디터 댓글
   final comments = <String>[].obs;
-
+  //실시간 댓글
+  final liveComments = <String>[].obs;
+  //에디터 더하기
   void addComment(String comment) {
     comments.add(comment);
+  }
+  //실시간 댓글 더하기
+  void addLiveComment(String comment) {
+    liveComments.add(comment);
   }
 
   HomeModel? get homeModel => _homeModel.value;
