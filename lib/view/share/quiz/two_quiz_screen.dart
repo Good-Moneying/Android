@@ -283,7 +283,7 @@ _quizCorrect() {
                       child: Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Text(
-                          'A',
+                          'B',
                           style:
                           FontStyles.Ln1_sb.copyWith(color: AppColors.v6),
                         ),
