@@ -1026,7 +1026,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                             : 'assets/icons/unlike_comment.svg'),
                                                       ),
                                                       Text(
-                                                        controller.isLikeE.value ? '28' : '27',
+                                                        controller.isLikeE.value ? '1' : '0',
                                                         style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
                                                       ),
                                                     ],
