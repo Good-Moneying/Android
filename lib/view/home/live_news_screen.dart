@@ -732,7 +732,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return CommentWidget(
-                                writer: controller.isLookAlone.value ? '작성자' : '연디',
+                                writer: '연디',
                                 time: '방금전',
                                 content: controller.liveComments[index],
                                 perspective: controller.livePerspecs[index],
