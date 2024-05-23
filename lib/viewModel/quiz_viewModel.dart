@@ -10,6 +10,9 @@ class QuizViewModel extends GetxController {
 
   RxBool q1elect = false.obs;
   RxList<bool> q1List = [false, false, false, false].obs;
+  RxBool correctSubmitQ1 = false.obs;
+  RxBool wrongSubmitQ1 = false.obs;
+
   RxString CorrectQ = 'unknown'.obs;
   RxString CorrectDetail = 'unknown'.obs;
 
@@ -23,6 +26,7 @@ class QuizViewModel extends GetxController {
       }
     }
   }
+
 
   Rx<String> wrongQ = 'init'.obs;
   Rx<String> wrongDetail = 'init'.obs;

@@ -39,17 +39,16 @@ class OneQuizScreen extends GetView<QuizViewModel> {
             Get.back();
           },
         ),
-        body: _quizCorrect()
-        // Obx(() {
-        //   if (controller.init.value) {
-        //     return _quiz(context);
-        //   } else if (controller.secondQ.value) {
-        //     return _quizCorrect();
-        //   } else {
-        //     return _quizFalse(
-        //         controller.wrongQ.value, controller.wrongDetail.value);
-        //   }
-        // }),
+        body: 
+        Obx(() {
+          if (controller.correctSubmitQ1.value) {
+            return _quizCorrect();
+          } else if (controller.wrongSubmitQ1.value) {
+            return _quizFalse(controller.wrongQ.value, controller.wrongDetail.value);
+          } else {
+            return _quiz(context);
+          }
+        }),
         );
   }
 }
@@ -185,7 +184,15 @@ _quiz(BuildContext context) {
                           : Color(0xFFAAAAB9)),
                   label: '정답 제출하기',
                   onPressed:quizController.q1List.contains(true)
-                      ?  () {} : null,
+                      ?  () {
+                    if(quizController.q1List[1]) {
+                      //정답인 경우
+                      quizController.correctSubmitQ1(true);
+                    } else {
+                      //오답인 경우
+                      quizController.wrongSubmitQ1(true);
+                    }
+                  } : null,
                 ),
               ),
             ],
@@ -302,6 +309,8 @@ _quizCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ1(false);
+              quizController.correctSubmitQ1(false);
               quizController.quizResult.value++;
               Get.toNamed(Routes.SECONDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
@@ -411,6 +420,8 @@ _quizFalse(String q, String detail) {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '다음',
             onPressed: () {
+              quizController.wrongSubmitQ1(false);
+              quizController.correctSubmitQ1(false);
               Get.toNamed(Routes.SECONDQUIZ);
               //다음 퀴즈로 넘어가는 화면 만들기
             },
