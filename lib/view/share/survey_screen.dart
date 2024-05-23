@@ -18,7 +18,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(SurveyViewModel());
-
+    controller.startAnimation();
     return Scaffold(
       backgroundColor: AppColors.g6,
       appBar: AppBar(
@@ -110,32 +110,37 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             children: [
                               Flexible(
                                 flex: 1,
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    color: AppColors.white,
-                                    border: Border.all(
-                                      color: AppColors.v2,
-                                      width: 1,
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Padding(
-                                    padding:
-                                        const EdgeInsets.fromLTRB(14, 1, 14, 8),
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Image.asset(
-                                            'assets/icons/agreement.png'),
-                                        Text(
-                                          '찬성',
-                                          style: FontStyles.Caption1_m.copyWith(
-                                              color: AppColors.black),
+                                child: AnimatedBuilder(
+                                  animation: controller.animation,
+                                  builder: (context, child) {
+                                    return Container(
+                                      height: Get.height*controller.animation.value*0.18,
+                                      decoration: BoxDecoration(
+                                        color: AppColors.v5,
+                                        border: Border.all(
+                                          color: AppColors.v2,
+                                          width: 1,
                                         ),
-                                      ],
-                                    ),
-                                  ),
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.fromLTRB(14, 1, 14, 8),
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+
+                                            Text(
+                                              '찬성',
+                                              style: FontStyles.Caption1_m.copyWith(
+                                                  color: AppColors.black),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    );
+                                  }
                                 ),
                               ),
                               SizedBox(
@@ -384,8 +389,8 @@ _allComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '연디',
-          time: '5분 전',
+          writer: '수현',
+          time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
           onFollow: ElevatedButton(
@@ -433,7 +438,7 @@ _allComment() {
                       : 'assets/icons/unlike_comment.svg'),
                 ),
                 Text(
-                  surveyController.isLike.value ? '28' : '27',
+                  surveyController.isLike.value ? '1' : '0',
                   style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
                 ),
               ],
@@ -573,8 +578,8 @@ _agreeComment() {
     children: <Widget>[
       Obx(
         () => CommentWidget(
-          writer: '연디',
-          time: '5분 전',
+          writer: '수현',
+          time: '방금 전',
           content: Get.arguments ?? '전기차는 환경을 보호하는 가장 효과적인 방법 중 하나로, 낮은 탄소 배출로 지구 온난화를 완화할 수 있습니다.',
           perspective: '찬성',
           onFollow: ElevatedButton(
@@ -622,7 +627,7 @@ _agreeComment() {
                       : 'assets/icons/unlike_comment.svg'),
                 ),
                 Text(
-                  surveyController.isLike.value ? '28' : '27',
+                  surveyController.isLike.value ? '1' : '0',
                   style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
                 ),
               ],
