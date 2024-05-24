@@ -84,7 +84,7 @@ _quiz(BuildContext context) {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부가 다음달부터 해외직구를 금지하는 이유는 무엇인가요?',
+              '코인의 가격 변동성이 주식의 몇 배에 달한다고 하나요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -97,11 +97,11 @@ _quiz(BuildContext context) {
                   quizController.selectQ2(0);
 
                   quizController.wrongQ2('A');
-                  quizController.wrongDetail2('해외 제품의 가격이 비싸기 때문에');
+                  quizController.wrongDetail2('2~3배');
                 },
                 child: quizController.q2List[0] ?
-                AnswerQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에') :
-                ChoiceQuiz(number: 'A', detail: '해외 제품의 가격이 비싸기 때문에')),
+                AnswerQuiz(number: 'A', detail: '2~3배') :
+                ChoiceQuiz(number: 'A', detail: '2~3배')),
           ),
           Obx(
               () => GestureDetector(
@@ -112,8 +112,8 @@ _quiz(BuildContext context) {
                   quizController.selectQ2(1);
                 },
                 child: quizController.q2List[1] ?
-                AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에') :
-                ChoiceQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에')
+                AnswerQuiz(number: 'B', detail: '3~4배') :
+                ChoiceQuiz(number: 'B', detail: '3~4배')
             ),
           ),
           Obx(
@@ -125,12 +125,12 @@ _quiz(BuildContext context) {
                   quizController.selectQ2(2);
 
                   quizController.wrongQ2('C');
-                  quizController.wrongDetail2('국내 소비를 촉진하기 위해서');
+                  quizController.wrongDetail2('4~5배');
                 },
                 child:
                 quizController.q2List[2] ?
-                AnswerQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서') :
-                ChoiceQuiz(number: 'C', detail: '국내 소비를 촉진하기 위해서')
+                AnswerQuiz(number: 'C', detail: '4~5배') :
+                ChoiceQuiz(number: 'C', detail: '4~5배')
             ),
           ),
           Obx(
@@ -142,11 +142,11 @@ _quiz(BuildContext context) {
                   quizController.selectQ2(3);
 
                   quizController.wrongQ2('D');
-                  quizController.wrongDetail2('해외 직구의 인기가 너무 높아서');
+                  quizController.wrongDetail2('5~6배');
                 },
                 child: quizController.q2List[3] ?
-                AnswerQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서') :
-                ChoiceQuiz(number: 'D', detail: '해외 직구의 인기가 너무 높아서')
+                AnswerQuiz(number: 'D', detail: '5~6배') :
+                ChoiceQuiz(number: 'D', detail: '5~6배')
             ),
           ),
           Spacer(),
@@ -239,7 +239,7 @@ _quizCorrect() {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부가 다음달부터 해외직구를 금지하는 이유는 무엇인가요?',
+              '코인의 가격 변동성이 주식의 몇 배에 달한다고 하나요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -357,7 +357,7 @@ _quizFalse(String q, String detail) {
           Padding(
             padding: const EdgeInsets.only(bottom: 24.0),
             child: Text(
-              '정부가 다음달부터 해외직구를 금지하는 이유는 무엇인가요?',
+              '코인의 가격 변동성이 주식의 몇 배에 달한다고 하나요?',
               style: FontStyles.Bn1_b.copyWith(color: AppColors.g6),
             ),
           ),
@@ -382,7 +382,7 @@ _quizFalse(String q, String detail) {
           //사용자가 고른 틀린 답
           WrongQuiz(number: q, detail: detail),
           //퀴즈의 원래 정답
-          AnswerQuiz(number: 'B', detail: '해외 제품에서 발암 물질이 검출되거나 짝퉁 논란이 있기 때문에'),
+          AnswerQuiz(number: 'B', detail: '3~4배'),
           Padding(
             padding: const EdgeInsets.only(bottom: 15.0),
             child: Text(
@@ -394,9 +394,9 @@ _quizFalse(String q, String detail) {
             padding: const EdgeInsets.only(bottom: 15.0),
             child: RecommendU(
               image:
-              homeController.homeModel?.customizeNewsLetters[2].thumbnail ?? 'no data',
+              homeController.homeModel?.realtimeTrendNewsLetters[2].thumbnail ?? 'no data',
               title:
-              homeController.homeModel!.customizeNewsLetters[2].title,
+              '코인 변동성 얼마나 클까…주식의 3~4배',
               tag: CustomChip(label: homeController.parseCustom3()[0],),
               isRecommend: homeController.isRecommendThird.value,
               onRecommend: () {
@@ -407,7 +407,7 @@ _quizFalse(String q, String detail) {
               history: History(
                 diff: homeController.formatDate(
                   DateTime.parse(homeController
-                      .homeModel!.customizeNewsLetters[2].createdAt),
+                      .homeModel!.realtimeTrendNewsLetters[2].createdAt),
                 ),
               ),
             )

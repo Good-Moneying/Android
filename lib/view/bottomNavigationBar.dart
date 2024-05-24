@@ -15,6 +15,7 @@ import '../design/style/ColorStyles.dart';
 class BottomNavigationView extends GetView<AppViewModel> {
   const BottomNavigationView({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     //의존성 주입
