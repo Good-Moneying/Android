@@ -13,15 +13,13 @@ import '../design/style/ColorStyles.dart';
 
 //GetView<AppViewModel> 을 상속받아 좀 더 쓰기 쉽게 함
 class BottomNavigationView extends GetView<AppViewModel> {
-  const BottomNavigationView({super.key});
-
+  const BottomNavigationView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    //의존성 주입
-    //lazyPut -> Obx로 감싼 부분 눌렀을시에 의존성 주입
-    //이동시 바로 의존성이 주입되는 Get.put과는 다름
-    Get.lazyPut(() => AppViewModel());
+    Get.put(AppViewModel());
+    int initialIndex = Get.arguments ?? 0; // Get.arguments로 전달된 인덱스 받기, 없으면 0
+    controller.changeCurrentIndex(initialIndex);
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -36,17 +34,15 @@ class BottomNavigationView extends GetView<AppViewModel> {
       switch (controller.currentIndex.value) {
         case 0:
           return HomeScreen();
-          break;
         case 1:
           return PlusScreen();
-          break;
         case 2:
           return ShareScreen();
-          break;
         case 3:
           return ProfileScreen();
+        default:
+          return Container();
       }
-      return Container();
     });
   }
 
@@ -60,56 +56,34 @@ class BottomNavigationView extends GetView<AppViewModel> {
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           onTap: (int index) {
-            print('selectedIdx : ' + index.toString());
+            print('selectedIdx: $index');
+            controller.rememberPreviousIndex();
             controller.changeCurrentIndex(index);
           },
           currentIndex: controller.currentIndex.value,
           selectedLabelStyle: FontStyles.Caption2_m.copyWith(color: AppColors.g6),
-          unselectedLabelStyle:
-          FontStyles.Caption2_m.copyWith(color: AppColors.g6),
+          unselectedLabelStyle: FontStyles.Caption2_m.copyWith(color: AppColors.g6),
           items: [
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/icons/home_unfill.svg',
-                ),
-                activeIcon: Lottie.asset(
-                  'assets/lottie/MAIN_new.json',
-                  width: 24,
-                  height: 24,
-                  repeat: false,
-                ),
-                label: '홈'),
+              icon: SvgPicture.asset('assets/icons/home_unfill.svg'),
+              activeIcon: Lottie.asset('assets/lottie/MAIN_new.json', width: 24, height: 24, repeat: false),
+              label: '홈',
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/icons/plus_unfill.svg',
-                ),
-                activeIcon: Lottie.asset(
-                  width: 24,
-                  height: 24,
-                  'assets/lottie/Plus_new.json',
-                  repeat: false,
-                ),
-                label: '생각더하기'),
+              icon: SvgPicture.asset('assets/icons/plus_unfill.svg'),
+              activeIcon: Lottie.asset('assets/lottie/Plus_new.json', width: 24, height: 24, repeat: false),
+              label: '생각더하기',
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/icons/divide_unfill.svg',
-                ),
-                activeIcon: Lottie.asset(
-                  'assets/lottie/divide_new.json',
-                  repeat: false,
-                ),
-                label: '생각나누기'),
+              icon: SvgPicture.asset('assets/icons/divide_unfill.svg'),
+              activeIcon: Lottie.asset('assets/lottie/divide_new.json', repeat: false),
+              label: '생각나누기',
+            ),
             BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'assets/icons/profile_unfill.svg',
-                ),
-                activeIcon: Lottie.asset(
-                  width: 24,
-                  height: 24,
-                  'assets/lottie/MY_new.json',
-                  repeat: false,
-                ),
-                label: '마이페이지'),
+              icon: SvgPicture.asset('assets/icons/profile_unfill.svg'),
+              activeIcon: Lottie.asset('assets/lottie/MY_new.json', width: 24, height: 24, repeat: false),
+              label: '마이페이지',
+            ),
           ],
         ),
       ),

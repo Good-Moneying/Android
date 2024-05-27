@@ -18,7 +18,6 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
     controller.getEditorNews(controller.homeModel!.realtimeTrendNewsLetters[0].id);
-    print('아이디 : ${controller.homeModel!.realtimeTrendNewsLetters[0].id}');
     return Obx(
             () { if (controller.isLoadingReal.value) {
           return Scaffold(
@@ -187,7 +186,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         alignment: Alignment.topCenter,
                                         // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                         child: Obx(() => Text(
-                                          controller.splitSummary(
+                                          controller.splitParagraph(
                                             controller.newsLetterModel?.summary ?? 'a',
                                             0,
                                           ),
@@ -220,7 +219,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         alignment: Alignment.topCenter,
                                         // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                         child: Obx(() => Text(
-                                          controller.splitSummary(
+                                          controller.splitParagraph(
                                             controller.newsLetterModel?.summary ?? 'a',
                                             1,
                                           ),
@@ -253,7 +252,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                         alignment: Alignment.topCenter,
                                         // 이미지를 컨테이너의 상단 중앙에 정렬합니다.
                                         child: Obx(() => Text(
-                                          controller.splitSummary(
+                                          controller.splitParagraph(
                                             controller.newsLetterModel?.summary ?? 'a',
                                             2,
                                           ),
@@ -626,9 +625,9 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                               padding: const EdgeInsets.fromLTRB(
                                                   16, 0, 16, 16),
                                               child: ElevatedButton(
-                                                onPressed: () async {
+                                                onPressed: () {
                                                   //댓글 작성하기
-                                                  await controller.postComment(
+                                                  controller.postComment(
                                                       'LIVE',
                                                       controller.homeModel!.realtimeTrendNewsLetters[0].id,
                                                       controller.liveController.value.text,

@@ -9,13 +9,13 @@ class ProfileViewModel extends GetxController {
   final ProfileRepository _repository = ProfileRepository();
 
   late final Rxn<ProfileModel> _profileModel;
-  late final Rxn<ArchivesTermModel> _archivesTermModel;
-  late final Rxn<ArchivesNewsLetterModel> _archivesNewsLetterModel;
+  //late final Rxn<ArchivesTermModel> _archivesTermModel;
+  //late final Rxn<ArchivesNewsLetterModel> _archivesNewsLetterModel;
 
 
   ProfileModel? get profileModel => _profileModel.value;
-  ArchivesTermModel? get archivesTermModel => _archivesTermModel.value;
-  ArchivesNewsLetterModel? get archivesNewsModel => _archivesNewsLetterModel.value;
+  //ArchivesTermModel? get archivesTermModel => _archivesTermModel.value;
+  //ArchivesNewsLetterModel? get archivesNewsModel => _archivesNewsLetterModel.value;
 
   Rx<bool> isLoading = true.obs;
 
@@ -28,25 +28,26 @@ class ProfileViewModel extends GetxController {
 
     // Rxn 객체 초기화
     _profileModel = Rxn<ProfileModel>();
-    _archivesTermModel = Rxn<ArchivesTermModel>();
-    _archivesNewsLetterModel = Rxn<ArchivesNewsLetterModel>();
+    //_archivesTermModel = Rxn<ArchivesTermModel>();
+    //_archivesNewsLetterModel = Rxn<ArchivesNewsLetterModel>();
 
     // 데이터 가져오기
     getProfileData();
-    getTermData();
-    getNewsLetterData('defaultCategory');
+    //getTermData();
+    //getNewsLetterData('defaultCategory');
   }
 
   Future<void> getProfileData() async {
     try {
       _profileModel.value = await _repository.getProfileData();
+      isLoading.value = false;
       _updateAttendanceData();
     } catch (e) {
       print('$e');
     }
   }
 
-  Future<void> getTermData() async {
+  /*Future<void> getTermData() async {
     try {
       _archivesTermModel.value = await _repository.getTermData();
     } catch (e) {
@@ -60,7 +61,7 @@ class ProfileViewModel extends GetxController {
     } catch (e) {
       print('$e');
     }
-  }
+  }*/
 
   /*void _updateAttendanceData() {
     count.value = 0;
