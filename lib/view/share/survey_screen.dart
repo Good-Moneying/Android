@@ -25,7 +25,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
         backgroundColor: Colors.transparent,
         leading: IconButton(
           onPressed: () {
-            Get.offAll(BottomNavigationView());
+            Get.offAll(BottomNavigationView(), arguments: 2);
           },
           icon: SvgPicture.asset(
             'assets/icons/back_left.svg',

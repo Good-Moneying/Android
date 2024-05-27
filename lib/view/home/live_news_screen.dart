@@ -625,9 +625,9 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                               padding: const EdgeInsets.fromLTRB(
                                                   16, 0, 16, 16),
                                               child: ElevatedButton(
-                                                onPressed: () async {
+                                                onPressed: () {
                                                   //댓글 작성하기
-                                                  await controller.postComment(
+                                                  controller.postComment(
                                                       'LIVE',
                                                       controller.homeModel!.realtimeTrendNewsLetters[0].id,
                                                       controller.liveController.value.text,

@@ -52,9 +52,9 @@ class StopDialong extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    final appViewModel = Get.find<AppViewModel>();
-                    appViewModel.setCurrentIndex(1); // 두번째 탭 인덱스로 설정
-                    Get.offAll(BottomNavigationView());
+                    //final appViewModel = Get.find<AppViewModel>();
+                    //appViewModel.setCurrentIndex(1); // 두번째 탭 인덱스로 설정
+                    Get.offAll(BottomNavigationView(), arguments: 1);
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(right: 4.0),

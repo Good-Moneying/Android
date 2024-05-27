@@ -15,8 +15,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
   Widget build(BuildContext context) {
     Get.put(ProfileViewModel());
     controller.getProfileData();
-    controller.getTermData();
-    controller.getNewsLetterData('');
+
 
     return Scaffold(
       backgroundColor: AppColors.g1,

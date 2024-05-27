@@ -54,8 +54,10 @@ class HomeViewModel extends GetxController {
   //late final RxList<CommentModel> _commentModel;
 
   //에디터 댓글&관점
-  final comments = <String>[].obs;
-  final perspecs = <String>[].obs;
+  final comments = <String>['미국의 경제', '경제 흐름'].obs;
+  final perspecs = <String>['긍정적이에요', '부정적이에요'].obs;
+  final writers = <String>['데헌', '건우백'].obs;
+
   //실시간 댓글&관점
   final liveComments = <String>[].obs;
   final livePerspecs = <String>[].obs;
@@ -66,6 +68,9 @@ class HomeViewModel extends GetxController {
   }
   void addPerspec(String perspec) {
     perspecs.add(perspec);
+  }
+  void addWriter(String writer) {
+    writers.add(writer);
   }
 
   //실시간 댓글 더하기
@@ -126,26 +131,28 @@ class HomeViewModel extends GetxController {
   }
 
   Future<void> getEditorNews(int id) async {
-    if (_newsLetterModel.value == null) {
-      try {
-        if (_newsLetterCache.containsKey(id)) {
-          _newsLetterModel.value = _newsLetterCache[id];
-          isLoadingEditor.value =false;
-          isLoadingReal.value =false;
-        } else {
-          final newsLetter = await _repository.getEditorNews(id);
-          _newsLetterCache[id] = newsLetter;
-          _newsLetterModel.value = newsLetter;
-          isLoadingEditor.value =false;
-          isLoadingReal.value =false;
-        }
+    _newsLetterModel.value = null; // 새로운 데이터를 가져오기 전에 모델을 초기화
+    isLoadingEditor.value = true;
+    isLoadingReal.value = true;
 
-      } catch (e) {
-        print('$e');
+    try {
+      if (_newsLetterCache.containsKey(id)) {
+        _newsLetterModel.value = _newsLetterCache[id];
+      } else {
+        final newsLetter = await _repository.getEditorNews(id);
+        _newsLetterCache[id] = newsLetter;
+        _newsLetterModel.value = newsLetter;
       }
-      log('뉴스레터2 : ${newsLetterModel?.title}');
+    } catch (e) {
+      print('$e');
+    } finally {
+      isLoadingEditor.value = false;
+      isLoadingReal.value = false;
     }
+
+    log('뉴스레터2 : ${_newsLetterModel.value?.title}');
   }
+
 
 
 
@@ -158,7 +165,7 @@ class HomeViewModel extends GetxController {
         isPostEditorNews(true);
         await _repository.postComment(newsId, content, perspective, isPrivate);
 
-       // comments.add(CommentModel(perspective: perspective, content: content));
+        // comments.add(CommentModel(perspective: perspective, content: content));
         //_commentModel.value?.content = content;
 
       } else {
@@ -188,7 +195,7 @@ class HomeViewModel extends GetxController {
   Future<void> archivesNewsCategory(int newsId, String category) async {
     try {
 
-        await _repository.archivesNewsCategory(newsId, category);
+      await _repository.archivesNewsCategory(newsId, category);
     } catch (e) {
       print('$e');
     }
