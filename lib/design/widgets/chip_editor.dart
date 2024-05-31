@@ -13,21 +13,19 @@ class CustomChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(right: 10),
-      child: Chip(
-        padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
-        backgroundColor: AppColors.v1,
-        shape: RoundedRectangleBorder(
-          side: const BorderSide(
-            color: Colors.transparent,
-          ),
-          borderRadius: BorderRadius.circular(50),
-        ),
-        label: Text(
+    return Card(
+      color: AppColors.g1,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(4)),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            vertical: 4, horizontal: 8),
+        child: Text(
           label,
-          style: FontStyles.Caption2_sb.copyWith(
-              color: AppColors.v3),
+          style: FontStyles.Caption2_m.copyWith(
+              color: AppColors.g6),
         ),
       ),
     );

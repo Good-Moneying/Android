@@ -1,55 +1,47 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:meetup/viewModel/user_viewModel.dart';
 
 import '../../design/style/FontStyles.dart';
+import '../../design/widgets/progress_bar.dart';
 import '../../routes/get_pages.dart';
 
-class InfoScreen extends StatefulWidget {
-  const InfoScreen({super.key});
-
-  @override
-  State<InfoScreen> createState() => _InfoScreenState();
-}
-
-class _InfoScreenState extends State<InfoScreen> {
-  //생년월일
-  DateTime date = DateTime.now();
+class InfoScreen extends GetView<UserViewModel> {
+  final formatBirth = MaskTextInputFormatter(mask: '####-##-##');
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: SvgPicture.asset(
+            'assets/icons/back_left.svg',
+          ),
+        ),
+      ),
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(18.0),
+          padding: EdgeInsets.fromLTRB(16, 10, 16, 24),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: Get.height * 0.05,
-              ),
               //진행률 바
-              LinearPercentIndicator(
-                animation: true,
-                animationDuration: 1000,
-                percent: 0.54,
+              MyProgressBar(
+                percent: controller.getPercentProgress.value,
                 backgroundColor: AppColors.g1,
-                progressColor: AppColors.y3,
-                barRadius: Radius.circular(10),
-              ),
-              //
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    '2/4',
-                    style: FontStyles.Caption1_r.copyWith(color: AppColors.g4),
-                  ),
-                ],
+                progressColor: AppColors.v5,
               ),
               SizedBox(
                 height: Get.height * 0.05,
@@ -58,171 +50,198 @@ class _InfoScreenState extends State<InfoScreen> {
                 text: TextSpan(
                   children: [
                     TextSpan(
-                      text: '00',
-                      style: FontStyles.Title2_b.copyWith(color: AppColors.v5),
+                      text: controller.nicknameController.value.text,
+                      style:
+                          FontStyles.Title2_b.copyWith(color: AppColors.v6),
                     ),
                     TextSpan(
                       text: '님의',
-                      style:
-                          FontStyles.Title2_m.copyWith(color: AppColors.black),
+                      style: FontStyles.Title2_m.copyWith(
+                          color: AppColors.black),
                     )
                   ],
                 ),
               ),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    TextSpan(
-                      text: '기본 정보',
-                      style:
-                          FontStyles.Title2_b.copyWith(color: AppColors.black),
-                    ),
-                    TextSpan(
-                      text: '를 알려주세요',
-                      style:
-                          FontStyles.Title2_m.copyWith(color: AppColors.black),
-                    )
-                  ],
-                ),
+              Text(
+                '기본 정보를 알려주세요',
+                style: FontStyles.Title2_m.copyWith(color: AppColors.black),
               ),
               SizedBox(
-                height: Get.height * 0.02,
+                height: Get.height * 0.01,
               ),
               Text(
                 '다양한 맞춤 정보를 추천해드릴게요!',
-                style: FontStyles.Label2_sb.copyWith(color: AppColors.g4),
+                style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
               ),
               Text(
                 '*기본 정보는 외부에 노출되지 않아요.',
-                style: FontStyles.Label2_r.copyWith(color: AppColors.g4),
+                style: FontStyles.Ln1_m.copyWith(color: AppColors.g4),
               ),
               SizedBox(
-                height: Get.height * 0.07,
+                height: Get.height * 0.03,
               ),
-              Text(
-                '성별',
-                style: FontStyles.Headline2_m.copyWith(color: AppColors.black),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(
+                  '성별',
+                  style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                ),
               ),
               Row(
                 children: [
-                  SizedBox(
-                    width: Get.width*0.03,
-                  ),
                   Flexible(
                     fit: FlexFit.tight,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('남성'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        disabledForegroundColor: AppColors.g4,
-                        foregroundColor: AppColors.v5,
-                        side: BorderSide(
-                          //삼항 연산자로 비활성&활성 나누기
-                          color: AppColors.v5,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    child: Obx(
+                      () => OutlinedButton(
+                        onPressed: () {
+                          controller.selectGender(0);
+                        },
+                        style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            minimumSize: const Size.fromHeight(50),
+                            backgroundColor: controller.genderList[0]
+                                ? AppColors.v1
+                                : AppColors.white,
+                            side: BorderSide(
+                              color: controller.genderList[0]
+                                  ? AppColors.v5
+                                  : AppColors.g3,
+                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25))),
+                        child: Text(
+                          '남자',
+                          style: FontStyles.Bn2_sb.copyWith(
+                            color: controller.genderList[0]
+                                ? AppColors.v5
+                                : AppColors.g4,
+                          ),
                         ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: Get.width*0.03,
+                    width: Get.width * 0.03,
                   ),
                   Flexible(
                     fit: FlexFit.tight,
-                    child: ElevatedButton(
-                      onPressed: () {},
-                      child: Text('여성'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.white,
-                        disabledForegroundColor: AppColors.g4,
-                        foregroundColor: AppColors.v5,
-                        side: BorderSide(
-                          //삼항 연산자로 비활성&활성 나누기
-                          color: AppColors.v5,
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                    child: Obx(
+                      () => OutlinedButton(
+                        onPressed: () {
+                          controller.selectGender(1);
+                        },
+                        style: OutlinedButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            minimumSize: const Size.fromHeight(50),
+                            backgroundColor: controller.genderList[1]
+                                ? AppColors.v1
+                                : AppColors.white,
+                            side: BorderSide(
+                              color: controller.genderList[1]
+                                  ? AppColors.v5
+                                  : AppColors.g3,
+                            ),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(25))),
+                        child: Text(
+                          '여자',
+                          style: FontStyles.Bn2_sb.copyWith(
+                            color: controller.genderList[1]
+                                ? AppColors.v5
+                                : AppColors.g4,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: Get.width*0.03,
                   ),
                 ],
               ),
               SizedBox(
-                height: Get.height * 0.07,
+                height: Get.height * 0.03,
               ),
-              Text(
-                '생년월일',
-                style: FontStyles.Headline2_m.copyWith(color: AppColors.black),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 10),
+                child: Text(
+                  '생년월일',
+                  style: FontStyles.Bn2_sb.copyWith(color: AppColors.black),
+                ),
               ),
               Row(
                 children: [
                   Expanded(
-                      child: InkWell(
-                    onTap: () async {
-                      final selectedDate = await showDatePicker(
-                        context: context,
-                        initialDate: date,
-                        firstDate: DateTime(2000),
-                        lastDate: DateTime.now(),
-                      );
-                      if (selectedDate != null) {
-                        setState(() {
-                          date = selectedDate;
-                        });
-                      }
-                    },
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 15),
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(color: AppColors.g3,),
-                        )
-                      ),
-                      child: Text(
-                        '${date.year.toString()}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}',
-                      ),
-                    ),
-                  ),
-                  ),
-                  SizedBox(
-                    width: Get.width*0.03,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      '선택하기',
+                    child: TextFormField(
+                      onTapOutside: (event) {
+                        if (controller.birthController.value.text.length ==
+                            10) {
+                          controller.dateSelect.value = true;
+                        } else {
+                          controller.dateSelect.value = false;
+                        }
+                        FocusManager.instance.primaryFocus?.unfocus();
+                      },
+                      controller: controller.birthController,
+                      textInputAction: TextInputAction.done,
+                      keyboardType: TextInputType.datetime,
+                      onChanged: (text) {
+                        print("text field: $text");
+                      },
                       style:
-                          FontStyles.Label2_sb.copyWith(color: AppColors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.v6,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                          FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                      maxLength: 10,
+                      inputFormatters: [formatBirth],
+                      onFieldSubmitted: (String value) {
+                        if (value.length == 10) {
+                          controller.dateSelect.value = true;
+                        } else {
+                          controller.dateSelect.value = false;
+                        }
+                      },
+                      decoration: InputDecoration(
+                        counterText: '',
+                        hintText: '생년월일 8자리를 입력해주세요.',
+                        hintStyle:
+                            FontStyles.Ln1_m.copyWith(color: AppColors.g3),
+                        //border 색깔
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: AppColors.g2,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                          borderSide: const BorderSide(
+                            color: AppColors.v5,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                 ],
               ),
               Spacer(),
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.toNamed(Routes.INTEREST);
-                  },
-                  style: ElevatedButton.styleFrom(
-                    minimumSize: const Size.fromHeight(50),
-                    backgroundColor: AppColors.v5,
-                  ),
-                  child: Text(
-                    '다음',
-                    style: FontStyles.Bn1_b.copyWith(color: AppColors.white),
+              Obx(
+                () => SizedBox(
+                  child: ElevatedButton(
+                    onPressed: controller.genderSelect.value == false ||
+                            controller.dateSelect.value == false
+                        ? null
+                        : () {
+                            Get.toNamed(Routes.INTEREST);
+                            controller.setEnabled(0.77);
+                          },
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(50),
+                      backgroundColor: AppColors.v6,
+                    ),
+                    child: Text(
+                      '다음',
+                      style: FontStyles.Bn1_b.copyWith(
+                          color: controller.genderSelect.value == false ||
+                                  controller.dateSelect.value == false
+                              ? const Color(0xFFAAAAB9)
+                              : AppColors.white),
+                    ),
                   ),
                 ),
               ),

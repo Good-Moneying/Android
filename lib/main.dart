@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
@@ -9,10 +10,20 @@ import 'package:meetup/view/auth/login_screen.dart';
 import 'package:meetup/view/auth/nickname_screen.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/view/home/home_screen.dart';
+import 'package:meetup/view/home/live_news_screen.dart';
+import 'package:meetup/view/home/news_letter_screen.dart';
+import 'package:meetup/view/home/today_term_screen.dart';
+import 'package:meetup/view/mypage/profile_screen.dart';
+import 'package:meetup/view/plus/plus_complete_screen.dart';
+import 'package:meetup/view/plus/plus_onboarding_screen.dart';
+import 'package:meetup/view/plus/plus_screen.dart';
+import 'package:meetup/view/plus/plus_step1_screen.dart';
+import 'package:meetup/view/plus/plus_think_storage.dart';
+import 'binding/settings_binding.dart';
 import 'routes/get_pages.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   await dotenv.load(fileName: 'assets/config/.env');
@@ -46,7 +57,16 @@ class MyApp extends StatelessWidget {
       //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       //   useMaterial3: true,
       // ),
-      home: BottomNavigationView(),
+      initialBinding: SettingsBinding(),
+      home: LoginScreen(),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('ko', 'KR'),
+      ],
       getPages: Pages.pages,
     );
   }

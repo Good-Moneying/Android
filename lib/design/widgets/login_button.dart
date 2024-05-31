@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/design/style/ColorStyles.dart';
+import 'package:meetup/design/style/FontStyles.dart';
 
 class LoginButton extends StatelessWidget {
   final Color backgroundColor;
-  final Color textColor;
   final String icon;
   final String label;
   final Function() onTap;
@@ -12,7 +13,6 @@ class LoginButton extends StatelessWidget {
   const LoginButton({
     super.key,
     required this.backgroundColor,
-    required this.textColor,
     required this.icon,
     required this.label,
     required this.onTap,
@@ -24,31 +24,34 @@ class LoginButton extends StatelessWidget {
       onTap: onTap,
       child: Card(
         margin: const EdgeInsets.fromLTRB(20, 20, 20, 0),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         elevation: 2,
-        child : Container(
+        child: Container(
           height: 50,
           decoration: BoxDecoration(
             color: backgroundColor,
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SvgPicture.asset(
                 icon,
-                height: 30,
-                width: 30,
+                width: 31,
+                fit: BoxFit.fitWidth,
               ),
-              SizedBox(width: 65,),
+              SizedBox(
+                width: 65,
+              ),
               Text(
                 label,
-                style: TextStyle(
-                  //디자인 확정나면 수정
-                    fontSize: 16,
-                    color: textColor),
+                style: FontStyles.Label2_m.copyWith(
+                  color: AppColors.black.withOpacity(0.85),
+                ),
               ),
-              SizedBox(width: 75,),
+              SizedBox(
+                width: 75,
+              ),
             ],
           ),
         ),
