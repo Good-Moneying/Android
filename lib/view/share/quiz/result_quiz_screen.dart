@@ -175,7 +175,7 @@ _partCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '퀴즈 종료',
             onPressed: () {
-              Get.offAll(BottomNavigationView());
+              Get.offAll(BottomNavigationView(), arguments: 2);
             },
           ),
         ],

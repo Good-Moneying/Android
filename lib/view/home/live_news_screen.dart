@@ -628,6 +628,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                                 onPressed: () {
                                                   //댓글 작성하기
                                                    controller.postComment(
+
                                                       'LIVE',
                                                       controller.homeModel!.realtimeTrendNewsLetters[0].id,
                                                       controller.liveController.value.text,

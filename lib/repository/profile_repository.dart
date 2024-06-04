@@ -45,7 +45,7 @@ class ProfileRepository{
     }
   }
 
-  Future<ArchivesTermModel> getTermData() async {
+  /*Future<ArchivesTermModel> getTermData() async {
     final prefs = await SharedPreferences.getInstance();
 
     try {
@@ -106,6 +106,6 @@ class ProfileRepository{
       print('오류 발생!!!: $e');
       throw Exception('Error occurred!!!: $e');
     }
-  }
+  }*/
 
 }

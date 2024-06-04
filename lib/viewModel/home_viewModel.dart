@@ -131,26 +131,28 @@ class HomeViewModel extends GetxController {
   }
 
   Future<void> getEditorNews(int id) async {
-    if (_newsLetterModel.value == null) {
-      try {
-        if (_newsLetterCache.containsKey(id)) {
-          _newsLetterModel.value = _newsLetterCache[id];
-          isLoadingEditor.value =false;
-          isLoadingReal.value =false;
-        } else {
-          final newsLetter = await _repository.getEditorNews(id);
-          _newsLetterCache[id] = newsLetter;
-          _newsLetterModel.value = newsLetter;
-          isLoadingEditor.value =false;
-          isLoadingReal.value =false;
-        }
+    _newsLetterModel.value = null; // 새로운 데이터를 가져오기 전에 모델을 초기화
+    isLoadingEditor.value = true;
+    isLoadingReal.value = true;
 
-      } catch (e) {
-        print('$e');
+    try {
+      if (_newsLetterCache.containsKey(id)) {
+        _newsLetterModel.value = _newsLetterCache[id];
+      } else {
+        final newsLetter = await _repository.getEditorNews(id);
+        _newsLetterCache[id] = newsLetter;
+        _newsLetterModel.value = newsLetter;
       }
-      log('뉴스레터2 : ${newsLetterModel?.title}');
+    } catch (e) {
+      print('$e');
+    } finally {
+      isLoadingEditor.value = false;
+      isLoadingReal.value = false;
     }
+
+    log('뉴스레터2 : ${_newsLetterModel.value?.title}');
   }
+
 
 
 
@@ -163,7 +165,7 @@ class HomeViewModel extends GetxController {
         isPostEditorNews(true);
         await _repository.postComment(newsId, content, perspective, isPrivate);
 
-       // comments.add(CommentModel(perspective: perspective, content: content));
+        // comments.add(CommentModel(perspective: perspective, content: content));
         //_commentModel.value?.content = content;
 
       } else {
@@ -193,7 +195,7 @@ class HomeViewModel extends GetxController {
   Future<void> archivesNewsCategory(int newsId, String category) async {
     try {
 
-        await _repository.archivesNewsCategory(newsId, category);
+      await _repository.archivesNewsCategory(newsId, category);
     } catch (e) {
       print('$e');
     }
