@@ -71,6 +71,13 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_launcher_icons: ^0.13.1
 
+flutter_icons:
+  android: true
+  ios: false
+  image_path: "assets/icons/play_store_512.png"
+  adaptive_icon_background: "assets/icons/ic_launcher_background.png"
+  adaptive_icon_foreground: "assets/icons/ic_launcher_foreground.png"
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
