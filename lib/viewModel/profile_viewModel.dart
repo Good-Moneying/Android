@@ -41,6 +41,7 @@ class ProfileViewModel extends GetxController {
     try {
       _profileModel.value = await _repository.getProfileData();
       _updateAttendanceData();
+      isLoading(false);
     } catch (e) {
       print('$e');
     }

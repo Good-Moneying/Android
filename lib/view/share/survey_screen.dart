@@ -261,7 +261,7 @@ class SurveyScreen extends GetView<SurveyViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(right: 5.0),
                               child: Text(
-                                '인기순',
+                                '최신순',
                                 style: FontStyles.Caption1_m.copyWith(
                                     color: AppColors.g4),
                               ),
@@ -361,6 +361,67 @@ _allComment() {
         ),
       ),
       Obx(
+            () => CommentWidget(
+          writer: '건우백',
+          time: '10분 전',
+          content:
+          '하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어요.',
+          perspective: '찬성',
+          onFollow: ElevatedButton(
+            onPressed: () {
+              if (surveyController.isFollow3.value == false) {
+                surveyController.isFollow3(true);
+              } else {
+                surveyController.isFollow3(false);
+              }
+            },
+            style: ElevatedButton.styleFrom(
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              minimumSize: Size.zero,
+              padding:
+              EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
+              backgroundColor: surveyController.isFollow3.value
+                  ? AppColors.g2
+                  : AppColors.g6,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(4),
+              ),
+            ),
+            child: Text(
+              surveyController.isFollow3.value ? '팔로잉' : '팔로우',
+              style: FontStyles.Caption2_m.copyWith(
+                  color: surveyController.isFollow3.value
+                      ? AppColors.g5
+                      : AppColors.white),
+            ),
+          ),
+          onLike: GestureDetector(
+            onTap: () {
+              if (surveyController.isLike3.value == false) {
+                surveyController.isLike3(true);
+              } else {
+                surveyController.isLike3(false);
+              }
+            },
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 4.0),
+                  //라이크 코멘트 색 채워졌을 때 필요함
+                  child: SvgPicture.asset(surveyController.isLike3.value
+                      ? 'assets/icons/like_comment.svg'
+                      : 'assets/icons/unlike_comment.svg'),
+                ),
+                Text(
+                  surveyController.isLike3.value ? '11' : '10',
+                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      Obx(
         () => CommentWidget(
           writer: '데헌',
           time: '1시간 전',
@@ -413,67 +474,6 @@ _allComment() {
                 ),
                 Text(
                   surveyController.isLike2.value ? '21' : '20',
-                  style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
-                ),
-              ],
-            ),
-          ),
-        ),
-      ),
-      Obx(
-        () => CommentWidget(
-          writer: '건우백',
-          time: '10분 전',
-          content:
-              '하지만 비슷하게 긴축에 나섰던 다른 주요국들이 경제 침체를 겪는 동안, 미국은 상대적으로 경제 호황을 누리고 있어요.',
-          perspective: '찬성',
-          onFollow: ElevatedButton(
-            onPressed: () {
-              if (surveyController.isFollow3.value == false) {
-                surveyController.isFollow3(true);
-              } else {
-                surveyController.isFollow3(false);
-              }
-            },
-            style: ElevatedButton.styleFrom(
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              minimumSize: Size.zero,
-              padding:
-                  EdgeInsetsDirectional.symmetric(horizontal: 8, vertical: 2),
-              backgroundColor: surveyController.isFollow3.value
-                  ? AppColors.g2
-                  : AppColors.g6,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            child: Text(
-              surveyController.isFollow3.value ? '팔로잉' : '팔로우',
-              style: FontStyles.Caption2_m.copyWith(
-                  color: surveyController.isFollow3.value
-                      ? AppColors.g5
-                      : AppColors.white),
-            ),
-          ),
-          onLike: GestureDetector(
-            onTap: () {
-              if (surveyController.isLike3.value == false) {
-                surveyController.isLike3(true);
-              } else {
-                surveyController.isLike3(false);
-              }
-            },
-            child: Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 4.0),
-                  //라이크 코멘트 색 채워졌을 때 필요함
-                  child: SvgPicture.asset(surveyController.isLike3.value
-                      ? 'assets/icons/like_comment.svg'
-                      : 'assets/icons/unlike_comment.svg'),
-                ),
-                Text(
-                  surveyController.isLike3.value ? '11' : '10',
                   style: FontStyles.Caption2_m.copyWith(color: AppColors.g3),
                 ),
               ],

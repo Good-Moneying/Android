@@ -883,9 +883,9 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                               .fromLTRB(
                                                               16, 0, 16, 0),
                                                           child: ElevatedButton(
-                                                            onPressed: () async {
+                                                            onPressed: () {
                                                               //댓글 작성하기
-                                                              await controller.postComment(
+                                                               controller.postComment(
                                                                 'EDITOR',
                                                                 controller.homeModel!.todayNewsLetter.id,
                                                                 controller.editorController.value.text,
@@ -900,11 +900,12 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                               }
 
                                                               if(controller.isLookAlone.value) {
-                                                                controller.addLivePerspec('비공개');
+                                                                controller.addPerspec('비공개');
                                                               } else {
                                                                 controller.addPerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
                                                               }
 
+                                                              controller.addWriter('연디');
                                                               // print('나혼자볼래요 테스트');
                                                               // print(controller.isLookAlone.value);
                                                               controller.editorController.clear();
@@ -998,7 +999,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                               physics: NeverScrollableScrollPhysics(),
                                               itemBuilder: (context, index) {
                                               return CommentWidget(
-                                                writer: '연디',
+                                                writer: controller.writers[index],
                                                 time: '방금전',
                                                 content: controller.comments[index],
                                                 perspective: controller.perspecs[index],

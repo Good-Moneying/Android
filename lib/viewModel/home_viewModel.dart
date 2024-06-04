@@ -54,8 +54,10 @@ class HomeViewModel extends GetxController {
   //late final RxList<CommentModel> _commentModel;
 
   //에디터 댓글&관점
-  final comments = <String>[].obs;
-  final perspecs = <String>[].obs;
+  final comments = <String>['미국의 경제', '경제 흐름'].obs;
+  final perspecs = <String>['긍정적이에요', '부정적이에요'].obs;
+  final writers = <String>['데헌', '건우백'].obs;
+
   //실시간 댓글&관점
   final liveComments = <String>[].obs;
   final livePerspecs = <String>[].obs;
@@ -66,6 +68,9 @@ class HomeViewModel extends GetxController {
   }
   void addPerspec(String perspec) {
     perspecs.add(perspec);
+  }
+  void addWriter(String writer) {
+    writers.add(writer);
   }
 
   //실시간 댓글 더하기
