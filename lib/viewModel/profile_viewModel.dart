@@ -48,6 +48,11 @@ class ProfileViewModel extends GetxController {
     }
   }
 
+  //회원탈퇴
+  Future<void> withdraw() async {
+    _repository.withdraw();
+  }
+
   /*Future<void> getTermData() async {
     try {
       _archivesTermModel.value = await _repository.getTermData();

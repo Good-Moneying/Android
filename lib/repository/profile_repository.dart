@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get/get.dart';
+import 'package:meetup/view/auth/login_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../model/mypage/archives_news_letter_model.dart';
@@ -26,7 +28,6 @@ class ProfileRepository{
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
-                //"Authorization": "Bearer ${'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzdWh5dW4xMDIwMUBuYXZlci5jb20iLCJpc3MiOiJkdWR1ay5zaG9wIiwiZXhwIjoxNzE2MjE4NTI1LCJpYXQiOjE3MTYyMTQ5MjV9.2stKXh7wYegZ8qgLpSwz5RF2OCIyPYrI7mB1vS9vxSQ'}",
               }
           )
       );
@@ -45,7 +46,38 @@ class ProfileRepository{
     }
   }
 
-  /*Future<ArchivesTermModel> getTermData() async {
+  //회원탈퇴
+  Future<void> withdraw() async {
+    final prefs = await SharedPreferences.getInstance();
+    try {
+      final response = await _dio.post(
+          "/api/withdraw",
+          options: Options(
+              headers: {
+                "Authorization": "Bearer ${prefs.getString('accessToken')}",
+              }
+          )
+      );
+
+      print('회원탈퇴 test: ${response.statusCode}');
+
+      if (response.statusCode == 200) {
+        //회원탈퇴 성공시 로그인 스크린 이동
+        prefs.setString('accessToken', '');
+        Get.offAll(LoginScreen());
+      } else {
+        // 서버에서 오류 응답을 받은 경우 처리
+        throw Exception(
+            'Failed to load editor news: ${response.statusMessage}');
+      }
+    } catch (e) {
+      // 네트워크 오류 또는 기타 오류 처리
+      throw Exception('Error occurred: $e');
+    }
+  }
+
+
+/*Future<ArchivesTermModel> getTermData() async {
     final prefs = await SharedPreferences.getInstance();
 
     try {

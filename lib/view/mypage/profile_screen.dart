@@ -10,6 +10,8 @@ import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/viewModel/profile_viewModel.dart';
 
+import '../../routes/get_pages.dart';
+
 class ProfileScreen extends GetView<ProfileViewModel> {
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,12 @@ class ProfileScreen extends GetView<ProfileViewModel> {
             Expanded(
               child: Container(),
             ),
-            SvgPicture.asset('assets/images/mypage_setting.svg')
+            GestureDetector(
+              onTap: () {
+                Get.toNamed(Routes.SETTING);
+              },
+                child: SvgPicture.asset('assets/images/mypage_setting.svg')
+            )
           ],
         ),
       ),
