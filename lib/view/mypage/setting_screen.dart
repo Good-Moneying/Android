@@ -39,7 +39,52 @@ class SettingScreen extends GetView<ProfileViewModel> {
               ),
               InkWell(
                 onTap: () {
-                  //로그아웃 함수
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        surfaceTintColor: Colors.transparent,
+                        backgroundColor: AppColors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        insetPadding:
+                        EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                        contentPadding: EdgeInsets.all(8),
+                        actionsAlignment: MainAxisAlignment.center,
+                        title: Center(
+                          child: Text(
+                            '로그아웃 하시겠습니까?',
+                            style:
+                            FontStyles.Bn1_b.copyWith(color: AppColors.black),
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              '취소',
+                              style: FontStyles.Ln1_sb.copyWith(
+                                  color: AppColors.black),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              //로그아웃 함수
+                              
+                            },
+                            child: Text(
+                              '확인',
+                              style:
+                              FontStyles.Ln1_sb.copyWith(color: Colors.red),
+                            ),
+                          ),
+                        ],
+                      );
+                    },
+                  );
                 },
                 child: Container(
                   width: Get.width, // 폰의 너비만큼 설정
@@ -71,10 +116,13 @@ class SettingScreen extends GetView<ProfileViewModel> {
                         insetPadding:
                             EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                         contentPadding: EdgeInsets.all(16),
-                        title: Text(
-                          '회원 탈퇴를 하시겠습니까?',
-                          style:
-                              FontStyles.Bn1_b.copyWith(color: AppColors.black),
+                        actionsAlignment: MainAxisAlignment.center,
+                        title: Center(
+                          child: Text(
+                            '회원 탈퇴를 하시겠습니까?',
+                            style:
+                                FontStyles.Bn1_b.copyWith(color: AppColors.black),
+                          ),
                         ),
                         content: Text(
                           '계정을 삭제하면 아카이브, 좋아요 등 모든 활동 정보가 삭제되고 다시 복구할 수 없습니다.',
