@@ -186,6 +186,7 @@ class InfoScreen extends GetView<UserViewModel> {
                         keyboardType: TextInputType.datetime,
                         onChanged: (text) {
                           print("text field: $text");
+                          //date 유효성 검증 함수
                           controller.dateValid.value =  isValidDate(text.replaceAll('-', ''));
                         },
                         style:
@@ -257,7 +258,7 @@ class InfoScreen extends GetView<UserViewModel> {
                       '다음',
                       style: FontStyles.Bn1_b.copyWith(
                           color: controller.genderSelect.value == false ||
-                                  controller.dateSelect.value == false
+                                  controller.dateValid.value == false
                               ? const Color(0xFFAAAAB9)
                               : AppColors.white),
                     ),
