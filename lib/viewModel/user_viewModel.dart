@@ -79,6 +79,7 @@ class UserViewModel extends GetxController {
   //생년월일
   TextEditingController birthController = TextEditingController();
   RxBool dateSelect = false.obs;
+  RxBool dateValid = true.obs;
 
   //interest, 다중선택
   RxBool interestSelect = false.obs;

@@ -129,6 +129,7 @@ class InfoScreen extends GetView<UserViewModel> {
                       () => OutlinedButton(
                         onPressed: () {
                           controller.selectGender(1);
+
                         },
                         style: OutlinedButton.styleFrom(
                             padding: EdgeInsets.zero,
@@ -169,49 +170,67 @@ class InfoScreen extends GetView<UserViewModel> {
               Row(
                 children: [
                   Expanded(
-                    child: TextFormField(
-                      onTapOutside: (event) {
-                        if (controller.birthController.value.text.length ==
-                            10) {
-                          controller.dateSelect.value = true;
-                        } else {
-                          controller.dateSelect.value = false;
-                        }
-                        FocusManager.instance.primaryFocus?.unfocus();
-                      },
-                      controller: controller.birthController,
-                      textInputAction: TextInputAction.done,
-                      keyboardType: TextInputType.datetime,
-                      onChanged: (text) {
-                        print("text field: $text");
-                      },
-                      style:
-                          FontStyles.Ln1_m.copyWith(color: AppColors.black),
-                      maxLength: 10,
-                      inputFormatters: [formatBirth],
-                      onFieldSubmitted: (String value) {
-                        if (value.length == 10) {
-                          controller.dateSelect.value = true;
-                        } else {
-                          controller.dateSelect.value = false;
-                        }
-                      },
-                      decoration: InputDecoration(
-                        counterText: '',
-                        hintText: '생년월일 8자리를 입력해주세요.',
-                        hintStyle:
-                            FontStyles.Ln1_m.copyWith(color: AppColors.g3),
-                        //border 색깔
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: AppColors.g2,
+                    child: Obx(
+                      () => TextFormField(
+                        onTapOutside: (event) {
+                          if (controller.birthController.value.text.length ==
+                              10) {
+                            controller.dateSelect.value = true;
+                          } else {
+                            controller.dateSelect.value = false;
+                          }
+                          FocusManager.instance.primaryFocus?.unfocus();
+                        },
+                        controller: controller.birthController,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.datetime,
+                        onChanged: (text) {
+                          print("text field: $text");
+                          controller.dateValid.value =  isValidDate(text.replaceAll('-', ''));
+                        },
+                        style:
+                            FontStyles.Ln1_m.copyWith(color: AppColors.black),
+                        maxLength: 10,
+                        inputFormatters: [formatBirth],
+                        onFieldSubmitted: (String value) {
+                          if (value.length == 10) {
+                            controller.dateSelect.value = true;
+                          } else {
+                            controller.dateSelect.value = false;
+                          }
+                        },
+                        decoration: InputDecoration(
+                          counterText: '',
+                          errorText: controller.dateValid.value ? null : '유효하지 않은 생년월일 입니다.',
+                          errorStyle: FontStyles.Caption2_m.copyWith(
+                              color: Colors.red),
+                          hintText: '생년월일 8자리를 입력해주세요.',
+                          hintStyle:
+                              FontStyles.Ln1_m.copyWith(color: AppColors.g3),
+                          //border 색깔
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: AppColors.g2,
+                            ),
                           ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8),
-                          borderSide: const BorderSide(
-                            color: AppColors.v5,
+                          errorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              color: const Color(0xFFFA5862),
+                            ),
+                          ),
+                          focusedErrorBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: BorderSide(
+                              color: const Color(0xFFFA5862),
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(8),
+                            borderSide: const BorderSide(
+                              color: AppColors.v5,
+                            ),
                           ),
                         ),
                       ),
@@ -250,5 +269,27 @@ class InfoScreen extends GetView<UserViewModel> {
         ),
       ),
     );
+  }
+}
+
+bool isValidDate(String input) {
+  try {
+    // 생년월일 파싱 시도
+    DateTime? parsedDate = DateTime.tryParse(input.substring(0, 4) + "-" + input.substring(4, 6) + "-" + input.substring(6, 8));
+
+    //false -> 유효하지 않음
+    //true -> 유효함
+    // 파싱이 실패하면 유효하지 않은 날짜로 판단
+    if (parsedDate == null) {
+      return false;
+    }
+
+    // 생년월일이 유효한지 확인
+    return parsedDate.year.toString() == input.substring(0, 4) &&
+        parsedDate.month.toString().padLeft(2, '0') == input.substring(4, 6) &&
+        parsedDate.day.toString().padLeft(2, '0') == input.substring(6, 8);
+  } catch (e) {
+    // 날짜 파싱 중 오류가 발생한 경우 유효하지 않은 날짜로 처리
+    return false;
   }
 }
