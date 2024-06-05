@@ -5,6 +5,7 @@ import 'package:get/get.dart' hide Response;
 import 'package:kakao_flutter_sdk/kakao_flutter_sdk.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter/services.dart';
+import 'package:meetup/view/auth/login_screen.dart';
 import 'package:meetup/view/bottomNavigationBar.dart';
 import 'package:meetup/viewModel/nickname_viewModel.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -215,47 +216,15 @@ Future<void> onboarding(final formData) async {
 }
 
 //로그아웃
-Future<void> signOut(BuildContext context) async {
+Future<void> signOut() async {
   try {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setBool('isLogged', false);
-    Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
-
     await UserApi.instance.logout();
+    Get.offAll(LoginScreen());
   } catch (error) {
     print('카카오계정으로 로그인 아웃 실패 $error');
   }
 }
 
-////oauth test 함수
-// Future<void> test(String accessToken) async {
-//   try{
-//     Dio dio = Dio();
-//     dio.options.baseUrl = dotenv.get("BASE_URL");
-//     dio.options.headers['Authorization'] = 'Bearer $accessToken';
-//     dio.options.validateStatus = (status) {
-//       return status! < 500;
-//     };
-//     Response response;
-//
-//     response = await dio.get(
-//       '/api/oauth/test'
-//     );
-//
-//     if(response.statusCode ==200){
-//       print('test 코드 출력 성공');
-//     }
-//     else {
-//       print('test 실패');
-//       print(response.statusCode);
-//     }
-//   }
-//   catch (e) {
-//
-//   }
-// }
-
-//닉네임 중복 확인
 Future<bool> isDuplicate(String value) async {
   try {
     Dio dio = Dio();

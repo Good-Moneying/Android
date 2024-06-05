@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:meetup/service/auth_service.dart';
 import 'package:meetup/viewModel/profile_viewModel.dart';
 
 import '../../design/style/ColorStyles.dart';
@@ -73,12 +74,12 @@ class SettingScreen extends GetView<ProfileViewModel> {
                           TextButton(
                             onPressed: () async {
                               //로그아웃 함수
-                              
+                              await signOut();
                             },
                             child: Text(
                               '확인',
                               style:
-                              FontStyles.Ln1_sb.copyWith(color: Colors.red),
+                              FontStyles.Ln1_sb.copyWith(color: AppColors.black),
                             ),
                           ),
                         ],
@@ -148,7 +149,7 @@ class SettingScreen extends GetView<ProfileViewModel> {
                             child: Text(
                               '확인',
                               style:
-                                  FontStyles.Ln1_sb.copyWith(color: Colors.red),
+                                  FontStyles.Ln1_sb.copyWith(color: Colors.red.shade700),
                             ),
                           ),
                         ],
