@@ -243,7 +243,7 @@ class InfoScreen extends GetView<UserViewModel> {
                 () => SizedBox(
                   child: ElevatedButton(
                     onPressed: controller.genderSelect.value == false ||
-                            controller.dateSelect.value == false
+                            controller.dateValid.value == false
                         ? null
                         : () {
                             Get.toNamed(Routes.INTEREST);
