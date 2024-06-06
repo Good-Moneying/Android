@@ -23,7 +23,7 @@ class ShareScreen extends GetView<ShareViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(ShareViewModel());
-
+    controller.getTodaySurvey();
     var homeController = Get.find<HomeViewModel>();
     var shareController = Get.find<ShareViewModel>();
 
@@ -219,7 +219,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                     : () {
                                                         controller.isSubmit(true);
                                                         //설문 찬성 api
-                                                        controller.survey();
+                                                        //controller.survey();
                                                         Get.offNamed(Routes.SURVEY,
                                                           arguments: controller.thinkController.text,
                                                         );
@@ -316,7 +316,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                     : () {
                                                   controller.isSubmit(true);
                                                   //설문 반대 api
-                                                  controller.survey();
+                                                  //controller.survey();
                                                   Get.offNamed(Routes.SURVEY,
                                                     arguments: controller.thinkController.text,
                                                   );

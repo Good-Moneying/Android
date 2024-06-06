@@ -50,8 +50,8 @@ class ProfileRepository{
   Future<void> withdraw() async {
     final prefs = await SharedPreferences.getInstance();
     try {
-      final response = await _dio.post(
-          "/api/withdraw",
+      final response = await _dio.delete(
+          '',
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
