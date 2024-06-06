@@ -94,7 +94,7 @@ _quiz(BuildContext context) {
           Obx(
             () => GestureDetector(
                 onTap: () {
-                  quizController.init(false);
+                  //quizController.init(false);
 
                   quizController.selectQ(0);
 
@@ -108,7 +108,7 @@ _quiz(BuildContext context) {
           Obx(
             () => GestureDetector(
                 onTap: () {
-                  quizController.init(false);
+                  //quizController.init(false);
 
                   quizController.selectQ(1);
                 },
@@ -123,7 +123,7 @@ _quiz(BuildContext context) {
           Obx(
             () => GestureDetector(
                 onTap: () {
-                  quizController.init(false);
+                  //quizController.init(false);
                   quizController.selectQ(2);
 
                   quizController.wrongQ('C');
@@ -136,7 +136,7 @@ _quiz(BuildContext context) {
           Obx(
             () => GestureDetector(
                 onTap: () {
-                  quizController.init(false);
+                  //quizController.init(false);
                   quizController.selectQ(3);
 
                   quizController.wrongQ('D');
@@ -185,13 +185,21 @@ _quiz(BuildContext context) {
                   label: '정답 제출하기',
                   onPressed:quizController.q1List.contains(true)
                       ?  () {
+                    print(quizController.q1List);
+
+
                     if(quizController.q1List[1]) {
                       //정답인 경우
                       quizController.correctSubmitQ1(true);
+                      quizController.wrongSubmitQ1(false);
                     } else {
                       //오답인 경우
+                      quizController.correctSubmitQ1(false);
                       quizController.wrongSubmitQ1(true);
                     }
+
+                    print(quizController.correctSubmitQ1);
+                    print(quizController.wrongSubmitQ1);
                   } : null,
                 ),
               ),
