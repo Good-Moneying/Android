@@ -1,7 +1,9 @@
 flutter_native_splash:
+  background_image: assets/images/splash_screen.png
+  fullscreen: true
+
   android_12:
+    image: assets/images/splash_screen.png
   android: true
   ios: false
 
-  background_image: "assets/images/splash_screen.png"
-  fullscreen: true

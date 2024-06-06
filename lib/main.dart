@@ -33,9 +33,8 @@ void main() async {
   );
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
-  //FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
-  await Future.delayed(const Duration(seconds: 3));
-  FlutterNativeSplash.remove();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
 
   KakaoSdk.init(nativeAppKey: "${dotenv.env['YOUR_NATIVE_APP_KEY']}");
 
@@ -50,9 +49,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    FlutterNativeSplash.remove();
 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Good Moneying',
       // theme: ThemeData(
       //
