@@ -15,10 +15,8 @@ class ShareViewModel extends GetxController {
   Rx<bool> isSubmit = false.obs;
 
   late final Rxn<TodaySurveyModel> _todaySurveyModel;
-  late final Rxn<DetailSurveyModel> _detailSurveyModel;
 
   TodaySurveyModel? get todaySurveyModel => _todaySurveyModel.value;
-  DetailSurveyModel? get detailSurveyModel => _detailSurveyModel.value;
 
   @override
   void onInit() {

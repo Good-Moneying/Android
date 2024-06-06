@@ -154,14 +154,14 @@ class ShareScreen extends GetView<ShareViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(right: 6.0),
                               child: Text(
-                                '387명',
+                                '${controller.todaySurveyModel?.participants}',
                                 style: FontStyles.Caption2_m.copyWith(
                                     color: AppColors.g5),
                               ),
                             ),
                             SvgPicture.asset('assets/icons/people.svg'),
                             Text(
-                              '연디',
+                              controller.todaySurveyModel?.creatorName ?? '연디',
                               style: FontStyles.Caption2_m.copyWith(
                                   color: AppColors.g5),
                             ),

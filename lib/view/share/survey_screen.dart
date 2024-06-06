@@ -18,6 +18,8 @@ class SurveyScreen extends GetView<SurveyViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(SurveyViewModel());
+    controller.getDetailSurvey();
+
     return Scaffold(
       backgroundColor: AppColors.g6,
       appBar: AppBar(
