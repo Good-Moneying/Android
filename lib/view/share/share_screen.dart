@@ -219,7 +219,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                     : () {
                                                         controller.isSubmit(true);
                                                         //설문 찬성 api
-                                                        //controller.survey();
+                                                        controller.agreeSurvey();
                                                         Get.offNamed(Routes.SURVEY,
                                                           arguments: controller.thinkController.text,
                                                         );
@@ -316,7 +316,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                     : () {
                                                   controller.isSubmit(true);
                                                   //설문 반대 api
-                                                  //controller.survey();
+                                                  controller.disagreeSurvey();
                                                   Get.offNamed(Routes.SURVEY,
                                                     arguments: controller.thinkController.text,
                                                   );

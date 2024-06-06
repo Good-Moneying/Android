@@ -35,4 +35,12 @@ class ShareViewModel extends GetxController {
     }
   }
 
+  Future<void> agreeSurvey() async {
+    _repository.agree();
+  }
+
+  Future<void> disagreeSurvey() async {
+    _repository.disagree();
+  }
+
 }
