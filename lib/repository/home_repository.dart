@@ -71,7 +71,6 @@ class HomeRepository {
     if (response.statusCode == 200) {
         // print('홈모델 응답 성공');
         // print(HomeModel.fromJson(response.data));
-        print('투데이뉴스 : ${response.data}');
         return HomeModel.fromJson(response.data);
       } else {
         // 서버에서 오류 응답을 받은 경우 처리

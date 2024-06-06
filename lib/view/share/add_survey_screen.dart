@@ -14,6 +14,7 @@ class AddSurveyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.white,
       appBar: BackAppBar(
         iconColor: AppColors.black,
         title: Text(

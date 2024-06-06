@@ -17,14 +17,13 @@ import '../../design/widgets/home/recommend_box.dart';
 import '../../routes/get_pages.dart';
 import '../../../design/widgets/history_widget.dart';
 
-
 class ShareScreen extends GetView<ShareViewModel> {
   const ShareScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     Get.put(ShareViewModel());
-
+    controller.getTodaySurvey();
     var homeController = Get.find<HomeViewModel>();
     var shareController = Get.find<ShareViewModel>();
 
@@ -68,22 +67,27 @@ class ShareScreen extends GetView<ShareViewModel> {
               padding: const EdgeInsets.only(bottom: 24.0),
               child: Obx(
                 () => InkWell(
-                  onTap: () {
-                    //Get.toNamed(Routes.SURVEY);
-                    //기사 url로 넘어가도록 해야함
-                  },
-                  child: SurveyBox(
-                      image: newsController.homeModel?.customizeNewsLetters[0].thumbnail ?? 'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
-                      title: newsController.homeModel?.customizeNewsLetters[0].title ?? 'no data',
-                      tag: CustomChip(label: newsController.parseCustom1()[0],),
+                    onTap: () {
+                      //Get.toNamed(Routes.SURVEY);
+                      //기사 url로 넘어가도록 해야함
+                    },
+                    child: SurveyBox(
+                      image: newsController
+                              .homeModel?.customizeNewsLetters[0].thumbnail ??
+                          'https://cdn.pixabay.com/photo/2016/03/23/15/00/ice-cream-1274894_1280.jpg',
+                      title: newsController
+                              .homeModel?.customizeNewsLetters[0].title ??
+                          'no data',
+                      tag: CustomChip(
+                        label: newsController.parseCustom1()[0],
+                      ),
                       history: History(
-                            diff: newsController.formatDate(
-                              DateTime.parse(newsController
-                                  .homeModel!.customizeNewsLetters[0].createdAt),
-                            ),
-                          ),
-                  )
-                ),
+                        diff: newsController.formatDate(
+                          DateTime.parse(newsController
+                              .homeModel!.customizeNewsLetters[0].createdAt),
+                        ),
+                      ),
+                    )),
               ),
             ),
             Padding(
@@ -150,14 +154,14 @@ class ShareScreen extends GetView<ShareViewModel> {
                             Padding(
                               padding: const EdgeInsets.only(right: 6.0),
                               child: Text(
-                                '387명',
+                                '${controller.todaySurveyModel?.participants}',
                                 style: FontStyles.Caption2_m.copyWith(
                                     color: AppColors.g5),
                               ),
                             ),
                             SvgPicture.asset('assets/icons/people.svg'),
                             Text(
-                              '연디',
+                              controller.todaySurveyModel?.creatorName ?? '연디',
                               style: FontStyles.Caption2_m.copyWith(
                                   color: AppColors.g5),
                             ),
@@ -171,7 +175,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Obx(
-                          () => Flexible(
+                                () => Flexible(
                                   flex: 1,
                                   child: InkWell(
                                     onTap: () {
@@ -183,8 +187,8 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                 StateSetter setState) {
                                               return ThinkContainer(
                                                 textField: TextField(
-                                                  controller:
-                                                      controller.thinkController,
+                                                  controller: controller
+                                                      .thinkController,
                                                   maxLength: 300,
                                                   maxLines: null,
                                                   textInputAction:
@@ -193,7 +197,8 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                       TextInputType.text,
                                                   style: FontStyles.Caption1_r
                                                       .copyWith(
-                                                          color: AppColors.black),
+                                                          color:
+                                                              AppColors.black),
                                                   decoration: InputDecoration(
                                                       counterText: '',
                                                       hintText:
@@ -205,18 +210,20 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                                   AppColors.g5),
                                                       border: InputBorder.none),
                                                 ),
-                                                onPressed:
-                                                    controller
-                                                            .thinkController
-                                                            .value
-                                                            .text
-                                                            .isEmpty
-                                                        ? null
-                                                        : () {
-                                                  controller.isSubmit(true);
-                                                      Get.offNamed(Routes.SURVEY, arguments: controller.thinkController.text,);
-                                                      controller.thinkController.clear();
-
+                                                onPressed: controller
+                                                        .thinkController
+                                                        .value
+                                                        .text
+                                                        .isEmpty
+                                                    ? null
+                                                    : () {
+                                                        controller.isSubmit(true);
+                                                        //설문 찬성 api
+                                                        controller.agreeSurvey();
+                                                        Get.offNamed(Routes.SURVEY,
+                                                          arguments: controller.thinkController.text,
+                                                        );
+                                                        controller.thinkController.clear();
                                                       },
                                               );
                                             },
@@ -224,34 +231,40 @@ class ShareScreen extends GetView<ShareViewModel> {
                                         },
                                       );
                                     },
-                                    child: controller.isSubmit.value ? SvgPicture.asset('assets/images/agree7box.svg') : Container(
-                                      decoration: BoxDecoration(
-                                        color: AppColors.white,
-                                        border: Border.all(
-                                          color: AppColors.v2,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            14, 1, 14, 8),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                                'assets/icons/agreement.png'),
-                                            Text(
-                                              '찬성',
-                                              style:
-                                                  FontStyles.Caption1_m.copyWith(
-                                                      color: AppColors.black),
+                                    child: controller.isSubmit.value
+                                        ? SvgPicture.asset(
+                                            'assets/images/agree7box.svg')
+                                        : Container(
+                                            decoration: BoxDecoration(
+                                              color: AppColors.white,
+                                              border: Border.all(
+                                                color: AppColors.v2,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      14, 1, 14, 8),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                      'assets/icons/agreement.png'),
+                                                  Text(
+                                                    '찬성',
+                                                    style: FontStyles.Caption1_m
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .black),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                   ),
                                 ),
                               ),
@@ -271,39 +284,44 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                 StateSetter setState) {
                                               return ThinkContainer(
                                                 textField: TextField(
-                                                  controller:
-                                                  controller.thinkController,
+                                                  controller: controller
+                                                      .thinkController,
                                                   maxLength: 300,
                                                   maxLines: null,
                                                   textInputAction:
-                                                  TextInputAction.done,
+                                                      TextInputAction.done,
                                                   keyboardType:
-                                                  TextInputType.text,
+                                                      TextInputType.text,
                                                   style: FontStyles.Caption1_r
                                                       .copyWith(
-                                                      color: AppColors.black),
+                                                          color:
+                                                              AppColors.black),
                                                   decoration: InputDecoration(
                                                       counterText: '',
                                                       hintText:
-                                                      '여러분의 생각을 남겨보세요. (최대 300자)',
+                                                          '여러분의 생각을 남겨보세요. (최대 300자)',
                                                       hintStyle: FontStyles
-                                                          .Caption1_r
+                                                              .Caption1_r
                                                           .copyWith(
-                                                          color:
-                                                          AppColors.g5),
+                                                              color:
+                                                                  AppColors.g5),
                                                       border: InputBorder.none),
                                                 ),
-                                                onPressed:
-                                                controller
-                                                    .thinkController
-                                                    .value
-                                                    .text
-                                                    .isEmpty
+                                                onPressed: controller
+                                                        .thinkController
+                                                        .value
+                                                        .text
+                                                        .isEmpty
                                                     ? null
                                                     : () {
-                                                  Get.offNamed(Routes.SURVEY, arguments: controller.thinkController.text,);
+                                                  controller.isSubmit(true);
+                                                  //설문 반대 api
+                                                  controller.disagreeSurvey();
+                                                  Get.offNamed(Routes.SURVEY,
+                                                    arguments: controller.thinkController.text,
+                                                  );
                                                   controller.thinkController.clear();
-                                                },
+                                                      },
                                               );
                                               ();
                                             },
@@ -311,34 +329,40 @@ class ShareScreen extends GetView<ShareViewModel> {
                                         },
                                       );
                                     },
-                                    child: controller.isSubmit.value ? SvgPicture.asset('assets/images/disagree3box.svg') : Container(
-                                      decoration: BoxDecoration(
-                                        color: AppColors.white,
-                                        border: Border.all(
-                                          color: AppColors.v2,
-                                          width: 1,
-                                        ),
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            14, 1, 14, 8),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                                'assets/icons/disagreement.png'),
-                                            Text(
-                                              '반대',
-                                              style:
-                                                  FontStyles.Caption1_m.copyWith(
-                                                      color: AppColors.black),
+                                    child: controller.isSubmit.value
+                                        ? SvgPicture.asset(
+                                            'assets/images/disagree3box.svg')
+                                        : Container(
+                                            decoration: BoxDecoration(
+                                              color: AppColors.white,
+                                              border: Border.all(
+                                                color: AppColors.v2,
+                                                width: 1,
+                                              ),
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
                                             ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      14, 1, 14, 8),
+                                              child: Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                      'assets/icons/disagreement.png'),
+                                                  Text(
+                                                    '반대',
+                                                    style: FontStyles.Caption1_m
+                                                        .copyWith(
+                                                            color: AppColors
+                                                                .black),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
                                   ),
                                 ),
                               ),

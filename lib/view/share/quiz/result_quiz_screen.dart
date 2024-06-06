@@ -175,6 +175,17 @@ _partCorrect() {
             textStyle: FontStyles.Bn1_b.copyWith(color: AppColors.white),
             label: '퀴즈 종료',
             onPressed: () {
+              quizController.init(true);
+              quizController.firstQ(false);
+              quizController.secondQ(false);
+              quizController.thirdQ(false);
+              quizController.fourthQ(false);
+
+              quizController.q1elect(false);
+              quizController.q1List.assignAll([false, false, false, false]);
+              quizController.correctSubmitQ1(false);
+              quizController.wrongSubmitQ1(false);
+
               Get.offAll(BottomNavigationView(), arguments: 2);
             },
           ),

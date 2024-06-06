@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:meetup/design/style/ColorStyles.dart';
 import 'package:meetup/design/style/FontStyles.dart';
@@ -20,6 +21,7 @@ class NicknameScreen extends GetView<UserViewModel> {
 
     return Scaffold(
       backgroundColor: AppColors.white,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         leading: IconButton(
@@ -71,15 +73,16 @@ class NicknameScreen extends GetView<UserViewModel> {
               ),
               //텍스트 폼 필드
               Obx(
-                    ()=> SizedBox(
+                () => SizedBox(
                   height: controller.isDisplayError.value ||
                           controller.isNickDuplicate.value == false
                       ? Get.height * 0.14
                       : Get.height * 0.1,
                   child: Padding(
                     padding: controller.isDisplayError.value ||
-                        controller.isNickDuplicate.value == false
-                        ? const EdgeInsets.only(top: 10.0) : EdgeInsets.zero,
+                            controller.isNickDuplicate.value == false
+                        ? const EdgeInsets.only(top: 10.0)
+                        : EdgeInsets.zero,
                     child: Row(
                       children: [
                         Expanded(
@@ -95,12 +98,14 @@ class NicknameScreen extends GetView<UserViewModel> {
                               () => SizedBox(
                                 //오류&helper 텍스트로 인한 크기 조절
                                 height: controller.isDisplayError.value ||
-                                        controller.isNickDuplicate.value == false
+                                        controller.isNickDuplicate.value ==
+                                            false
                                     ? Get.height * 0.14
                                     : Get.height * 0.07,
                                 child: Padding(
                                   padding: controller.isDisplayError.value ||
-                                          controller.isNickDuplicate.value == false
+                                          controller.isNickDuplicate.value ==
+                                              false
                                       ? const EdgeInsets.only(
                                           top: 20.0,
                                         )
@@ -159,10 +164,11 @@ class NicknameScreen extends GetView<UserViewModel> {
                                       errorText: controller.isDisplayError.value
                                           ? "닉네임을 사용할 수 없습니다"
                                           : null,
-                                      errorStyle: controller.isDisplayError.value
-                                          ? FontStyles.Caption2_m.copyWith(
-                                              color: Colors.red)
-                                          : null,
+                                      errorStyle:
+                                          controller.isDisplayError.value
+                                              ? FontStyles.Caption2_m.copyWith(
+                                                  color: Colors.red)
+                                              : null,
                                       //border 색깔
                                       enabledBorder: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
@@ -214,12 +220,18 @@ class NicknameScreen extends GetView<UserViewModel> {
                                       controller.isNickDuplicate(
                                           await isDuplicate(controller
                                               .nicknameController.value.text));
+
+                                      if (controller.isNickDuplicate.value == true) {
+                                        //닉네임 중복시 토스트 메시지 표시
+                                        showToast();
+                                      }
                                     },
                               style: ElevatedButton.styleFrom(
                                 padding: EdgeInsets.zero,
-                                backgroundColor: controller.isNickDuplicate.value
-                                    ? AppColors.g6
-                                    : AppColors.g2,
+                                backgroundColor:
+                                    controller.isNickDuplicate.value
+                                        ? AppColors.g6
+                                        : AppColors.g2,
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(12),
                                 ),
@@ -273,4 +285,15 @@ class NicknameScreen extends GetView<UserViewModel> {
       ),
     );
   }
+}
+
+void showToast() {
+  Fluttertoast.showToast(
+    msg: '이미 존재하는 닉네임입니다.',
+    gravity: ToastGravity.BOTTOM,
+    backgroundColor: AppColors.g6.withOpacity(0.7),
+    textColor: AppColors.white,
+    fontSize: 18,
+    toastLength: Toast.LENGTH_SHORT,
+  );
 }
