@@ -27,13 +27,12 @@ class SurveyViewModel extends GetxController with GetSingleTickerProviderStateMi
   void onInit() {
     super.onInit();
 
-    getDetailSurvey();
     _detailSurveyModel = Rxn<DetailSurveyModel>();
   }
 
-  Future<void> getDetailSurvey() async {
+  Future<void> getDetailSurvey(int surveyId) async {
     try {
-      _detailSurveyModel.value = await _repository.detailSurvey();
+      _detailSurveyModel.value = await _repository.detailSurvey(surveyId);
       //isLoading.value = false;
     } catch (e) {
       print('$e');

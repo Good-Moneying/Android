@@ -23,7 +23,7 @@ class ShareScreen extends GetView<ShareViewModel> {
   @override
   Widget build(BuildContext context) {
     Get.put(ShareViewModel());
-    controller.getTodaySurvey();
+    //controller.getTodaySurvey();
     var homeController = Get.find<HomeViewModel>();
     var shareController = Get.find<ShareViewModel>();
     return Obx(
@@ -165,7 +165,8 @@ class ShareScreen extends GetView<ShareViewModel> {
                                       Padding(
                                         padding: const EdgeInsets.only(right: 6.0),
                                         child: Text(
-                                          '${controller.todaySurveyModel?.participants}',
+                                          '387명',
+                                          //'${controller.todaySurveyModel?.participants}',
                                           style: FontStyles.Caption2_m.copyWith(
                                               color: AppColors.g5),
                                         ),
@@ -230,7 +231,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                               : () {
                                                             controller.isSubmit(true);
                                                             //설문 찬성 api
-                                                            controller.agreeSurvey();
+                                                            controller.agreeSurvey(controller.todaySurveyModel?.surveyId ?? 123);
                                                             Get.offNamed(Routes.SURVEY,
                                                               arguments: controller.thinkController.text,
                                                             );
@@ -327,7 +328,7 @@ class ShareScreen extends GetView<ShareViewModel> {
                                                               : () {
                                                             controller.isSubmit(true);
                                                             //설문 반대 api
-                                                            controller.disagreeSurvey();
+                                                            controller.disagreeSurvey(controller.todaySurveyModel?.surveyId ?? 123);
                                                             Get.offNamed(Routes.SURVEY,
                                                               arguments: controller.thinkController.text,
                                                             );

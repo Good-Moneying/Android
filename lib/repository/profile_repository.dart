@@ -51,7 +51,7 @@ class ProfileRepository{
     final prefs = await SharedPreferences.getInstance();
     try {
       final response = await _dio.delete(
-          '',
+          '/api/users',
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",

@@ -21,7 +21,7 @@ class ShareRepository{
     final prefs = await SharedPreferences.getInstance();
     try {
       final response = await _dio.get(
-          "/api/surveys/today",
+          "/api/surveys",
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
@@ -47,11 +47,11 @@ class ShareRepository{
   }
 
   //설문 상세보기
-  Future<DetailSurveyModel> detailSurvey() async {
+  Future<DetailSurveyModel> detailSurvey(int id) async {
     final prefs = await SharedPreferences.getInstance();
     try {
       final response = await _dio.get(
-          "/api/surveys/123",
+          "/api/surveys/$id",
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
@@ -77,16 +77,17 @@ class ShareRepository{
   }
 
   //찬성
-  Future<void> agree() async {
+  Future<void> agree(int id) async {
     final prefs = await SharedPreferences.getInstance();
     try {
       final response = await _dio.post(
-          "/api/surveys/agree/123",
+          "/api/surveys/agree",
+          queryParameters: {'surveyId': '$id'},
           options: Options(
               headers: {
                 "Authorization": "Bearer ${prefs.getString('accessToken')}",
               }
-          )
+          ),
       );
 
       print('설문 찬성 test: ${response.statusCode}');
@@ -106,16 +107,17 @@ class ShareRepository{
   }
 
   //반대
-  Future<void> disagree() async {
+  Future<void> disagree(int id) async {
     final prefs = await SharedPreferences.getInstance();
     try {
       final response = await _dio.post(
-          "/api/surveys/disagress/123",
-          options: Options(
-              headers: {
-                "Authorization": "Bearer ${prefs.getString('accessToken')}",
-              }
-          )
+        "/api/surveys",
+        queryParameters: {'surveyId': '$id'},
+        options: Options(
+            headers: {
+              "Authorization": "Bearer ${prefs.getString('accessToken')}",
+            }
+        ),
       );
 
       print('설문 반대 test: ${response.statusCode}');

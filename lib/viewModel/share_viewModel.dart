@@ -8,7 +8,7 @@ import 'package:meetup/repository/share_repository.dart';
 import '../model/share/detail_survey_model.dart';
 
 class ShareViewModel extends GetxController {
-  Rx<bool> isLoading = true.obs;
+  Rx<bool> isLoading = false.obs;
 
   final ShareRepository _repository = ShareRepository();
   TextEditingController thinkController = TextEditingController();
@@ -27,21 +27,19 @@ class ShareViewModel extends GetxController {
 
   Future<void> getTodaySurvey() async {
     try {
-      //api 배포되면 순서 바꾸기
-      isLoading.value = false;
       _todaySurveyModel.value = await _repository.todaySurvey();
-
+      isLoading.value = false;
     } catch (e) {
       print('$e');
     }
   }
 
-  Future<void> agreeSurvey() async {
-    _repository.agree();
+  Future<void> agreeSurvey(int surveyId) async {
+    _repository.agree(surveyId);
   }
 
-  Future<void> disagreeSurvey() async {
-    _repository.disagree();
+  Future<void> disagreeSurvey(int surveyId) async {
+    _repository.disagree(surveyId);
   }
 
 }

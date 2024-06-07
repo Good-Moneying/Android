@@ -149,7 +149,8 @@ class UserViewModel extends GetxController {
     } else if (selectFrequency[3]) {
       userGoal('ONE_TO_TWO');
     } else {
-      userGoal('건너뛰기');
+      //건너뛰기 (임시)
+      userGoal('ONE_TO_TWO');
     }
   }
 

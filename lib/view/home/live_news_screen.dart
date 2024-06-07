@@ -13,7 +13,10 @@ import '../../design/style/FontStyles.dart';
 import '../../design/widgets/comment_widget.dart';
 import '../../design/widgets/home/archive_dialog.dart';
 import '../../viewModel/home_viewModel.dart';
+import '../../viewModel/nickname_viewModel.dart';
 class LiveNewsScreen extends GetView<HomeViewModel> {
+  final userNickname= Get.find<NicknameViewModel>().nickname;
+
   @override
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
@@ -648,6 +651,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                                                     controller.addLivePerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
                                                   }
 
+                                                  controller.addLiveWriter(userNickname);
                                                   print(controller.setPerspective(controller.isDialogAgreeList.value));
 
                                                   print(controller.liveComments);
@@ -726,7 +730,7 @@ class LiveNewsScreen extends GetView<HomeViewModel> {
                             physics: NeverScrollableScrollPhysics(),
                             itemBuilder: (context, index) {
                               return CommentWidget(
-                                writer: controller.isLookAlone.value ? '작성자' : '연디',
+                                writer: controller.liveWriters[index],
                                 time: '방금전',
                                 content: controller.liveComments[index],
                                 perspective: controller.livePerspecs[index],

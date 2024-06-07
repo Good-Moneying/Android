@@ -11,8 +11,12 @@ import 'package:meetup/design/style/FontStyles.dart';
 import 'package:meetup/viewModel/profile_viewModel.dart';
 
 import '../../routes/get_pages.dart';
+import '../../viewModel/nickname_viewModel.dart';
 
 class ProfileScreen extends GetView<ProfileViewModel> {
+  final userNickname= Get.find<NicknameViewModel>().nickname;
+
+
   @override
   Widget build(BuildContext context) {
     Get.put(ProfileViewModel());
@@ -22,6 +26,7 @@ class ProfileScreen extends GetView<ProfileViewModel> {
     return Scaffold(
       backgroundColor: AppColors.g1,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
         backgroundColor: Colors.white,
         title: Row(
           children: [
@@ -120,12 +125,10 @@ class ProfileScreen extends GetView<ProfileViewModel> {
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.only(top: 4.0),
-                                      child: Obx(
-                                            () => Text(
-                                          controller.profileModel?.nickname ?? ' '
-                                          ,style: FontStyles.Bn1_b,
+                                      child: Text(
+                                          userNickname,
+                                        style: FontStyles.Bn1_b,
                                         ),
-                                      ),
                                     ),
                                   ],
                                 ),

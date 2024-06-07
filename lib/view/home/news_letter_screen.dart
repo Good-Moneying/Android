@@ -20,6 +20,7 @@ import '../../design/widgets/chip_editor.dart';
 import '../../design/widgets/home/archive_dialog.dart';
 import '../../viewModel/home_viewModel.dart';
 import '../../model/comment_model.dart';
+import '../../viewModel/nickname_viewModel.dart';
 
 //final commentController = Get.find<HomeViewModel>().getNewsLetterFromCache(Get.find<PlusHomeViewModel>().cloudHomeModel!.thinkingDetails![0].newsLetterId ?? 0);
 final commentController = Get.find<PlusHomeViewModel>();
@@ -28,6 +29,8 @@ List<String?> comments = commentController.cloudHomeModel?.thinkingDetails?.map(
 
 
 class NewsLetterScreen extends GetView<HomeViewModel> {
+  final userNickname= Get.find<NicknameViewModel>().nickname;
+
   @override
   Widget build(BuildContext context) {
     final HomeViewModel controller = Get.put(HomeViewModel()); // GetX 컨트롤러를 가져옴
@@ -905,7 +908,7 @@ class NewsLetterScreen extends GetView<HomeViewModel> {
                                                                 controller.addPerspec(controller.perspecComment(controller.setPerspective(controller.isDialogAgreeList.value)));
                                                               }
 
-                                                              controller.addWriter('연디');
+                                                              controller.addWriter(userNickname);
                                                               // print('나혼자볼래요 테스트');
                                                               // print(controller.isLookAlone.value);
                                                               controller.editorController.clear();

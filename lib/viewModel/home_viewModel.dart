@@ -59,8 +59,10 @@ class HomeViewModel extends GetxController {
   final writers = <String>['데헌', '건우백'].obs;
 
   //실시간 댓글&관점
-  final liveComments = <String>[].obs;
-  final livePerspecs = <String>[].obs;
+  final liveComments = <String>['미국의 경제'].obs;
+  final livePerspecs = <String>['긍정적이에요'].obs;
+  final liveWriters = <String>['데헌'].obs;
+
 
   //에디터 더하기
   void addComment(String comment) {
@@ -79,6 +81,9 @@ class HomeViewModel extends GetxController {
   }
   void addLivePerspec(String perspec) {
     livePerspecs.add(perspec);
+  }
+  void addLiveWriter(String writer) {
+    liveWriters.add(writer);
   }
 
   HomeModel? get homeModel => _homeModel.value;
