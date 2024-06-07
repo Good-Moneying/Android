@@ -35,6 +35,7 @@ void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
+
   KakaoSdk.init(nativeAppKey: "${dotenv.env['YOUR_NATIVE_APP_KEY']}");
 
   //로그인 여부 확인
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
     FlutterNativeSplash.remove();
 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Good Moneying',
       // theme: ThemeData(
       //
